@@ -39,7 +39,7 @@
                 app:layout_constraintVertical_bias="0.539" />
 
             <TextView
-                android:id="@+id/nombre"
+                android:id="@+id/nombre2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="64dp"
@@ -69,7 +69,7 @@
                 android:src="@drawable/ic_launcher_foreground"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.948"
-                app:layout_constraintStart_toEndOf="@+id/nombre"
+                app:layout_constraintStart_toEndOf="@+id/nombre2"
                 app:layout_constraintTop_toTopOf="parent" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>

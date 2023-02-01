@@ -10,6 +10,10 @@ import android.widget.Button
 import android.widget.EditText
 import android.widget.TextView
 import android.widget.Toast
+import androidx.lifecycle.lifecycleScope
+import com.example.devlandapp.controllers.Gestor
+import com.example.devlandapp.models.Usuario
+import kotlinx.coroutines.*
 
 class LoginActivity : AppCompatActivity() {
     private var etEmail: EditText? = null
@@ -18,6 +22,8 @@ class LoginActivity : AppCompatActivity() {
     lateinit var tvOlvidarPwd: TextView
     lateinit var tvRegistro: TextView
     private var prefs: SharedPreferences? = null
+    private var usuario: Usuario? = Usuario()
+    private var totalUsuarios: MutableList<Usuario> = mutableListOf()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -48,7 +54,28 @@ class LoginActivity : AppCompatActivity() {
             val password = etPassword!!.text.toString()
 
             if (login(email, password)) {
-                goToFeed()
+                lifecycleScope.launch {
+                    totalUsuarios = withContext(Dispatchers.IO) {
+                        Gestor.gestorUsuarios.obtenerTodosUsuarios()
+                    }
+                }
+
+                totalUsuarios.forEach {
+                    if (it.email.equals(email)) {
+                        usuario = it
+                    }
+                }
+
+                println("Contraseña usuario: ${usuario!!.password}. Contraseña texto: $password")
+
+                if (usuario!!.password.equals(password)) {
+                    Toast.makeText(this, "HE ENTRADO", Toast.LENGTH_SHORT).show()
+                    goToFeed()
+                } else {
+                    Toast.makeText(this, "NOOO HE ENTRADO", Toast.LENGTH_SHORT).show()
+
+                }
+
             }
             guardarPreferencias(email, password)
         }
@@ -100,7 +127,7 @@ class LoginActivity : AppCompatActivity() {
     }
 
     private fun goToFeed() {
-        val intent = Intent(this, MainActivity::class.java)
+        val intent = Intent(this, FeedActivity::class.java)
         // Evita que pasemos de nuevo a la activity login
         intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
         startActivity(intent)

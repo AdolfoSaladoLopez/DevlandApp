@@ -4,8 +4,8 @@ package com.example.devlandapp.controllers
 class Gestor {
 
     companion object {
-        private var gestorUsuarios: UsuarioController = UsuarioController()
-        private var gestorProyectos: ProyectoController = ProyectoController()
+        var gestorUsuarios: UsuarioController = UsuarioController()
+        var gestorProyectos: ProyectoController = ProyectoController()
 
     }
 

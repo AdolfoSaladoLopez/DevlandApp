@@ -8,4 +8,5 @@ interface UsuarioDAO {
     fun registrarUsuario(usuario: Usuario): Boolean
     fun modificarUsuario(usuario: Usuario): Boolean
     fun eliminarUsuario(usuario: Usuario): Boolean
+    fun obtenerUsuarioCorreoElectronico(correo: String): Usuario?
 }

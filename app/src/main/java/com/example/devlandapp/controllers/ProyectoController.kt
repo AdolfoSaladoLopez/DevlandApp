@@ -5,9 +5,9 @@ import android.util.Log
 import com.example.devlandapp.models.Proyecto
 
 class ProyectoController : ProyectoDAO {
-    override fun obtenerTodosProyectos(): Array<Proyecto> {
+    override fun obtenerTodosProyectos(): MutableList<Proyecto> {
         val listadoTotalProyectos: MutableList<Proyecto> = mutableListOf()
-        var arrayProyectos: Array<Proyecto> = arrayOf()
+
 
         Db.conexion().collection("proyecto")
             .get()
@@ -17,13 +17,7 @@ class ProyectoController : ProyectoDAO {
                 }
             }
 
-        listadoTotalProyectos
-            .forEach {
-                arrayProyectos += it
-                println(it.nombre)
-            }
-
-        return arrayProyectos
+        return listadoTotalProyectos
     }
 
     override fun obtenerProyectoId(id: Int?): Proyecto {

@@ -1,6 +1,10 @@
 package com.example.devlandapp.controllers
 
+import android.content.ContentValues.TAG
+import android.util.Log
+import androidx.lifecycle.LifecycleCoroutineScope
 import com.example.devlandapp.models.Usuario
+import kotlinx.coroutines.launch
 
 class UsuarioController : UsuarioDAO {
     override fun obtenerTodosUsuarios(): MutableList<Usuario> {
@@ -61,5 +65,30 @@ class UsuarioController : UsuarioDAO {
             .addOnSuccessListener { validador = true }
 
         return validador
+    }
+
+    override fun obtenerUsuarioCorreoElectronico(correo: String): Usuario? {
+
+        var usuario: Usuario? = Usuario()
+        var listado: MutableList<Usuario> = mutableListOf()
+
+        Db.conexion().collection("usuario")
+            .whereEqualTo("email", correo)
+            .get()
+            .addOnSuccessListener { documents ->
+                for (document in documents) {
+                    usuario = document.toObject(Usuario::class.java)
+                    listado.add(usuario!!)
+                }
+            }
+            .addOnFailureListener { exception ->
+                Log.w(TAG, "Error getting documents: ", exception)
+            }
+
+        listado.forEach {
+            println("Dentro del foreach" + it.nombre)
+        }
+
+        return usuario
     }
 }
