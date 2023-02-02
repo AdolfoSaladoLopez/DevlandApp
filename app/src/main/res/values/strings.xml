@@ -15,5 +15,50 @@
     <string name="menu_drawer_open">Drawer Open</string>
     <string name="menu_drawer_close">Drawer Close</string>
     <string name="title">Drawer Close</string>
+    <string-array name="tecnologias">
+        <item>C</item>
+        <item>C++</item>
+        <item>C#</item>
+        <item>Java</item>
+        <item>Kotlin</item>
+        <item>HTML y CSS</item>
+        <item>Python</item>
+        <item>PHP</item>
+        <item>JavaScript</item>
+        <item>SQL</item>
+        <item>Swift</item>
+    </string-array>
+
+    <string-array name="idiomas">
+        <item>Español</item>
+        <item>Frances</item>
+        <item>Ingles</item>
+        <item>Aleman</item>
+        <item>Portugues</item>
+        <item>Italiano</item>
+        <item>Chino</item>
+        <item>Japones</item>
+        <item>Ruso</item>
+        <item>Arabe</item>
+        <item>Coreano</item>
+    </string-array>
+
+    <string-array name="tiempo">
+        <item>Dia</item>
+        <item>Mes</item>
+        <item>Año</item>
+    </string-array>
+
+    <string-array name="ubicacion">
+        <item>Málaga</item>
+        <item>Sevilla</item>
+        <item>Granada</item>
+        <item>Almeria</item>
+        <item>Huelva</item>
+        <item>Cordoba</item>
+        <item>Cadiz</item>
+        <item>Madrid</item>
+        <item>Barcelona</item>
+    </string-array>
 
 </resources>

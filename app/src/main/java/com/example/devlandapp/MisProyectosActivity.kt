@@ -1,6 +1,7 @@
 package com.example.devlandapp
 
 import android.content.ContentValues
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.widget.ListView
@@ -9,8 +10,6 @@ import com.example.devlandapp.adapters.ProyectoAdapter
 import com.example.devlandapp.controllers.Gestor
 import com.example.devlandapp.databinding.MisProyectosActivityBinding
 import com.example.devlandapp.models.Proyecto
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 
@@ -26,6 +25,9 @@ class MisProyectosActivity : DrawerBaseActivity() {
         setContentView(binding.root)
         var comprobante = true
 
+        val intent = Intent(this, DetallesProyectoPropioActivity::class.java)
+
+
         lifecycleScope.launch {
             while (comprobante) {
                 listadoProyectos = Gestor.gestorProyectos.obtenerTodosProyectos()
@@ -40,14 +42,19 @@ class MisProyectosActivity : DrawerBaseActivity() {
             listadoProyectos.forEach {
                 if (it.idPropietario == UsuarioData.usuario.id) {
                     listadoProyectosUsuario.add(it)
-                    println("DENTRO:" + it.nombre)
+                    UsuarioData.usuario.proyectosCreados?.add(it)
                 }
             }
+
             recarga()
 
+            val lv1 = findViewById<ListView>(R.id.misProyectos)
+            lv1.setOnItemClickListener { parent, view, position, id ->
+                intent.putExtra("id", listadoProyectosUsuario[position].id)
+                startActivity(intent)
+            }
+
         }
-
-
     }
 
     fun recarga() {

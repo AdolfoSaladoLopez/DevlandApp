@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.widget.ListView
+import android.widget.Toast
 import androidx.lifecycle.lifecycleScope
 import com.example.devlandapp.adapters.ProyectoAdapter
 import com.example.devlandapp.controllers.Gestor
@@ -35,6 +36,21 @@ class FeedActivity : DrawerBaseActivity() {
             }
 
             recarga()
+
+            val lv1 = findViewById<ListView>(R.id.lista)
+            lv1.setOnItemClickListener { parent, view, position, id ->
+                if (listadoProyectos[position].nombre == "País Vasco") {
+                    Toast.makeText(
+                        applicationContext, "Soy del " + listadoProyectos[position].nombre,
+                        Toast.LENGTH_SHORT
+                    ).show()
+                } else {
+                    Toast.makeText(
+                        applicationContext, "Soy de " + listadoProyectos[position].nombre,
+                        Toast.LENGTH_SHORT
+                    ).show()
+                }
+            }
 
         }
 
