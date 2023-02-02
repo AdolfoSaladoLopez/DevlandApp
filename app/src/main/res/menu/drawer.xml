@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/feed"
+            android:icon="@drawable/home"
+            android:title="Feed"></item>
+        <item
+            android:id="@+id/add"
+            android:icon="@drawable/add"
+            android:title="Crear proyecto"></item>
+        <item
+            android:id="@+id/projects"
+            android:icon="@drawable/folder"
+            android:title="Mis proyectos"></item>
+        <item
+            android:id="@+id/profile"
+            android:icon="@drawable/person"
+            android:title="Perfil"></item>
+
+    </group>
+</menu>

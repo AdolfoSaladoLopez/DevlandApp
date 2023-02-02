@@ -1,10 +1,12 @@
 package com.example.devlandapp
 
+import android.content.ContentValues
 import android.content.Intent
 import android.content.SharedPreferences
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.text.TextUtils
+import android.util.Log
 import android.util.Patterns
 import android.widget.Button
 import android.widget.EditText
@@ -22,8 +24,16 @@ class LoginActivity : AppCompatActivity() {
     lateinit var tvOlvidarPwd: TextView
     lateinit var tvRegistro: TextView
     private var prefs: SharedPreferences? = null
-    private var usuario: Usuario? = Usuario()
+    var usuario: Usuario? = Usuario()
     private var totalUsuarios: MutableList<Usuario> = mutableListOf()
+
+    init {
+        lifecycleScope.launch {
+            totalUsuarios = withContext(Dispatchers.IO) {
+                Gestor.gestorUsuarios.obtenerTodosUsuarios()
+            }
+        }
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -54,15 +64,11 @@ class LoginActivity : AppCompatActivity() {
             val password = etPassword!!.text.toString()
 
             if (login(email, password)) {
-                lifecycleScope.launch {
-                    totalUsuarios = withContext(Dispatchers.IO) {
-                        Gestor.gestorUsuarios.obtenerTodosUsuarios()
-                    }
-                }
 
                 totalUsuarios.forEach {
                     if (it.email.equals(email)) {
                         usuario = it
+                        UsuarioData.usuario = usuario as Usuario
                     }
                 }
 

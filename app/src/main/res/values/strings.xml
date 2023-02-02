@@ -11,4 +11,5 @@
     <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
     <string name="correo_electr_nico">Correo electrónico</string>
     <string name="contrase_a">Contraseña</string>
+    <string name="perfil">Perfil</string>
 </resources>

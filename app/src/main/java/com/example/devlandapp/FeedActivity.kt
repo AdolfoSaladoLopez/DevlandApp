@@ -1,7 +1,9 @@
 package com.example.devlandapp
 
+import android.content.ContentValues.TAG
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.widget.ListView
 import androidx.lifecycle.lifecycleScope
 import com.example.devlandapp.adapters.ProyectoAdapter
@@ -16,31 +18,30 @@ class FeedActivity : AppCompatActivity() {
     private var proyectoAdapter: ProyectoAdapter? = null
 
 
-    init {
-        lifecycleScope.launch(Dispatchers.Main) {
-            listadoProyectos = withContext(Dispatchers.IO) {
-                Gestor.gestorProyectos.obtenerTodosProyectos()
-            }
-        }
-    }
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityFeedBinding.inflate(layoutInflater)
         setContentView(binding.root)
+        var comprobante = true
 
-        listadoProyectos.forEach {
-            println(it.nombre)
+        lifecycleScope.launch {
+            while (comprobante) {
+                listadoProyectos = Gestor.gestorProyectos.obtenerTodosProyectos()
+                delay(1000)
+
+                if (listadoProyectos[0].nombre != "") {
+                    comprobante = false
+                }
+                Log.d(TAG, "Corriendo corrutina")
+            }
+
+            recarga()
+
         }
-
-        proyectoAdapter = ProyectoAdapter(this, R.layout.proyecto_concreto, listadoProyectos)
-        this.recarga()
-        proyectoAdapter = ProyectoAdapter(this, R.layout.proyecto_concreto, listadoProyectos)
-
 
     }
 
-    private fun recarga() {
+    fun recarga() {
 
         val adapter = ProyectoAdapter(
             this,
@@ -50,6 +51,17 @@ class FeedActivity : AppCompatActivity() {
         val listView1 = findViewById<ListView>(R.id.lista)
         listView1.cacheColorHint = 0
         listView1.adapter = adapter
+    }
+
+    private fun obtenerProyectos() {
+        CoroutineScope(Dispatchers.IO).launch {
+            listadoProyectos = Gestor.gestorProyectos.obtenerTodosProyectos()
+            runOnUiThread {
+                listadoProyectos.forEach {
+                    println(it.nombre)
+                }
+            }
+        }
     }
 
 
