@@ -1,12 +1,12 @@
 package com.example.devlandapp
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.TextView
 
-class PerfilActivity : AppCompatActivity() {
+class PerfilActivity : DrawerBaseActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        localizarTituloActivity("Perfil")
         setContentView(R.layout.activity_perfil)
 
         val textViewNombre = findViewById<TextView>(R.id.nombre_y_apellidos)
