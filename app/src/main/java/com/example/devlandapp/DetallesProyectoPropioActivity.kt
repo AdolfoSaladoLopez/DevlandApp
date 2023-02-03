@@ -1,43 +1,100 @@
 package com.example.devlandapp
 
 import android.os.Bundle
+import android.widget.Button
 import android.widget.TextView
+import android.widget.Toast
+import com.example.devlandapp.databinding.ActivityDetallesProyectoPropioBinding
 import com.example.devlandapp.models.Proyecto
 
 class DetallesProyectoPropioActivity : DrawerBaseActivity() {
+    var proyecto: Proyecto = Proyecto()
+    var valor: Int = 0
+
+    /* VISTAS */
+    lateinit var binding: ActivityDetallesProyectoPropioBinding
+    lateinit var propietario: TextView
+    lateinit var titulo: TextView
+    lateinit var fechaPublicacion: TextView
+    lateinit var tecnologia: TextView
+    lateinit var descripcion: TextView
+    lateinit var idioma: TextView
+    lateinit var modoTrabajo: TextView
+    lateinit var duracion: TextView
+    lateinit var participantes: TextView
+    lateinit var estado: TextView
+    lateinit var btnInteresados: Button
+    lateinit var btnSeleccionados: Button
 
     override fun onCreate(savedInstanceState: Bundle?) {
+        binding = ActivityDetallesProyectoPropioBinding.inflate(layoutInflater)
+        super.onCreate(savedInstanceState)
+        setContentView(binding.root)
 
-        val valor = intent.extras!!.getInt("id")
-        var proyecto: Proyecto = Proyecto()
+        recuperarIntent()
+        obtenerProyecto()
+        iniciarVistas()
+        rellenarVistas()
+    }
+
+    private fun recuperarIntent() {
+        valor = intent.extras!!.getInt("id")
+    }
+
+    private fun obtenerProyecto() {
         UsuarioData.usuario.proyectosCreados?.forEach {
             if (it.id == valor) {
                 proyecto = it
             }
         }
+    }
 
-        super.onCreate(savedInstanceState)
-        val textViewNombreProyecto = findViewById<TextView>(R.id.nombre3)
-        val textViewDescripcionProyecto = findViewById<TextView>(R.id.descripcion3)
-        val textViewUbicacion = findViewById<TextView>(R.id.ubicacion)
-        val textViewModo = findViewById<TextView>(R.id.modo)
-        val textViewTecnologias = findViewById<TextView>(R.id.tecnologias)
-        val textViewGente = findViewById<TextView>(R.id.genteProyecto)
-        val textViewFecha = findViewById<TextView>(R.id.fechaPublicacion)
-        val textViewEstado = findViewById<TextView>(R.id.estado)
-        val textViewIdioma = findViewById<TextView>(R.id.idioma)
-        val textViewDuracion = findViewById<TextView>(R.id.duracion)
-        val textViewUsuario = findViewById<TextView>(R.id.usuarioPropietario)
+    private fun iniciarVistas() {
+        propietario = binding.propietario
+        titulo = binding.tituloProyecto
+        fechaPublicacion = binding.fechaPublicacion
+        tecnologia = binding.tecnologia
+        descripcion = binding.descrip
+        idioma = binding.idioma
+        modoTrabajo = binding.modoTrabajo
+        duracion = binding.duracion
+        participantes = binding.participantes
+        estado = binding.estado
+        btnInteresados = binding.interesados
+        btnSeleccionados = binding.seleccionados
+    }
 
-        textViewNombreProyecto.text = proyecto.nombre
-        textViewDescripcionProyecto.text = proyecto.descripcion
-        textViewUbicacion.text = proyecto.ubicacion
-        textViewModo.text = proyecto.modoTrabajo
-        textViewGente.text = proyecto.numeroParticipantes.toString()
-        textViewFecha.text = proyecto.fechaPublicacion
-        textViewEstado.text = proyecto.estado.toString()
-        textViewIdioma.text = proyecto.idioma
-        textViewDuracion.text = proyecto.duracion
-        textViewUsuario.text = proyecto.propietario?.nombre
+    private fun comprobarDisponibilidad(estado: Boolean): String {
+        var disponibilidad: String = "No disponible"
+
+        if (estado) {
+            disponibilidad = "Disponible"
+        }
+
+        return disponibilidad
+    }
+
+    private fun rellenarVistas() {
+        //propietario.text = proyecto.propietario.nombre
+        titulo.text = proyecto.nombre
+        fechaPublicacion.text = proyecto.fechaPublicacion
+        tecnologia.text = proyecto.tecnologia
+        descripcion.text = proyecto.descripcion
+        idioma.text = proyecto.idioma
+        modoTrabajo.text = proyecto.modoTrabajo
+        duracion.text = proyecto.duracion
+        participantes.text = proyecto.numeroParticipantes.toString()
+        estado.text = comprobarDisponibilidad(proyecto.estado)
+        darFuncionalidadBotones()
+    }
+
+    fun darFuncionalidadBotones() {
+        btnInteresados.setOnClickListener {
+            Toast.makeText(this, "BOTÓN INTERESADOS", Toast.LENGTH_SHORT).show()
+        }
+        btnSeleccionados.setOnClickListener {
+            Toast.makeText(this, "BOTÓN SELECCIONADOS", Toast.LENGTH_SHORT).show()
+
+        }
     }
 }

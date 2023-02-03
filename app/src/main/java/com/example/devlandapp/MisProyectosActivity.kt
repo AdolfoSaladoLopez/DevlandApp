@@ -5,6 +5,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.widget.ListView
+import android.widget.Toast
 import androidx.lifecycle.lifecycleScope
 import com.example.devlandapp.adapters.ProyectoAdapter
 import com.example.devlandapp.controllers.Gestor
@@ -48,12 +49,14 @@ class MisProyectosActivity : DrawerBaseActivity() {
 
             recarga()
 
-            val lv1 = findViewById<ListView>(R.id.misProyectos)
-            lv1.setOnItemClickListener { parent, view, position, id ->
-                intent.putExtra("id", listadoProyectosUsuario[position].id)
-                startActivity(intent)
-            }
+        }
 
+
+        val lv1 = findViewById<ListView>(R.id.misProyectos)
+        lv1.setOnItemClickListener { parent, view, position, id ->
+            println("Estoy en la vista: " + listadoProyectosUsuario[position].id)
+            intent.putExtra("id", listadoProyectosUsuario[position].id)
+            startActivity(intent)
         }
     }
 

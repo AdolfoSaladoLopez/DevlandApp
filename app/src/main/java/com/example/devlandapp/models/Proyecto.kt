@@ -11,7 +11,7 @@ data class Proyecto(
     var modoTrabajo: String? = "",
     var idioma: String? = "",
     var duracion: String? = "",
-    var estado: Boolean? = null,
+    var estado: Boolean = false,
     var numeroParticipantes: Int? = 0,
     @get:Exclude var propietario: Usuario? = null,
     var idPropietario: Int? = propietario?.id,

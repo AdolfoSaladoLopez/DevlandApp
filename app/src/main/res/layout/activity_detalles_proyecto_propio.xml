@@ -1,278 +1,285 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#A9DEF9"
-
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@color/white"
     tools:context=".DetallesProyectoPropioActivity">
 
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="824dp">
+        android:layout_height="match_parent"
+        android:orientation="vertical">
 
-        <ImageView
-            android:id="@+id/imagen"
-            android:layout_width="115dp"
-            android:layout_height="115dp"
-            android:layout_marginStart="34dp"
-            android:layout_marginTop="26dp"
-            android:src="@drawable/ic_launcher_foreground"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <TextView
-            android:id="@+id/nombre3"
-            android:layout_width="222dp"
-            android:layout_height="37dp"
-            android:layout_marginStart="31dp"
-            android:layout_marginTop="38dp"
-            android:text="nombre Prueba"
-            app:layout_constraintStart_toEndOf="@+id/imagen"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <TextView
-            android:id="@+id/textModo"
+        <!-- TÍTULO DE LA ACTIVITY -->
+        <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="28dp"
-            android:layout_marginTop="8dp"
-            android:text="Modo de trabajo:"
-            app:layout_constraintStart_toEndOf="@+id/imagen"
-            app:layout_constraintTop_toBottomOf="@+id/nombre" />
+            android:layout_gravity="center"
+            android:orientation="horizontal"
+            android:padding="30dp">
 
-        <TextView
-            android:id="@+id/modo"
-            android:layout_width="116dp"
-            android:layout_height="21dp"
-            android:layout_marginStart="10dp"
-            android:layout_marginTop="8dp"
-            android:text="Modo Prueba"
-            app:layout_constraintStart_toEndOf="@+id/textModo"
-            app:layout_constraintTop_toBottomOf="@+id/nombre3" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="DESCRIPCIÓN DEL PROYECTO"
+                android:textSize="20dp"
+                android:textStyle="bold" />
+        </LinearLayout>
 
-        <TextView
-            android:id="@+id/textUbicacion"
-            android:layout_width="wrap_content"
+        <!-- PROPIETARIO -->
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginStart="28dp"
-            android:layout_marginTop="12dp"
-            android:text="Ubicación:"
-            app:layout_constraintStart_toEndOf="@+id/imagen"
-            app:layout_constraintTop_toBottomOf="@+id/modo" />
+            android:orientation="horizontal"
+            android:padding="20dp">
 
-        <TextView
-            android:id="@+id/ubicacion"
-            android:layout_width="124dp"
-            android:layout_height="20dp"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="12dp"
-            android:text="TextView"
-            app:layout_constraintStart_toEndOf="@+id/textUbicacion"
-            app:layout_constraintTop_toBottomOf="@+id/modo" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:text="Propietario: "
+                android:textSize="20dp"
+                android:textStyle="bold" />
 
-        <TextView
-            android:id="@+id/textGenteProyecto"
-            android:layout_width="wrap_content"
+            <TextView
+                android:id="@+id/propietario"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="Prueba"
+                android:textSize="20dp" />
+        </LinearLayout>
+
+        <!-- TÍTULO DEL PROYECTO -->
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginStart="72dp"
-            android:layout_marginTop="46dp"
-            android:text="Gente en el proyecto:"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/imagen" />
+            android:orientation="horizontal"
+            android:padding="20dp">
 
-        <TextView
-            android:id="@+id/genteProyecto"
-            android:layout_width="wrap_content"
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:text="Título del proyecto: "
+                android:textSize="20dp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/tituloProyecto"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="Prueba"
+                android:textSize="20dp" />
+        </LinearLayout>
+
+
+        <!-- TECNOLOGÍA -->
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginStart="14dp"
-            android:layout_marginTop="50dp"
-            android:text="454/500"
-            app:layout_constraintStart_toEndOf="@+id/textGenteProyecto"
-            app:layout_constraintTop_toBottomOf="@+id/textUbicacion" />
+            android:orientation="horizontal"
+            android:padding="20dp">
 
-        <TextView
-            android:id="@+id/textDescripcion"
-            android:layout_width="wrap_content"
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:text="Fecha de publicación: "
+                android:textSize="20dp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/fecha_publicacion"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="Prueba"
+                android:textSize="20dp" />
+        </LinearLayout>
+
+        <!-- TECNOLOGÍA -->
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginStart="160dp"
-            android:layout_marginTop="40dp"
-            android:text="Descripcion"
-            android:textSize="20dp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textDuracion" />
+            android:orientation="horizontal"
+            android:padding="20dp">
 
-        <TextView
-            android:id="@+id/descripcion3"
-            android:layout_width="381dp"
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:text="Tecnología: "
+                android:textSize="20dp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/tecnologia"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="Prueba"
+                android:textSize="20dp" />
+        </LinearLayout>
+
+        <!-- DESCRIPCION -->
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginStart="18dp"
-            android:layout_marginTop="29dp"
-            android:ems="10"
-            android:inputType="textMultiLine"
-            android:textAlignment="center"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textDescripcion"
-            tools:ignore="SpeakableTextPresentCheck" />
+            android:orientation="vertical"
+            android:padding="20dp">
 
-        <TextView
-            android:id="@+id/textTecnologias"
-            android:layout_width="85dp"
-            android:layout_height="24dp"
-            android:layout_marginStart="161dp"
-            android:layout_marginTop="8dp"
-            android:text="Tecnologias"
-            android:textAlignment="center"
-            android:textSize="20dp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/descripcion" />
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="Descripción: "
+                android:textAlignment="center"
+                android:textSize="20dp"
+                android:textStyle="bold" />
 
-        <TextView
-            android:id="@+id/tecnologias"
-            android:layout_width="372dp"
+            <TextView
+                android:id="@+id/descrip"
+                android:layout_width="match_parent"
+                android:layout_height="100dp"
+                android:text="Prueba"
+                android:textSize="20dp" />
+        </LinearLayout>
+
+        <!-- IDIOMA -->
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginStart="18dp"
-            android:layout_marginTop="15dp"
-            android:text="Unity,C,C++"
-            android:textAlignment="center"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textTecnologias" />
+            android:orientation="horizontal"
+            android:padding="20dp">
 
-        <TextView
-            android:id="@+id/textFecha"
-            android:layout_width="wrap_content"
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:text="Idioma: "
+                android:textSize="20dp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/idioma"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="Prueba"
+                android:textSize="20dp" />
+        </LinearLayout>
+
+        <!-- MODO DE TRABAJO -->
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="9dp"
-            android:layout_marginEnd="20dp"
-            android:text="Fecha Publicacion:"
-            app:layout_constraintBottom_toTopOf="@+id/textGenteProyecto"
-            app:layout_constraintEnd_toStartOf="@+id/fechaPublicacion"
-            app:layout_constraintTop_toBottomOf="@+id/textUbicacion"
-            app:layout_constraintVertical_bias="0.208" />
+            android:orientation="horizontal"
+            android:padding="20dp">
 
-        <TextView
-            android:id="@+id/fechaPublicacion"
-            android:layout_width="wrap_content"
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:text="Modo de trabajo: "
+                android:textSize="20dp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/modo_trabajo"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="Prueba"
+                android:textSize="20dp" />
+        </LinearLayout>
+
+        <!-- DURACION -->
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="12dp"
-            android:layout_marginEnd="48dp"
-            android:text="TextView"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/ubicacion" />
+            android:orientation="horizontal"
+            android:padding="20dp">
 
-        <TextView
-            android:id="@+id/textEstado"
-            android:layout_width="wrap_content"
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:text="Duración: "
+                android:textSize="20dp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/duracion"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="Prueba"
+                android:textSize="20dp" />
+        </LinearLayout>
+
+        <!-- DURACION -->
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            android:layout_marginEnd="4dp"
-            android:text="Estado:"
-            app:layout_constraintEnd_toStartOf="@+id/estado"
-            app:layout_constraintTop_toBottomOf="@+id/textGenteProyecto" />
+            android:orientation="horizontal"
+            android:padding="20dp">
 
-        <TextView
-            android:id="@+id/estado"
-            android:layout_width="wrap_content"
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:text="Número de participantes: "
+                android:textSize="20dp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/participantes"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="Prueba"
+                android:textSize="20dp" />
+        </LinearLayout>
+
+        <!-- DURACION -->
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            android:layout_marginEnd="228dp"
-            android:text="TextView"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textGenteProyecto" />
+            android:orientation="horizontal"
+            android:padding="20dp">
 
-        <TextView
-            android:id="@+id/textIdioma"
-            android:layout_width="wrap_content"
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:text="Estado del proyecto: "
+                android:textSize="20dp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/estado"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="Prueba"
+                android:textSize="20dp" />
+        </LinearLayout>
+
+        <!-- DURACION -->
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:layout_marginEnd="8dp"
-            android:text="Idioma"
-            app:layout_constraintEnd_toStartOf="@+id/idioma"
-            app:layout_constraintTop_toBottomOf="@+id/textEstado" />
+            android:orientation="vertical"
+            android:padding="20sp"
+            android:layout_gravity="center"
+            android:gravity="center">
 
-        <TextView
-            android:id="@+id/idioma"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:layout_marginEnd="228dp"
-            android:text="TextView"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/estado" />
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/interesados"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Usuarios Interesados"
+                android:padding="10sp"
+                app:cornerRadius="20sp"
+                android:textSize= "20sp" />
 
-        <TextView
-            android:id="@+id/textUsuarioPropietario"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="72dp"
-            android:layout_marginTop="44dp"
-            android:text="Proyecto Creado Por:"
-            app:layout_constraintEnd_toStartOf="@+id/usuarioPropietario"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textIdioma" />
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/seleccionados"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:cornerRadius="20sp"
+                android:padding="10sp"
+                android:text="Usuarios Seleccionados"
+                android:textSize="20sp" />
+        </LinearLayout>
 
-        <TextView
-            android:id="@+id/usuarioPropietario"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="108dp"
-            android:layout_marginEnd="136dp"
-            android:text="TextView"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/genteProyecto" />
 
-        <TextView
-            android:id="@+id/textDuracion"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="76dp"
-            android:layout_marginTop="28dp"
-            android:text="Duracion Estimada:"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textUsuarioPropietario" />
-
-        <TextView
-            android:id="@+id/duracion"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="24dp"
-            android:text="TextView"
-            app:layout_constraintStart_toEndOf="@+id/textDuracion"
-            app:layout_constraintTop_toBottomOf="@+id/usuarioPropietario" />
-
-        <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
-            android:id="@+id/guardarProyectover"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="bottom|end"
-            android:layout_margin="16dp"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="48dp"
-            android:contentDescription="Cambiar Imagen"
-            android:text="Guardar"
-            android:textAlignment="center"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tecnologias"
-            tools:ignore="MissingConstraints" />
-
-        <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
-            android:id="@+id/borrarProyectoVer"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="bottom|end"
-            android:layout_margin="16dp"
-            android:layout_marginTop="16dp"
-            android:layout_marginEnd="12dp"
-            android:contentDescription="Cambiar Imagen"
-            android:text="Borrar"
-            android:textAlignment="center"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tecnologias"
-            tools:ignore="MissingConstraints" />
-
-    </androidx.constraintlayout.widget.ConstraintLayout>
-
-</FrameLayout>
+    </LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>
