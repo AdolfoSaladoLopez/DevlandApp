@@ -6,10 +6,11 @@ import android.widget.TextView
 import android.widget.Toast
 import com.example.devlandapp.databinding.ActivityDetallesProyectoPropioBinding
 import com.example.devlandapp.models.Proyecto
+import kotlin.properties.Delegates
 
 class DetallesProyectoPropioActivity : DrawerBaseActivity() {
     var proyecto: Proyecto = Proyecto()
-    var valor: Int = 0
+    var valor by Delegates.notNull<Int>()
 
     /* VISTAS */
     lateinit var binding: ActivityDetallesProyectoPropioBinding
@@ -19,6 +20,7 @@ class DetallesProyectoPropioActivity : DrawerBaseActivity() {
     lateinit var tecnologia: TextView
     lateinit var descripcion: TextView
     lateinit var idioma: TextView
+    lateinit var ubicacion: TextView
     lateinit var modoTrabajo: TextView
     lateinit var duracion: TextView
     lateinit var participantes: TextView
@@ -45,6 +47,7 @@ class DetallesProyectoPropioActivity : DrawerBaseActivity() {
         UsuarioData.usuario.proyectosCreados?.forEach {
             if (it.id == valor) {
                 proyecto = it
+                println("ESTOY AQUÍ, PERRO: " + proyecto.nombre)
             }
         }
     }
@@ -56,6 +59,7 @@ class DetallesProyectoPropioActivity : DrawerBaseActivity() {
         tecnologia = binding.tecnologia
         descripcion = binding.descrip
         idioma = binding.idioma
+        ubicacion = binding.ubicacion
         modoTrabajo = binding.modoTrabajo
         duracion = binding.duracion
         participantes = binding.participantes
@@ -78,10 +82,11 @@ class DetallesProyectoPropioActivity : DrawerBaseActivity() {
         //propietario.text = proyecto.propietario.nombre
         titulo.text = proyecto.nombre
         fechaPublicacion.text = proyecto.fechaPublicacion
-        tecnologia.text = proyecto.tecnologia
+        tecnologia.text = proyecto.tecnologia?.uppercase()
         descripcion.text = proyecto.descripcion
-        idioma.text = proyecto.idioma
-        modoTrabajo.text = proyecto.modoTrabajo
+        idioma.text = proyecto.idioma?.uppercase()
+        ubicacion.text = proyecto.ubicacion?.uppercase()
+        modoTrabajo.text = proyecto.modoTrabajo?.uppercase()
         duracion.text = proyecto.duracion
         participantes.text = proyecto.numeroParticipantes.toString()
         estado.text = comprobarDisponibilidad(proyecto.estado)
