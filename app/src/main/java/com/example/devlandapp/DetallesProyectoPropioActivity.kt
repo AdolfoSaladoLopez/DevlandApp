@@ -1,11 +1,16 @@
 package com.example.devlandapp
 
+import android.content.res.ColorStateList
+import android.os.Build
 import android.os.Bundle
 import android.widget.Button
 import android.widget.TextView
 import android.widget.Toast
+import androidx.annotation.RequiresApi
+import androidx.core.content.ContextCompat
 import com.example.devlandapp.databinding.ActivityDetallesProyectoPropioBinding
 import com.example.devlandapp.models.Proyecto
+import com.google.android.material.chip.Chip
 import kotlin.properties.Delegates
 
 class DetallesProyectoPropioActivity : DrawerBaseActivity() {
@@ -24,7 +29,7 @@ class DetallesProyectoPropioActivity : DrawerBaseActivity() {
     lateinit var modoTrabajo: TextView
     lateinit var duracion: TextView
     lateinit var participantes: TextView
-    lateinit var estado: TextView
+    lateinit var estado: Chip
     lateinit var btnInteresados: Button
     lateinit var btnSeleccionados: Button
 
@@ -55,7 +60,7 @@ class DetallesProyectoPropioActivity : DrawerBaseActivity() {
     private fun iniciarVistas() {
         propietario = binding.propietario
         titulo = binding.tituloProyecto
-        fechaPublicacion = binding.fechaPublicacion
+        fechaPublicacion = binding.fPublicacion
         tecnologia = binding.tecnologia
         descripcion = binding.descrip
         idioma = binding.idioma
@@ -78,8 +83,9 @@ class DetallesProyectoPropioActivity : DrawerBaseActivity() {
         return disponibilidad
     }
 
+    @RequiresApi(Build.VERSION_CODES.M)
     private fun rellenarVistas() {
-        //propietario.text = proyecto.propietario.nombre
+        propietario.text = "- Eva -"
         titulo.text = proyecto.nombre
         fechaPublicacion.text = proyecto.fechaPublicacion
         tecnologia.text = proyecto.tecnologia?.uppercase()
@@ -89,7 +95,13 @@ class DetallesProyectoPropioActivity : DrawerBaseActivity() {
         modoTrabajo.text = proyecto.modoTrabajo?.uppercase()
         duracion.text = proyecto.duracion
         participantes.text = proyecto.numeroParticipantes.toString()
-        estado.text = comprobarDisponibilidad(proyecto.estado)
+        estado.text = comprobarDisponibilidad(proyecto.estado)?.uppercase()
+        if (comprobarDisponibilidad(proyecto.estado).equals("Disponible")) {
+            estado.chipBackgroundColor = ColorStateList.valueOf(ContextCompat.getColor(this, R.color.teal_200))
+        } else {
+            estado.chipBackgroundColor = ColorStateList.valueOf(ContextCompat.getColor(this, R.color.green))
+
+        }
         darFuncionalidadBotones()
     }
 

@@ -18,7 +18,8 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:orientation="horizontal"
-            android:padding="30dp">
+            android:paddingTop="20dp"
+            android:paddingBottom="5dp">
 
             <TextView
                 android:id="@+id/tituloProyecto"
@@ -27,40 +28,6 @@
                 android:text="Prueba"
                 android:textSize="30dp"
                 android:textStyle="bold" />
-        </LinearLayout>
-
-        <!-- PROPIETARIO -->
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:orientation="horizontal"
-            android:padding="10dp">
-
-            <TextView
-                android:id="@+id/propietario"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:text="Prueba"
-                android:textSize="25dp" />
-        </LinearLayout>
-
-
-        <!-- FECHA PUBLICACION -->
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:orientation="horizontal"
-            android:padding="10dp">
-
-            <TextView
-                android:id="@+id/fecha_publicacion"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:text="Prueba"
-                android:textAlignment="center"
-                android:textSize="20dp" />
         </LinearLayout>
 
         <!-- DESCRIPCION -->
@@ -78,6 +45,43 @@
                 android:textAlignment="center"
                 android:textSize="20dp" />
         </LinearLayout>
+
+        <!-- FECHA PUBLICACION -->
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:orientation="horizontal"
+            android:padding="10dp">
+
+            <TextView
+                android:id="@+id/fPublicacion"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="Prueba"
+                android:textSize="15sp" />
+        </LinearLayout>
+
+        <!-- PROPIETARIO -->
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:orientation="horizontal"
+            android:padding="5dp">
+
+            <TextView
+                android:id="@+id/propietario"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="- EVA -"
+                android:textSize="25dp" />
+        </LinearLayout>
+
+
+
+
+
 
         <!-- IDIOMA Y UBICACIÓN -->
         <LinearLayout
@@ -146,19 +150,19 @@
 
         <!-- DURACION -->
         <LinearLayout
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_gravity="center"
             android:layout_marginTop="20sp"
-            android:gravity="center"
             android:orientation="horizontal"
-            android:padding="20sp">
+            android:padding="20sp"
+            android:layout_marginLeft="80sp">
 
             <ImageView
                 android:layout_width="24dp"
                 android:layout_height="24dp"
-                android:layout_gravity="center"
-                android:foregroundGravity="center"
+                android:layout_gravity="right"
+                android:foregroundGravity="right"
                 android:src="@drawable/reloj" />
 
 
@@ -173,22 +177,22 @@
                 android:textSize="20dp" />
         </LinearLayout>
 
-        <!-- DURACION -->
 
-        <!-- TECNOLOGÍA -->
+
+        <!-- PARTICIPANTES -->
         <LinearLayout
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_gravity="center"
-            android:gravity="center"
             android:orientation="horizontal"
-            android:padding="20sp">
+            android:padding="20sp"
+            android:layout_marginLeft="80sp">
 
             <ImageView
                 android:layout_width="24dp"
                 android:layout_height="24dp"
-                android:layout_gravity="center"
-                android:foregroundGravity="center"
+                android:layout_gravity="right"
+                android:foregroundGravity="right"
                 android:src="@drawable/persona" />
 
 
