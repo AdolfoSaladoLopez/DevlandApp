@@ -74,7 +74,7 @@
                 android:id="@+id/propietario"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:text="- EVA -"
+                android:text="- Adolfo Salado -"
                 android:textSize="25dp" />
         </LinearLayout>
 

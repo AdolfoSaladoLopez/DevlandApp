@@ -6,16 +6,17 @@
     android:orientation="vertical" android:layout_width="match_parent">
 
     <ImageView
+        android:id="@+id/imgUsuario"
         android:layout_width="120dp"
         android:layout_height="120dp"
         android:layout_gravity="center"
-        android:src="@drawable/person"
-        android:contentDescription="@string/perfil" />
+        android:contentDescription="@string/perfil"
+        android:src="@drawable/person" />
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:id="@+id/nombre"
+        android:id="@+id/nombreUsuario"
         android:layout_gravity="center"
         android:textColor="@color/white"
         android:textSize="18sp"

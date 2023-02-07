@@ -33,6 +33,7 @@ class DetallesProyectoPropioActivity : DrawerBaseActivity() {
     lateinit var btnInteresados: Button
     lateinit var btnSeleccionados: Button
 
+    @RequiresApi(Build.VERSION_CODES.M)
     override fun onCreate(savedInstanceState: Bundle?) {
         binding = ActivityDetallesProyectoPropioBinding.inflate(layoutInflater)
         super.onCreate(savedInstanceState)
@@ -85,7 +86,7 @@ class DetallesProyectoPropioActivity : DrawerBaseActivity() {
 
     @RequiresApi(Build.VERSION_CODES.M)
     private fun rellenarVistas() {
-        propietario.text = "- Eva -"
+        propietario.text = "- Adolfo Salado -"
         titulo.text = proyecto.nombre
         fechaPublicacion.text = proyecto.fechaPublicacion
         tecnologia.text = proyecto.tecnologia?.uppercase()
@@ -97,9 +98,11 @@ class DetallesProyectoPropioActivity : DrawerBaseActivity() {
         participantes.text = proyecto.numeroParticipantes.toString()
         estado.text = comprobarDisponibilidad(proyecto.estado)?.uppercase()
         if (comprobarDisponibilidad(proyecto.estado).equals("Disponible")) {
-            estado.chipBackgroundColor = ColorStateList.valueOf(ContextCompat.getColor(this, R.color.teal_200))
+            estado.chipBackgroundColor =
+                ColorStateList.valueOf(ContextCompat.getColor(this, R.color.teal_200))
         } else {
-            estado.chipBackgroundColor = ColorStateList.valueOf(ContextCompat.getColor(this, R.color.green))
+            estado.chipBackgroundColor =
+                ColorStateList.valueOf(ContextCompat.getColor(this, R.color.green))
 
         }
         darFuncionalidadBotones()
