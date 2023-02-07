@@ -22,8 +22,11 @@ class ProyectoAdapter(
             val vi = context?.getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
             vista = vi.inflate(R.layout.recycler_view_proyectos, null)
             holder = ViewHolder()
-            holder.nombre = vista.findViewById(R.id.nombre2) as TextView
-            holder.descripcion = vista.findViewById(R.id.descripcion2) as TextView
+            holder.titulo = vista.findViewById(R.id.titulo) as TextView
+            holder.descripcion = vista.findViewById(R.id.descrip) as TextView
+            holder.fecha = vista.findViewById(R.id.fecha) as TextView
+
+
             vista.tag = holder
         } else {
             holder = vista.tag as ViewHolder
@@ -31,8 +34,10 @@ class ProyectoAdapter(
         val bandera = elementos!![position]
 
         if (bandera != null) {
-            holder.nombre.text = bandera.nombre
+            holder.titulo.text = bandera.nombre
             holder.descripcion.text = bandera.descripcion
+            holder.fecha.text = bandera.fechaPublicacion
+
         }
         return vista
     }
@@ -50,7 +55,8 @@ class ProyectoAdapter(
     }
 
     internal class ViewHolder {
-        lateinit var nombre: TextView
+        lateinit var titulo: TextView
         lateinit var descripcion: TextView
+        lateinit var fecha: TextView
     }
 }
