@@ -268,7 +268,7 @@ class CrearProyectoActivity : DrawerBaseActivity() {
 
         binding.crear.setOnClickListener {
 
-            var editTextNombreProyecto = findViewById<EditText>(R.id.etTitulo)
+            var editTextNombreProyecto = findViewById<EditText>(R.id.etTiulo)
             var editTextCantidadProyecto = findViewById<EditText>(R.id.participantes)
             var editTextDescripcionProyecto = findViewById<EditText>(R.id.etDescripcion)
             var fechaActual = System.currentTimeMillis().toString()
