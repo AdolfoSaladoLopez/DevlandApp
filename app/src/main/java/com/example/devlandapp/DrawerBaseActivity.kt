@@ -3,9 +3,7 @@ package com.example.devlandapp
 import android.content.Intent
 import android.view.View
 import android.widget.FrameLayout
-import android.widget.TextView
 import androidx.appcompat.app.ActionBarDrawerToggle
-
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
 import androidx.core.view.GravityCompat
@@ -17,14 +15,14 @@ open class DrawerBaseActivity : AppCompatActivity() {
 
     override fun setContentView(view: View) {
         drawerLayout = layoutInflater.inflate(R.layout.activity_drawer_base, null) as DrawerLayout
-        var contenedor: FrameLayout = drawerLayout.findViewById(R.id.contenedor)
+        val contenedor: FrameLayout = drawerLayout.findViewById(R.id.contenedor)
         contenedor.addView(view)
         super.setContentView(drawerLayout)
 
-        var toolbar: Toolbar = drawerLayout.findViewById(R.id.toolbar)
+        val toolbar: Toolbar = drawerLayout.findViewById(R.id.toolbar)
         setSupportActionBar(toolbar)
 
-        var navigationView = drawerLayout.findViewById<NavigationView>(R.id.nav)
+        val navigationView = drawerLayout.findViewById<NavigationView>(R.id.nav)
 
         navigationView.setNavigationItemSelectedListener {
             drawerLayout.closeDrawer(GravityCompat.START)
@@ -39,7 +37,7 @@ open class DrawerBaseActivity : AppCompatActivity() {
             false
         }
 
-        var toogle: ActionBarDrawerToggle = ActionBarDrawerToggle(
+        val toogle: ActionBarDrawerToggle = ActionBarDrawerToggle(
             this,
             drawerLayout,
             toolbar,

@@ -1,7 +1,6 @@
 package com.example.devlandapp
 
 import android.content.ContentValues.TAG
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.widget.ListView
@@ -11,7 +10,10 @@ import com.example.devlandapp.adapters.ProyectoAdapter
 import com.example.devlandapp.controllers.Gestor
 import com.example.devlandapp.databinding.ActivityFeedBinding
 import com.example.devlandapp.models.Proyecto
-import kotlinx.coroutines.*
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.launch
 
 class FeedActivity : DrawerBaseActivity() {
     private lateinit var binding: ActivityFeedBinding
@@ -38,7 +40,7 @@ class FeedActivity : DrawerBaseActivity() {
             recarga()
 
             val lv1 = findViewById<ListView>(R.id.lista)
-            lv1.setOnItemClickListener { parent, view, position, id ->
+            lv1.setOnItemClickListener { _, _, position, _ ->
                 if (listadoProyectos[position].nombre == "País Vasco") {
                     Toast.makeText(
                         applicationContext, "Soy del " + listadoProyectos[position].nombre,
@@ -56,7 +58,7 @@ class FeedActivity : DrawerBaseActivity() {
 
     }
 
-    fun recarga() {
+    private fun recarga() {
 
         val adapter = ProyectoAdapter(
             this,

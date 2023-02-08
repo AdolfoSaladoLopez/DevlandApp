@@ -4,19 +4,12 @@ import android.annotation.SuppressLint
 import android.os.Bundle
 import android.text.TextUtils
 import android.view.View
-import android.widget.AdapterView
-import android.widget.ArrayAdapter
-import android.widget.Button
-import android.widget.CheckBox
-import android.widget.EditText
-import android.widget.Spinner
-import android.widget.Switch
-import android.widget.Toast
+import android.widget.*
 import com.example.devlandapp.databinding.ActivityCrearProyectoBinding
 import com.example.devlandapp.models.Proyecto
 
 class CrearProyectoActivity : DrawerBaseActivity() {
-    lateinit var binding: ActivityCrearProyectoBinding
+    private lateinit var binding: ActivityCrearProyectoBinding
     var tecnologia: String = ""
     var idioma: String = ""
     var ubicacion: String = ""
@@ -30,23 +23,23 @@ class CrearProyectoActivity : DrawerBaseActivity() {
         binding = ActivityCrearProyectoBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        var spinnerTecnologias = findViewById<Spinner>(R.id.tecnologia_nuevoProyecto)
-        var spinnerIdiomas = findViewById<Spinner>(R.id.idioma)
-        var spinnerUbicacion = findViewById<Spinner>(R.id.ubicacion)
-        var spinnerDuracion = findViewById<Spinner>(R.id.tiempo)
-        var spinnerModoTrabajo = findViewById<Spinner>(R.id.modoTrabajo)
+        val spinnerTecnologias = findViewById<Spinner>(R.id.tecnologia_nuevoProyecto)
+        val spinnerIdiomas = findViewById<Spinner>(R.id.idioma)
+        val spinnerUbicacion = findViewById<Spinner>(R.id.ubicacion)
+        val spinnerDuracion = findViewById<Spinner>(R.id.tiempo)
+        val spinnerModoTrabajo = findViewById<Spinner>(R.id.modoTrabajo)
 
-        var listaTecnologias = resources.getStringArray(R.array.tecnologias)
-        var listaIdiomas = resources.getStringArray(R.array.idiomas)
-        var listaUbicacion = resources.getStringArray(R.array.ubicacion)
-        var listaTiempo = resources.getStringArray(R.array.tiempo)
-        var listaModoTrabajo = resources.getStringArray(R.array.modoTrabajo)
+        val listaTecnologias = resources.getStringArray(R.array.tecnologias)
+        val listaIdiomas = resources.getStringArray(R.array.idiomas)
+        val listaUbicacion = resources.getStringArray(R.array.ubicacion)
+        val listaTiempo = resources.getStringArray(R.array.tiempo)
+        val listaModoTrabajo = resources.getStringArray(R.array.modoTrabajo)
 
         val adaptador1 = ArrayAdapter(this, android.R.layout.simple_spinner_item, listaTecnologias)
         val adaptador2 = ArrayAdapter(this, android.R.layout.simple_spinner_item, listaIdiomas)
         val adaptador3 = ArrayAdapter(this, android.R.layout.simple_spinner_item, listaUbicacion)
         val adaptadorTiempo = ArrayAdapter(this, android.R.layout.simple_spinner_item, listaTiempo)
-        var adaptadorModoTrabjo =
+        val adaptadorModoTrabjo =
             ArrayAdapter(this, android.R.layout.simple_spinner_item, listaModoTrabajo)
 
         spinnerTecnologias.adapter = adaptador1
@@ -268,12 +261,12 @@ class CrearProyectoActivity : DrawerBaseActivity() {
 
         binding.crear.setOnClickListener {
 
-            var editTextNombreProyecto = findViewById<EditText>(R.id.etTiulo)
-            var editTextCantidadProyecto = findViewById<EditText>(R.id.participantes)
-            var editTextDescripcionProyecto = findViewById<EditText>(R.id.etDescripcion)
-            var fechaActual = System.currentTimeMillis().toString()
-            var editTextDuracion = findViewById<EditText>(R.id.duracion)
-            var spinnerTiempo = findViewById<Spinner>(R.id.tiempo)
+            val editTextNombreProyecto = findViewById<EditText>(R.id.etTiulo)
+            val editTextCantidadProyecto = findViewById<EditText>(R.id.participantes)
+            val editTextDescripcionProyecto = findViewById<EditText>(R.id.etDescripcion)
+            val fechaActual = System.currentTimeMillis().toString()
+            val editTextDuracion = findViewById<EditText>(R.id.duracion)
+            val spinnerTiempo = findViewById<Spinner>(R.id.tiempo)
 
 
             if (comprobarnombre(editTextNombreProyecto.text.toString()) &&
