@@ -9,6 +9,7 @@ import android.util.Patterns
 import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
+import com.example.devlandapp.controllers.Gestor
 import com.example.devlandapp.models.Usuario
 
 class RegistrarUsuarioActivity : AppCompatActivity() {
@@ -18,7 +19,6 @@ class RegistrarUsuarioActivity : AppCompatActivity() {
     private var reg_password: EditText? = null
     private var reg_email: EditText? = null
     private var reg_confirmemail: EditText? = null
-    private var etDescripcion: EditText? = null
     private var re_register: Button? = null
     private var prefs: SharedPreferences? = null
 
@@ -32,8 +32,6 @@ class RegistrarUsuarioActivity : AppCompatActivity() {
         regis_Contraseña = findViewById(R.id.regis_password)
         reg_password = findViewById(R.id.reg_password)
         reg_email = findViewById(R.id.reg_email)
-        reg_confirmemail = findViewById(R.id.reg_confirmemail)
-        etDescripcion = findViewById(R.id.etDescripcion)
         re_register = findViewById(R.id.reg_register)
 
         re_register?.setOnClickListener {
@@ -44,9 +42,8 @@ class RegistrarUsuarioActivity : AppCompatActivity() {
             val repPasword = reg_password!!.text.toString()
             val email = reg_email!!.text.toString()
             val conEmail = reg_confirmemail!!.text.toString()
-            val descripcion = etDescripcion!!.text.toString()
 
-            if (registro(nombre, apellido, contraseña, repPasword, email, conEmail, descripcion)) {
+            if (registro(nombre, apellido, contraseña, repPasword, email, conEmail)) {
 
                 val usuario: Usuario
                 //TODO: Revisar esto que tiene pinta de fallar por todas partes
@@ -57,12 +54,13 @@ class RegistrarUsuarioActivity : AppCompatActivity() {
                     email,
                     contraseña,
                     false,
-                    descripcion,
+                    "",
                     0,
                     null,
                     null,
                     null
                 )
+
 
                 goToFeed()
             }
@@ -76,7 +74,6 @@ class RegistrarUsuarioActivity : AppCompatActivity() {
         reppassword: String,
         email: String,
         correorep: String,
-        descripcion: String
     ): Boolean {
         var valido = false
         if (!comprobarCorreo(email)) {
@@ -99,8 +96,6 @@ class RegistrarUsuarioActivity : AppCompatActivity() {
             Toast.makeText(this, "la contraseña no coinciden", Toast.LENGTH_SHORT).show()
         } else if (!comprobarCorreorep(correorep, email)) {
             Toast.makeText(this, "Los correos no coinciden", Toast.LENGTH_SHORT).show()
-        } else if (!comprobarDescripcion(descripcion)) {
-            Toast.makeText(this, "Descripcion vacio", Toast.LENGTH_SHORT).show()
         } else {
             valido = true
         }
@@ -131,9 +126,6 @@ class RegistrarUsuarioActivity : AppCompatActivity() {
         return !TextUtils.isEmpty(correorep) && correorep == email
     }
 
-    private fun comprobarDescripcion(descripcion: String): Boolean {
-        return !TextUtils.isEmpty(descripcion)
-    }
 
 
     private fun goToFeed() {

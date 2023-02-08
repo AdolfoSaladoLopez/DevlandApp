@@ -142,7 +142,6 @@ class LoginActivity : AppCompatActivity() {
     private fun goToRegistro() {
         val intent = Intent(this, RegistrarUsuarioActivity::class.java)
         //Evita que pasemos de nuevo a la activity login
-        intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
         startActivity(intent)
     }
 

@@ -8,6 +8,10 @@
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
     <color name="red">#FF0000</color>
-    <color name="green">#35BF2B</color>
+    <color name="green">#72E774</color>
     <color name="morado_carta">#831B95</color>
+    <color name="gris">#E6E6E6</color>
+    <color name="cabecera">#565656</color>
+    <color name="general">#A9DEF9</color>
+    <color name="card">#5A0E66</color>
 </resources>

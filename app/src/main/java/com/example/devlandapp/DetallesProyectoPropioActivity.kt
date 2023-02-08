@@ -99,10 +99,10 @@ class DetallesProyectoPropioActivity : DrawerBaseActivity() {
         estado.text = comprobarDisponibilidad(proyecto.estado)?.uppercase()
         if (comprobarDisponibilidad(proyecto.estado).equals("Disponible")) {
             estado.chipBackgroundColor =
-                ColorStateList.valueOf(ContextCompat.getColor(this, R.color.teal_200))
+                ColorStateList.valueOf(ContextCompat.getColor(this, R.color.green))
         } else {
             estado.chipBackgroundColor =
-                ColorStateList.valueOf(ContextCompat.getColor(this, R.color.green))
+                ColorStateList.valueOf(ContextCompat.getColor(this, R.color.red))
 
         }
         darFuncionalidadBotones()

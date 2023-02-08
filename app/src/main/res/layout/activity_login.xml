@@ -7,37 +7,33 @@
     android:alwaysDrawnWithCache="true"
     android:animateLayoutChanges="true"
     android:animationCache="false"
-    android:background="@color/white"
+    android:background="@color/gris"
     tools:context=".LoginActivity">
 
     <ImageView
         android:id="@+id/logo"
-        android:layout_width="122dp"
-        android:layout_height="127dp"
-        android:layout_marginStart="144dp"
-        android:layout_marginTop="100dp"
-        android:layout_marginEnd="145dp"
-        android:layout_marginBottom="543dp"
+        android:layout_width="210dp"
+        android:layout_height="158dp"
+        android:layout_marginBottom="32dp"
         android:contentDescription="icono_de_android"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/email"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintHorizontal_bias="0.48"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.0"
-        app:srcCompat="@drawable/ic_android" />
+        app:layout_constraintVertical_bias="0.88"
+        app:srcCompat="@drawable/logo" />
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/email"
         android:layout_width="300dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="250dp"
-        android:layout_marginBottom="425dp"
         android:hint="@string/correo_electr_nico"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/etPwd"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.96">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/etEmail"
@@ -52,14 +48,11 @@
         android:id="@+id/etPwd"
         android:layout_width="300dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="300dp"
-        android:layout_marginBottom="275dp"
         android:hint="@string/contrase_a"
         app:endIconMode="password_toggle"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/tvOlvidarPwd"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintStart_toStartOf="parent">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/etContraseña"
@@ -71,52 +64,42 @@
     </com.google.android.material.textfield.TextInputLayout>
 
     <TextView
-        android:id="@+id/textView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="173dp"
-        android:layout_marginTop="70dp"
-        android:layout_marginEnd="180dp"
-        android:layout_marginBottom="20dp"
-        android:text="DEVLAND"
-        android:textColor="#565656"
-        android:textSize="30sp"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toTopOf="@+id/logo"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <TextView
         android:id="@+id/tvRegistro"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="36dp"
-        android:text="¿No tienes contraseña? ¡Registrate!"
+        android:text="¿No tienes cuenta? ¡Registrate!"
+        android:textColor="@color/black"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/btnInicioSesion"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.294"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/etPwd" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.97" />
 
     <Button
         android:id="@+id/btnInicioSesion"
         android:layout_width="124dp"
         android:layout_height="50dp"
-        android:layout_marginTop="92dp"
         android:text="ENTRAR"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tvRegistro" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.82" />
 
     <TextView
         android:id="@+id/tvOlvidarPwd"
-        android:layout_width="164dp"
-        android:layout_height="10dp"
-        android:layout_marginBottom="304dp"
-        android:text="¿Olvidastela contraseña?"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.219"
-        app:layout_constraintStart_toStartOf="parent" />
+        android:layout_width="335dp"
+        android:layout_height="41dp"
+        android:text="¿Olvidaste la contraseña?"
+        android:textAlignment="textEnd"
+        android:textColor="@color/black"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toTopOf="@+id/tvRegistro"
+        app:layout_constraintEnd_toEndOf="@+id/tvRegistro"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.75" />
 </androidx.constraintlayout.widget.ConstraintLayout>
