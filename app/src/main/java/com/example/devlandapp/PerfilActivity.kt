@@ -15,7 +15,7 @@ class PerfilActivity : DrawerBaseActivity() {
 
         var usuario = UsuarioData.usuario
 
-        textViewNombre.text = usuario.nombre
+        textViewNombre.text = "${usuario.nombre} ${usuario.apellidos}"
         textViewEmail.text = usuario.email
         textViewDescripcion.text = usuario.descripcion
     }
