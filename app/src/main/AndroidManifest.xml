@@ -21,7 +21,14 @@
         </activity>
         <activity
             android:name=".PerfilActivity"
-            android:exported="false">
+            android:exported="true">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
+            android:name=".EditarPerfil"
+            android:exported="true">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
@@ -74,6 +81,14 @@
         </activity>
         <activity
             android:name=".DetallesProyectoPropioActivity"
+            android:exported="true">
+
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
+            android:name=".CrearProyectoActivity"
             android:exported="true">
 
             <meta-data

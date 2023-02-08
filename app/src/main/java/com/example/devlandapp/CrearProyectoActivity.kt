@@ -1,5 +1,6 @@
 package com.example.devlandapp
 
+import android.annotation.SuppressLint
 import android.os.Bundle
 import android.text.TextUtils
 import android.view.View
@@ -11,46 +12,48 @@ import android.widget.EditText
 import android.widget.Spinner
 import android.widget.Switch
 import android.widget.Toast
+import com.example.devlandapp.databinding.ActivityCrearProyectoBinding
 import com.example.devlandapp.models.Proyecto
 
 class CrearProyectoActivity : DrawerBaseActivity() {
-    private var nombreProyecto: EditText? = null
-    private var ubicacionProyecto: Spinner? = null
-    private var cantidadProyecto: EditText? = null
-    private var descripcionProyecto: EditText? = null
-    private var tecnologiaProyecto: Spinner? = null
-    private var idiomaProyecto: Spinner? = null
-    private var tiempo: EditText? = null
-    private var tipo: Spinner? = null
+    lateinit var binding: ActivityCrearProyectoBinding
+    var tecnologia: String = ""
+    var idioma: String = ""
+    var ubicacion: String = ""
+    var tipoTiempo: String = ""
+    var modoTrabajo: String = ""
 
+    @SuppressLint("CutPasteId")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        val spinnerTecnologias = findViewById<Spinner>(R.id.tecnologia_nuevoProyecto)
-        val spinnerIdiomas = findViewById<Spinner>(R.id.idioma_nuevoProyecto)
-        val spinnerUbicacion = findViewById<Spinner>(R.id.ubicacion_nuevoProyecto)
-        val spinnerTipo = findViewById<Spinner>(R.id.tipo)
 
-        val listaTecnologias = resources.getStringArray(R.array.tecnologias)
-        val listaIdiomas = resources.getStringArray(R.array.idiomas)
-        val listaUbicacion = resources.getStringArray(R.array.ubicacion)
-        val listaTiempo = resources.getStringArray(R.array.tiempo)
+        binding = ActivityCrearProyectoBinding.inflate(layoutInflater)
+        setContentView(binding.root)
+
+        var spinnerTecnologias = findViewById<Spinner>(R.id.tecnologia_nuevoProyecto)
+        var spinnerIdiomas = findViewById<Spinner>(R.id.idioma)
+        var spinnerUbicacion = findViewById<Spinner>(R.id.ubicacion)
+        var spinnerDuracion = findViewById<Spinner>(R.id.tiempo)
+        var spinnerModoTrabajo = findViewById<Spinner>(R.id.modoTrabajo)
+
+        var listaTecnologias = resources.getStringArray(R.array.tecnologias)
+        var listaIdiomas = resources.getStringArray(R.array.idiomas)
+        var listaUbicacion = resources.getStringArray(R.array.ubicacion)
+        var listaTiempo = resources.getStringArray(R.array.tiempo)
+        var listaModoTrabajo = resources.getStringArray(R.array.modoTrabajo)
 
         val adaptador1 = ArrayAdapter(this, android.R.layout.simple_spinner_item, listaTecnologias)
         val adaptador2 = ArrayAdapter(this, android.R.layout.simple_spinner_item, listaIdiomas)
         val adaptador3 = ArrayAdapter(this, android.R.layout.simple_spinner_item, listaUbicacion)
-        val adaptador4 = ArrayAdapter(this, android.R.layout.simple_spinner_item, listaTiempo)
+        val adaptadorTiempo = ArrayAdapter(this, android.R.layout.simple_spinner_item, listaTiempo)
+        var adaptadorModoTrabjo =
+            ArrayAdapter(this, android.R.layout.simple_spinner_item, listaModoTrabajo)
 
         spinnerTecnologias.adapter = adaptador1
         spinnerIdiomas.adapter = adaptador2
         spinnerUbicacion.adapter = adaptador3
-        spinnerTipo.adapter = adaptador4
-
-
-        var tecnologia: String = ""
-        var idioma: String = ""
-        var ubicacion: String = ""
-        var tipoTiempo: String = ""
-
+        spinnerDuracion.adapter = adaptadorTiempo
+        spinnerModoTrabajo.adapter = adaptadorModoTrabjo
 
         spinnerTecnologias.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
             override fun onItemSelected(
@@ -211,7 +214,7 @@ class CrearProyectoActivity : DrawerBaseActivity() {
             override fun onNothingSelected(parent: AdapterView<*>?) {}
         }
 
-        spinnerTipo.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
+        spinnerDuracion.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
             override fun onItemSelected(
                 parent: AdapterView<*>?,
                 view: View?,
@@ -233,30 +236,56 @@ class CrearProyectoActivity : DrawerBaseActivity() {
                 }
             }
 
+
             override fun onNothingSelected(parent: AdapterView<*>?) {}
         }
 
+        spinnerModoTrabajo.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
+            override fun onItemSelected(
+                parent: AdapterView<*>?,
+                view: View?,
+                position: Int,
+                id: Long
+            ) {
+                when (position) {
+                    0 -> {
+                        modoTrabajo = "Remoto"
+                    }
 
-        val btnCrear = findViewById<Button>(R.id.crear)
-        btnCrear.setOnClickListener {
+                    1 -> {
+                        modoTrabajo = "Presencial"
+                    }
 
-            var editTextNombreProyecto = findViewById<EditText>(R.id.nombre_nuevoProyecto)
-            var editTextCantidadProyecto = findViewById<EditText>(R.id.cantidad_nuevoProyecto)
-            var editTextDescripcionProyecto = findViewById<EditText>(R.id.descripcion_nuevoProyecto)
+                    2 -> {
+                        modoTrabajo = "Mixto"
+                    }
+                }
+            }
+
+
+            override fun onNothingSelected(parent: AdapterView<*>?) {}
+        }
+
+        binding.crear.setOnClickListener {
+
+            var editTextNombreProyecto = findViewById<EditText>(R.id.etTitulo)
+            var editTextCantidadProyecto = findViewById<EditText>(R.id.participantes)
+            var editTextDescripcionProyecto = findViewById<EditText>(R.id.etDescripcion)
             var fechaActual = System.currentTimeMillis().toString()
-            var editTextTiempo = findViewById<EditText>(R.id.numero_tiempo)
+            var editTextDuracion = findViewById<EditText>(R.id.duracion)
+            var spinnerTiempo = findViewById<Spinner>(R.id.tiempo)
 
 
             if (comprobarnombre(editTextNombreProyecto.text.toString()) &&
-                comprobartiempo(editTextTiempo.text.toString()) &&
+                comprobartiempo(editTextDuracion.text.toString()) &&
                 comprobardescripcion(editTextDescripcionProyecto.text.toString())
             ) {
 
                 val nombreProyecto = editTextNombreProyecto!!.text.toString()
                 val cantidadProyecto: Int = editTextCantidadProyecto!!.text.toString().toInt()
                 val descripcionProyecto = editTextDescripcionProyecto!!.text.toString()
-                val tiempo = editTextTiempo!!.text.toString()
-                val tiempoProyecto = tiempo + tipoTiempo
+                val tiempo = editTextDuracion!!.text.toString()
+                val tiempoProyecto = tiempo + spinnerTiempo
 
                 var proyecto: Proyecto
                 val usuario = UsuarioData.usuario
@@ -277,22 +306,6 @@ class CrearProyectoActivity : DrawerBaseActivity() {
                 Toast.makeText(this, "Rellena todos los campos", Toast.LENGTH_SHORT).show()
             }
         }
-    }
-
-    private fun switchchecker(switch: Switch): Boolean {
-        return switch.isChecked
-    }
-
-    private fun boxchecker(checkBox1: CheckBox, checkBox2: CheckBox): String {
-//TODO: Hacer que solo se pueda seleccionar uno de los dos
-        if (checkBox1.isChecked) {
-            return "Presencial"
-        }
-        if (checkBox2.isChecked) {
-            return "Teletrabajo"
-        }
-        return "Mixto"
-
     }
 
     private fun comprobarnombre(nombre: String): Boolean {

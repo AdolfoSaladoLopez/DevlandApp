@@ -51,9 +51,8 @@ open class DrawerBaseActivity : AppCompatActivity() {
 
     }
 
-
     protected fun localizarTituloActivity(titulo: String) {
-        supportActionBar?.setTitle(titulo)
+        supportActionBar?.title = titulo
     }
 
     private fun goToFeed() {
@@ -63,9 +62,9 @@ open class DrawerBaseActivity : AppCompatActivity() {
     }
 
     private fun goToCrearProyecto() {
-        //val intent = Intent(this, CrearProyectoActivity::class.java)
-        //startActivity(intent)
-        //overridePendingTransition(0, 0)
+        val intent = Intent(this, CrearProyectoActivity::class.java)
+        startActivity(intent)
+        overridePendingTransition(0, 0)
 
     }
 

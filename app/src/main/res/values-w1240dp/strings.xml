@@ -2,4 +2,10 @@
 <resources>
     <string name="correo_electr_nico">Correo electrónico</string>
     <string name="contrase_a">Contraseña</string>
+    <string name="tecnolog_a">Tecnología:</string>
+    <string name="ubicaci_n">Ubicación:</string>
+    <string name="n_mero_de_participantes">Número de participantes</string>
+    <string name="idioma">Idioma</string>
+    <string name="t_tulo_del_proyecto">Título del proyecto</string>
+    <string name="descripci_n_del_proyecto">Descripción del proyecto</string>
 </resources>

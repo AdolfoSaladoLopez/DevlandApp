@@ -10,6 +10,7 @@ import androidx.annotation.RequiresApi
 import androidx.core.content.ContextCompat
 import com.example.devlandapp.databinding.ActivityDetallesProyectoPropioBinding
 import com.example.devlandapp.models.Proyecto
+import com.example.devlandapp.models.Usuario
 import com.google.android.material.chip.Chip
 import kotlin.properties.Delegates
 
@@ -86,7 +87,7 @@ class DetallesProyectoPropioActivity : DrawerBaseActivity() {
 
     @RequiresApi(Build.VERSION_CODES.M)
     private fun rellenarVistas() {
-        propietario.text = "- Adolfo Salado -"
+        propietario.text = "- ${UsuarioData.usuario.nombre} + ${UsuarioData.usuario.apellidos} -"
         titulo.text = proyecto.nombre
         fechaPublicacion.text = proyecto.fechaPublicacion
         tecnologia.text = proyecto.tecnologia?.uppercase()

@@ -14,7 +14,7 @@
         android:orientation="vertical">
 
         <ImageView
-            android:id="@+id/imagen"
+            android:id="@+id/imagen_perfil"
             android:layout_width="159dp"
             android:layout_height="114dp"
             android:layout_marginTop="52dp"
@@ -26,7 +26,7 @@
 
 
         <TextView
-            android:id="@+id/nombre_y_apellidos"
+            android:id="@+id/nombre_apellidos_perfil"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Fernando Pérez"
@@ -35,7 +35,7 @@
             android:textStyle="bold" />
 
         <TextView
-            android:id="@+id/email"
+            android:id="@+id/email_perfil"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="FernandoPerez@gmail.com"
@@ -43,7 +43,7 @@
             android:textSize="25sp" />
 
         <TextView
-            android:id="@+id/descripcion"
+            android:id="@+id/descripcion_perfil"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_margin="20sp"
@@ -58,7 +58,7 @@
             android:orientation="vertical">
 
             <Button
-                android:id="@+id/editar_Perfil"
+                android:id="@+id/editar_perfil"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_marginLeft="16sp"
@@ -71,7 +71,7 @@
 
 
             <Button
-                android:id="@+id/cambiar_imagen_nuevoProyecto"
+                android:id="@+id/mis_proyectos_perfil"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_marginLeft="16sp"

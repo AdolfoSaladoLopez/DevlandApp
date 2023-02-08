@@ -15,6 +15,12 @@
     <string name="menu_drawer_open">Drawer Open</string>
     <string name="menu_drawer_close">Drawer Close</string>
     <string name="title">Drawer Close</string>
+    <string name="tecnolog_a">Tecnología:</string>
+    <string name="ubicaci_n">Ubicación:</string>
+    <string name="n_mero_de_participantes">Número de participantes</string>
+    <string name="idioma">Idioma</string>
+    <string name="t_tulo_del_proyecto">Título del proyecto</string>
+    <string name="descripci_n_del_proyecto">Descripción del proyecto</string>
     <string-array name="tecnologias">
         <item>C</item>
         <item>C++</item>
@@ -47,6 +53,12 @@
         <item>Dia</item>
         <item>Mes</item>
         <item>Año</item>
+    </string-array>
+
+    <string-array name="modoTrabajo">
+        <item>Presencial</item>
+        <item>Remoto</item>
+        <item>Mixto</item>
     </string-array>
 
     <string-array name="ubicacion">
