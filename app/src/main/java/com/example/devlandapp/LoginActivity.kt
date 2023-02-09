@@ -57,7 +57,6 @@ class LoginActivity : AppCompatActivity() {
         tvOlvidarPwd = findViewById(R.id.tvOlvidarPwd)
         tvRegistro = findViewById(R.id.tvRegistro)
 
-
         prefs = getSharedPreferences("app", MODE_PRIVATE)
 
         establecerValoresSiExisten()

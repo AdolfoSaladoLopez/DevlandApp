@@ -33,8 +33,8 @@
 
         <LinearLayout
             android:id="@+id/LinearInfo"
-            android:layout_width="412dp"
-            android:layout_height="662dp"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
             android:layout_gravity="center_vertical"
             android:orientation="vertical">
 
@@ -137,34 +137,39 @@
                 android:text="Añadir imagen" />
 
             <com.google.android.material.textfield.TextInputLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent">
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content">
 
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/editarPerfil_etDescripcion"
+                <EditText
+                    android:id="@+id/multiline"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="100dp"
                     android:layout_marginLeft="50dp"
                     android:layout_marginRight="50dp"
-                    android:hint="Descripcion"
-                    android:inputType="text" />
-
-                <Button
-                    android:id="@+id/editarPerfil_register"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center_horizontal"
-                    android:layout_marginTop="25dp"
-                    android:text="Actualizar" />
-
-                <Button
-                    android:id="@+id/editarPerfil_eliminarCuenta"
-                    android:layout_width="wrap_content"
-                    android:layout_height="50dp"
-                    android:layout_gravity="center_horizontal"
-                    android:layout_marginTop="25dp"
-                    android:text="Eliminar cuenta" />
+                    android:layout_weight="1"
+                    android:ems="10"
+                    android:gravity="start|top"
+                    android:hint="@string/descripci_n_del_proyecto"
+                    android:inputType="textMultiLine"
+                    android:textSize="20sp" />
             </com.google.android.material.textfield.TextInputLayout>
+
+            <Button
+                android:id="@+id/editarPerfil_register"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="25dp"
+                android:text="Actualizar" />
+
+            <Button
+                android:id="@+id/editarPerfil_eliminarCuenta"
+                android:layout_width="wrap_content"
+                android:layout_height="50dp"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="25dp"
+                android:layout_marginBottom="50dp"
+                android:text="Eliminar cuenta" />
         </LinearLayout>
     </LinearLayout>
 

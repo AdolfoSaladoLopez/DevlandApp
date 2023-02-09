@@ -21,7 +21,7 @@ class EditarPerfil : DrawerBaseActivity() {
         val textViewNombre = findViewById<TextView>(R.id.editarPerfil_etNombre)
         val textViewApellido = findViewById<TextView>(R.id.editarPerfil_etApellido)
         val textViewEmail = findViewById<TextView>(R.id.editarPerfil_email)
-        val textViewDescripcion = findViewById<TextView>(R.id.editarPerfil_etDescripcion)
+        val textViewDescripcion = findViewById<TextView>(R.id.multiline)
         val textPassword = findViewById<TextView>(R.id.editarPerfil_password)
         val textPasswordrep = findViewById<TextView>(R.id.editarPerfil_passwordrep)
 
