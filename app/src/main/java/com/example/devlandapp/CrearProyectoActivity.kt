@@ -1,12 +1,19 @@
 package com.example.devlandapp
 
 import android.annotation.SuppressLint
+import android.content.ContentValues
+import android.content.Intent
 import android.os.Bundle
 import android.text.TextUtils
+import android.util.Log
 import android.view.View
 import android.widget.*
+import androidx.lifecycle.lifecycleScope
+import com.example.devlandapp.controllers.Gestor
 import com.example.devlandapp.databinding.ActivityCrearProyectoBinding
 import com.example.devlandapp.models.Proyecto
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.launch
 
 class CrearProyectoActivity : DrawerBaseActivity() {
     private lateinit var binding: ActivityCrearProyectoBinding
@@ -15,6 +22,25 @@ class CrearProyectoActivity : DrawerBaseActivity() {
     var ubicacion: String = ""
     var tipoTiempo: String = ""
     var modoTrabajo: String = ""
+    var ultimoId: Int = 0
+    var listadoProyectos: MutableList<Proyecto> = mutableListOf()
+
+    init {
+
+        var comprobante: Boolean = true
+        lifecycleScope.launch {
+            while (comprobante) {
+                listadoProyectos = Gestor.gestorProyectos.obtenerTodosProyectos()
+                delay(1000)
+
+                if (listadoProyectos[0].nombre != "") {
+                    comprobante = false
+                }
+                Log.d(ContentValues.TAG, "Corriendo corrutina")
+            }
+        }
+        ultimoId = listadoProyectos.size
+    }
 
     @SuppressLint("CutPasteId")
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -229,7 +255,6 @@ class CrearProyectoActivity : DrawerBaseActivity() {
                 }
             }
 
-
             override fun onNothingSelected(parent: AdapterView<*>?) {}
         }
 
@@ -255,7 +280,6 @@ class CrearProyectoActivity : DrawerBaseActivity() {
                 }
             }
 
-
             override fun onNothingSelected(parent: AdapterView<*>?) {}
         }
 
@@ -280,21 +304,35 @@ class CrearProyectoActivity : DrawerBaseActivity() {
                 val tiempo = editTextDuracion!!.text.toString()
                 val tiempoProyecto = tiempo + spinnerTiempo
 
-                var proyecto: Proyecto
+                var proyecto: Proyecto = Proyecto()
                 val usuario = UsuarioData.usuario
 
-                /*proyecto = Proyecto(0,
-                    nombreProyecto,descripcionProyecto,tecnologia,ubicacion,boxchecker(presencial_modo_nuevoProyecto,
-                        teletrabajo_modo_nuevoProyecto),idioma,tiempoProyecto,switchchecker(estado_nuevoProyecto),cantidadProyecto,
-                    usuario,usuario!!.id,0,fechaActual) */
+                proyecto = Proyecto(
+                    ultimoId,
+                    nombreProyecto,
+                    descripcionProyecto,
+                    tecnologia,
+                    ubicacion,
+                    modoTrabajo,
+                    idioma,
+                    tiempoProyecto,
+                    true,
+                    cantidadProyecto,
+                    usuario,
+                    usuario!!.id,
+                    0,
+                    fechaActual,
+                )
 
+                if (Gestor.gestorProyectos.registrarProyecto(proyecto)) {
+                    usuario.proyectosCreados?.add(proyecto)
 
-                //println(proyecto)
+                    if (Gestor.gestorUsuarios.modificarUsuario(usuario)) {
+                        Toast.makeText(this, "Proyecto creado", Toast.LENGTH_SHORT).show()
 
-                Toast.makeText(this, "Proyecto creado", Toast.LENGTH_SHORT).show()
-
-                //usuario!!.proyectosCreados!!.add(proyecto)
-
+                        goToFeed()
+                    }
+                }
             } else {
                 Toast.makeText(this, "Rellena todos los campos", Toast.LENGTH_SHORT).show()
             }
@@ -312,5 +350,12 @@ class CrearProyectoActivity : DrawerBaseActivity() {
     private fun comprobartiempo(tiempo: String): Boolean {
         return !TextUtils.isEmpty(tiempo)
     }
+
+    private fun goToFeed() {
+        val intent = Intent(this, FeedActivity::class.java)
+        // Evita que pasemos de nuevo a la activity login
+        startActivity(intent)
+    }
+
 
 }
