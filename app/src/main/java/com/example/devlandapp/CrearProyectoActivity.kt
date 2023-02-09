@@ -139,30 +139,34 @@ class CrearProyectoActivity : DrawerBaseActivity() {
                     }
 
                     3 -> {
-                        idioma = "Portugués"
+                        idioma = "Aleman"
                     }
 
                     4 -> {
-                        idioma = "Italiano"
+                        idioma = "Portugues"
                     }
 
                     5 -> {
-                        idioma = "Chino"
+                        idioma = "Italiano"
                     }
 
                     6 -> {
-                        idioma = "Japones"
+                        idioma = "Chino"
                     }
 
                     7 -> {
-                        idioma = "Ruso"
+                        idioma = "Japones"
                     }
 
                     8 -> {
-                        idioma = "Arabe"
+                        idioma = "Ruso"
                     }
 
                     9 -> {
+                        idioma = "Arabe"
+                    }
+
+                    10 -> {
                         idioma = "Coreano"
                     }
                 }
