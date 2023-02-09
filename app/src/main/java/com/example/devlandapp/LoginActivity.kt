@@ -86,11 +86,9 @@ class LoginActivity : AppCompatActivity() {
                 println("Contraseña usuario: ${usuario!!.password}. Contraseña texto: $password")
 
                 if (usuario!!.password.equals(password)) {
-                    Toast.makeText(this, "HE ENTRADO", Toast.LENGTH_SHORT).show()
                     goToFeed()
                 } else {
-                    Toast.makeText(this, "NOOO HE ENTRADO", Toast.LENGTH_SHORT).show()
-
+                    Toast.makeText(this, "No ha sido posible acceder", Toast.LENGTH_SHORT).show()
                 }
 
             }
