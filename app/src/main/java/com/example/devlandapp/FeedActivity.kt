@@ -41,19 +41,7 @@ class FeedActivity : DrawerBaseActivity() {
                 Log.d(TAG, "Corriendo corrutina")
             }
 
-            lifecycleScope.launch {
-                while (comprobante) {
-                    listadoUsuarios = Gestor.gestorUsuarios.obtenerTodosUsuarios()
-                    delay(1000)
 
-                    if (listadoUsuarios[0].nombre != "") {
-                        comprobante = false
-                    }
-
-                    UsuarioData.ultimoIdUsuario = listadoUsuarios.size
-                    Log.d(TAG, "Corriendo corrutina")
-                }
-            }
 
             recarga()
 

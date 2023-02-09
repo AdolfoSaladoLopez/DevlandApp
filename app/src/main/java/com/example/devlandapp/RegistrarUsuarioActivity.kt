@@ -1,16 +1,23 @@
 package com.example.devlandapp
 
+import android.content.ContentValues
 import android.content.Intent
 import android.content.SharedPreferences
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.text.TextUtils
+import android.util.Log
 import android.util.Patterns
 import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
+import androidx.lifecycle.lifecycleScope
 import com.example.devlandapp.controllers.Gestor
+import com.example.devlandapp.databinding.ActivityCrearProyectoBinding
+import com.example.devlandapp.databinding.ActivityRegistrarUsuarioBinding
 import com.example.devlandapp.models.Usuario
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.launch
 
 class RegistrarUsuarioActivity : AppCompatActivity() {
     private var etNombre: EditText? = null
@@ -21,48 +28,51 @@ class RegistrarUsuarioActivity : AppCompatActivity() {
     private var reg_confirmemail: EditText? = null
     private var re_register: Button? = null
     private var prefs: SharedPreferences? = null
+    private var usuario: Usuario = Usuario()
+    private var totalUsuarios: MutableList<Usuario> = mutableListOf()
 
+    lateinit var binding: ActivityRegistrarUsuarioBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_registrar_usuario)
 
-        etNombre = findViewById(R.id.etNombre)
-        etApellido = findViewById(R.id.etApellido)
-        regis_Contraseña = findViewById(R.id.regis_password)
-        reg_password = findViewById(R.id.reg_password)
-        reg_email = findViewById(R.id.reg_email)
-        re_register = findViewById(R.id.reg_register)
+        binding = ActivityRegistrarUsuarioBinding.inflate(layoutInflater)
+
+        setContentView(binding.root)
+
+        Log.w("ELID", "${UsuarioData.ultimoIdUsuario}")
+
+        etNombre = binding.etNombreRegistro
+        etApellido = binding.etApellido
+        regis_Contraseña = binding.regisPassword
+        reg_password = binding.regPassword
+        reg_email = binding.regEmail
+        re_register = binding.regRegister
 
         re_register?.setOnClickListener {
 
-            val nombre = etNombre!!.text.toString()
-            val apellido = etApellido!!.text.toString()
-            val contraseña = regis_Contraseña!!.text.toString()
-            val repPasword = reg_password!!.text.toString()
-            val email = reg_email!!.text.toString()
-            val conEmail = reg_confirmemail!!.text.toString()
+            var nombre = etNombre!!.text.toString()
+            var apellido = etApellido!!.text.toString()
+            var contraseña = regis_Contraseña!!.text.toString()
+            var repPasword = reg_password!!.text.toString()
+            var email = reg_email!!.text.toString()
 
-            if (registro(nombre, apellido, contraseña, repPasword, email, conEmail)) {
+            if (registro(nombre, apellido, contraseña, repPasword, email)) {
 
-                val usuario: Usuario
-                //TODO: Revisar esto que tiene pinta de fallar por todas partes
-                Usuario(
-                    4,
-                    nombre,
-                    apellido,
-                    email,
-                    contraseña,
-                    false,
-                    "",
-                    0,
-                    null,
-                    null,
-                    null
-                )
+                usuario.id = UsuarioData.ultimoIdUsuario
+                usuario.nombre = nombre
+                usuario.apellidos = apellido
+                usuario.email = email
+                usuario.password = contraseña
 
-
-                goToFeed()
+                if (Gestor.gestorUsuarios.registrarUsuario(usuario)) {
+                    Toast.makeText(this, "Usuario registrado con éxito", Toast.LENGTH_SHORT).show()
+                    UsuarioData.usuario = usuario
+                    goToFeed()
+                } else {
+                    Toast.makeText(this, "Usuario no registrado con éxito", Toast.LENGTH_SHORT)
+                        .show()
+                }
             }
         }
     }
@@ -73,7 +83,6 @@ class RegistrarUsuarioActivity : AppCompatActivity() {
         password: String,
         reppassword: String,
         email: String,
-        correorep: String,
     ): Boolean {
         var valido = false
         if (!comprobarCorreo(email)) {
@@ -94,8 +103,6 @@ class RegistrarUsuarioActivity : AppCompatActivity() {
             Toast.makeText(this, "Apellido no valido", Toast.LENGTH_SHORT).show()
         } else if (!comprobarRepPassword(reppassword, password)) {
             Toast.makeText(this, "la contraseña no coinciden", Toast.LENGTH_SHORT).show()
-        } else if (!comprobarCorreorep(correorep, email)) {
-            Toast.makeText(this, "Los correos no coinciden", Toast.LENGTH_SHORT).show()
         } else {
             valido = true
         }
@@ -125,7 +132,6 @@ class RegistrarUsuarioActivity : AppCompatActivity() {
     private fun comprobarCorreorep(correorep: String, email: String): Boolean {
         return !TextUtils.isEmpty(correorep) && correorep == email
     }
-
 
 
     private fun goToFeed() {

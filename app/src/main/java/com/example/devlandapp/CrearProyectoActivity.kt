@@ -23,15 +23,10 @@ class CrearProyectoActivity : DrawerBaseActivity() {
     var tecnologia: String = ""
     var idioma: String = ""
     var ubicacion: String = ""
-    var tipoTiempo: String = ""
+    var tiempo: String = ""
     var modoTrabajo: String = ""
     var ultimoId: Int = 0
     var listadoProyectos: MutableList<Proyecto> = mutableListOf()
-
-    init {
-
-
-    }
 
     @RequiresApi(Build.VERSION_CODES.O)
     @SuppressLint("CutPasteId")
@@ -234,15 +229,15 @@ class CrearProyectoActivity : DrawerBaseActivity() {
             ) {
                 when (position) {
                     0 -> {
-                        tipoTiempo = "Dias"
+                        tiempo = "días"
                     }
 
                     1 -> {
-                        tipoTiempo = "Meses"
+                        tiempo = "meses"
                     }
 
                     2 -> {
-                        tipoTiempo = "Años"
+                        tiempo = "años"
                     }
                 }
             }
@@ -296,24 +291,30 @@ class CrearProyectoActivity : DrawerBaseActivity() {
             val editTextNombreProyecto = findViewById<EditText>(R.id.etTiulo)
             val editTextCantidadProyecto = findViewById<EditText>(R.id.participantes)
             val editTextDescripcionProyecto = findViewById<EditText>(R.id.etDescripcion)
-            val fechaActual = "${datetime.dayOfMonth}/${datetime.month}/${datetime.year}"
+            var dia = ""
+            var mes = ""
+
+            val pair = convertirDiasMeses(datetime, dia, mes)
+            dia = pair.first
+            mes = pair.second
+
+            val fechaActual = "${dia}/${mes}/${datetime.year}"
             val editTextDuracion = findViewById<EditText>(R.id.duracion)
             val spinnerTiempo = findViewById<Spinner>(R.id.tiempo)
-
 
             if (comprobarnombre(editTextNombreProyecto.text.toString()) &&
                 comprobartiempo(editTextDuracion.text.toString()) &&
                 comprobardescripcion(editTextDescripcionProyecto.text.toString())
             ) {
 
-                val nombreProyecto = editTextNombreProyecto!!.text.toString()
-                val cantidadProyecto: Int = editTextCantidadProyecto!!.text.toString().toInt()
-                val descripcionProyecto = editTextDescripcionProyecto!!.text.toString()
-                val tiempo = editTextDuracion!!.text.toString()
-                val tiempoProyecto = "${tiempo} ${spinnerTiempo}"
+                var nombreProyecto = editTextNombreProyecto!!.text.toString()
+                var cantidadProyecto: Int = editTextCantidadProyecto!!.text.toString().toInt()
+                var descripcionProyecto = editTextDescripcionProyecto!!.text.toString()
+                var duracion = editTextDuracion!!.text.toString()
+                var tiempoProyecto = "$duracion $tiempo"
 
                 var proyecto: Proyecto = Proyecto()
-                val usuario = UsuarioData.usuario
+                var usuario = UsuarioData.usuario
 
                 proyecto = Proyecto(
                     UsuarioData.ultimoId,
@@ -345,6 +346,28 @@ class CrearProyectoActivity : DrawerBaseActivity() {
                 Toast.makeText(this, "Rellena todos los campos", Toast.LENGTH_SHORT).show()
             }
         }
+    }
+
+    @RequiresApi(Build.VERSION_CODES.O)
+    private fun convertirDiasMeses(
+        datetime: LocalDateTime,
+        dia: String,
+        mes: String
+    ): Pair<String, String> {
+        var dia1 = dia
+        var mes1 = mes
+        if (datetime.dayOfMonth < 10) {
+            dia1 = "0${datetime.dayOfMonth}"
+        } else {
+            dia1 = datetime.dayOfMonth.toString()
+        }
+
+        if (datetime.monthValue < 10) {
+            mes1 = "0${datetime.monthValue}"
+        } else {
+            mes1 = datetime.monthValue.toString()
+        }
+        return Pair(dia1, mes1)
     }
 
     private fun comprobarnombre(nombre: String): Boolean {

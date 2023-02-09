@@ -1,9 +1,11 @@
 package com.example.devlandapp
 
+import android.content.ContentValues
 import android.content.Intent
 import android.content.SharedPreferences
 import android.os.Bundle
 import android.text.TextUtils
+import android.util.Log
 import android.util.Patterns
 import android.widget.Button
 import android.widget.EditText
@@ -14,6 +16,7 @@ import androidx.lifecycle.lifecycleScope
 import com.example.devlandapp.controllers.Gestor
 import com.example.devlandapp.models.Usuario
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 
@@ -27,18 +30,26 @@ class LoginActivity : AppCompatActivity() {
     var usuario: Usuario? = Usuario()
     private var totalUsuarios: MutableList<Usuario> = mutableListOf()
 
-    init {
-        lifecycleScope.launch {
-            totalUsuarios = withContext(Dispatchers.IO) {
-                Gestor.gestorUsuarios.obtenerTodosUsuarios()
-            }
-        }
-    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
 
+        var comprobante = true
+
+        lifecycleScope.launch {
+            while (comprobante) {
+                totalUsuarios = Gestor.gestorUsuarios.obtenerTodosUsuarios()
+                delay(1000)
+
+                if (totalUsuarios.size > 0) {
+                    comprobante = false
+                }
+
+                UsuarioData.ultimoIdUsuario = totalUsuarios.size
+                Log.d(ContentValues.TAG, "Corriendo corrutina")
+            }
+        }
 
         etEmail = findViewById(R.id.etEmail)
         etPassword = findViewById(R.id.etContraseña)
