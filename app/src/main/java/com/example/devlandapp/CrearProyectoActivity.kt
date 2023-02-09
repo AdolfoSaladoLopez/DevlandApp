@@ -3,17 +3,20 @@ package com.example.devlandapp
 import android.annotation.SuppressLint
 import android.content.ContentValues
 import android.content.Intent
+import android.os.Build
 import android.os.Bundle
 import android.text.TextUtils
 import android.util.Log
 import android.view.View
 import android.widget.*
+import androidx.annotation.RequiresApi
 import androidx.lifecycle.lifecycleScope
 import com.example.devlandapp.controllers.Gestor
 import com.example.devlandapp.databinding.ActivityCrearProyectoBinding
 import com.example.devlandapp.models.Proyecto
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
+import java.time.LocalDateTime
 
 class CrearProyectoActivity : DrawerBaseActivity() {
     private lateinit var binding: ActivityCrearProyectoBinding
@@ -27,21 +30,10 @@ class CrearProyectoActivity : DrawerBaseActivity() {
 
     init {
 
-        var comprobante: Boolean = true
-        lifecycleScope.launch {
-            while (comprobante) {
-                listadoProyectos = Gestor.gestorProyectos.obtenerTodosProyectos()
-                delay(1000)
 
-                if (listadoProyectos[0].nombre != "") {
-                    comprobante = false
-                }
-                Log.d(ContentValues.TAG, "Corriendo corrutina")
-            }
-        }
-        ultimoId = listadoProyectos.size
     }
 
+    @RequiresApi(Build.VERSION_CODES.O)
     @SuppressLint("CutPasteId")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -285,10 +277,26 @@ class CrearProyectoActivity : DrawerBaseActivity() {
 
         binding.crear.setOnClickListener {
 
+            var comprobante: Boolean = true
+            lifecycleScope.launch {
+                while (comprobante) {
+                    listadoProyectos = Gestor.gestorProyectos.obtenerTodosProyectos()
+                    delay(1000)
+
+                    if (listadoProyectos[0].nombre != "") {
+                        comprobante = false
+                    }
+                    Log.d(ContentValues.TAG, "Corriendo corrutina")
+                }
+            }
+
+            ultimoId = listadoProyectos.size
+            val datetime = LocalDateTime.now()
+
             val editTextNombreProyecto = findViewById<EditText>(R.id.etTiulo)
             val editTextCantidadProyecto = findViewById<EditText>(R.id.participantes)
             val editTextDescripcionProyecto = findViewById<EditText>(R.id.etDescripcion)
-            val fechaActual = System.currentTimeMillis().toString()
+            val fechaActual = "${datetime.dayOfMonth}/${datetime.month}/${datetime.year}"
             val editTextDuracion = findViewById<EditText>(R.id.duracion)
             val spinnerTiempo = findViewById<Spinner>(R.id.tiempo)
 
@@ -302,13 +310,13 @@ class CrearProyectoActivity : DrawerBaseActivity() {
                 val cantidadProyecto: Int = editTextCantidadProyecto!!.text.toString().toInt()
                 val descripcionProyecto = editTextDescripcionProyecto!!.text.toString()
                 val tiempo = editTextDuracion!!.text.toString()
-                val tiempoProyecto = tiempo + spinnerTiempo
+                val tiempoProyecto = "${tiempo} ${spinnerTiempo}"
 
                 var proyecto: Proyecto = Proyecto()
                 val usuario = UsuarioData.usuario
 
                 proyecto = Proyecto(
-                    ultimoId,
+                    UsuarioData.ultimoId,
                     nombreProyecto,
                     descripcionProyecto,
                     tecnologia,

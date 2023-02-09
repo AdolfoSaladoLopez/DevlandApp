@@ -10,6 +10,7 @@ import com.example.devlandapp.adapters.ProyectoAdapter
 import com.example.devlandapp.controllers.Gestor
 import com.example.devlandapp.databinding.ActivityFeedBinding
 import com.example.devlandapp.models.Proyecto
+import com.example.devlandapp.models.Usuario
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.delay
@@ -18,6 +19,7 @@ import kotlinx.coroutines.launch
 class FeedActivity : DrawerBaseActivity() {
     private lateinit var binding: ActivityFeedBinding
     private var listadoProyectos: MutableList<Proyecto> = mutableListOf()
+    private var listadoUsuarios: MutableList<Usuario> = mutableListOf()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -34,7 +36,23 @@ class FeedActivity : DrawerBaseActivity() {
                 if (listadoProyectos[0].nombre != "") {
                     comprobante = false
                 }
+
+                UsuarioData.ultimoId = listadoProyectos.size
                 Log.d(TAG, "Corriendo corrutina")
+            }
+
+            lifecycleScope.launch {
+                while (comprobante) {
+                    listadoUsuarios = Gestor.gestorUsuarios.obtenerTodosUsuarios()
+                    delay(1000)
+
+                    if (listadoUsuarios[0].nombre != "") {
+                        comprobante = false
+                    }
+
+                    UsuarioData.ultimoIdUsuario = listadoUsuarios.size
+                    Log.d(TAG, "Corriendo corrutina")
+                }
             }
 
             recarga()

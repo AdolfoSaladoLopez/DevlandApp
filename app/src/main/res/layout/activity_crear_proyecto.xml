@@ -57,7 +57,7 @@
                     android:layout_marginLeft="50dp"
                     android:layout_marginRight="50dp"
                     android:hint="Título del proyecto"
-                    android:inputType="number"
+                    android:inputType="text"
                     android:singleLine="false"
                     android:textSize="20sp" />
             </com.google.android.material.textfield.TextInputLayout>

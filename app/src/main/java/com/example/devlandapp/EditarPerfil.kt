@@ -16,7 +16,6 @@ class EditarPerfil : DrawerBaseActivity() {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
 
-
         var id = UsuarioData.usuario.id
 
         val textViewNombre = findViewById<TextView>(R.id.editarPerfil_etNombre)
@@ -33,19 +32,19 @@ class EditarPerfil : DrawerBaseActivity() {
         textPassword.text = UsuarioData.usuario.password
         textPasswordrep.text = UsuarioData.usuario.password
 
-        val nombre = textViewNombre.text!!.toString()
-        val apellido = textViewApellido.text!!.toString()
-        val email = textViewEmail.text!!.toString()
-        val descripcion = textViewDescripcion.text!!.toString()
-        val contraseña = textPassword.text!!.toString()
-        val contraseñarep = textPassword.text!!.toString()
-
         val boton1 = findViewById<Button>(R.id.editarPerfil_register)
         val boton2 = findViewById<Button>(R.id.editarPerfil_eliminarCuenta)
 
         var usuario: Usuario = Usuario()
 
         boton1.setOnClickListener {
+            val nombre = textViewNombre.text!!.toString()
+            val apellido = textViewApellido.text!!.toString()
+            val email = textViewEmail.text!!.toString()
+            val descripcion = textViewDescripcion.text!!.toString()
+            val contraseña = textPassword.text!!.toString()
+            val contraseñarep = textPassword.text!!.toString()
+
             if (contraseña.equals(contraseñarep)) {
                 usuario = Usuario(
                     id,
@@ -61,17 +60,22 @@ class EditarPerfil : DrawerBaseActivity() {
                     UsuarioData.usuario.proyectosCreadosId,
                     UsuarioData.usuario.proyectosInteresadosId
                 )
+
+                if (Gestor.gestorUsuarios.modificarUsuario(usuario)) {
+                    Toast.makeText(this, "El usuario ha sido modificado", Toast.LENGTH_SHORT).show()
+                    UsuarioData.usuario = usuario
+
+                    val intent = Intent(this, PerfilActivity::class.java)
+                    startActivity(intent)
+                } else {
+                    Toast.makeText(this, "El usuario no ha sido modificado", Toast.LENGTH_SHORT)
+                        .show()
+                }
             }
 
-            if (Gestor.gestorUsuarios.modificarUsuario(usuario)) {
-                Toast.makeText(this, "El usuario ha sido modificado", Toast.LENGTH_SHORT).show()
 
-                val intent = Intent(this, PerfilActivity::class.java)
-                startActivity(intent)
-            } else {
-                Toast.makeText(this, "El usuario no ha sido modificado", Toast.LENGTH_SHORT).show()
-            }
         }
+
         boton2.setOnClickListener {
             val intent = Intent(this, LoginActivity::class.java)
             //Necesitamos una consulta a la base de datos para elmininar al usuario

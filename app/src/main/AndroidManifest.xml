@@ -20,6 +20,13 @@
                 android:value="" />
         </activity>
         <activity
+            android:name=".EditarPerfil"
+            android:exported="true">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
             android:name=".PerfilActivity"
             android:exported="true">
             <meta-data
