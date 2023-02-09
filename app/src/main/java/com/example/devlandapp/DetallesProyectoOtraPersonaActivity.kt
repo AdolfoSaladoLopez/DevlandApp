@@ -35,6 +35,7 @@ class DetallesProyectoOtraPersonaActivity : DrawerBaseActivity() {
     private lateinit var estado: Chip
     private lateinit var btnVerMasTarde: Button
     private lateinit var btnEstoyInteresado: Button
+    private var totalProyectos: MutableList<Proyecto> = mutableListOf()
 
     @RequiresApi(Build.VERSION_CODES.M)
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -53,7 +54,10 @@ class DetallesProyectoOtraPersonaActivity : DrawerBaseActivity() {
     }
 
     private fun obtenerProyecto() {
-        UsuarioData.totalProyectos?.forEach {
+
+        totalProyectos.addAll(UsuarioData.totalProyectos)
+
+        totalProyectos?.forEach {
             if (it.id == valor) {
                 proyecto = it
             }

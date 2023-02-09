@@ -3,6 +3,7 @@ package com.example.devlandapp.controllers
 import android.content.ContentValues.TAG
 import android.util.Log
 import androidx.lifecycle.LifecycleCoroutineScope
+import com.example.devlandapp.models.Proyecto
 import com.example.devlandapp.models.Usuario
 import kotlinx.coroutines.launch
 
@@ -90,5 +91,27 @@ class UsuarioController : UsuarioDAO {
         }
 
         return usuario
+    }
+
+    override fun obtenerProyectosInteresados(usuario: Usuario?): MutableList<Proyecto> {
+        var listadoProyectosInteresadosId: MutableList<Int>? = usuario?.proyectosInteresadosId
+        var listadoProyectosInteresados: MutableList<Proyecto> = mutableListOf()
+
+        listadoProyectosInteresadosId?.forEach {
+            listadoProyectosInteresados.add(Gestor.gestorProyectos.obtenerProyectoId(it))
+        }
+
+        return listadoProyectosInteresados
+    }
+
+    override fun obtenerProyectosCreados(usuario: Usuario?): MutableList<Proyecto>? {
+        var listadoProyectosCreadosId: MutableList<Int>? = usuario?.proyectosInteresadosId
+        var listadoProyectosCreados: MutableList<Proyecto> = mutableListOf()
+
+        listadoProyectosCreadosId?.forEach {
+            listadoProyectosCreados.add(Gestor.gestorProyectos.obtenerProyectoId(it))
+        }
+
+        return listadoProyectosCreados
     }
 }

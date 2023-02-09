@@ -14,6 +14,7 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.lifecycleScope
 import com.example.devlandapp.controllers.Gestor
+import com.example.devlandapp.models.Proyecto
 import com.example.devlandapp.models.Usuario
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
@@ -76,9 +77,13 @@ class LoginActivity : AppCompatActivity() {
                 totalUsuarios.forEach {
                     if (it.email.equals(email)) {
                         usuario = it
+
                         UsuarioData.usuario = usuario as Usuario
                     }
                 }
+
+                usuario = UsuarioData.usuario
+
 
                 println("Contraseña usuario: ${usuario!!.password}. Contraseña texto: $password")
 

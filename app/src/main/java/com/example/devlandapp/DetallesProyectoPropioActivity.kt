@@ -1,6 +1,7 @@
 package com.example.devlandapp
 
 import android.annotation.SuppressLint
+import android.content.Intent
 import android.content.res.ColorStateList
 import android.os.Build
 import android.os.Bundle
@@ -122,11 +123,15 @@ class DetallesProyectoPropioActivity : DrawerBaseActivity() {
 
     fun darFuncionalidadBotones() {
         btnInteresados.setOnClickListener {
-            Toast.makeText(this, "BOTÓN INTERESADOS", Toast.LENGTH_SHORT).show()
         }
         btnSeleccionados.setOnClickListener {
             Toast.makeText(this, "BOTÓN SELECCIONADOS", Toast.LENGTH_SHORT).show()
 
         }
+    }
+
+    private fun goToInteresados() {
+        val intent = Intent(this, ProyectosInteresadosActivity::class.java)
+        startActivity(intent)
     }
 }

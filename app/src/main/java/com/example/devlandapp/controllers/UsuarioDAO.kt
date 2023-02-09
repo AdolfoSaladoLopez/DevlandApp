@@ -1,5 +1,6 @@
 package com.example.devlandapp.controllers
 
+import com.example.devlandapp.models.Proyecto
 import com.example.devlandapp.models.Usuario
 
 interface UsuarioDAO {
@@ -9,4 +10,6 @@ interface UsuarioDAO {
     fun modificarUsuario(usuario: Usuario): Boolean
     fun eliminarUsuario(usuario: Usuario): Boolean
     fun obtenerUsuarioCorreoElectronico(correo: String): Usuario?
+    fun obtenerProyectosInteresados(usuario: Usuario?): MutableList<Proyecto>?
+    fun obtenerProyectosCreados(usuario: Usuario?): MutableList<Proyecto>?
 }

@@ -81,6 +81,18 @@
                 android:textAlignment="center"
                 android:textSize="20sp"
                 tools:ignore="RtlCompat" />
+
+            <Button
+                android:id="@+id/mis_proyectos_interesados"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="16sp"
+                android:layout_marginRight="16sp"
+                android:contentDescription="Mis proyectos"
+                android:text="Proyectos INTERESADOS"
+                android:textAlignment="center"
+                android:textSize="20sp"
+                tools:ignore="RtlCompat" />
         </LinearLayout>
 
     </LinearLayout>
