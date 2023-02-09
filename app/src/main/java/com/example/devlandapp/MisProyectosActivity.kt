@@ -48,9 +48,7 @@ class MisProyectosActivity : DrawerBaseActivity() {
             }
 
             recarga()
-
         }
-
 
         val lv1 = findViewById<ListView>(R.id.misProyectos)
         lv1.setOnItemClickListener { parent, view, position, id ->
@@ -63,7 +61,7 @@ class MisProyectosActivity : DrawerBaseActivity() {
     fun recarga() {
         val adapter = ProyectoAdapter(
             this,
-            R.layout.mis_proyectos_activity, listadoProyectosUsuario
+            R.layout.mis_proyectos_activity, listadoProyectosUsuario.asReversed()
         )
 
         val listView1 = findViewById<ListView>(R.id.misProyectos)

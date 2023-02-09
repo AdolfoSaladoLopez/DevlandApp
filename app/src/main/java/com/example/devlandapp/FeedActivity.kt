@@ -41,8 +41,6 @@ class FeedActivity : DrawerBaseActivity() {
                 Log.d(TAG, "Corriendo corrutina")
             }
 
-
-
             recarga()
 
             val lv1 = findViewById<ListView>(R.id.lista)
@@ -59,12 +57,13 @@ class FeedActivity : DrawerBaseActivity() {
                     ).show()
                 }
             }
-
         }
 
     }
 
     private fun recarga() {
+
+        listadoProyectos = listadoProyectos.asReversed()
 
         val adapter = ProyectoAdapter(
             this,
