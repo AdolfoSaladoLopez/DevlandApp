@@ -1,6 +1,7 @@
 package com.example.devlandapp
 
 import android.content.ContentValues.TAG
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.widget.ListView
@@ -19,7 +20,6 @@ import kotlinx.coroutines.launch
 class FeedActivity : DrawerBaseActivity() {
     private lateinit var binding: ActivityFeedBinding
     private var listadoProyectos: MutableList<Proyecto> = mutableListOf()
-    private var listadoUsuarios: MutableList<Usuario> = mutableListOf()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -27,6 +27,9 @@ class FeedActivity : DrawerBaseActivity() {
         localizarTituloActivity("Feed")
         setContentView(binding.root)
         var comprobante = true
+
+        val intent = Intent(this, DetallesProyectoPropioActivity::class.java)
+        val intent2 = Intent(this, DetallesProyectoOtraPersonaActivity::class.java)
 
         lifecycleScope.launch {
             while (comprobante) {
@@ -41,28 +44,26 @@ class FeedActivity : DrawerBaseActivity() {
                 Log.d(TAG, "Corriendo corrutina")
             }
 
+            UsuarioData.totalProyectos.addAll(listadoProyectos)
             recarga()
 
             val lv1 = findViewById<ListView>(R.id.lista)
             lv1.setOnItemClickListener { _, _, position, _ ->
-                if (listadoProyectos[position].nombre == "País Vasco") {
-                    Toast.makeText(
-                        applicationContext, "Soy del " + listadoProyectos[position].nombre,
-                        Toast.LENGTH_SHORT
-                    ).show()
+
+                if (listadoProyectos[position].idPropietario == UsuarioData.usuario.id) {
+                    intent.putExtra("id", listadoProyectos[position].id)
+                    startActivity(intent)
                 } else {
-                    Toast.makeText(
-                        applicationContext, "Soy de " + listadoProyectos[position].nombre,
-                        Toast.LENGTH_SHORT
-                    ).show()
+                    intent2.putExtra("id", listadoProyectos[position].id)
+                    startActivity(intent2)
                 }
             }
         }
 
+
     }
 
     private fun recarga() {
-
         listadoProyectos = listadoProyectos.asReversed()
 
         val adapter = ProyectoAdapter(
@@ -74,17 +75,4 @@ class FeedActivity : DrawerBaseActivity() {
         listView1.cacheColorHint = 0
         listView1.adapter = adapter
     }
-
-    private fun obtenerProyectos() {
-        CoroutineScope(Dispatchers.IO).launch {
-            listadoProyectos = Gestor.gestorProyectos.obtenerTodosProyectos()
-            runOnUiThread {
-                listadoProyectos.forEach {
-                    println(it.nombre)
-                }
-            }
-        }
-    }
-
-
 }

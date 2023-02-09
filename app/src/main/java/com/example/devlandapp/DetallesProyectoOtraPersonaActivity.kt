@@ -10,19 +10,18 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.annotation.RequiresApi
 import androidx.core.content.ContextCompat
-import androidx.lifecycle.lifecycleScope
+import com.example.devlandapp.databinding.ActivityDetallesProyectoOtroBinding
 import com.example.devlandapp.databinding.ActivityDetallesProyectoPropioBinding
 import com.example.devlandapp.models.Proyecto
 import com.google.android.material.chip.Chip
-import kotlinx.coroutines.launch
 import kotlin.properties.Delegates
 
-class DetallesProyectoPropioActivity : DrawerBaseActivity() {
+class DetallesProyectoOtraPersonaActivity : DrawerBaseActivity() {
     private var proyecto: Proyecto = Proyecto()
     private var valor by Delegates.notNull<Int>()
 
     /* VISTAS */
-    private lateinit var binding: ActivityDetallesProyectoPropioBinding
+    private lateinit var binding: ActivityDetallesProyectoOtroBinding
     private lateinit var propietario: TextView
     private lateinit var titulo: TextView
     private lateinit var fechaPublicacion: TextView
@@ -34,15 +33,12 @@ class DetallesProyectoPropioActivity : DrawerBaseActivity() {
     private lateinit var duracion: TextView
     private lateinit var participantes: TextView
     private lateinit var estado: Chip
-    private lateinit var btnInteresados: Button
-    private lateinit var btnSeleccionados: Button
     private lateinit var btnVerMasTarde: Button
     private lateinit var btnEstoyInteresado: Button
-    private var totalProyectos: MutableList<Proyecto> = mutableListOf()
 
     @RequiresApi(Build.VERSION_CODES.M)
     override fun onCreate(savedInstanceState: Bundle?) {
-        binding = ActivityDetallesProyectoPropioBinding.inflate(layoutInflater)
+        binding = ActivityDetallesProyectoOtroBinding.inflate(layoutInflater)
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
 
@@ -57,9 +53,7 @@ class DetallesProyectoPropioActivity : DrawerBaseActivity() {
     }
 
     private fun obtenerProyecto() {
-        totalProyectos.addAll(UsuarioData.totalProyectos)
-
-        totalProyectos?.forEach {
+        UsuarioData.totalProyectos?.forEach {
             if (it.id == valor) {
                 proyecto = it
             }
@@ -78,8 +72,6 @@ class DetallesProyectoPropioActivity : DrawerBaseActivity() {
         duracion = binding.duracion
         participantes = binding.participantes
         estado = binding.estado
-        btnInteresados = binding.interesados
-        btnSeleccionados = binding.seleccionados
         btnVerMasTarde = binding.verMasTarde
         btnEstoyInteresado = binding.estoyInteresado
     }
@@ -97,7 +89,7 @@ class DetallesProyectoPropioActivity : DrawerBaseActivity() {
     @SuppressLint("SetTextI18n")
     @RequiresApi(Build.VERSION_CODES.M)
     private fun rellenarVistas() {
-        propietario.text = "- ${UsuarioData.usuario.nombre} ${UsuarioData.usuario.apellidos} -"
+        propietario.text = "- ${proyecto.propietario?.nombre} -"
         titulo.text = proyecto.nombre
         fechaPublicacion.text = proyecto.fechaPublicacion
         tecnologia.text = proyecto.tecnologia?.uppercase()
@@ -121,10 +113,10 @@ class DetallesProyectoPropioActivity : DrawerBaseActivity() {
     }
 
     fun darFuncionalidadBotones() {
-        btnInteresados.setOnClickListener {
+        btnVerMasTarde.setOnClickListener {
             Toast.makeText(this, "BOTÓN INTERESADOS", Toast.LENGTH_SHORT).show()
         }
-        btnSeleccionados.setOnClickListener {
+        btnVerMasTarde.setOnClickListener {
             Toast.makeText(this, "BOTÓN SELECCIONADOS", Toast.LENGTH_SHORT).show()
 
         }

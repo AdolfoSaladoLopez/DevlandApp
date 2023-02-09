@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/white"
-    tools:context=".DetallesProyectoPropioActivity">
+    tools:context=".DetallesProyectoOtraPersonaActivity">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -233,33 +233,12 @@
             android:padding="20sp">
 
             <com.google.android.material.button.MaterialButton
-                android:id="@+id/interesados"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:padding="10sp"
-                android:text="Usuarios Interesados"
-                android:textSize="20sp"
-                android:visibility="visible"
-                app:cornerRadius="20sp" />
-
-            <com.google.android.material.button.MaterialButton
-                android:id="@+id/seleccionados"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:padding="10sp"
-                android:text="Usuarios Seleccionados"
-                android:textSize="20sp"
-                android:visibility="visible"
-                app:cornerRadius="20sp" />
-
-            <com.google.android.material.button.MaterialButton
                 android:id="@+id/verMasTarde"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:padding="10sp"
-                android:text="Usuarios Interesados"
+                android:text="Ver más tarde"
                 android:textSize="20sp"
-                android:visibility="invisible"
                 app:cornerRadius="20sp" />
 
             <com.google.android.material.button.MaterialButton
@@ -267,9 +246,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:padding="10sp"
-                android:text="Usuarios Seleccionados"
+                android:text="ESTOY INTERESADO"
                 android:textSize="20sp"
-                android:visibility="invisible"
                 app:cornerRadius="20sp" />
         </LinearLayout>
 

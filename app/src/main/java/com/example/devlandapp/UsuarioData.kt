@@ -1,5 +1,6 @@
 package com.example.devlandapp
 
+import com.example.devlandapp.models.Proyecto
 import com.example.devlandapp.models.Usuario
 
 class UsuarioData {
@@ -7,5 +8,6 @@ class UsuarioData {
         var usuario: Usuario = Usuario()
         var ultimoId: Int = 0
         var ultimoIdUsuario: Int = 0
+        var totalProyectos: MutableList<Proyecto> = mutableListOf()
     }
 }
