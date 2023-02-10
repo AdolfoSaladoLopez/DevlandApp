@@ -10,6 +10,7 @@ class ProyectoController : ProyectoDAO {
         val listadoTotalProyectos: MutableList<Proyecto> = mutableListOf()
 
         Db.conexion().collection("proyecto")
+            .orderBy("fechaPublicacion")
             .get()
             .addOnSuccessListener {
                 for (proyecto in it) {

@@ -339,6 +339,7 @@ class CrearProyectoActivity : DrawerBaseActivity() {
 
                 if (Gestor.gestorProyectos.registrarProyecto(proyecto)) {
                     usuario.proyectosCreados?.add(proyecto)
+                    usuario.proyectosCreadosId?.add(proyecto.id)
 
                     if (Gestor.gestorUsuarios.modificarUsuario(usuario)) {
                         Toast.makeText(this, "Proyecto creado", Toast.LENGTH_SHORT).show()

@@ -111,7 +111,7 @@ class DetallesProyectoOtraPersonaActivity : DrawerBaseActivity() {
     @SuppressLint("SetTextI18n")
     @RequiresApi(Build.VERSION_CODES.M)
     private fun rellenarVistas() {
-        propietario.text = "- ${propiet?.nombre} -"
+        propietario.text = "- ${propiet?.nombre} ${propiet?.apellidos} -"
         titulo.text = proyecto.nombre
         fechaPublicacion.text = proyecto.fechaPublicacion
         tecnologia.text = proyecto.tecnologia?.uppercase()

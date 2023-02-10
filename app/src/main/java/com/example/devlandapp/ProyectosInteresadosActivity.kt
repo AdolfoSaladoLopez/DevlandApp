@@ -10,6 +10,7 @@ import com.example.devlandapp.adapters.ProyectoAdapter
 import com.example.devlandapp.controllers.Gestor
 import com.example.devlandapp.databinding.ActivityProyectosInteresadosBinding
 import com.example.devlandapp.models.Proyecto
+import com.example.devlandapp.models.Usuario
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 
@@ -25,29 +26,31 @@ class ProyectosInteresadosActivity : DrawerBaseActivity() {
         var comprobante = true
 
         val intent2 = Intent(this, DetallesProyectoOtraPersonaActivity::class.java)
+        var totalProyectos: MutableList<Proyecto> = UsuarioData.totalProyectos
+        var usuario: Usuario = UsuarioData.usuario
+        var proyectosInteresadosId: MutableList<Int> = usuario.proyectosInteresadosId
 
-        lifecycleScope.launch {
-            while (comprobante) {
-                listadoProyectos =
-                    Gestor.gestorUsuarios.obtenerProyectosInteresados(UsuarioData.usuario)!!
-                delay(1000)
+        proyectosInteresados(totalProyectos, proyectosInteresadosId)
 
-                if (listadoProyectos[0].nombre != "") {
-                    comprobante = false
+        recarga()
+
+        val lv1 = findViewById<ListView>(R.id.lista)
+        lv1.setOnItemClickListener { _, _, position, _ ->
+
+            intent2.putExtra("id", listadoProyectos[position].id)
+            startActivity(intent2)
+        }
+    }
+
+    private fun proyectosInteresados(
+        totalProyectos: MutableList<Proyecto>,
+        proyectosInteresadosId: MutableList<Int>
+    ) {
+        totalProyectos.forEach { proyecto ->
+            proyectosInteresadosId.forEach {
+                if (proyecto.id == it) {
+                    listadoProyectos.add(proyecto)
                 }
-
-                UsuarioData.ultimoId = listadoProyectos.size
-                Log.d(TAG, "Corriendo corrutina")
-            }
-
-            UsuarioData.totalProyectos.addAll(listadoProyectos)
-            recarga()
-
-            val lv1 = findViewById<ListView>(R.id.lista)
-            lv1.setOnItemClickListener { _, _, position, _ ->
-
-                intent2.putExtra("id", listadoProyectos[position].id)
-                startActivity(intent2)
             }
         }
     }
