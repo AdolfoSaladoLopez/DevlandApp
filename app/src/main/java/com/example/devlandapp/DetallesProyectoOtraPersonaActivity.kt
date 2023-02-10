@@ -39,6 +39,7 @@ class DetallesProyectoOtraPersonaActivity : DrawerBaseActivity() {
     private lateinit var btnVerMasTarde: Button
     private lateinit var btnEstoyInteresado: Button
     private var totalProyectos: MutableList<Proyecto> = mutableListOf()
+    private var totalUsuarios: MutableList<Usuario> = mutableListOf()
     var propiet: Usuario? = null
 
     @RequiresApi(Build.VERSION_CODES.M)
@@ -49,6 +50,7 @@ class DetallesProyectoOtraPersonaActivity : DrawerBaseActivity() {
 
         recuperarIntent()
         obtenerProyecto()
+        obtenerPropietario()
         iniciarVistas()
         rellenarVistas()
     }
@@ -66,32 +68,19 @@ class DetallesProyectoOtraPersonaActivity : DrawerBaseActivity() {
                 proyecto = it
             }
         }
-
-        obtenerPropietario()
-
     }
 
     private fun obtenerPropietario() {
-        var comprobante = true
+        totalUsuarios.addAll(UsuarioData.totalUsuarios)
 
-        lifecycleScope.launch {
-            while (comprobante) {
-                println(proyecto.idPropietario)
-                propiet =
-                    Gestor.gestorUsuarios.obtenerUsuarioId(proyecto.idPropietario)
-                delay(1000)
-
-                if (propiet!!.nombre != "") {
-                    comprobante = false
-                }
-
-                println("Estoy dentro de la corrutina de Destalles")
+        totalUsuarios?.forEach {
+            if (it.id == proyecto.idPropietario) {
+                propiet = it
+                println(propiet!!.nombre)
             }
-
         }
-
-        println(propiet?.nombre)
     }
+
 
     private fun iniciarVistas() {
         propietario = binding.propietario
@@ -122,7 +111,7 @@ class DetallesProyectoOtraPersonaActivity : DrawerBaseActivity() {
     @SuppressLint("SetTextI18n")
     @RequiresApi(Build.VERSION_CODES.M)
     private fun rellenarVistas() {
-        propietario.text = "- ${proyecto.propietario?.nombre} -"
+        propietario.text = "- ${propiet?.nombre} -"
         titulo.text = proyecto.nombre
         fechaPublicacion.text = proyecto.fechaPublicacion
         tecnologia.text = proyecto.tecnologia?.uppercase()

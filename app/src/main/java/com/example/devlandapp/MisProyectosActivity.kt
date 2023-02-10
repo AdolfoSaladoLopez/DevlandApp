@@ -47,6 +47,8 @@ class MisProyectosActivity : DrawerBaseActivity() {
                 }
             }
 
+            rellenarUsuariosProyectos()
+
             recarga()
         }
 
@@ -67,6 +69,16 @@ class MisProyectosActivity : DrawerBaseActivity() {
         val listView1 = findViewById<ListView>(R.id.misProyectos)
         listView1.cacheColorHint = 0
         listView1.adapter = adapter
+    }
+
+    private fun rellenarUsuariosProyectos() {
+        listadoProyectosUsuario.forEach { proyecto ->
+            UsuarioData.totalUsuarios.forEach { usuario ->
+                if (proyecto.idPropietario == usuario.id) {
+                    proyecto.propietario = usuario
+                }
+            }
+        }
     }
 
 }

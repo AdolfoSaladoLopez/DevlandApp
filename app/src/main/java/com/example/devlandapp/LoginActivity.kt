@@ -50,6 +50,8 @@ class LoginActivity : AppCompatActivity() {
             }
         }
 
+        UsuarioData.totalUsuarios = totalUsuarios
+        
         etEmail = findViewById(R.id.etEmail)
         etPassword = findViewById(R.id.etContraseña)
         btnInicioSesion = findViewById(R.id.btnInicioSesion)

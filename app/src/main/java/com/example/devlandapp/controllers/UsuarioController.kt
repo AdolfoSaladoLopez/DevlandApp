@@ -5,6 +5,7 @@ import android.util.Log
 import androidx.lifecycle.LifecycleCoroutineScope
 import com.example.devlandapp.models.Proyecto
 import com.example.devlandapp.models.Usuario
+import com.google.firebase.firestore.ktx.toObject
 import kotlinx.coroutines.*
 
 class UsuarioController : UsuarioDAO {
@@ -26,33 +27,17 @@ class UsuarioController : UsuarioDAO {
     override fun obtenerUsuarioId(id: Int): Usuario {
         println(id.toString())
         var usuario: Usuario = Usuario()
+        var lista: MutableList<Usuario> = mutableListOf()
 
-        var usuario2: Usuario = Usuario()
 
         Db.conexion().collection("usuario")
             .document(id.toString())
             .get()
             .addOnSuccessListener {
-                var usuario = it.toObject(Usuario::class.java)!!
+                usuario = it.toObject(Usuario::class.java)!!
+                println("Usuario con ID" + usuario.id + " . Nombre: " + usuario.nombre)
 
-                if (usuario.nombre != "") {
-                    usuario2.nombre = usuario.nombre
-                    usuario2.apellidos = usuario.apellidos
-                    usuario2.id = usuario.id
-                    usuario2.password = usuario.password
-                    usuario2.email = usuario.email
-                    usuario2.proyectosCreados = usuario.proyectosCreados
-                    usuario2.proyectosCreadosId = usuario.proyectosCreadosId
-                    usuario2.proyectosInteresados = usuario.proyectosInteresados
-                    usuario2.proyectosInteresadosId = usuario.proyectosInteresadosId
-                    usuario2.administrador = usuario.administrador
-                    usuario2.descripcion = usuario.descripcion
-                    usuario2.imagen = usuario.imagen
-
-                }
             }
-
-        println(usuario2?.nombre)
 
         return usuario
     }

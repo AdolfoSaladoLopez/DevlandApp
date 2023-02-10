@@ -17,6 +17,7 @@ import kotlinx.coroutines.*
 class FeedActivity : DrawerBaseActivity() {
     private lateinit var binding: ActivityFeedBinding
     private var listadoProyectos: MutableList<Proyecto> = mutableListOf()
+    private var listadoUsuarios: MutableList<Usuario> = mutableListOf()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -35,17 +36,6 @@ class FeedActivity : DrawerBaseActivity() {
 
                 if (listadoProyectos[0].nombre != "") {
 
-                    listadoProyectos.forEach { proyecto ->
-                        GlobalScope.launch(Dispatchers.Main) {
-                            proyecto.propietario = withContext(Dispatchers.IO) {
-                                Gestor.gestorUsuarios.obtenerUsuarioId(proyecto.idPropietario)
-                            }
-
-                            proyecto.propietario =
-                                Gestor.gestorUsuarios.obtenerUsuarioId(proyecto.idPropietario)
-                        }
-
-                    }
                     comprobante = false
                 }
 
@@ -54,6 +44,8 @@ class FeedActivity : DrawerBaseActivity() {
             }
 
             UsuarioData.totalProyectos.addAll(listadoProyectos)
+
+            rellenarUsuariosProyectos()
 
             recarga()
 
@@ -69,8 +61,16 @@ class FeedActivity : DrawerBaseActivity() {
                 }
             }
         }
+    }
 
-
+    private fun rellenarUsuariosProyectos() {
+        UsuarioData.totalProyectos.forEach { proyecto ->
+            UsuarioData.totalUsuarios.forEach { usuario ->
+                if (proyecto.idPropietario == usuario.id) {
+                    proyecto.propietario = usuario
+                }
+            }
+        }
     }
 
     private fun recarga() {
