@@ -33,7 +33,6 @@ class EditarPerfil : DrawerBaseActivity() {
         textPasswordrep.text = UsuarioData.usuario.password
 
         val boton1 = findViewById<Button>(R.id.editarPerfil_register)
-        val boton2 = findViewById<Button>(R.id.editarPerfil_eliminarCuenta)
 
         var usuario: Usuario = Usuario()
 
@@ -72,18 +71,6 @@ class EditarPerfil : DrawerBaseActivity() {
                         .show()
                 }
             }
-
-
         }
-
-        boton2.setOnClickListener {
-            val intent = Intent(this, LoginActivity::class.java)
-            //Necesitamos una consulta a la base de datos para elmininar al usuario
-            intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
-            startActivity(intent)
-
-        }
-
-
     }
 }

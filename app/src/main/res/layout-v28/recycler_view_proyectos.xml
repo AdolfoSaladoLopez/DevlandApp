@@ -14,7 +14,9 @@
         android:layout_height="100dp"
         android:layout_margin="5sp"
         android:backgroundTint="@color/card"
-        app:cardCornerRadius="10sp">
+        app:cardCornerRadius="10sp"
+        android:outlineAmbientShadowColor="@color/black"
+        android:outlineSpotShadowColor="@color/black">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -55,27 +57,27 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="10sp"
-                android:orientation="horizontal">
+                android:orientation="horizontal"
+                android:layout_marginTop="10sp">
 
                 <TextView
                     android:id="@+id/propiet"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="20sp"
                     android:text="Propietario"
                     android:textAlignment="textStart"
                     android:textColor="@color/white"
-                    android:textStyle="italic" />
+                    android:layout_marginLeft="20sp"
+                    android:textStyle="italic"/>
 
                 <TextView
                     android:id="@+id/fecha"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginRight="20sp"
+                    android:textColor="@color/white"
                     android:text="03/02/2023"
-                    android:textAlignment="textEnd"
-                    android:textColor="@color/white" />
+                    android:textAlignment="textEnd" />
 
             </LinearLayout>
 
