@@ -4,16 +4,19 @@ import android.annotation.SuppressLint
 import android.content.res.ColorStateList
 import android.os.Build
 import android.os.Bundle
-import android.view.View
 import android.widget.Button
 import android.widget.TextView
 import android.widget.Toast
 import androidx.annotation.RequiresApi
 import androidx.core.content.ContextCompat
+import androidx.lifecycle.lifecycleScope
+import com.example.devlandapp.controllers.Gestor
 import com.example.devlandapp.databinding.ActivityDetallesProyectoOtroBinding
-import com.example.devlandapp.databinding.ActivityDetallesProyectoPropioBinding
 import com.example.devlandapp.models.Proyecto
+import com.example.devlandapp.models.Usuario
 import com.google.android.material.chip.Chip
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.launch
 import kotlin.properties.Delegates
 
 class DetallesProyectoOtraPersonaActivity : DrawerBaseActivity() {
@@ -36,6 +39,7 @@ class DetallesProyectoOtraPersonaActivity : DrawerBaseActivity() {
     private lateinit var btnVerMasTarde: Button
     private lateinit var btnEstoyInteresado: Button
     private var totalProyectos: MutableList<Proyecto> = mutableListOf()
+    var propiet: Usuario? = null
 
     @RequiresApi(Build.VERSION_CODES.M)
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -62,6 +66,31 @@ class DetallesProyectoOtraPersonaActivity : DrawerBaseActivity() {
                 proyecto = it
             }
         }
+
+        obtenerPropietario()
+
+    }
+
+    private fun obtenerPropietario() {
+        var comprobante = true
+
+        lifecycleScope.launch {
+            while (comprobante) {
+                println(proyecto.idPropietario)
+                propiet =
+                    Gestor.gestorUsuarios.obtenerUsuarioId(proyecto.idPropietario)
+                delay(1000)
+
+                if (propiet!!.nombre != "") {
+                    comprobante = false
+                }
+
+                println("Estoy dentro de la corrutina de Destalles")
+            }
+
+        }
+
+        println(propiet?.nombre)
     }
 
     private fun iniciarVistas() {

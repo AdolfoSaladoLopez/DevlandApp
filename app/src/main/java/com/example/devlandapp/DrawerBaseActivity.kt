@@ -1,6 +1,7 @@
 package com.example.devlandapp
 
 import android.content.Intent
+import android.text.Html
 import android.view.View
 import android.widget.FrameLayout
 import androidx.appcompat.app.ActionBarDrawerToggle
@@ -21,6 +22,7 @@ open class DrawerBaseActivity : AppCompatActivity() {
 
         val toolbar: Toolbar = drawerLayout.findViewById(R.id.toolbar)
         setSupportActionBar(toolbar)
+
 
         val navigationView = drawerLayout.findViewById<NavigationView>(R.id.nav)
 

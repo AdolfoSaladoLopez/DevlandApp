@@ -5,9 +5,10 @@ import android.util.Log
 import androidx.lifecycle.LifecycleCoroutineScope
 import com.example.devlandapp.models.Proyecto
 import com.example.devlandapp.models.Usuario
-import kotlinx.coroutines.launch
+import kotlinx.coroutines.*
 
 class UsuarioController : UsuarioDAO {
+
     override fun obtenerTodosUsuarios(): MutableList<Usuario> {
         val listadoTotalUsuarios: MutableList<Usuario> = mutableListOf()
 
@@ -23,14 +24,35 @@ class UsuarioController : UsuarioDAO {
     }
 
     override fun obtenerUsuarioId(id: Int): Usuario {
+        println(id.toString())
         var usuario: Usuario = Usuario()
+
+        var usuario2: Usuario = Usuario()
 
         Db.conexion().collection("usuario")
             .document(id.toString())
             .get()
             .addOnSuccessListener {
-                usuario = it.toObject(Usuario::class.java)!!
+                var usuario = it.toObject(Usuario::class.java)!!
+
+                if (usuario.nombre != "") {
+                    usuario2.nombre = usuario.nombre
+                    usuario2.apellidos = usuario.apellidos
+                    usuario2.id = usuario.id
+                    usuario2.password = usuario.password
+                    usuario2.email = usuario.email
+                    usuario2.proyectosCreados = usuario.proyectosCreados
+                    usuario2.proyectosCreadosId = usuario.proyectosCreadosId
+                    usuario2.proyectosInteresados = usuario.proyectosInteresados
+                    usuario2.proyectosInteresadosId = usuario.proyectosInteresadosId
+                    usuario2.administrador = usuario.administrador
+                    usuario2.descripcion = usuario.descripcion
+                    usuario2.imagen = usuario.imagen
+
+                }
             }
+
+        println(usuario2?.nombre)
 
         return usuario
     }

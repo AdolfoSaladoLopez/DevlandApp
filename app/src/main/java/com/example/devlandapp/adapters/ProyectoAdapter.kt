@@ -25,6 +25,7 @@ class ProyectoAdapter(
             holder.titulo = vista.findViewById(R.id.titulo) as TextView
             holder.descripcion = vista.findViewById(R.id.descrip) as TextView
             holder.fecha = vista.findViewById(R.id.fecha) as TextView
+            holder.propietario = vista.findViewById(R.id.propiet) as TextView
 
 
             vista.tag = holder
@@ -37,6 +38,8 @@ class ProyectoAdapter(
             holder.titulo.text = bandera.nombre
             holder.descripcion.text = bandera.descripcion
             holder.fecha.text = bandera.fechaPublicacion
+            holder.propietario.text =
+                "${bandera.propietario?.nombre} ${bandera.propietario?.apellidos}"
 
         }
         return vista
@@ -57,6 +60,7 @@ class ProyectoAdapter(
     internal class ViewHolder {
         lateinit var titulo: TextView
         lateinit var descripcion: TextView
+        lateinit var propietario: TextView
         lateinit var fecha: TextView
     }
 }

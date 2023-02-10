@@ -12,10 +12,7 @@ import com.example.devlandapp.controllers.Gestor
 import com.example.devlandapp.databinding.ActivityFeedBinding
 import com.example.devlandapp.models.Proyecto
 import com.example.devlandapp.models.Usuario
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.delay
-import kotlinx.coroutines.launch
+import kotlinx.coroutines.*
 
 class FeedActivity : DrawerBaseActivity() {
     private lateinit var binding: ActivityFeedBinding
@@ -37,6 +34,18 @@ class FeedActivity : DrawerBaseActivity() {
                 delay(1000)
 
                 if (listadoProyectos[0].nombre != "") {
+
+                    listadoProyectos.forEach { proyecto ->
+                        GlobalScope.launch(Dispatchers.Main) {
+                            proyecto.propietario = withContext(Dispatchers.IO) {
+                                Gestor.gestorUsuarios.obtenerUsuarioId(proyecto.idPropietario)
+                            }
+
+                            proyecto.propietario =
+                                Gestor.gestorUsuarios.obtenerUsuarioId(proyecto.idPropietario)
+                        }
+
+                    }
                     comprobante = false
                 }
 
@@ -45,6 +54,7 @@ class FeedActivity : DrawerBaseActivity() {
             }
 
             UsuarioData.totalProyectos.addAll(listadoProyectos)
+
             recarga()
 
             val lv1 = findViewById<ListView>(R.id.lista)

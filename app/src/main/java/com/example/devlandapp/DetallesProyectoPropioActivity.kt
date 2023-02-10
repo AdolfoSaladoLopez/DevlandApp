@@ -5,17 +5,14 @@ import android.content.Intent
 import android.content.res.ColorStateList
 import android.os.Build
 import android.os.Bundle
-import android.view.View
 import android.widget.Button
 import android.widget.TextView
 import android.widget.Toast
 import androidx.annotation.RequiresApi
 import androidx.core.content.ContextCompat
-import androidx.lifecycle.lifecycleScope
 import com.example.devlandapp.databinding.ActivityDetallesProyectoPropioBinding
 import com.example.devlandapp.models.Proyecto
 import com.google.android.material.chip.Chip
-import kotlinx.coroutines.launch
 import kotlin.properties.Delegates
 
 class DetallesProyectoPropioActivity : DrawerBaseActivity() {

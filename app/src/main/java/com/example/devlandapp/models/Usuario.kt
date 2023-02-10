@@ -3,7 +3,7 @@ package com.example.devlandapp.models
 import com.google.firebase.firestore.Exclude
 
 data class Usuario(
-    var id: Int? = 0,
+    var id: Int = 0,
     var nombre: String? = "",
     var apellidos: String? = "",
     var email: String? = "",
