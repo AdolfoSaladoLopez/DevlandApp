@@ -15,6 +15,10 @@ import com.example.devlandapp.controllers.Gestor
 import com.example.devlandapp.models.Proyecto
 import com.example.devlandapp.models.Usuario
 import com.squareup.picasso.Picasso
+import kotlinx.coroutines.DelicateCoroutinesApi
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.launch
 
 class ProyectoAdapter(
     var context: Context?,
@@ -22,9 +26,9 @@ class ProyectoAdapter(
     var elementos: MutableList<Proyecto>?,
 ) : BaseAdapter() {
 
-    var visible: Boolean = false
-    var usuarioPropietario: Usuario = Usuario()
+    var visible: Boolean = true
 
+    @OptIn(DelicateCoroutinesApi::class)
     @SuppressLint("SetTextI18n")
     override fun getView(position: Int, convertView: View?, parent: ViewGroup?): View? {
         var vista = convertView
@@ -53,7 +57,6 @@ class ProyectoAdapter(
                 "${bandera.propietario?.nombre} ${bandera.propietario?.apellidos}"
             holder.corazon.setImageResource(R.drawable.outline_favorite_border_24)
 
-
             if (bandera.idPropietario != UsuarioData.usuario.id) {
                 if (saberUsuariosInteresados(bandera)) {
                     holder.corazon.setImageResource(R.drawable.favorito_relleno)
@@ -68,12 +71,37 @@ class ProyectoAdapter(
         holder.corazon.setOnClickListener {
 
             if (visible) {
-                UsuarioData.usuario.proyectosInteresadosId.remove(bandera.id)
-                Gestor.gestorUsuarios.modificarUsuario(UsuarioData.usuario)
-                usuarioPropietario =
-
                 holder.corazon.setImageResource(R.drawable.outline_favorite_border_24)
+
+                UsuarioData.usuario.proyectosInteresadosId.remove(bandera.id)
+                UsuarioData.usuario.proyectosInteresados?.remove(bandera)
+
+                bandera.usuariosInteresadosId.remove(UsuarioData.usuario.id)
+                bandera.usuariosInteresados.remove(UsuarioData.usuario)
+
+                GlobalScope.launch(Dispatchers.IO) {
+                    Gestor.gestorUsuarios.modificarUsuario(UsuarioData.usuario)
+                    Gestor.gestorProyectos.modificarProyecto(bandera)
+                }
+
                 visible = false
+
+            } else {
+                holder.corazon.setImageResource(R.drawable.favorito_relleno)
+
+                UsuarioData.usuario.proyectosInteresadosId.add(bandera.id)
+                UsuarioData.usuario.proyectosInteresados?.add(bandera)
+
+                bandera.usuariosInteresadosId.add(UsuarioData.usuario.id)
+                bandera.usuariosInteresados.add(UsuarioData.usuario)
+
+                GlobalScope.launch(Dispatchers.IO) {
+                    Gestor.gestorUsuarios.modificarUsuario(UsuarioData.usuario)
+                    Gestor.gestorProyectos.modificarProyecto(bandera)
+                }
+                visible = true
+
+
             }
         }
 
@@ -123,8 +151,5 @@ class ProyectoAdapter(
 
         return usuario
     }
-
-    //private fun obtener
-
 
 }

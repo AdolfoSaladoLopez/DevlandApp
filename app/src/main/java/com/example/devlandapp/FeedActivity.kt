@@ -36,12 +36,6 @@ class FeedActivity : DrawerBaseActivity() {
         val intent2 = Intent(this, DetallesProyectoOtraPersonaActivity::class.java)
 
         obtenerTotalProyectos(intent, intent2)
-
-        val lista = findViewById<ListView>(R.id.lista)
-        lista.setOnItemClickListener { adapterView, view, i, l ->
-           //adapterView.adapter.getV
-        }
-
     }
 
     private fun obtenerTotalProyectos(intent: Intent, intent2: Intent) {
@@ -62,8 +56,8 @@ class FeedActivity : DrawerBaseActivity() {
 
             UsuarioData.totalProyectos.addAll(listadoProyectos)
 
-
             recarga()
+
             rellenarUsuariosProyectos()
 
 

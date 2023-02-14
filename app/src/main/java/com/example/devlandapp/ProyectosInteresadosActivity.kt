@@ -1,64 +1,105 @@
 package com.example.devlandapp
 
+import android.content.ContentValues
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.widget.ListView
+import androidx.lifecycle.lifecycleScope
 import com.example.devlandapp.adapters.ProyectoAdapter
+import com.example.devlandapp.controllers.Gestor
 import com.example.devlandapp.databinding.ActivityProyectosInteresadosBinding
 import com.example.devlandapp.models.Proyecto
 import com.example.devlandapp.models.Usuario
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.launch
 
 class ProyectosInteresadosActivity : DrawerBaseActivity() {
     private lateinit var binding: ActivityProyectosInteresadosBinding
-    private var listadoProyectos: MutableList<Proyecto> = mutableListOf()
+
+    var usuario: Usuario = Usuario()
+    private var totalProyectos: MutableList<Proyecto> = mutableListOf()
+    private var proyectosInteresadosId: MutableList<Int> = mutableListOf()
+    private var proyectosInteresados: MutableList<Proyecto> = mutableListOf()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityProyectosInteresadosBinding.inflate(layoutInflater)
         localizarTituloActivity("Feed")
         setContentView(binding.root)
-        var comprobante = true
 
         val intent2 = Intent(this, DetallesProyectoOtraPersonaActivity::class.java)
-        var totalProyectos: MutableList<Proyecto> = UsuarioData.totalProyectos
-        var usuario: Usuario = UsuarioData.usuario
-        var proyectosInteresadosId: MutableList<Int> = usuario.proyectosInteresadosId
 
-        proyectosInteresados(totalProyectos, proyectosInteresadosId)
+        var comprobante = true
+        lifecycleScope.launch {
+            while (comprobante) {
+                totalProyectos = Gestor.gestorProyectos.obtenerTodosProyectos()
+                delay(1000)
 
-        recarga()
+                if (totalProyectos[0].nombre != "") {
 
-        val lv1 = findViewById<ListView>(R.id.lista)
-        lv1.setOnItemClickListener { _, _, position, _ ->
-
-            intent2.putExtra("id", listadoProyectos[position].id)
-            startActivity(intent2)
-        }
-    }
-
-    private fun proyectosInteresados(
-        totalProyectos: MutableList<Proyecto>,
-        proyectosInteresadosId: MutableList<Int>
-    ) {
-        totalProyectos.forEach { proyecto ->
-            proyectosInteresadosId.forEach {
-                if (proyecto.id == it) {
-                    listadoProyectos.add(proyecto)
+                    comprobante = false
                 }
             }
+            totalProyectos.clear()
+            proyectosInteresados.clear()
+
+            totalProyectos.addAll(UsuarioData.totalProyectos)
+            usuario = UsuarioData.usuario
+            proyectosInteresadosId = UsuarioData.usuario.proyectosInteresadosId
+
+            proyectosInteresadosId.forEach {
+                println("ESTOY DENTRO DE AQUÍ: " + it)
+            }
+
+            proyectosInteresados.addAll(obtenerProyectosInteresados())
+
+           /* val lv1 = findViewById<ListView>(R.id.lista)
+            lv1.setOnItemClickListener { _, _, position, _ ->
+
+                intent2.putExtra("id", proyectosInteresados[position].id)
+                startActivity(intent2)
+            }*/
+
+            proyectosInteresados.forEach {
+                println("ESTOY DENTRO DE AQUÍ: " + it.nombre)
+            }
+
+            recarga()
         }
+
     }
 
     private fun recarga() {
-        listadoProyectos = listadoProyectos.asReversed()
+        val lv1 = findViewById<ListView>(R.id.lista)
 
         val adapter = ProyectoAdapter(
             this,
-            R.layout.activity_feed, listadoProyectos
+            R.layout.activity_feed, proyectosInteresados
         )
 
-        val listView1 = findViewById<ListView>(R.id.lista)
-        listView1.cacheColorHint = 0
-        listView1.adapter = adapter
+        lv1.cacheColorHint = 0
+        lv1.adapter = adapter
+    }
+
+    private fun obtenerProyectosInteresados(
+    ): MutableList<Proyecto> {
+        val listadoProyectosInteresados: MutableList<Proyecto> = mutableListOf()
+
+        println(listadoProyectosInteresados)
+        println(totalProyectos)
+
+        totalProyectos.forEach { proyecto ->
+            proyectosInteresadosId.forEach {
+                if (proyecto.id == it) {
+                    listadoProyectosInteresados.add(proyecto)
+                }
+            }
+        }
+
+        UsuarioData.usuario.proyectosInteresados?.addAll(listadoProyectosInteresados)
+        println(listadoProyectosInteresados)
+
+        return listadoProyectosInteresados
     }
 }
