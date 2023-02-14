@@ -1,56 +1,68 @@
 package com.example.devlandapp
 
+import android.annotation.SuppressLint
+import android.content.ContentValues
+import android.content.Intent
+import android.os.Build
 import android.os.Bundle
 import android.text.TextUtils
+import android.util.Log
 import android.view.View
-import android.widget.AdapterView
-import android.widget.ArrayAdapter
-import android.widget.Button
-import android.widget.CheckBox
-import android.widget.EditText
-import android.widget.Spinner
-import android.widget.Switch
-import android.widget.Toast
+import android.widget.*
+import androidx.annotation.RequiresApi
+import androidx.lifecycle.lifecycleScope
+import com.example.devlandapp.controllers.Gestor
+import com.example.devlandapp.databinding.ActivityCrearProyectoBinding
 import com.example.devlandapp.models.Proyecto
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.launch
+import java.time.LocalDateTime
 
 class CrearProyectoActivity : DrawerBaseActivity() {
-    private var nombreProyecto: EditText? = null
-    private var ubicacionProyecto: Spinner? = null
-    private var cantidadProyecto: EditText? = null
-    private var descripcionProyecto: EditText? = null
-    private var tecnologiaProyecto: Spinner? = null
-    private var idiomaProyecto: Spinner? = null
-    private var tiempo: EditText? = null
-    private var tipo: Spinner? = null
+    private lateinit var binding: ActivityCrearProyectoBinding
+    var tecnologia: String = ""
+    var idioma: String = ""
+    var ubicacion: String = ""
+    var tiempo: String = ""
+    var modoTrabajo: String = ""
+    var ultimoId: Int = 0
+    var listadoProyectos: MutableList<Proyecto> = mutableListOf()
 
+    @RequiresApi(Build.VERSION_CODES.O)
+    @SuppressLint("CutPasteId")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
+
+
+        binding = ActivityCrearProyectoBinding.inflate(layoutInflater)
+        setContentView(binding.root)
+
         val spinnerTecnologias = findViewById<Spinner>(R.id.tecnologia_nuevoProyecto)
-        val spinnerIdiomas = findViewById<Spinner>(R.id.idioma_nuevoProyecto)
-        val spinnerUbicacion = findViewById<Spinner>(R.id.ubicacion_nuevoProyecto)
-        val spinnerTipo = findViewById<Spinner>(R.id.tipo)
+        val spinnerIdiomas = findViewById<Spinner>(R.id.idioma)
+        val spinnerUbicacion = findViewById<Spinner>(R.id.ubicacion)
+        val spinnerDuracion = findViewById<Spinner>(R.id.tiempo)
+        val spinnerModoTrabajo = findViewById<Spinner>(R.id.modoTrabajo)
 
         val listaTecnologias = resources.getStringArray(R.array.tecnologias)
         val listaIdiomas = resources.getStringArray(R.array.idiomas)
         val listaUbicacion = resources.getStringArray(R.array.ubicacion)
         val listaTiempo = resources.getStringArray(R.array.tiempo)
+        val listaModoTrabajo = resources.getStringArray(R.array.modoTrabajo)
 
-        val adaptador1 = ArrayAdapter(this, android.R.layout.simple_spinner_item, listaTecnologias)
-        val adaptador2 = ArrayAdapter(this, android.R.layout.simple_spinner_item, listaIdiomas)
-        val adaptador3 = ArrayAdapter(this, android.R.layout.simple_spinner_item, listaUbicacion)
-        val adaptador4 = ArrayAdapter(this, android.R.layout.simple_spinner_item, listaTiempo)
+        val adaptador1 = ArrayAdapter(this,R.layout.spinner_layout, listaTecnologias)
+        val adaptador2 = ArrayAdapter(this, R.layout.spinner_layout, listaIdiomas)
+        val adaptador3 = ArrayAdapter(this,R.layout.spinner_layout, listaUbicacion)
+        val adaptadorTiempo = ArrayAdapter(this,R.layout.spinner_layout, listaTiempo)
+        val adaptadorModoTrabjo =
+            ArrayAdapter(this, R.layout.spinner_layout, listaModoTrabajo)
+
 
         spinnerTecnologias.adapter = adaptador1
         spinnerIdiomas.adapter = adaptador2
         spinnerUbicacion.adapter = adaptador3
-        spinnerTipo.adapter = adaptador4
-
-
-        var tecnologia: String = ""
-        var idioma: String = ""
-        var ubicacion: String = ""
-        var tipoTiempo: String = ""
-
+        spinnerDuracion.adapter = adaptadorTiempo
+        spinnerModoTrabajo.adapter = adaptadorModoTrabjo
 
         spinnerTecnologias.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
             override fun onItemSelected(
@@ -130,30 +142,34 @@ class CrearProyectoActivity : DrawerBaseActivity() {
                     }
 
                     3 -> {
-                        idioma = "Portugués"
+                        idioma = "Aleman"
                     }
 
                     4 -> {
-                        idioma = "Italiano"
+                        idioma = "Portugues"
                     }
 
                     5 -> {
-                        idioma = "Chino"
+                        idioma = "Italiano"
                     }
 
                     6 -> {
-                        idioma = "Japones"
+                        idioma = "Chino"
                     }
 
                     7 -> {
-                        idioma = "Ruso"
+                        idioma = "Japones"
                     }
 
                     8 -> {
-                        idioma = "Arabe"
+                        idioma = "Ruso"
                     }
 
                     9 -> {
+                        idioma = "Arabe"
+                    }
+
+                    10 -> {
                         idioma = "Coreano"
                     }
                 }
@@ -211,7 +227,7 @@ class CrearProyectoActivity : DrawerBaseActivity() {
             override fun onNothingSelected(parent: AdapterView<*>?) {}
         }
 
-        spinnerTipo.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
+        spinnerDuracion.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
             override fun onItemSelected(
                 parent: AdapterView<*>?,
                 view: View?,
@@ -220,15 +236,15 @@ class CrearProyectoActivity : DrawerBaseActivity() {
             ) {
                 when (position) {
                     0 -> {
-                        tipoTiempo = "Dias"
+                        tiempo = "días"
                     }
 
                     1 -> {
-                        tipoTiempo = "Meses"
+                        tiempo = "meses"
                     }
 
                     2 -> {
-                        tipoTiempo = "Años"
+                        tiempo = "años"
                     }
                 }
             }
@@ -236,63 +252,129 @@ class CrearProyectoActivity : DrawerBaseActivity() {
             override fun onNothingSelected(parent: AdapterView<*>?) {}
         }
 
+        spinnerModoTrabajo.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
+            override fun onItemSelected(
+                parent: AdapterView<*>?,
+                view: View?,
+                position: Int,
+                id: Long
+            ) {
+                when (position) {
+                    0 -> {
+                        modoTrabajo = "Remoto"
+                    }
 
-        val btnCrear = findViewById<Button>(R.id.crear)
-        btnCrear.setOnClickListener {
+                    1 -> {
+                        modoTrabajo = "Presencial"
+                    }
 
-            var editTextNombreProyecto = findViewById<EditText>(R.id.nombre_nuevoProyecto)
-            var editTextCantidadProyecto = findViewById<EditText>(R.id.cantidad_nuevoProyecto)
-            var editTextDescripcionProyecto = findViewById<EditText>(R.id.descripcion_nuevoProyecto)
-            var fechaActual = System.currentTimeMillis().toString()
-            var editTextTiempo = findViewById<EditText>(R.id.numero_tiempo)
+                    2 -> {
+                        modoTrabajo = "Mixto"
+                    }
+                }
+            }
 
+            override fun onNothingSelected(parent: AdapterView<*>?) {}
+        }
+
+        binding.crear.setOnClickListener {
+
+            var comprobante: Boolean = true
+            lifecycleScope.launch {
+                while (comprobante) {
+                    listadoProyectos = Gestor.gestorProyectos.obtenerTodosProyectos()
+                    delay(1000)
+
+                    if (listadoProyectos[0].nombre != "") {
+                        comprobante = false
+                    }
+                    Log.d(ContentValues.TAG, "Corriendo corrutina")
+                }
+            }
+
+            ultimoId = listadoProyectos.size
+            val datetime = LocalDateTime.now()
+
+            val editTextNombreProyecto = findViewById<EditText>(R.id.etTiulo)
+            val editTextCantidadProyecto = findViewById<EditText>(R.id.participantes)
+            val editTextDescripcionProyecto = findViewById<EditText>(R.id.etDescripcion)
+            var dia = ""
+            var mes = ""
+
+            val pair = convertirDiasMeses(datetime, dia, mes)
+            dia = pair.first
+            mes = pair.second
+
+            val fechaActual = "${dia}/${mes}/${datetime.year}"
+            val editTextDuracion = findViewById<EditText>(R.id.duracion)
+            val spinnerTiempo = findViewById<Spinner>(R.id.tiempo)
 
             if (comprobarnombre(editTextNombreProyecto.text.toString()) &&
-                comprobartiempo(editTextTiempo.text.toString()) &&
+                comprobartiempo(editTextDuracion.text.toString()) &&
                 comprobardescripcion(editTextDescripcionProyecto.text.toString())
             ) {
 
-                val nombreProyecto = editTextNombreProyecto!!.text.toString()
-                val cantidadProyecto: Int = editTextCantidadProyecto!!.text.toString().toInt()
-                val descripcionProyecto = editTextDescripcionProyecto!!.text.toString()
-                val tiempo = editTextTiempo!!.text.toString()
-                val tiempoProyecto = tiempo + tipoTiempo
+                var nombreProyecto = editTextNombreProyecto!!.text.toString()
+                var cantidadProyecto: Int = editTextCantidadProyecto!!.text.toString().toInt()
+                var descripcionProyecto = editTextDescripcionProyecto!!.text.toString()
+                var duracion = editTextDuracion!!.text.toString()
+                var tiempoProyecto = "$duracion $tiempo"
 
-                var proyecto: Proyecto
-                val usuario = UsuarioData.usuario
+                var proyecto: Proyecto = Proyecto()
+                var usuario = UsuarioData.usuario
 
-                /*proyecto = Proyecto(0,
-                    nombreProyecto,descripcionProyecto,tecnologia,ubicacion,boxchecker(presencial_modo_nuevoProyecto,
-                        teletrabajo_modo_nuevoProyecto),idioma,tiempoProyecto,switchchecker(estado_nuevoProyecto),cantidadProyecto,
-                    usuario,usuario!!.id,0,fechaActual) */
+                proyecto = Proyecto(
+                    UsuarioData.ultimoId,
+                    nombreProyecto,
+                    descripcionProyecto,
+                    tecnologia,
+                    ubicacion,
+                    modoTrabajo,
+                    idioma,
+                    tiempoProyecto,
+                    true,
+                    cantidadProyecto,
+                    usuario,
+                    usuario!!.id,
+                    0,
+                    fechaActual,
+                )
 
+                if (Gestor.gestorProyectos.registrarProyecto(proyecto)) {
+                    usuario.proyectosCreados?.add(proyecto)
 
-                //println(proyecto)
+                    if (Gestor.gestorUsuarios.modificarUsuario(usuario)) {
+                        Toast.makeText(this, "Proyecto creado", Toast.LENGTH_SHORT).show()
 
-                Toast.makeText(this, "Proyecto creado", Toast.LENGTH_SHORT).show()
-
-                //usuario!!.proyectosCreados!!.add(proyecto)
-
+                        goToFeed()
+                    }
+                }
             } else {
                 Toast.makeText(this, "Rellena todos los campos", Toast.LENGTH_SHORT).show()
             }
         }
     }
 
-    private fun switchchecker(switch: Switch): Boolean {
-        return switch.isChecked
-    }
-
-    private fun boxchecker(checkBox1: CheckBox, checkBox2: CheckBox): String {
-//TODO: Hacer que solo se pueda seleccionar uno de los dos
-        if (checkBox1.isChecked) {
-            return "Presencial"
+    @RequiresApi(Build.VERSION_CODES.O)
+    private fun convertirDiasMeses(
+        datetime: LocalDateTime,
+        dia: String,
+        mes: String
+    ): Pair<String, String> {
+        var dia1 = dia
+        var mes1 = mes
+        if (datetime.dayOfMonth < 10) {
+            dia1 = "0${datetime.dayOfMonth}"
+        } else {
+            dia1 = datetime.dayOfMonth.toString()
         }
-        if (checkBox2.isChecked) {
-            return "Teletrabajo"
-        }
-        return "Mixto"
 
+        if (datetime.monthValue < 10) {
+            mes1 = "0${datetime.monthValue}"
+        } else {
+            mes1 = datetime.monthValue.toString()
+        }
+        return Pair(dia1, mes1)
     }
 
     private fun comprobarnombre(nombre: String): Boolean {
@@ -306,5 +388,12 @@ class CrearProyectoActivity : DrawerBaseActivity() {
     private fun comprobartiempo(tiempo: String): Boolean {
         return !TextUtils.isEmpty(tiempo)
     }
+
+    private fun goToFeed() {
+        val intent = Intent(this, FeedActivity::class.java)
+        // Evita que pasemos de nuevo a la activity login
+        startActivity(intent)
+    }
+
 
 }
