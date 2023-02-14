@@ -11,7 +11,9 @@ import android.widget.TextView
 import android.widget.Toast
 import com.example.devlandapp.R
 import com.example.devlandapp.UsuarioData
+import com.example.devlandapp.controllers.Gestor
 import com.example.devlandapp.models.Proyecto
+import com.example.devlandapp.models.Usuario
 import com.squareup.picasso.Picasso
 
 class ProyectoAdapter(
@@ -19,6 +21,9 @@ class ProyectoAdapter(
     var textViewResourceId: Int,
     var elementos: MutableList<Proyecto>?,
 ) : BaseAdapter() {
+
+    var visible: Boolean = false
+    var usuarioPropietario: Usuario = Usuario()
 
     @SuppressLint("SetTextI18n")
     override fun getView(position: Int, convertView: View?, parent: ViewGroup?): View? {
@@ -52,10 +57,23 @@ class ProyectoAdapter(
             if (bandera.idPropietario != UsuarioData.usuario.id) {
                 if (saberUsuariosInteresados(bandera)) {
                     holder.corazon.setImageResource(R.drawable.favorito_relleno)
+                    visible = true
                 }
                 holder.corazon.visibility = View.VISIBLE
             } else {
                 holder.corazon.visibility = View.INVISIBLE
+            }
+        }
+
+        holder.corazon.setOnClickListener {
+
+            if (visible) {
+                UsuarioData.usuario.proyectosInteresadosId.remove(bandera.id)
+                Gestor.gestorUsuarios.modificarUsuario(UsuarioData.usuario)
+                usuarioPropietario =
+
+                holder.corazon.setImageResource(R.drawable.outline_favorite_border_24)
+                visible = false
             }
         }
 
@@ -95,7 +113,18 @@ class ProyectoAdapter(
         return estaInteresado
     }
 
-    interface OnItemClickListener {
-        fun OnItemClick(vista: View, position: Int)
+    private fun obtenerPropietarioProyecto(proyecto: Proyecto): Usuario {
+        var usuario: Usuario = Usuario()
+        UsuarioData.totalUsuarios.forEach {
+            if (it.id == proyecto.idPropietario) {
+                usuario = it
+            }
+        }
+
+        return usuario
     }
+
+    //private fun obtener
+
+
 }
