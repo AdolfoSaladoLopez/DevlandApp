@@ -1,20 +1,26 @@
 package com.example.devlandapp.adapters
 
+import android.annotation.SuppressLint
 import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.BaseAdapter
+import android.widget.ImageView
 import android.widget.TextView
+import android.widget.Toast
 import com.example.devlandapp.R
+import com.example.devlandapp.UsuarioData
 import com.example.devlandapp.models.Proyecto
+import com.squareup.picasso.Picasso
 
 class ProyectoAdapter(
     var context: Context?,
     var textViewResourceId: Int,
-    var elementos: MutableList<Proyecto>?
+    var elementos: MutableList<Proyecto>?,
 ) : BaseAdapter() {
 
+    @SuppressLint("SetTextI18n")
     override fun getView(position: Int, convertView: View?, parent: ViewGroup?): View? {
         var vista = convertView
         val holder: ViewHolder
@@ -26,7 +32,7 @@ class ProyectoAdapter(
             holder.descripcion = vista.findViewById(R.id.descrip) as TextView
             holder.fecha = vista.findViewById(R.id.fecha) as TextView
             holder.propietario = vista.findViewById(R.id.propiet) as TextView
-
+            holder.corazon = vista.findViewById(R.id.corazon) as ImageView
 
             vista.tag = holder
         } else {
@@ -40,8 +46,19 @@ class ProyectoAdapter(
             holder.fecha.text = bandera.fechaPublicacion
             holder.propietario.text =
                 "${bandera.propietario?.nombre} ${bandera.propietario?.apellidos}"
+            holder.corazon.setImageResource(R.drawable.outline_favorite_border_24)
 
+
+            if (bandera.idPropietario != UsuarioData.usuario.id) {
+                if (saberUsuariosInteresados(bandera)) {
+                    holder.corazon.setImageResource(R.drawable.favorito_relleno)
+                }
+                holder.corazon.visibility = View.VISIBLE
+            } else {
+                holder.corazon.visibility = View.INVISIBLE
+            }
         }
+
         return vista
     }
 
@@ -62,5 +79,23 @@ class ProyectoAdapter(
         lateinit var descripcion: TextView
         lateinit var propietario: TextView
         lateinit var fecha: TextView
+        lateinit var corazon: ImageView
+    }
+
+    private fun saberUsuariosInteresados(proyecto: Proyecto): Boolean {
+        var estaInteresado = false
+        UsuarioData.totalUsuarios.forEach { usuario ->
+            usuario.proyectosInteresadosId.forEach { idProyecto ->
+                if (idProyecto == proyecto.id) {
+                    estaInteresado = true
+                }
+            }
+        }
+
+        return estaInteresado
+    }
+
+    interface OnItemClickListener {
+        fun OnItemClick(vista: View, position: Int)
     }
 }

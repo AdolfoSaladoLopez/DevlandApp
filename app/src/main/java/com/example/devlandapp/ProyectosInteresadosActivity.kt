@@ -1,18 +1,12 @@
 package com.example.devlandapp
 
-import android.content.ContentValues.TAG
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import android.widget.ListView
-import androidx.lifecycle.lifecycleScope
 import com.example.devlandapp.adapters.ProyectoAdapter
-import com.example.devlandapp.controllers.Gestor
 import com.example.devlandapp.databinding.ActivityProyectosInteresadosBinding
 import com.example.devlandapp.models.Proyecto
 import com.example.devlandapp.models.Usuario
-import kotlinx.coroutines.delay
-import kotlinx.coroutines.launch
 
 class ProyectosInteresadosActivity : DrawerBaseActivity() {
     private lateinit var binding: ActivityProyectosInteresadosBinding

@@ -23,18 +23,28 @@
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent">
+                android:layout_height="48sp"
+                android:orientation="horizontal"
+                android:padding="7sp">
 
                 <TextView
                     android:id="@+id/titulo"
-                    android:layout_width="match_parent"
+                    android:layout_width="250sp"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="20sp"
-                    android:padding="10sp"
                     android:text="JAVAFX"
                     android:textColor="@color/white"
                     android:textSize="20sp"
                     android:textStyle="bold" />
+
+                <ImageView
+                    android:id="@+id/corazon"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:src="@drawable/outline_favorite_border_24"
+                    android:visibility="visible"
+                    android:clickable="true">
+
+                </ImageView>
             </LinearLayout>
 
             <LinearLayout

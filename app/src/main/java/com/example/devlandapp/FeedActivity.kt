@@ -4,7 +4,10 @@ import android.content.ContentValues.TAG
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
+import android.view.View
+import android.widget.ImageView
 import android.widget.ListView
+import android.widget.Toast
 import androidx.lifecycle.lifecycleScope
 import com.example.devlandapp.adapters.ProyectoAdapter
 import com.example.devlandapp.controllers.Gestor
@@ -18,6 +21,8 @@ class FeedActivity : DrawerBaseActivity() {
     private lateinit var binding: ActivityFeedBinding
     private var listadoProyectos: MutableList<Proyecto> = mutableListOf()
     private var totalUsuarios: MutableList<Usuario> = mutableListOf()
+    private lateinit var myAdapter: ProyectoAdapter
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -31,6 +36,12 @@ class FeedActivity : DrawerBaseActivity() {
         val intent2 = Intent(this, DetallesProyectoOtraPersonaActivity::class.java)
 
         obtenerTotalProyectos(intent, intent2)
+
+        val lista = findViewById<ListView>(R.id.lista)
+        lista.setOnItemClickListener { adapterView, view, i, l ->
+           //adapterView.adapter.getV
+        }
+
     }
 
     private fun obtenerTotalProyectos(intent: Intent, intent2: Intent) {
@@ -52,9 +63,9 @@ class FeedActivity : DrawerBaseActivity() {
             UsuarioData.totalProyectos.addAll(listadoProyectos)
 
 
+            recarga()
             rellenarUsuariosProyectos()
 
-            recarga()
 
             val lv1 = findViewById<ListView>(R.id.lista)
             lv1.setOnItemClickListener { _, _, position, _ ->
