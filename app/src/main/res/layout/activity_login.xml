@@ -40,7 +40,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@android:color/transparent"
-            android:textColor="#565656" />
+            android:textColor="#565656"
+            android:textStyle="bold" />
     </com.google.android.material.textfield.TextInputLayout>
 
 
@@ -60,7 +61,8 @@
             android:layout_height="wrap_content"
             android:background="@android:color/transparent"
             android:inputType="textPassword"
-            android:textColor="#565656" />
+            android:textColor="#565656"
+            android:textStyle="bold" />
     </com.google.android.material.textfield.TextInputLayout>
 
     <TextView
@@ -71,6 +73,7 @@
         android:textColor="@color/black"
         android:textSize="20sp"
         android:textStyle="bold"
+        android:layout_marginBottom="15sp"
         app:layout_constraintBottom_toTopOf="@+id/btnInicioSesion"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -92,14 +95,16 @@
         android:id="@+id/tvOlvidarPwd"
         android:layout_width="335dp"
         android:layout_height="41dp"
+        android:gravity="center"
         android:text="¿Olvidaste la contraseña?"
         android:textAlignment="textEnd"
         android:textColor="@color/black"
-        android:textSize="20sp"
+        android:textSize="17sp"
         app:layout_constraintBottom_toTopOf="@+id/tvRegistro"
         app:layout_constraintEnd_toEndOf="@+id/tvRegistro"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.75" />
+        app:layout_constraintVertical_bias="0.75"
+        tools:ignore="RtlCompat" />
 </androidx.constraintlayout.widget.ConstraintLayout>

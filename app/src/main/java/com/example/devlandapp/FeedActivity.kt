@@ -5,30 +5,36 @@ import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.widget.ListView
-import android.widget.Toast
 import androidx.lifecycle.lifecycleScope
 import com.example.devlandapp.adapters.ProyectoAdapter
 import com.example.devlandapp.controllers.Gestor
 import com.example.devlandapp.databinding.ActivityFeedBinding
 import com.example.devlandapp.models.Proyecto
 import com.example.devlandapp.models.Usuario
-import kotlinx.coroutines.*
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.launch
 
 class FeedActivity : DrawerBaseActivity() {
     private lateinit var binding: ActivityFeedBinding
     private var listadoProyectos: MutableList<Proyecto> = mutableListOf()
-    private var listadoUsuarios: MutableList<Usuario> = mutableListOf()
+    private var totalUsuarios: MutableList<Usuario> = mutableListOf()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityFeedBinding.inflate(layoutInflater)
         localizarTituloActivity("Feed")
         setContentView(binding.root)
-        var comprobante = true
+
+        traerTodosUsuarios()
 
         val intent = Intent(this, DetallesProyectoPropioActivity::class.java)
         val intent2 = Intent(this, DetallesProyectoOtraPersonaActivity::class.java)
 
+        obtenerTotalProyectos(intent, intent2)
+    }
+
+    private fun obtenerTotalProyectos(intent: Intent, intent2: Intent) {
+        var comprobante = true
         lifecycleScope.launch {
             while (comprobante) {
                 listadoProyectos = Gestor.gestorProyectos.obtenerTodosProyectos()
@@ -44,6 +50,7 @@ class FeedActivity : DrawerBaseActivity() {
             }
 
             UsuarioData.totalProyectos.addAll(listadoProyectos)
+
 
             rellenarUsuariosProyectos()
 
@@ -63,9 +70,28 @@ class FeedActivity : DrawerBaseActivity() {
         }
     }
 
+    private fun traerTodosUsuarios() {
+        var comprobante = true
+
+        lifecycleScope.launch {
+            while (comprobante) {
+                totalUsuarios = Gestor.gestorUsuarios.obtenerTodosUsuarios()
+                delay(1000)
+
+                if (totalUsuarios.size > 0) {
+                    comprobante = false
+                }
+
+                UsuarioData.ultimoIdUsuario = totalUsuarios.size
+            }
+        }
+
+        UsuarioData.totalUsuarios = totalUsuarios
+    }
+
     private fun rellenarUsuariosProyectos() {
-        UsuarioData.totalProyectos.forEach { proyecto ->
-            UsuarioData.totalUsuarios.forEach { usuario ->
+        listadoProyectos.forEach { proyecto ->
+            totalUsuarios.forEach { usuario ->
                 if (proyecto.idPropietario == usuario.id) {
                     proyecto.propietario = usuario
                 }

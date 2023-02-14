@@ -34,24 +34,8 @@ class LoginActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
 
-        var comprobante = true
+        traerTodosUsuarios()
 
-        lifecycleScope.launch {
-            while (comprobante) {
-                totalUsuarios = Gestor.gestorUsuarios.obtenerTodosUsuarios()
-                delay(1000)
-
-                if (totalUsuarios.size > 0) {
-                    comprobante = false
-                }
-
-                UsuarioData.ultimoIdUsuario = totalUsuarios.size
-                Log.d(ContentValues.TAG, "Corriendo corrutina")
-            }
-        }
-
-        UsuarioData.totalUsuarios = totalUsuarios
-        
         etEmail = findViewById(R.id.etEmail)
         etPassword = findViewById(R.id.etContraseña)
         btnInicioSesion = findViewById(R.id.btnInicioSesion)
@@ -98,6 +82,26 @@ class LoginActivity : AppCompatActivity() {
             }
             guardarPreferencias(email, password)
         }
+    }
+
+    private fun traerTodosUsuarios() {
+        var comprobante = true
+
+        lifecycleScope.launch {
+            while (comprobante) {
+                totalUsuarios = Gestor.gestorUsuarios.obtenerTodosUsuarios()
+                delay(1000)
+
+                if (totalUsuarios.size > 0) {
+                    comprobante = false
+                }
+
+                UsuarioData.ultimoIdUsuario = totalUsuarios.size
+                Log.d(ContentValues.TAG, "Corriendo corrutina")
+            }
+        }
+
+        UsuarioData.totalUsuarios = totalUsuarios
     }
 
     private fun comprobarCorreo(email: String): Boolean {

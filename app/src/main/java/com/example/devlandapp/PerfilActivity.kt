@@ -1,5 +1,6 @@
 package com.example.devlandapp
 
+import android.annotation.SuppressLint
 import android.content.Intent
 import android.os.Bundle
 import android.widget.TextView
@@ -11,6 +12,7 @@ class PerfilActivity : DrawerBaseActivity() {
 
     private lateinit var binding: ActivityPerfilBinding
 
+    @SuppressLint("SetTextI18n")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
