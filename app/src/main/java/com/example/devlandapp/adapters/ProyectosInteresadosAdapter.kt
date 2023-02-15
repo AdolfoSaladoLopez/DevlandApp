@@ -20,13 +20,11 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 
-class ProyectoAdapter(
+class ProyectosInteresadosAdapter(
     var context: Context?,
     var textViewResourceId: Int,
     var elementos: MutableList<Proyecto>?,
 ) : BaseAdapter() {
-
-    var visible: Boolean = false
 
     @OptIn(DelicateCoroutinesApi::class)
     @SuppressLint("SetTextI18n")
@@ -57,46 +55,18 @@ class ProyectoAdapter(
             holder.propietario.text =
                 "${bandera.propietario?.nombre} ${bandera.propietario?.apellidos}"
 
-            holder.corazon.setImageResource(R.drawable.outline_favorite_border_24)
-
-            if (bandera.idPropietario != UsuarioData.usuario.id) {
-                if (saberUsuariosInteresados(bandera)) {
-                    holder.corazon.setImageResource(R.drawable.favorito_relleno)
-                    visible = true
-                }
-                holder.corazon.visibility = View.VISIBLE
-            } else {
-
-                holder.corazon.visibility = View.INVISIBLE
-            }
+            holder.corazon.setImageResource(R.drawable.favorito_relleno)
 
         }
 
         holder.corazon.setOnClickListener {
-            if (visible) {
+            UsuarioData.usuario.proyectosInteresadosId.remove(bandera.id)
+            bandera.usuariosInteresadosId.remove(UsuarioData.usuario.id)
 
-                UsuarioData.usuario.proyectosInteresadosId.remove(bandera.id)
-                bandera.usuariosInteresadosId.remove(UsuarioData.usuario.id)
+            Gestor.gestorUsuarios.modificarUsuario(UsuarioData.usuario)
+            Gestor.gestorProyectos.modificarProyecto(bandera)
+            notifyDataSetChanged()
 
-                Gestor.gestorUsuarios.modificarUsuario(UsuarioData.usuario)
-                Gestor.gestorProyectos.modificarProyecto(bandera)
-
-                holder.corazon.setImageResource(R.drawable.outline_favorite_border_24)
-
-                visible = false
-
-            } else {
-
-                UsuarioData.usuario.proyectosInteresadosId.add(bandera.id)
-                bandera.usuariosInteresadosId.add(UsuarioData.usuario.id)
-
-                Gestor.gestorUsuarios.modificarUsuario(UsuarioData.usuario)
-                Gestor.gestorProyectos.modificarProyecto(bandera)
-
-                holder.corazon.setImageResource(R.drawable.favorito_relleno)
-
-                visible = true
-            }
         }
 
         return vista

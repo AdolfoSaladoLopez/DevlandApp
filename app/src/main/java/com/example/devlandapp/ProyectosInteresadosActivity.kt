@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.util.Log
 import android.widget.ListView
 import com.example.devlandapp.adapters.ProyectoAdapter
+import com.example.devlandapp.adapters.ProyectosInteresadosAdapter
 import com.example.devlandapp.databinding.ActivityProyectosInteresadosBinding
 import com.example.devlandapp.models.Proyecto
 import com.example.devlandapp.models.Usuario
@@ -57,7 +58,7 @@ class ProyectosInteresadosActivity : DrawerBaseActivity() {
 
         var list = findViewById<ListView>(R.id.lista)
 
-        val adapter = ProyectoAdapter(
+        val adapter = ProyectosInteresadosAdapter(
             this,
             R.layout.activity_feed, proyectos
         )
@@ -76,9 +77,6 @@ class ProyectosInteresadosActivity : DrawerBaseActivity() {
                 }
             }
         }
-
-        proyectosConvertidos.forEach { p ->  Log.w("Convertidos", "$p")}
-
 
         return proyectosConvertidos
     }
