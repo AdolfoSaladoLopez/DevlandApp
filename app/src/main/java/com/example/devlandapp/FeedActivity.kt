@@ -53,7 +53,7 @@ class FeedActivity : DrawerBaseActivity() {
                 UsuarioData.ultimoId = listadoProyectos.size
                 Log.d(TAG, "Corriendo corrutina")
             }
-
+            UsuarioData.totalProyectos.clear()
             UsuarioData.totalProyectos.addAll(listadoProyectos)
 
             recarga()

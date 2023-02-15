@@ -74,15 +74,11 @@ class ProyectoAdapter(
                 holder.corazon.setImageResource(R.drawable.outline_favorite_border_24)
 
                 UsuarioData.usuario.proyectosInteresadosId.remove(bandera.id)
-                UsuarioData.usuario.proyectosInteresados?.remove(bandera)
 
                 bandera.usuariosInteresadosId.remove(UsuarioData.usuario.id)
-                bandera.usuariosInteresados.remove(UsuarioData.usuario)
 
-                GlobalScope.launch(Dispatchers.IO) {
-                    Gestor.gestorUsuarios.modificarUsuario(UsuarioData.usuario)
-                    Gestor.gestorProyectos.modificarProyecto(bandera)
-                }
+                Gestor.gestorUsuarios.modificarUsuario(UsuarioData.usuario)
+                Gestor.gestorProyectos.modificarProyecto(bandera)
 
                 visible = false
 
@@ -90,18 +86,12 @@ class ProyectoAdapter(
                 holder.corazon.setImageResource(R.drawable.favorito_relleno)
 
                 UsuarioData.usuario.proyectosInteresadosId.add(bandera.id)
-                UsuarioData.usuario.proyectosInteresados?.add(bandera)
-
                 bandera.usuariosInteresadosId.add(UsuarioData.usuario.id)
-                bandera.usuariosInteresados.add(UsuarioData.usuario)
 
-                GlobalScope.launch(Dispatchers.IO) {
-                    Gestor.gestorUsuarios.modificarUsuario(UsuarioData.usuario)
-                    Gestor.gestorProyectos.modificarProyecto(bandera)
-                }
+                Gestor.gestorUsuarios.modificarUsuario(UsuarioData.usuario)
+                Gestor.gestorProyectos.modificarProyecto(bandera)
+
                 visible = true
-
-
             }
         }
 
