@@ -116,6 +116,15 @@
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
+        <activity
+            android:name=".UsuariosInteresadosActivity"
+            android:exported="true"
+            android:label="Usuarios interesados">
+
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
     </application>
 
 </manifest>

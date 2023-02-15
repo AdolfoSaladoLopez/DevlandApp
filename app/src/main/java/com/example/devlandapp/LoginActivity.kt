@@ -87,6 +87,8 @@ class LoginActivity : AppCompatActivity() {
     private fun traerTodosUsuarios() {
         var comprobante = true
 
+        totalUsuarios.clear()
+
         lifecycleScope.launch {
             while (comprobante) {
                 totalUsuarios = Gestor.gestorUsuarios.obtenerTodosUsuarios()

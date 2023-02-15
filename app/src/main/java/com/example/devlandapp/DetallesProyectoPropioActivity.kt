@@ -57,7 +57,7 @@ class DetallesProyectoPropioActivity : DrawerBaseActivity() {
     private fun obtenerProyecto() {
         totalProyectos.addAll(UsuarioData.totalProyectos)
 
-        totalProyectos?.forEach {
+        totalProyectos.forEach {
             if (it.id == valor) {
                 proyecto = it
             }
@@ -76,8 +76,8 @@ class DetallesProyectoPropioActivity : DrawerBaseActivity() {
         duracion = binding.duracion
         participantes = binding.participantes
         estado = binding.estado
-        btnInteresados = binding.interesados
-        btnSeleccionados = binding.seleccionados
+        btnInteresados = binding.btnInteresados
+        btnSeleccionados = binding.btnSeleccionados
         btnVerMasTarde = binding.verMasTarde
         btnEstoyInteresado = binding.estoyInteresado
     }
@@ -118,14 +118,22 @@ class DetallesProyectoPropioActivity : DrawerBaseActivity() {
         darFuncionalidadBotones()
     }
 
-    fun darFuncionalidadBotones() {
+    private fun darFuncionalidadBotones() {
+        var idProyecto = proyecto.id
         btnInteresados.setOnClickListener {
+            val intent4 = Intent(this, UsuariosInteresadosActivity::class.java)
+            intent4.putExtra("proyecto", idProyecto)
+            println(proyecto.id)
+            startActivity(intent4)
         }
         btnSeleccionados.setOnClickListener {
-            Toast.makeText(this, "BOTÓN SELECCIONADOS", Toast.LENGTH_SHORT).show()
+            /*val intent = Intent(this, UsuariosSeleccionadosActivity::class.java)
+            intent.putExtra("idProyecto", proyecto.id)
+            startActivity(intent)*/
 
         }
     }
+
 
     private fun goToInteresados() {
         val intent = Intent(this, ProyectosInteresadosActivity::class.java)
