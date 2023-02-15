@@ -94,7 +94,6 @@ class DetallesProyectoOtraPersonaActivity : DrawerBaseActivity() {
         duracion = binding.duracion
         participantes = binding.participantes
         estado = binding.estado
-        btnVerMasTarde = binding.verMasTarde
         btnEstoyInteresado = binding.estoyInteresado
     }
 
@@ -135,12 +134,6 @@ class DetallesProyectoOtraPersonaActivity : DrawerBaseActivity() {
     }
 
     fun darFuncionalidadBotones() {
-        btnVerMasTarde.setOnClickListener {
-            Toast.makeText(this, "BOTÓN INTERESADOS", Toast.LENGTH_SHORT).show()
-        }
-        btnVerMasTarde.setOnClickListener {
-            Toast.makeText(this, "BOTÓN SELECCIONADOS", Toast.LENGTH_SHORT).show()
 
-        }
     }
 }

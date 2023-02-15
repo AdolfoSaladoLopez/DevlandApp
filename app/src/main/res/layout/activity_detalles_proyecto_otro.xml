@@ -14,8 +14,8 @@
 
         <!-- TÍTULO DE LA ACTIVITY -->
         <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
             android:layout_gravity="center"
             android:orientation="horizontal"
             android:paddingTop="20dp"
@@ -23,11 +23,22 @@
 
             <TextView
                 android:id="@+id/tituloProyecto"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:text="Prueba"
-                android:textSize="30dp"
+                android:layout_width="370sp"
+                android:layout_height="70sp"
+                android:gravity="start|center"
+                android:text="JAVAFX"
+                android:layout_marginStart="20sp"
+                android:textColor="@color/black"
+                android:textSize="30sp"
                 android:textStyle="bold" />
+
+            <ImageView
+                android:id="@+id/corazon"
+                android:layout_width="30sp"
+                android:layout_height="70sp"
+                android:src="@drawable/favorito_relleno"
+                android:visibility="visible"
+                android:clickable="true" />
         </LinearLayout>
 
         <!-- DESCRIPCION -->
@@ -94,7 +105,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:text="ESPAÑOL"
-                android:textSize="15sp"
+                android:textSize="14sp"
                 app:chipEndPadding="20dp"
                 app:chipMinHeight="50sp"
                 app:chipStartPadding="20dp" />
@@ -103,9 +114,9 @@
                 android:id="@+id/ubicacion"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
-                android:layout_marginLeft="10sp"
+                android:layout_marginStart="10sp"
                 android:text="MÁLAGA"
-                android:textSize="15sp"
+                android:textSize="14sp"
                 app:chipEndPadding="20dp"
                 app:chipMinHeight="50sp"
                 app:chipStartPadding="20dp" />
@@ -114,9 +125,9 @@
                 android:id="@+id/modoTrabajo"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
-                android:layout_marginLeft="10sp"
+                android:layout_marginStart="10sp"
                 android:text="REMOTO"
-                android:textSize="15sp"
+                android:textSize="14sp"
                 app:chipEndPadding="20dp"
                 app:chipMinHeight="50sp"
                 app:chipStartPadding="20dp" />
@@ -136,71 +147,80 @@
                 android:id="@+id/tecnologia"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
-                android:layout_marginLeft="10sp"
+                android:layout_marginStart="10sp"
                 android:text="JAVA"
-                android:textSize="20dp"
+                android:textSize="20sp"
                 app:chipEndPadding="20dp"
                 app:chipMinHeight="50sp"
                 app:chipStartPadding="20dp" />
         </LinearLayout>
 
-        <!-- DURACION -->
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_gravity="center"
-            android:layout_marginLeft="80sp"
-            android:layout_marginTop="20sp"
             android:orientation="horizontal"
-            android:padding="20sp">
+            android:gravity="center"
+            android:layout_gravity="center">
 
-            <ImageView
-                android:layout_width="24dp"
-                android:layout_height="24dp"
-                android:layout_gravity="right"
-                android:foregroundGravity="right"
-                android:src="@drawable/reloj" />
-
-
-            <TextView
-                android:id="@+id/duracion"
+            <!-- DURACION -->
+            <LinearLayout
                 android:layout_width="wrap_content"
-                android:layout_height="match_parent"
+                android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:layout_marginLeft="15sp"
-                android:text="Prueba"
-                android:textAlignment="center"
-                android:textSize="20dp" />
+                android:layout_marginTop="18sp"
+                android:orientation="horizontal"
+                android:padding="20sp">
+
+                <ImageView
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:layout_gravity="center"
+                    android:foregroundGravity="right"
+                    android:src="@drawable/reloj" />
+
+
+                <TextView
+                    android:id="@+id/duracion"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center"
+                    android:layout_marginStart="15sp"
+                    android:text="Prueba"
+                    android:textAlignment="center"
+                    android:textSize="20sp" />
+            </LinearLayout>
+
+
+            <!-- PARTICIPANTES -->
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="18sp"
+                android:orientation="horizontal"
+                android:padding="20sp">
+
+                <ImageView
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:layout_gravity="center"
+                    android:foregroundGravity="center"
+                    android:src="@drawable/persona" />
+
+
+                <TextView
+                    android:id="@+id/participantes"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center"
+                    android:layout_marginStart="15sp"
+                    android:text="Prueba"
+                    android:textAlignment="center"
+                    android:textSize="20sp" />
+            </LinearLayout>
+
         </LinearLayout>
 
-
-        <!-- PARTICIPANTES -->
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_gravity="center"
-            android:layout_marginLeft="80sp"
-            android:orientation="horizontal"
-            android:padding="20sp">
-
-            <ImageView
-                android:layout_width="24dp"
-                android:layout_height="24dp"
-                android:layout_gravity="right"
-                android:foregroundGravity="right"
-                android:src="@drawable/persona" />
-
-
-            <TextView
-                android:id="@+id/participantes"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:layout_gravity="center"
-                android:layout_marginLeft="15sp"
-                android:text="Prueba"
-                android:textAlignment="center"
-                android:textSize="20dp" />
-        </LinearLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -215,9 +235,9 @@
                 android:id="@+id/estado"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
-                android:layout_marginLeft="10sp"
+                android:layout_marginStart="10sp"
                 android:text="DISPONIBLE"
-                android:textSize="20dp"
+                android:textSize="20sp"
                 app:chipEndPadding="20dp"
                 app:chipMinHeight="50sp"
                 app:chipStartPadding="20dp" />
@@ -232,14 +252,6 @@
             android:orientation="vertical"
             android:padding="20sp">
 
-            <com.google.android.material.button.MaterialButton
-                android:id="@+id/verMasTarde"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:padding="10sp"
-                android:text="Ver más tarde"
-                android:textSize="20sp"
-                app:cornerRadius="20sp" />
 
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/estoyInteresado"

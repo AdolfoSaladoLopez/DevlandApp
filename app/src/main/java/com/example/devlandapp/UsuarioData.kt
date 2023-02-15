@@ -17,6 +17,7 @@ class UsuarioData {
         var ultimoIdUsuario: Int = 0
         var totalProyectos: MutableList<Proyecto> = mutableListOf()
         var totalUsuarios: MutableList<Usuario> = mutableListOf()
+        var hayCambios: Boolean = false
 
         fun traerTodosUsuarios(): MutableList<Usuario> {
 

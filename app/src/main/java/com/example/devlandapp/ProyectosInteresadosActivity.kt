@@ -19,6 +19,26 @@ class ProyectosInteresadosActivity : DrawerBaseActivity() {
     private lateinit var lista: ListView
     private var usuario: Usuario = Usuario()
 
+    init {
+        /* Obtenemos el usuario de la sesión */
+        usuario = UsuarioData.usuario
+
+        /* Obtenemos todos los proyectos */
+        totalProyectos.clear()
+        totalProyectos.addAll(UsuarioData.totalProyectos)
+
+
+
+        /* Obtenemos los Ids de los proyectos que el usuario está interesado */
+        proyectosInteresadosId.clear()
+        proyectosInteresadosId.addAll(usuario.proyectosInteresadosId)
+
+
+        /* Convertimos los id de los proyectos en objetos Proyecto */
+        proyectosInteresados.clear()
+        proyectosInteresados.addAll(convertirIdEnProyectos(proyectosInteresadosId))
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityProyectosInteresadosBinding.inflate(layoutInflater)
@@ -27,20 +47,16 @@ class ProyectosInteresadosActivity : DrawerBaseActivity() {
 
         val intent2 = Intent(this, DetallesProyectoOtraPersonaActivity::class.java)
 
-        /* Obtenemos el usuario de la sesión */
-        usuario = UsuarioData.usuario
 
-        /* Obtenemos todos los proyectos */
-        totalProyectos.clear()
-        totalProyectos.addAll(UsuarioData.totalProyectos)
+        if (UsuarioData.hayCambios) {
+            /* Convertimos los id de los proyectos en objetos Proyecto */
+            proyectosInteresados.clear()
+            proyectosInteresados.addAll(convertirIdEnProyectos(proyectosInteresadosId))
 
-        /* Obtenemos los Ids de los proyectos que el usuario está interesado */
-        proyectosInteresadosId.clear()
-        proyectosInteresadosId.addAll(usuario.proyectosInteresadosId)
+            recarga(proyectosInteresados)
+            UsuarioData.hayCambios = false
+        }
 
-        /* Convertimos los id de los proyectos en objetos Proyecto */
-        proyectosInteresados.clear()
-        proyectosInteresados.addAll(convertirIdEnProyectos(proyectosInteresadosId))
 
         /* Pasamos los proyectos al adapter */
         recarga(proyectosInteresados)

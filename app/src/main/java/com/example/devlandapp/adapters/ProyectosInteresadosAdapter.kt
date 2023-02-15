@@ -33,13 +33,12 @@ class ProyectosInteresadosAdapter(
         val holder: ViewHolder
         if (vista == null) {
             val vi = context?.getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
-            vista = vi.inflate(R.layout.recycler_view_proyectos, null)
+            vista = vi.inflate(R.layout.carta_proyectos_interesados, null)
             holder = ViewHolder()
             holder.titulo = vista.findViewById(R.id.titulo) as TextView
             holder.descripcion = vista.findViewById(R.id.descrip) as TextView
             holder.fecha = vista.findViewById(R.id.fecha) as TextView
             holder.propietario = vista.findViewById(R.id.propiet) as TextView
-            holder.corazon = vista.findViewById(R.id.corazon) as ImageView
 
             vista.tag = holder
         } else {
@@ -54,19 +53,6 @@ class ProyectosInteresadosAdapter(
             holder.fecha.text = bandera.fechaPublicacion
             holder.propietario.text =
                 "${bandera.propietario?.nombre} ${bandera.propietario?.apellidos}"
-
-            holder.corazon.setImageResource(R.drawable.favorito_relleno)
-
-        }
-
-        holder.corazon.setOnClickListener {
-            UsuarioData.usuario.proyectosInteresadosId.remove(bandera.id)
-            bandera.usuariosInteresadosId.remove(UsuarioData.usuario.id)
-
-            Gestor.gestorUsuarios.modificarUsuario(UsuarioData.usuario)
-            Gestor.gestorProyectos.modificarProyecto(bandera)
-            notifyDataSetChanged()
-
         }
 
         return vista
@@ -89,7 +75,6 @@ class ProyectosInteresadosAdapter(
         lateinit var descripcion: TextView
         lateinit var propietario: TextView
         lateinit var fecha: TextView
-        lateinit var corazon: ImageView
     }
 
     private fun saberUsuariosInteresados(proyecto: Proyecto): Boolean {
