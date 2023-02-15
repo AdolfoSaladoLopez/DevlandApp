@@ -17,6 +17,10 @@
             android:id="@+id/profile"
             android:icon="@drawable/person"
             android:title="Perfil"></item>
+        <item
+            android:id="@+id/notifications"
+            android:icon="@drawable/ic_notifications"
+            android:title="notificaciones"></item>
 
     </group>
 </menu>

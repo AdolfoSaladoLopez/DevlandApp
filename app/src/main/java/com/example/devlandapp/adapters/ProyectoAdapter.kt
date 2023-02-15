@@ -70,7 +70,7 @@ class ProyectoAdapter(
             if (visible) {
                 UsuarioData.usuario.proyectosInteresadosId.remove(bandera.id)
                 Gestor.gestorUsuarios.modificarUsuario(UsuarioData.usuario)
-                usuarioPropietario =
+                //usuarioPropietario =
 
                 holder.corazon.setImageResource(R.drawable.outline_favorite_border_24)
                 visible = false
@@ -120,7 +120,6 @@ class ProyectoAdapter(
                 usuario = it
             }
         }
-
         return usuario
     }
 

@@ -116,6 +116,15 @@
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
+        <activity
+            android:name=".NotificacionesActivity"
+            android:exported="true"
+            android:label="Notificaciones">
+
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
     </application>
 
 </manifest>
