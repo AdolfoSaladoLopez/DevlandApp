@@ -7,7 +7,6 @@ import android.os.Build
 import android.os.Bundle
 import android.widget.Button
 import android.widget.TextView
-import android.widget.Toast
 import androidx.annotation.RequiresApi
 import androidx.core.content.ContextCompat
 import com.example.devlandapp.databinding.ActivityDetallesProyectoPropioBinding

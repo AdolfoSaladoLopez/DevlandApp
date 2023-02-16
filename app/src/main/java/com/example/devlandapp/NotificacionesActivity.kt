@@ -58,22 +58,4 @@ class NotificacionesActivity : DrawerBaseActivity() {
         }
 
     }
-
-    private fun traerNotificaciones(): MutableList<Notificacion> {
-        var listadoNotificaciones: MutableList<Notificacion> = mutableListOf()
-
-        lifecycleScope.launch {
-            var comprobante = true
-
-            while (comprobante) {
-                listadoNotificaciones.addAll(Gestor.gestorNotificaciones.obtenerTodasNotificaciones())
-
-                if (listadoNotificaciones.size > 0) {
-                    comprobante = false
-                }
-            }
-        }
-
-        return listadoNotificaciones
-    }
 }
