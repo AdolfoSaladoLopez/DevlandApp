@@ -1,17 +1,12 @@
 package com.example.devlandapp
 
 import android.annotation.SuppressLint
-import android.content.ContentValues
 import android.os.Bundle
-import android.util.Log
-import androidx.lifecycle.lifecycleScope
+import android.widget.Toast
 import com.example.devlandapp.controllers.Gestor
 import com.example.devlandapp.databinding.ActivityDetallesUsuarioBinding
 import com.example.devlandapp.models.Proyecto
 import com.example.devlandapp.models.Usuario
-import kotlinx.coroutines.delay
-import kotlinx.coroutines.launch
-import kotlin.properties.Delegates
 
 @SuppressLint("SetTextI18n")
 class DetallesUsuarioActivity : DrawerBaseActivity() {
@@ -44,6 +39,12 @@ class DetallesUsuarioActivity : DrawerBaseActivity() {
         binding.tvCorreoElectronico.text = usuarioObtenido.email
         binding.tvDescripcionDetalle.text = usuarioObtenido.descripcion
 
+        if (saberSiUsuarioEstaSeleccionado(usuarioObtenido)) {
+            binding.btnSeleccionar.text = "DESELECCIONAR USUARIOS"
+        } else {
+            binding.btnSeleccionar.text = "SELECCIONAR USUARIO"
+        }
+
         binding.btnSeleccionar.setOnClickListener {
 
             if (!saberSiUsuarioEstaSeleccionado(usuarioObtenido)) {
@@ -52,6 +53,9 @@ class DetallesUsuarioActivity : DrawerBaseActivity() {
                     Gestor.gestorProyectos.modificarProyecto(proyectoObtenido)
 
                     binding.btnSeleccionar.text = "DESELECCIONAR USUARIOS"
+                } else {
+                    Toast.makeText(this, "No puede añadir más participantes.", Toast.LENGTH_SHORT)
+                        .show()
                 }
 
             } else {

@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_gravity="center"
+    android:background="@color/gris"
+    android:gravity="center"
+    android:orientation="vertical">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginBottom="20sp"
+        android:gravity="center"
+        android:text="SELECCIONAR IMAGEN"
+        android:textSize="25sp"
+        android:textStyle="bold" />
+
+    <GridView
+        android:id="@+id/grid"
+        android:layout_width="match_parent"
+        android:layout_height="500sp"
+        android:layout_gravity="center"
+        android:layout_margin="20sp"
+        android:columnWidth="120dp"
+        android:drawSelectorOnTop="true"
+        android:gravity="center"
+        android:horizontalSpacing="@dimen/cardview_compat_inset_shadow"
+        android:numColumns="auto_fit"
+        android:padding="@dimen/cardview_default_elevation"
+        android:verticalSpacing="@dimen/cardview_compat_inset_shadow" />
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="20sp"
+        android:text="SELECCIONAR IMAGEN"
+        android:textSize="15sp">
+
+    </Button>
+</LinearLayout>
