@@ -1,19 +1,30 @@
 package com.example.devlandapp
 
+import android.annotation.SuppressLint
+import android.content.ClipData
+import android.content.Context
 import android.content.Intent
+import android.graphics.Color
+import android.graphics.drawable.LayerDrawable
 import android.text.Html
+import android.util.AttributeSet
 import android.view.View
 import android.widget.FrameLayout
+import android.widget.ImageView
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
 import androidx.core.view.GravityCompat
 import androidx.drawerlayout.widget.DrawerLayout
+import com.google.android.material.badge.BadgeDrawable
+import com.google.android.material.badge.BadgeUtils
+import com.google.android.material.chip.ChipDrawable.createFromAttributes
 import com.google.android.material.navigation.NavigationView
 
 open class DrawerBaseActivity : AppCompatActivity() {
     lateinit var drawerLayout: DrawerLayout
 
+    @SuppressLint("UnsafeOptInUsageError")
     override fun setContentView(view: View) {
         drawerLayout = layoutInflater.inflate(R.layout.activity_drawer_base, null) as DrawerLayout
         val contenedor: FrameLayout = drawerLayout.findViewById(R.id.contenedor)
@@ -26,6 +37,18 @@ open class DrawerBaseActivity : AppCompatActivity() {
 
         val navigationView = drawerLayout.findViewById<NavigationView>(R.id.nav)
 
+
+        val menuItem = navigationView.menu.findItem(R.id.notifications)
+        val icon = menuItem.icon
+
+        val badgeDrawable = BadgeDrawable.create(this)
+        badgeDrawable.backgroundColor = Color.RED
+        badgeDrawable.isVisible = true
+        //TODO: QUE FUNCIONE ESTO COÑO
+        //BadgeUtils.attachBadgeDrawable(badgeDrawable, icon, this)
+
+
+
         navigationView.setNavigationItemSelectedListener {
             drawerLayout.closeDrawer(GravityCompat.START)
 
@@ -34,7 +57,7 @@ open class DrawerBaseActivity : AppCompatActivity() {
                 R.id.add -> goToCrearProyecto()
                 R.id.projects -> goToMisProyectos()
                 R.id.profile -> goToMiPerfil()
-
+                R.id.notifications -> goToNotificaciones()
             }
             false
         }
@@ -81,5 +104,18 @@ open class DrawerBaseActivity : AppCompatActivity() {
         overridePendingTransition(0, 0)
     }
 
-}
+    private fun goToNotificaciones() {
+        val intent = Intent(this, NotificacionesActivity::class.java)
+        startActivity(intent)
+        overridePendingTransition(0, 0)
+    }
+
+    private fun comprobarNotificacionesLeidas(): Boolean {
+
+        return false
+    }
+
+    }
+
+
 

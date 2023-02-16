@@ -81,6 +81,7 @@ class ProyectoAdapter(
                 Gestor.gestorUsuarios.modificarUsuario(UsuarioData.usuario)
                 Gestor.gestorProyectos.modificarProyecto(bandera)
 
+
                 holder.corazon.setImageResource(R.drawable.outline_favorite_border_24)
 
                 visible = false
@@ -134,4 +135,5 @@ class ProyectoAdapter(
 
         return estaInteresado
     }
+
 }
