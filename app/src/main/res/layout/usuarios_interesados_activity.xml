@@ -4,11 +4,11 @@
     android:id="@+id/LinearLayout1"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/gris"
     android:configChanges="orientation"
     android:orientation="vertical"
     android:screenOrientation="portrait"
-    tools:context=".UsuariosInteresadosActivity"
-    android:background="@color/gris">
+    tools:context=".UsuariosInteresadosActivity">
 
     <ListView
         android:id="@+id/misProyectos"

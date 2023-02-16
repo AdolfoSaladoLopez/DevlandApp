@@ -27,12 +27,9 @@ class ProyectosInteresadosActivity : DrawerBaseActivity() {
         totalProyectos.clear()
         totalProyectos.addAll(UsuarioData.totalProyectos)
 
-
-
         /* Obtenemos los Ids de los proyectos que el usuario está interesado */
         proyectosInteresadosId.clear()
         proyectosInteresadosId.addAll(usuario.proyectosInteresadosId)
-
 
         /* Convertimos los id de los proyectos en objetos Proyecto */
         proyectosInteresados.clear()

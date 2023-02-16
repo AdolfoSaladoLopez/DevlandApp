@@ -8,4 +8,5 @@
     <string name="idioma">Idioma</string>
     <string name="t_tulo_del_proyecto">Título del proyecto</string>
     <string name="descripci_n_del_proyecto">Descripción del proyecto</string>
+    <string name="bot_n_seleccionar">Botón seleccionar</string>
 </resources>

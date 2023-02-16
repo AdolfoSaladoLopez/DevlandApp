@@ -13,6 +13,9 @@
         android:theme="@style/Theme.DevlandApp"
         tools:targetApi="31">
         <activity
+            android:name=".DetallesUsuarioActivity"
+            android:exported="false" />
+        <activity
             android:name=".RegistrarUsuarioActivity"
             android:exported="false"
             android:label="Registrar usuario">
@@ -62,6 +65,7 @@
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
@@ -84,7 +88,6 @@
         <activity
             android:name=".DrawerBaseActivity"
             android:exported="true">
-
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
@@ -93,7 +96,6 @@
             android:name=".MisProyectosActivity"
             android:exported="true"
             android:label="Mis proyectos">
-
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
@@ -102,7 +104,6 @@
             android:name=".DetallesProyectoPropioActivity"
             android:exported="true"
             android:label="Detalles de proyecto">
-
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
@@ -111,7 +112,6 @@
             android:name=".CrearProyectoActivity"
             android:exported="true"
             android:label="Crear proyecto">
-
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
@@ -120,7 +120,6 @@
             android:name=".UsuariosInteresadosActivity"
             android:exported="true"
             android:label="Usuarios interesados">
-
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
