@@ -1,12 +1,9 @@
 package com.example.devlandapp
 
-import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.lifecycleScope
 import com.example.devlandapp.adapters.NotificacionAdapter
 import com.example.devlandapp.controllers.Gestor
-import com.example.devlandapp.controllers.NotificacionController
 import com.example.devlandapp.databinding.ActivityNotificacionesBinding
-import com.example.devlandapp.databinding.NotificacionesItemBinding
 import com.example.devlandapp.models.Notificacion
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
@@ -34,10 +31,6 @@ class NotificacionesActivity : DrawerBaseActivity() {
                     comprobante = false
                 }
             }
-
-            println("TAMAÑO DE LAS NOTIFICACIONES ${listaNotificaciones.size}")
-            println("EL NOMBRE DE LA NOTIFICACION ES ${listaNotificaciones[0].mensaje}")
-            println("EL NOMBRE DE LA NOTIFICACION ES ${listaNotificaciones[0].id}")
 
             val listViewNotificaciones =
                 findViewById<android.widget.ListView>(R.id.listViewNotificaciones)

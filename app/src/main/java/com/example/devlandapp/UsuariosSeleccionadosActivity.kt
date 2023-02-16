@@ -53,7 +53,7 @@ class UsuariosSeleccionadosActivity : DrawerBaseActivity() {
     }
 
     private fun obtenerProyectoConcreto(): Proyecto {
-        var proyecto: Proyecto = Proyecto()
+        var proyecto = Proyecto()
 
         totalProyectos.forEach {
             if (it.id == idProyecto) {
