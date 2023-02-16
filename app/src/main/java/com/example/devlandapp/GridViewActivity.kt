@@ -36,11 +36,7 @@ class GridViewActivity : AppCompatActivity() {
                 ultimaImagen = view
             }
 
-
         }
-
-
-
     }
 
     fun rellenarListadoImagenes(): MutableList<Int> {
