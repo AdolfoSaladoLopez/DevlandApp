@@ -20,7 +20,7 @@
         <item
             android:id="@+id/notifications"
             android:icon="@drawable/ic_notifications"
-            android:title="notificaciones"></item>
+            android:title="Notificaciones"></item>
 
     </group>
 </menu>

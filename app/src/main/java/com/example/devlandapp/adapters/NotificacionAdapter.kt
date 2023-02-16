@@ -49,7 +49,7 @@ class NotificacionAdapter(
         val notificacion = elementos!![position]
 
         if (notificacion != null) {
-            holder.textoTextView.text = notificacion.texto
+            holder.textoTextView.text = notificacion.mensaje
             if (notificacion.leido) {
                 holder.vistoImageView.setImageResource(R.drawable.ic_check_verde_oscuro)
                 holder.cardView.setCardBackgroundColor(Color.parseColor("#C7C7C7"))

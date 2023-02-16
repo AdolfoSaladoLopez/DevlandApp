@@ -28,6 +28,10 @@ class UsuariosInteresadosActivity : DrawerBaseActivity() {
     private var proyecto: Proyecto = Proyecto()
     private var id: Int = 0
 
+    init {
+        totalUsuarios.addAll(UsuarioData.totalUsuarios)
+        totalProyectos.addAll(UsuarioData.totalProyectos)
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -35,18 +39,10 @@ class UsuariosInteresadosActivity : DrawerBaseActivity() {
         localizarTituloActivity("Feed")
         setContentView(binding.root)
 
-        /* Obtenemos todos los proyectos */
-        totalProyectos.clear()
-        totalProyectos.addAll(UsuarioData.totalProyectos)
-
-        /* Obtenemos todos los usuarios */
-        totalUsuarios.clear()
-        totalUsuarios.addAll(UsuarioData.totalUsuarios)
-        println("TAMAÑO: " + totalUsuarios.size)
 
         /* Recuperamos el ID del proyecto que queremos ver los usuarios interesados */
         id = intent.extras!!.getInt("proyecto")
-        println(id)
+        println("EL ID ES :" + id)
         proyecto = obtenerProyectoId(id)
 
         /* Obtenemos los ids de los usuarios interesados */
@@ -67,7 +63,7 @@ class UsuariosInteresadosActivity : DrawerBaseActivity() {
 
         lista = findViewById(R.id.misProyectos)
         lista.setOnItemClickListener { _, _, position, _ ->
-           var arrayList:ArrayList<Int> = arrayListOf()
+            var arrayList: ArrayList<Int> = arrayListOf()
             arrayList.add(usuariosInteresados[position].id)
             arrayList.add(proyecto.id)
             intent2.putExtra("id", arrayList)

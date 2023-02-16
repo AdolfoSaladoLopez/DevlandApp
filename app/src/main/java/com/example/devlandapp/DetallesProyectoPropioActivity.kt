@@ -38,6 +38,11 @@ class DetallesProyectoPropioActivity : DrawerBaseActivity() {
     private lateinit var btnEstoyInteresado: Button
     private var totalProyectos: MutableList<Proyecto> = mutableListOf()
 
+    init {
+        totalProyectos.clear()
+        totalProyectos.addAll(UsuarioData.totalProyectos)
+    }
+
     @RequiresApi(Build.VERSION_CODES.M)
     override fun onCreate(savedInstanceState: Bundle?) {
         binding = ActivityDetallesProyectoPropioBinding.inflate(layoutInflater)
@@ -45,8 +50,11 @@ class DetallesProyectoPropioActivity : DrawerBaseActivity() {
         setContentView(binding.root)
 
         recuperarIntent()
+
         obtenerProyecto()
+
         iniciarVistas()
+
         rellenarVistas()
     }
 
@@ -55,8 +63,6 @@ class DetallesProyectoPropioActivity : DrawerBaseActivity() {
     }
 
     private fun obtenerProyecto() {
-        totalProyectos.addAll(UsuarioData.totalProyectos)
-
         totalProyectos.forEach {
             if (it.id == valor) {
                 proyecto = it
@@ -134,9 +140,4 @@ class DetallesProyectoPropioActivity : DrawerBaseActivity() {
         }
     }
 
-
-    private fun goToInteresados() {
-        val intent = Intent(this, ProyectosInteresadosActivity::class.java)
-        startActivity(intent)
-    }
 }

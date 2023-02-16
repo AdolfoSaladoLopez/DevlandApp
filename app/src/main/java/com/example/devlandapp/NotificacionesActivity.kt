@@ -1,47 +1,79 @@
 package com.example.devlandapp
 
 import androidx.appcompat.app.AppCompatActivity
+import androidx.lifecycle.lifecycleScope
 import com.example.devlandapp.adapters.NotificacionAdapter
+import com.example.devlandapp.controllers.Gestor
 import com.example.devlandapp.controllers.NotificacionController
 import com.example.devlandapp.databinding.ActivityNotificacionesBinding
 import com.example.devlandapp.databinding.NotificacionesItemBinding
 import com.example.devlandapp.models.Notificacion
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.launch
 
-class NotificacionesActivity: DrawerBaseActivity() {
+class NotificacionesActivity : DrawerBaseActivity() {
 
-    lateinit var listaNotificaciones: ArrayList<Notificacion>
+    private var listaNotificaciones: MutableList<Notificacion> = mutableListOf()
     lateinit var adapter: NotificacionAdapter
     lateinit var binding: ActivityNotificacionesBinding
-    lateinit var notificacionController: NotificacionController
 
     override fun onCreate(savedInstanceState: android.os.Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_notificaciones)
-
         binding = ActivityNotificacionesBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        notificacionController = NotificacionController()
+        lifecycleScope.launch {
+            var comprobante = true
 
-        listaNotificaciones = notificacionController.obtenerTodasNotificaciones() as ArrayList<Notificacion>
+            while (comprobante) {
+                listaNotificaciones = Gestor.gestorNotificaciones.obtenerTodasNotificaciones()
+                delay(1000)
 
+                if (listaNotificaciones.size > 0) {
+                    comprobante = false
+                }
+            }
 
+            println("TAMAÑO DE LAS NOTIFICACIONES ${listaNotificaciones.size}")
+            println("EL NOMBRE DE LA NOTIFICACION ES ${listaNotificaciones[0].mensaje}")
+            println("EL NOMBRE DE LA NOTIFICACION ES ${listaNotificaciones[0].id}")
 
-        listaNotificaciones.add(Notificacion(4, "Notificacion 1", false, null, 1))
-        listaNotificaciones.add(Notificacion(2, "Notificacion 2", false, null, 1))
-        listaNotificaciones.add(Notificacion(3, "Notificacion 3, la cual va a tener un texto mas largo si no te importa jjajajajajajajaa", true, null, 1))
+            val listViewNotificaciones =
+                findViewById<android.widget.ListView>(R.id.listViewNotificaciones)
+            adapter = NotificacionAdapter(
+                listViewNotificaciones.context,
+                R.layout.notificaciones_item,
+                listaNotificaciones
+            )
+            listViewNotificaciones.adapter = adapter
 
-        val listViewNotificaciones = findViewById<android.widget.ListView>(R.id.listViewNotificaciones)
-        adapter = NotificacionAdapter(this, R.layout.notificaciones_item, listaNotificaciones)
-        listViewNotificaciones.adapter = adapter
+            listViewNotificaciones.setOnItemClickListener { parent, view, position, id ->
+                val notificacion = listaNotificaciones[position]
+                notificacion.leido = true
+                adapter.notifyDataSetChanged()
+                //TODO: que te mande a la activity de la notificacion
+            }
 
-
-        listViewNotificaciones.setOnItemClickListener { parent, view, position, id ->
-            val notificacion = listaNotificaciones[position]
-            notificacion.leido = true
-            adapter.notifyDataSetChanged()
-            //TODO: que te mande a la activity de la notificacion
         }
 
+    }
+
+    private fun traerNotificaciones(): MutableList<Notificacion> {
+        var listadoNotificaciones: MutableList<Notificacion> = mutableListOf()
+
+        lifecycleScope.launch {
+            var comprobante = true
+
+            while (comprobante) {
+                listadoNotificaciones.addAll(Gestor.gestorNotificaciones.obtenerTodasNotificaciones())
+
+                if (listadoNotificaciones.size > 0) {
+                    comprobante = false
+                }
+            }
+        }
+
+        return listadoNotificaciones
     }
 }

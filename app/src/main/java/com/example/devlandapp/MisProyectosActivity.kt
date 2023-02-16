@@ -11,6 +11,7 @@ import com.example.devlandapp.adapters.ProyectoAdapter
 import com.example.devlandapp.controllers.Gestor
 import com.example.devlandapp.databinding.MisProyectosActivityBinding
 import com.example.devlandapp.models.Proyecto
+import com.example.devlandapp.models.Usuario
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 
@@ -19,38 +20,28 @@ class MisProyectosActivity : DrawerBaseActivity() {
     private var listadoProyectos: MutableList<Proyecto> = mutableListOf()
     private var listadoProyectosUsuario: MutableList<Proyecto> = mutableListOf()
 
+    init {
+        listadoProyectos = UsuarioData.totalProyectos
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = MisProyectosActivityBinding.inflate(layoutInflater)
         localizarTituloActivity("Mis proyectos")
         setContentView(binding.root)
-        var comprobante = true
 
         val intent = Intent(this, DetallesProyectoPropioActivity::class.java)
 
-
-        lifecycleScope.launch {
-            while (comprobante) {
-                listadoProyectos = Gestor.gestorProyectos.obtenerTodosProyectos()
-                delay(1000)
-
-                if (listadoProyectos[0].nombre != "") {
-                    comprobante = false
-                }
-                Log.d(ContentValues.TAG, "Corriendo corrutina")
+        listadoProyectos.forEach {
+            if (it.idPropietario == UsuarioData.usuario.id) {
+                listadoProyectosUsuario.add(it)
+                UsuarioData.usuario.proyectosCreados?.add(it)
             }
-
-            listadoProyectos.forEach {
-                if (it.idPropietario == UsuarioData.usuario.id) {
-                    listadoProyectosUsuario.add(it)
-                    UsuarioData.usuario.proyectosCreados?.add(it)
-                }
-            }
-
-            rellenarUsuariosProyectos()
-
-            recarga()
         }
+
+        rellenarUsuariosProyectos()
+
+        recarga()
 
         val lv1 = findViewById<ListView>(R.id.misProyectos)
         lv1.setOnItemClickListener { parent, view, position, id ->
@@ -60,7 +51,7 @@ class MisProyectosActivity : DrawerBaseActivity() {
         }
     }
 
-    fun recarga() {
+    private fun recarga() {
         val adapter = ProyectoAdapter(
             this,
             R.layout.mis_proyectos_activity, listadoProyectosUsuario.asReversed()
