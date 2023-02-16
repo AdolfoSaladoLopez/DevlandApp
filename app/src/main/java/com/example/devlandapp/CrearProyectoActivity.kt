@@ -33,6 +33,8 @@ class CrearProyectoActivity : DrawerBaseActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
+
+
         binding = ActivityCrearProyectoBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
@@ -48,12 +50,13 @@ class CrearProyectoActivity : DrawerBaseActivity() {
         val listaTiempo = resources.getStringArray(R.array.tiempo)
         val listaModoTrabajo = resources.getStringArray(R.array.modoTrabajo)
 
-        val adaptador1 = ArrayAdapter(this, android.R.layout.simple_spinner_item, listaTecnologias)
-        val adaptador2 = ArrayAdapter(this, android.R.layout.simple_spinner_item, listaIdiomas)
-        val adaptador3 = ArrayAdapter(this, android.R.layout.simple_spinner_item, listaUbicacion)
-        val adaptadorTiempo = ArrayAdapter(this, android.R.layout.simple_spinner_item, listaTiempo)
+        val adaptador1 = ArrayAdapter(this,R.layout.spinner_layout, listaTecnologias)
+        val adaptador2 = ArrayAdapter(this, R.layout.spinner_layout, listaIdiomas)
+        val adaptador3 = ArrayAdapter(this,R.layout.spinner_layout, listaUbicacion)
+        val adaptadorTiempo = ArrayAdapter(this,R.layout.spinner_layout, listaTiempo)
         val adaptadorModoTrabjo =
-            ArrayAdapter(this, android.R.layout.simple_spinner_item, listaModoTrabajo)
+            ArrayAdapter(this, R.layout.spinner_layout, listaModoTrabajo)
+
 
         spinnerTecnologias.adapter = adaptador1
         spinnerIdiomas.adapter = adaptador2
@@ -339,7 +342,6 @@ class CrearProyectoActivity : DrawerBaseActivity() {
 
                 if (Gestor.gestorProyectos.registrarProyecto(proyecto)) {
                     usuario.proyectosCreados?.add(proyecto)
-                    usuario.proyectosCreadosId?.add(proyecto.id)
 
                     if (Gestor.gestorUsuarios.modificarUsuario(usuario)) {
                         Toast.makeText(this, "Proyecto creado", Toast.LENGTH_SHORT).show()
