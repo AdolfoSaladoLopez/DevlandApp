@@ -3,7 +3,6 @@ package com.example.devlandapp
 import android.content.ContentValues
 import android.content.Intent
 import android.content.SharedPreferences
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.text.TextUtils
 import android.util.Log
@@ -12,10 +11,13 @@ import android.widget.Button
 import android.widget.EditText
 import android.widget.TextView
 import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.lifecycleScope
 import com.example.devlandapp.controllers.Gestor
+import com.example.devlandapp.models.Proyecto
 import com.example.devlandapp.models.Usuario
-import kotlinx.coroutines.*
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.launch
 
 class LoginActivity : AppCompatActivity() {
     private var etEmail: EditText? = null
@@ -27,25 +29,18 @@ class LoginActivity : AppCompatActivity() {
     var usuario: Usuario? = Usuario()
     private var totalUsuarios: MutableList<Usuario> = mutableListOf()
 
-    init {
-        lifecycleScope.launch {
-            totalUsuarios = withContext(Dispatchers.IO) {
-                Gestor.gestorUsuarios.obtenerTodosUsuarios()
-            }
-        }
-    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
 
+        traerTodosUsuarios()
 
         etEmail = findViewById(R.id.etEmail)
         etPassword = findViewById(R.id.etContraseña)
         btnInicioSesion = findViewById(R.id.btnInicioSesion)
         tvOlvidarPwd = findViewById(R.id.tvOlvidarPwd)
         tvRegistro = findViewById(R.id.tvRegistro)
-
 
         prefs = getSharedPreferences("app", MODE_PRIVATE)
 
@@ -68,23 +63,47 @@ class LoginActivity : AppCompatActivity() {
                 totalUsuarios.forEach {
                     if (it.email.equals(email)) {
                         usuario = it
+
                         UsuarioData.usuario = usuario as Usuario
                     }
                 }
 
+                usuario = UsuarioData.usuario
+
+
                 println("Contraseña usuario: ${usuario!!.password}. Contraseña texto: $password")
 
                 if (usuario!!.password.equals(password)) {
-                    Toast.makeText(this, "HE ENTRADO", Toast.LENGTH_SHORT).show()
                     goToFeed()
                 } else {
-                    Toast.makeText(this, "NOOO HE ENTRADO", Toast.LENGTH_SHORT).show()
-
+                    Toast.makeText(this, "No ha sido posible acceder", Toast.LENGTH_SHORT).show()
                 }
 
             }
             guardarPreferencias(email, password)
         }
+    }
+
+    private fun traerTodosUsuarios() {
+        var comprobante = true
+
+        totalUsuarios.clear()
+
+        lifecycleScope.launch {
+            while (comprobante) {
+                totalUsuarios = Gestor.gestorUsuarios.obtenerTodosUsuarios()
+                delay(1000)
+
+                if (totalUsuarios.size > 0) {
+                    comprobante = false
+                }
+
+                UsuarioData.ultimoIdUsuario = totalUsuarios.size
+                Log.d(ContentValues.TAG, "Corriendo corrutina")
+            }
+        }
+
+        UsuarioData.totalUsuarios = totalUsuarios
     }
 
     private fun comprobarCorreo(email: String): Boolean {
@@ -142,7 +161,6 @@ class LoginActivity : AppCompatActivity() {
     private fun goToRegistro() {
         val intent = Intent(this, RegistrarUsuarioActivity::class.java)
         //Evita que pasemos de nuevo a la activity login
-        intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
         startActivity(intent)
     }
 

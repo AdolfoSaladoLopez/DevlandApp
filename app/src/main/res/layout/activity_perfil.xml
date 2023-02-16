@@ -1,101 +1,101 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/gris"
     tools:context=".PerfilActivity">
 
-    <ImageView
-        android:id="@+id/imagen"
-        android:layout_width="159dp"
-        android:layout_height="114dp"
-        android:layout_marginTop="52dp"
-        android:src="@drawable/ic_launcher_foreground"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.05"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <TextView
-        android:id="@+id/nombre_y_apellidos"
-        android:layout_width="wrap_content"
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="20dp"
-        android:layout_marginTop="36dp"
-        android:layout_marginEnd="76dp"
-        android:text="Fernando Pérez"
-        android:textColor="@color/black"
-        android:textSize="20sp"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toTopOf="@+id/email"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/imagen"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.859" />
+        android:gravity="center"
+        android:orientation="vertical">
 
-    <TextView
-        android:id="@+id/email"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="20dp"
-        android:layout_marginTop="120dp"
-        android:layout_marginEnd="22dp"
-        android:text="FernandoPerez@gmail.com"
-        android:textColor="@color/black"
-        android:textSize="16sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/imagen"
-        app:layout_constraintTop_toTopOf="parent" />
+        <ImageView
+            android:id="@+id/imagen_perfil"
+            android:layout_width="159dp"
+            android:layout_height="114dp"
+            android:layout_marginTop="52dp"
+            android:src="@drawable/ic_launcher_foreground"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.05"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
-    <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
-        android:id="@+id/editar_Perfil"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="bottom|end"
-        android:layout_margin="16dp"
-        android:contentDescription="Editar Perfil"
-        android:text="Editar Perfil"
-        android:textAlignment="center"
-        app:icon="@drawable/ic_launcher_foreground"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/descripcion"
-        app:layout_constraintVertical_bias="0.203"
-        tools:ignore="RtlCompat,TouchTargetSizeCheck" />
 
-    <TextView
-        android:id="@+id/descripcion"
-        android:layout_width="381dp"
-        android:layout_height="278dp"
-        android:background="#A9DEF9"
-        android:padding="10dp"
-        android:text="Me gustan realizar proyectos de todo tipo, no discrimino la tecnologia usada, por que me gustaria aprender de todo."
-        android:textColor="@color/black"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.533"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.514" />
+        <TextView
+            android:id="@+id/nombre_apellidos_perfil"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Fernando Pérez"
+            android:textColor="@color/black"
+            android:textSize="35sp"
+            android:textStyle="bold" />
 
-    <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
-        android:id="@+id/cambiar_imagen_nuevoProyecto"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="bottom|end"
-        android:layout_margin="16dp"
-        android:contentDescription="Mis proyectos"
-        android:text="Mis proyectos"
-        android:textAlignment="textStart"
-        app:icon="@drawable/ic_launcher_foreground"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.513"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editar_Perfil"
-        app:layout_constraintVertical_bias="0.435"
-        tools:ignore="RtlCompat" />
+        <TextView
+            android:id="@+id/email_perfil"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="FernandoPerez@gmail.com"
+            android:textColor="@color/black"
+            android:textSize="25sp" />
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+        <TextView
+            android:id="@+id/descripcion_perfil"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_margin="20sp"
+            android:padding="20dp"
+            android:text="Me gustan realizar proyectos de todo tipo, no discrimino la tecnologia usada, por que me gustaria aprender de todo."
+            android:textColor="@color/black"
+            android:textSize="20sp" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <Button
+                android:id="@+id/editar_perfil"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="16sp"
+                android:layout_marginRight="16sp"
+                android:contentDescription="Editar Perfil"
+                android:text="Editar Perfil"
+                android:textAlignment="center"
+                android:textSize="20sp"
+                tools:ignore="RtlCompat,TouchTargetSizeCheck" />
+
+
+            <Button
+                android:id="@+id/mis_proyectos_perfil"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="16sp"
+                android:layout_marginRight="16sp"
+                android:contentDescription="Mis proyectos"
+                android:text="Mis proyectos"
+                android:textAlignment="center"
+                android:textSize="20sp"
+                tools:ignore="RtlCompat" />
+
+            <Button
+                android:id="@+id/mis_proyectos_interesados"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="16sp"
+                android:layout_marginRight="16sp"
+                android:contentDescription="Mis proyectos"
+                android:text="Proyectos INTERESADOS"
+                android:textAlignment="center"
+                android:textSize="20sp"
+                tools:ignore="RtlCompat" />
+        </LinearLayout>
+
+    </LinearLayout>
+
+
+</ScrollView>

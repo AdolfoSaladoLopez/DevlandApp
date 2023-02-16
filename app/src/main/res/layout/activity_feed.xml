@@ -7,7 +7,8 @@
     android:configChanges="orientation"
     android:orientation="vertical"
     android:screenOrientation="portrait"
-    tools:context=".FeedActivity">
+    tools:context=".FeedActivity"
+    android:background="@color/gris">
 
     <ListView
         android:id="@+id/lista"

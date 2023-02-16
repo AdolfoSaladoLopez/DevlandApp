@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:padding="20dp"
+    android:layout_width="match_parent"
     android:layout_height="200dp"
-    android:background="@color/purple_200"
-    android:orientation="vertical" android:layout_width="match_parent">
+    android:background="@color/morado_carta"
+    android:orientation="vertical"
+    android:padding="20dp">
 
     <ImageView
         android:id="@+id/imgUsuario"
@@ -14,16 +15,13 @@
         android:src="@drawable/person" />
 
     <TextView
+        android:id="@+id/nombreUsuario"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:id="@+id/nombreUsuario"
         android:layout_gravity="center"
         android:textColor="@color/white"
         android:textSize="18sp"
-        android:textStyle="bold">
-    </TextView>
-
-
+        android:textStyle="bold" />
 
 
 </LinearLayout>

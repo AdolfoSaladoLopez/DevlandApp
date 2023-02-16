@@ -1,289 +1,261 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#A9DEF9"
+    android:background="@color/gris"
     tools:context=".CrearProyectoActivity">
 
-    <ScrollView
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:ignore="SpeakableTextPresentCheck">
+        android:orientation="vertical">
 
         <LinearLayout
+            android:id="@+id/LinearRP"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:background="@color/gris"
+            android:gravity="center_vertical"
             android:orientation="vertical">
 
-            <androidx.constraintlayout.widget.ConstraintLayout
-                android:id="@+id/constraintLayout"
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="15dp"
+                android:layout_marginBottom="15dp"
+                android:text="CREAR UN PROYECTO"
+                android:textSize="30sp"
+                android:textStyle="bold" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/LinearInfo"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_gravity="center_vertical"
+            android:background="@color/gris"
+            android:orientation="vertical">
+
+            <com.google.android.material.textfield.TextInputLayout
                 android:layout_width="match_parent"
-                android:layout_height="887dp">
+                android:layout_height="wrap_content">
 
-                <ImageView
-                    android:id="@+id/imageView"
-                    android:layout_width="161dp"
-                    android:layout_height="129dp"
-                    android:layout_marginTop="16dp"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
-
-                <TextView
-                    android:id="@+id/textView15"
-                    android:layout_width="59dp"
-                    android:layout_height="17dp"
-                    android:layout_marginStart="5dp"
-                    android:layout_marginTop="35dp"
-                    android:text="Nombre: "
-                    android:textColor="@color/black"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/guardarProyectover" />
-
-                <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
-                    android:id="@+id/guardarProyectover"
-                    android:layout_width="wrap_content"
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/etTiulo"
+                    android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="bottom|end"
-                    android:layout_margin="16dp"
-                    android:contentDescription="Cambiar Imagen"
-                    android:text="Cambiar Imagen"
-                    android:textColor="@color/black"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/imageView"
-                    tools:ignore="MissingConstraints" />
+                    android:layout_marginLeft="50dp"
+                    android:layout_marginRight="50dp"
+                    android:hint="Título del proyecto"
+                    android:inputType="text"
+                    android:singleLine="false"
+                    android:textSize="20sp" />
+            </com.google.android.material.textfield.TextInputLayout>
 
-                <TextView
-                    android:id="@+id/textView6"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="5dp"
-                    android:layout_marginTop="20dp"
-                    android:text="Descripcion:"
-                    android:textColor="@color/black"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/textView18" />
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content">
 
                 <EditText
-                    android:id="@+id/descripcion_nuevoProyecto"
-                    android:layout_width="345dp"
-                    android:layout_height="110dp"
-                    android:layout_marginStart="5dp"
-                    android:layout_marginTop="15dp"
+                    android:id="@+id/etDescripcion"
+                    android:layout_width="match_parent"
+                    android:layout_height="100dp"
+                    android:layout_marginLeft="50dp"
+                    android:layout_marginRight="50dp"
+                    android:layout_weight="1"
                     android:ems="10"
                     android:gravity="start|top"
+                    android:hint="@string/descripci_n_del_proyecto"
                     android:inputType="textMultiLine"
-                    android:textColor="@color/black"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/textView6"
-                    tools:ignore="SpeakableTextPresentCheck" />
+                    android:textSize="20sp" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/participantes"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="50dp"
+                    android:layout_marginRight="50dp"
+                    android:hint="@string/n_mero_de_participantes"
+                    android:inputType="number"
+                    android:singleLine="false"
+                    android:textSize="20sp" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="5sp"
+                android:layout_marginLeft="20sp"
+                android:gravity="center"
+                android:orientation="horizontal"
+                android:padding="15sp">
 
                 <TextView
-                    android:id="@+id/textView7"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="4dp"
-                    android:layout_marginTop="20dp"
-                    android:text="Tecnologia:"
-                    android:textColor="@color/black"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/descripcion_nuevoProyecto" />
+                    android:text="@string/tecnolog_a"
+                    android:textAlignment="viewStart"
+                    android:textSize="20sp" />
 
                 <Spinner
                     android:id="@+id/tecnologia_nuevoProyecto"
-                    android:layout_width="265dp"
-                    android:layout_height="31dp"
-                    android:layout_marginStart="12dp"
-                    android:layout_marginTop="8dp"
+                    android:layout_width="fill_parent"
+                    android:layout_height="fill_parent"
+                    android:layout_marginStart="10sp"
+                    android:scrollbarSize="20sp"
                     android:textColor="@color/black"
-                    app:layout_constraintStart_toEndOf="@+id/textView7"
-                    app:layout_constraintTop_toBottomOf="@+id/descripcion_nuevoProyecto"
                     tools:ignore="TouchTargetSizeCheck,SpeakableTextPresentCheck" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="5sp"
+                android:layout_marginLeft="20sp"
+                android:gravity="center"
+                android:orientation="horizontal"
+                android:padding="15sp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/ubicaci_n"
+                    android:textAlignment="center"
+                    android:textSize="20sp" />
 
                 <Spinner
-                    android:id="@+id/idioma_nuevoProyecto"
-                    android:layout_width="265dp"
-                    android:layout_height="31dp"
-                    android:layout_marginStart="36dp"
-                    android:layout_marginTop="8dp"
+                    android:id="@+id/ubicacion"
+                    android:layout_width="fill_parent"
+                    android:layout_height="fill_parent"
+                    android:layout_marginStart="10sp"
                     android:textColor="@color/black"
-                    app:layout_constraintStart_toEndOf="@+id/textView9"
-                    app:layout_constraintTop_toBottomOf="@+id/tecnologia_nuevoProyecto"
-                    tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
+                    tools:ignore="TouchTargetSizeCheck,SpeakableTextPresentCheck" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="5sp"
+                android:layout_marginLeft="20sp"
+                android:gravity="center"
+                android:orientation="horizontal"
+                android:padding="15sp">
 
                 <TextView
-                    android:id="@+id/textView9"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="5dp"
-                    android:layout_marginTop="20dp"
-                    android:text="Idioma:"
-                    android:textColor="@color/black"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/textView7" />
-
-                <CheckBox
-                    android:id="@+id/presencial_modo_nuevoProyecto"
-                    android:layout_width="105dp"
-                    android:layout_height="32dp"
-                    android:layout_marginStart="4dp"
-                    android:layout_marginTop="12dp"
-                    android:text="Presencial"
-                    android:textColor="@color/black"
-                    app:layout_constraintStart_toEndOf="@+id/textView10"
-                    app:layout_constraintTop_toBottomOf="@+id/idioma_nuevoProyecto"
-                    tools:ignore="TouchTargetSizeCheck" />
-
-                <CheckBox
-                    android:id="@+id/teletrabajo_modo_nuevoProyecto"
-                    android:layout_width="110dp"
-                    android:layout_height="32dp"
-                    android:layout_marginStart="4dp"
-                    android:layout_marginTop="12dp"
-                    android:text="Teletrabajo"
-                    android:textColor="@color/black"
-                    app:layout_constraintStart_toEndOf="@+id/presencial_modo_nuevoProyecto"
-                    app:layout_constraintTop_toBottomOf="@+id/idioma_nuevoProyecto"
-                    tools:ignore="TouchTargetSizeCheck" />
-
-                <TextView
-                    android:id="@+id/textView10"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="5dp"
-                    android:layout_marginTop="20dp"
-                    android:text="Modo de trabajo:"
-                    android:textColor="@color/black"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/idioma_nuevoProyecto" />
-
-                <Switch
-                    android:id="@+id/estado_nuevoProyecto"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="5dp"
-                    android:layout_marginTop="15dp"
-                    android:text="Estado"
-                    android:textColor="@color/black"
-                    android:textOff="False"
-                    android:textOn="True"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/presencial_modo_nuevoProyecto"
-                    tools:ignore="TouchTargetSizeCheck" />
-
-                <TextView
-                    android:id="@+id/textView13"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="5dp"
-                    android:layout_marginTop="20dp"
-                    android:text="Duracion:"
-                    android:textColor="@color/black"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/estado_nuevoProyecto" />
+                    android:text="Modo de trabajo: "
+                    android:textAlignment="center"
+                    android:textSize="20sp" />
 
                 <Spinner
-                    android:id="@+id/tipo"
-                    android:layout_width="125dp"
-                    android:layout_height="28dp"
-                    android:layout_marginStart="36dp"
-                    android:layout_marginTop="56dp"
+                    android:id="@+id/modoTrabajo"
+                    android:layout_width="fill_parent"
+                    android:layout_height="fill_parent"
+                    android:layout_marginStart="10sp"
                     android:textColor="@color/black"
-                    app:layout_constraintStart_toEndOf="@+id/numero_tiempo"
-                    app:layout_constraintTop_toBottomOf="@+id/presencial_modo_nuevoProyecto"
                     tools:ignore="TouchTargetSizeCheck,SpeakableTextPresentCheck" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="5sp"
+                android:layout_marginStart="20sp"
+                android:gravity="center"
+                android:orientation="horizontal"
+                android:padding="15sp">
 
                 <TextView
-                    android:id="@+id/textView16"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="5dp"
-                    android:layout_marginTop="20dp"
-                    android:text="Ubicacion:"
+                    android:text="@string/idioma"
+                    android:textAlignment="center"
+                    android:textSize="20sp" />
+
+                <Spinner
+                    android:id="@+id/idioma"
+                    android:layout_width="fill_parent"
+                    android:layout_height="fill_parent"
+                    android:layout_marginStart="10sp"
                     android:textColor="@color/black"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/textView15" />
+                    tools:ignore="TouchTargetSizeCheck,SpeakableTextPresentCheck" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="5sp"
+                android:layout_marginLeft="20sp"
+                android:gravity="center"
+                android:orientation="horizontal"
+                android:padding="15sp">
 
                 <TextView
-                    android:id="@+id/textView18"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="5dp"
-                    android:layout_marginTop="20dp"
-                    android:text="Cantidad:"
-                    android:textColor="@color/black"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/textView16" />
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center"
+                    android:gravity="center"
+                    android:text="Duración: "
+                    android:textAlignment="center"
+                    android:textSize="20sp" />
 
                 <EditText
-                    android:id="@+id/nombre_nuevoProyecto"
-                    android:layout_width="270dp"
-                    android:layout_height="48dp"
-                    android:layout_marginStart="13dp"
-                    android:layout_marginTop="20dp"
-                    android:ems="10"
-                    android:inputType="text"
-                    android:text="Nombre"
-                    android:textColor="@color/black"
-                    app:layout_constraintStart_toEndOf="@+id/textView15"
-                    app:layout_constraintTop_toBottomOf="@+id/guardarProyectover" />
-
-                <EditText
-                    android:id="@+id/cantidad_nuevoProyecto"
-                    android:layout_width="270dp"
-                    android:layout_height="40dp"
-                    android:layout_marginStart="11dp"
-                    android:ems="10"
+                    android:id="@+id/duracion"
+                    android:layout_width="50sp"
+                    android:layout_height="match_parent"
+                    android:layout_marginStart="10sp"
+                    android:hint="1"
                     android:inputType="number"
-                    android:textColor="@color/black"
-                    app:layout_constraintStart_toEndOf="@+id/textView18"
-                    app:layout_constraintTop_toBottomOf="@+id/ubicacion_nuevoProyecto"
-                    tools:ignore="SpeakableTextPresentCheck,SpeakableTextPresentCheck,TouchTargetSizeCheck" />
-
-                <EditText
-                    android:id="@+id/numero_tiempo"
-                    android:layout_width="127dp"
-                    android:layout_height="40dp"
-                    android:layout_marginStart="36dp"
-                    android:layout_marginTop="52dp"
-                    android:ems="10"
-                    android:inputType="number"
-                    android:textColor="@color/black"
-                    app:layout_constraintStart_toEndOf="@+id/textView13"
-                    app:layout_constraintTop_toBottomOf="@+id/presencial_modo_nuevoProyecto"
-                    tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
+                    android:textAlignment="center"
+                    android:textSize="20sp" />
 
                 <Spinner
-                    android:id="@+id/ubicacion_nuevoProyecto"
-                    android:layout_width="270dp"
-                    android:layout_height="40dp"
-                    android:layout_marginStart="4dp"
+                    android:id="@+id/tiempo"
+                    android:layout_width="fill_parent"
+                    android:layout_height="fill_parent"
+                    android:layout_marginStart="10sp"
                     android:textColor="@color/black"
-                    app:layout_constraintStart_toEndOf="@+id/textView16"
-                    app:layout_constraintTop_toBottomOf="@+id/nombre_nuevoProyecto"
                     tools:ignore="TouchTargetSizeCheck,SpeakableTextPresentCheck" />
+            </LinearLayout>
 
-                <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
-                    android:id="@+id/crear"
-                    android:layout_width="192dp"
-                    android:layout_height="47dp"
-                    android:layout_gravity="bottom|end"
-                    android:layout_margin="16dp"
-                    android:contentDescription="Crear"
-                    android:text="Crear Proyecto"
-                    android:textColor="@color/black"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.497"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="@+id/numero_tiempo"
-                    tools:ignore="MissingConstraints" />
 
-            </androidx.constraintlayout.widget.ConstraintLayout>
+            <com.google.android.material.textfield.TextInputLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content" />
 
+            <com.google.android.material.textfield.TextInputLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content" />
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content" />
+
+            <Button
+                android:id="@+id/crear"
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:layout_marginLeft="16sp"
+                android:layout_marginTop="20sp"
+                android:layout_marginRight="16sp"
+                android:layout_marginBottom="20sp"
+                android:contentDescription="Mis proyectos"
+                android:text="Crear"
+                android:textAlignment="center"
+                android:textSize="20sp"
+                tools:ignore="RtlCompat" />
         </LinearLayout>
-    </ScrollView>
-</FrameLayout>
+    </LinearLayout>
+
+</ScrollView>

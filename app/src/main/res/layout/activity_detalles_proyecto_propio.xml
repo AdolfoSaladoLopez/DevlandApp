@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/white"
+    android:background="@color/gris"
     tools:context=".DetallesProyectoPropioActivity">
 
     <LinearLayout
@@ -13,9 +13,10 @@
         android:orientation="vertical">
 
         <!-- TÍTULO DE LA ACTIVITY -->
+        <!-- TÍTULO DE LA ACTIVITY -->
         <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
             android:layout_gravity="center"
             android:orientation="horizontal"
             android:paddingTop="20dp"
@@ -23,11 +24,22 @@
 
             <TextView
                 android:id="@+id/tituloProyecto"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:text="Prueba"
-                android:textSize="30dp"
+                android:layout_width="331dp"
+                android:layout_height="68dp"
+                android:layout_marginStart="20sp"
+                android:gravity="start|center"
+                android:text="JAVAFX"
+                android:textColor="@color/black"
+                android:textSize="30sp"
                 android:textStyle="bold" />
+
+            <ImageView
+                android:id="@+id/ivEditar"
+                android:layout_width="30sp"
+                android:layout_height="70sp"
+                android:src="@drawable/editar"
+                android:visibility="visible"
+                android:clickable="true" />
         </LinearLayout>
 
         <!-- DESCRIPCION -->
@@ -77,10 +89,6 @@
                 android:text="- Adolfo Salado -"
                 android:textSize="25dp" />
         </LinearLayout>
-
-
-
-
 
 
         <!-- IDIOMA Y UBICACIÓN -->
@@ -148,63 +156,70 @@
                 app:chipStartPadding="20dp" />
         </LinearLayout>
 
-        <!-- DURACION -->
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_gravity="center"
-            android:layout_marginTop="20sp"
-            android:orientation="horizontal"
-            android:padding="20sp"
-            android:layout_marginLeft="80sp">
+            android:gravity="center"
+            android:orientation="horizontal">
 
-            <ImageView
-                android:layout_width="24dp"
-                android:layout_height="24dp"
-                android:layout_gravity="right"
-                android:foregroundGravity="right"
-                android:src="@drawable/reloj" />
-
-
-            <TextView
-                android:id="@+id/duracion"
+            <!-- DURACION -->
+            <LinearLayout
                 android:layout_width="wrap_content"
-                android:layout_height="match_parent"
+                android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:layout_marginLeft="15sp"
-                android:text="Prueba"
-                android:textAlignment="center"
-                android:textSize="20dp" />
-        </LinearLayout>
+                android:layout_marginTop="18sp"
+                android:orientation="horizontal"
+                android:padding="20sp">
+
+                <ImageView
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:layout_gravity="center"
+                    android:foregroundGravity="right"
+                    android:src="@drawable/reloj" />
 
 
-
-        <!-- PARTICIPANTES -->
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_gravity="center"
-            android:orientation="horizontal"
-            android:padding="20sp"
-            android:layout_marginLeft="80sp">
-
-            <ImageView
-                android:layout_width="24dp"
-                android:layout_height="24dp"
-                android:layout_gravity="right"
-                android:foregroundGravity="right"
-                android:src="@drawable/persona" />
+                <TextView
+                    android:id="@+id/duracion"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center"
+                    android:layout_marginStart="15sp"
+                    android:text="Prueba"
+                    android:textAlignment="center"
+                    android:textSize="20sp" />
+            </LinearLayout>
 
 
-            <TextView
-                android:id="@+id/participantes"
+            <!-- PARTICIPANTES -->
+            <LinearLayout
                 android:layout_width="wrap_content"
-                android:layout_height="match_parent"
+                android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:layout_marginLeft="15sp"
-                android:text="Prueba"
-                android:textAlignment="center"
-                android:textSize="20dp" />
+                android:layout_marginTop="18sp"
+                android:orientation="horizontal"
+                android:padding="20sp">
+
+                <ImageView
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:layout_gravity="center"
+                    android:foregroundGravity="center"
+                    android:src="@drawable/persona" />
+
+
+                <TextView
+                    android:id="@+id/participantes"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center"
+                    android:layout_marginStart="15sp"
+                    android:text="Prueba"
+                    android:textAlignment="center"
+                    android:textSize="20sp" />
+            </LinearLayout>
+
         </LinearLayout>
 
         <LinearLayout
@@ -238,22 +253,53 @@
             android:padding="20sp">
 
             <com.google.android.material.button.MaterialButton
-                android:id="@+id/interesados"
+                android:id="@+id/btnInteresados"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:padding="10sp"
                 android:text="Usuarios Interesados"
                 android:textSize="20sp"
+                android:visibility="visible"
                 app:cornerRadius="20sp" />
 
             <com.google.android.material.button.MaterialButton
-                android:id="@+id/seleccionados"
+                android:id="@+id/btnSeleccionados"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:padding="10sp"
                 android:text="Usuarios Seleccionados"
                 android:textSize="20sp"
+                android:visibility="visible"
                 app:cornerRadius="20sp" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/verMasTarde"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="10sp"
+                android:text="Usuarios Interesados"
+                android:textSize="20sp"
+                android:visibility="invisible"
+                app:cornerRadius="20sp" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/estoyInteresado"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="10sp"
+                android:text="Usuarios Seleccionados"
+                android:textSize="20sp"
+                android:visibility="invisible"
+                app:cornerRadius="20sp" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/dpp_EliminarProyecto"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="10sp"
+                android:textSize="20sp"
+                android:text="ELIMINAR PROYECTO"
+                app:cornerRadius="20sp"/>
         </LinearLayout>
 
 
