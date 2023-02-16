@@ -2,9 +2,7 @@ package com.example.devlandapp
 
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import android.widget.ListView
-import com.example.devlandapp.adapters.ProyectoAdapter
 import com.example.devlandapp.adapters.ProyectosInteresadosAdapter
 import com.example.devlandapp.databinding.ActivityProyectosInteresadosBinding
 import com.example.devlandapp.models.Proyecto
@@ -44,7 +42,6 @@ class ProyectosInteresadosActivity : DrawerBaseActivity() {
 
         val intent2 = Intent(this, DetallesProyectoOtraPersonaActivity::class.java)
 
-
         if (UsuarioData.hayCambios) {
             /* Convertimos los id de los proyectos en objetos Proyecto */
             proyectosInteresados.clear()
@@ -54,10 +51,8 @@ class ProyectosInteresadosActivity : DrawerBaseActivity() {
             UsuarioData.hayCambios = false
         }
 
-
         /* Pasamos los proyectos al adapter */
         recarga(proyectosInteresados)
-
 
         /* Le añadimos OnClick a la lista */
         lista = findViewById(R.id.lista)
@@ -68,8 +63,7 @@ class ProyectosInteresadosActivity : DrawerBaseActivity() {
     }
 
     private fun recarga(proyectos: MutableList<Proyecto>) {
-
-        var list = findViewById<ListView>(R.id.lista)
+        val list = findViewById<ListView>(R.id.lista)
 
         val adapter = ProyectosInteresadosAdapter(
             this,

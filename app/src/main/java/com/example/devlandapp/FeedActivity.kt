@@ -45,7 +45,7 @@ class FeedActivity : DrawerBaseActivity() {
                 listadoProyectos = Gestor.gestorProyectos.obtenerTodosProyectos()
                 delay(1000)
 
-                if (listadoProyectos[0].nombre != "") {
+                if (listadoProyectos.size > 0) {
 
                     comprobante = false
                 }
@@ -53,6 +53,7 @@ class FeedActivity : DrawerBaseActivity() {
                 UsuarioData.ultimoId = listadoProyectos.size
                 Log.d(TAG, "Corriendo corrutina")
             }
+
             UsuarioData.totalProyectos.clear()
             UsuarioData.totalProyectos.addAll(listadoProyectos)
 

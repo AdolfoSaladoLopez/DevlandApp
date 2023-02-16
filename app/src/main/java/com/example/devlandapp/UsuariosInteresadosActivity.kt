@@ -57,21 +57,22 @@ class UsuariosInteresadosActivity : DrawerBaseActivity() {
 
         /* Convertimos los ids en Usuarios */
         usuariosInteresados.addAll(obtenerUsuarios(usuariosInteresadosId))
-        //val intent2 = Intent(this, DetallesProyectoOtraPersonaActivity::class.java)
+        val intent2 = Intent(this, DetallesUsuarioActivity::class.java)
 
         println("TAMAÑO USUARIOS PROYECTO: " + usuariosInteresados.size)
-
 
         /* Pasamos los proyectos al adapter */
         recarga()
 
 
-        /* Le añadimos OnClick a la lista
-        lista = findViewById(R.id.lista)
+        lista = findViewById(R.id.misProyectos)
         lista.setOnItemClickListener { _, _, position, _ ->
-            intent2.putExtra("id", proyectosInteresados[position].id)
+           var arrayList:ArrayList<Int> = arrayListOf()
+            arrayList.add(usuariosInteresados[position].id)
+            arrayList.add(proyecto.id)
+            intent2.putExtra("id", arrayList)
             startActivity(intent2)
-        }*/
+        }
     }
 
     private fun recarga() {
