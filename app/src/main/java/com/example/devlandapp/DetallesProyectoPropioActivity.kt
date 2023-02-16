@@ -127,9 +127,9 @@ class DetallesProyectoPropioActivity : DrawerBaseActivity() {
             startActivity(intent4)
         }
         btnSeleccionados.setOnClickListener {
-            /*val intent = Intent(this, UsuariosSeleccionadosActivity::class.java)
-            intent.putExtra("idProyecto", proyecto.id)
-            startActivity(intent)*/
+            val intent = Intent(this, UsuariosSeleccionadosActivity::class.java)
+            intent.putExtra("idProyecto", idProyecto)
+            startActivity(intent)
 
         }
     }

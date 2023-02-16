@@ -29,7 +29,6 @@ class DetallesUsuarioActivity : DrawerBaseActivity() {
         totalProyectos.addAll(UsuarioData.totalProyectos)
         totalUsuarios.addAll(UsuarioData.totalUsuarios)
         usuarioObtenido = obtenerUsuarioPorId()
-
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -48,10 +47,13 @@ class DetallesUsuarioActivity : DrawerBaseActivity() {
         binding.btnSeleccionar.setOnClickListener {
 
             if (!saberSiUsuarioEstaSeleccionado(usuarioObtenido)) {
-                proyectoObtenido.usuariosSeleccionadosId.add(usuarioObtenido.id)
-                Gestor.gestorProyectos.modificarProyecto(proyectoObtenido)
+                if (proyectoObtenido.usuariosSeleccionadosId.size < proyectoObtenido.numeroParticipantes!!) {
+                    proyectoObtenido.usuariosSeleccionadosId.add(usuarioObtenido.id)
+                    Gestor.gestorProyectos.modificarProyecto(proyectoObtenido)
 
-                binding.btnSeleccionar.text = "DESELECCIONAR USUARIOS"
+                    binding.btnSeleccionar.text = "DESELECCIONAR USUARIOS"
+                }
+
             } else {
                 proyectoObtenido.usuariosSeleccionadosId.remove(usuarioObtenido.id)
                 Gestor.gestorProyectos.modificarProyecto(proyectoObtenido)
@@ -79,7 +81,7 @@ class DetallesUsuarioActivity : DrawerBaseActivity() {
     }
 
     private fun obtenerProyectoPorId(): Proyecto {
-        var proyecto: Proyecto = Proyecto()
+        var proyecto = Proyecto()
 
         totalProyectos.forEach {
             if (it.id == idProyecto) {
@@ -89,52 +91,6 @@ class DetallesUsuarioActivity : DrawerBaseActivity() {
 
         println("EL ID DEL PROYECTO ES: " + proyecto.id)
         return proyecto
-    }
-
-    private fun traerTodosUsuarios() {
-        var comprobante = true
-
-        totalUsuarios.clear()
-
-        lifecycleScope.launch {
-            while (comprobante) {
-                totalUsuarios = Gestor.gestorUsuarios.obtenerTodosUsuarios()
-                delay(1000)
-
-                if (totalUsuarios.size > 0) {
-                    comprobante = false
-                }
-            }
-        }
-
-        UsuarioData.totalUsuarios.clear()
-        UsuarioData.totalUsuarios.addAll(totalUsuarios)
-    }
-
-    private fun traerTodosProyectos() {
-
-
-        var comprobante = true
-
-        totalProyectos.clear()
-
-        lifecycleScope.launch {
-            while (comprobante) {
-                totalProyectos = Gestor.gestorProyectos.obtenerTodosProyectos()
-                delay(1000)
-
-                if (totalProyectos[0].nombre != "") {
-
-                    comprobante = false
-                }
-
-                UsuarioData.ultimoId = totalProyectos.size
-                Log.d(ContentValues.TAG, "Corriendo corrutina")
-            }
-
-            UsuarioData.totalProyectos.clear()
-            UsuarioData.totalProyectos.addAll(totalProyectos)
-        }
     }
 
     private fun saberSiUsuarioEstaSeleccionado(usuario: Usuario): Boolean {
