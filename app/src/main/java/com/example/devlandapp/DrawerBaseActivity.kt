@@ -44,7 +44,9 @@ open class DrawerBaseActivity : AppCompatActivity() {
         val badgeDrawable = BadgeDrawable.create(this)
         badgeDrawable.backgroundColor = Color.RED
         badgeDrawable.isVisible = true
-        //BadgeUtils.attachBadgeDrawable(badgeDrawable, icon, R.id.notifications)
+        //TODO: QUE FUNCIONE ESTO COÑO
+        //BadgeUtils.attachBadgeDrawable(badgeDrawable, icon, this)
+
 
 
         navigationView.setNavigationItemSelectedListener {
