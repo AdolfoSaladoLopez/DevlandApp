@@ -25,6 +25,7 @@ class PerfilActivity : DrawerBaseActivity() {
         binding.nombreApellidosPerfil.text = "${usuario.nombre} ${usuario.apellidos}"
         binding.emailPerfil.text = usuario.email
         binding.descripcionPerfil.text = usuario.descripcion
+        binding.imagenPerfil.setImageResource(usuario.imagen)
 
         binding.editarPerfil.setOnClickListener {
             val intent = Intent(this, EditarPerfil::class.java)

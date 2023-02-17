@@ -1,5 +1,6 @@
 package com.example.devlandapp.models
 
+import com.example.devlandapp.R
 import com.google.firebase.firestore.Exclude
 
 data class Proyecto(
@@ -15,7 +16,8 @@ data class Proyecto(
     var numeroParticipantes: Int? = 0,
     @get:Exclude var propietario: Usuario? = null,
     var idPropietario: Int = 0,
-    var imagen: Int? = 0,
+    var imagen: Int = 0,
+    var imagenTexto: String = "R.drawable.person",
     var fechaPublicacion: String = "",
 
     @get:Exclude var usuariosInteresados: MutableList<Usuario> = mutableListOf(),

@@ -24,11 +24,11 @@
 
             <TextView
                 android:id="@+id/tituloProyecto"
-                android:layout_width="370sp"
+                android:layout_width="350sp"
                 android:layout_height="70sp"
+                android:layout_marginStart="20sp"
                 android:gravity="start|center"
                 android:text="JAVAFX"
-                android:layout_marginStart="20sp"
                 android:textColor="@color/black"
                 android:textSize="30sp"
                 android:textStyle="bold" />
@@ -37,9 +37,9 @@
                 android:id="@+id/ivEditar"
                 android:layout_width="30sp"
                 android:layout_height="70sp"
+                android:clickable="true"
                 android:src="@drawable/editar"
-                android:visibility="visible"
-                android:clickable="true" />
+                android:visibility="visible" />
         </LinearLayout>
 
         <!-- DESCRIPCION -->
@@ -87,6 +87,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:text="- Adolfo Salado -"
+                android:textColor="@color/black"
                 android:textSize="25dp" />
         </LinearLayout>
 
@@ -105,7 +106,9 @@
                 android:id="@+id/idioma"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
+                android:backgroundTint="@color/card"
                 android:text="ESPAÑOL"
+                android:textColor="@color/white"
                 android:textSize="15sp"
                 app:chipEndPadding="20dp"
                 app:chipMinHeight="50sp"
@@ -116,7 +119,9 @@
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:layout_marginLeft="10sp"
+                android:backgroundTint="@color/card"
                 android:text="MÁLAGA"
+                android:textColor="@color/white"
                 android:textSize="15sp"
                 app:chipEndPadding="20dp"
                 app:chipMinHeight="50sp"
@@ -127,7 +132,9 @@
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:layout_marginLeft="10sp"
+                android:backgroundTint="@color/card"
                 android:text="REMOTO"
+                android:textColor="@color/white"
                 android:textSize="15sp"
                 app:chipEndPadding="20dp"
                 app:chipMinHeight="50sp"
@@ -143,14 +150,15 @@
             android:gravity="center"
             android:orientation="horizontal">
 
-
             <com.google.android.material.chip.Chip
                 android:id="@+id/tecnologia"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:layout_marginLeft="10sp"
+                android:backgroundTint="@color/card"
                 android:text="JAVA"
-                android:textSize="20dp"
+                android:textColor="@color/white"
+                android:textSize="20sp"
                 app:chipEndPadding="20dp"
                 app:chipMinHeight="50sp"
                 app:chipStartPadding="20dp" />

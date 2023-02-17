@@ -8,17 +8,11 @@ import android.view.ViewGroup
 import android.widget.BaseAdapter
 import android.widget.ImageView
 import android.widget.TextView
-import android.widget.Toast
 import com.example.devlandapp.R
 import com.example.devlandapp.UsuarioData
 import com.example.devlandapp.controllers.Gestor
 import com.example.devlandapp.models.Proyecto
-import com.example.devlandapp.models.Usuario
-import com.squareup.picasso.Picasso
 import kotlinx.coroutines.DelicateCoroutinesApi
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.GlobalScope
-import kotlinx.coroutines.launch
 
 class ProyectoAdapter(
     var context: Context?,
@@ -42,6 +36,7 @@ class ProyectoAdapter(
             holder.fecha = vista.findViewById(R.id.fecha) as TextView
             holder.propietario = vista.findViewById(R.id.propiet) as TextView
             holder.corazon = vista.findViewById(R.id.corazon) as ImageView
+            holder.imagenPerfil = vista.findViewById(R.id.ivImagenPerfil) as ImageView
 
             vista.tag = holder
         } else {
@@ -51,11 +46,16 @@ class ProyectoAdapter(
 
         if (bandera != null) {
 
+           
+
             holder.titulo.text = bandera.nombre
             holder.descripcion.text = bandera.descripcion
             holder.fecha.text = bandera.fechaPublicacion
             holder.propietario.text =
                 "${bandera.propietario?.nombre} ${bandera.propietario?.apellidos}"
+
+            bandera.imagen?.let { holder.imagenPerfil.setImageResource(it) }
+
 
             holder.corazon.setImageResource(R.drawable.outline_favorite_border_24)
 
@@ -121,6 +121,7 @@ class ProyectoAdapter(
         lateinit var propietario: TextView
         lateinit var fecha: TextView
         lateinit var corazon: ImageView
+        lateinit var imagenPerfil: ImageView
     }
 
     private fun saberUsuariosInteresados(proyecto: Proyecto): Boolean {

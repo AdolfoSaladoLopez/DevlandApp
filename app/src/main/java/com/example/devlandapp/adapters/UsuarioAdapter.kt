@@ -68,7 +68,6 @@ class UsuarioAdapter(
     internal class ViewHolder {
         lateinit var nombre: TextView
         lateinit var email: TextView
-
     }
 
     /*private fun saberUsuariosInteresados(proyecto: Proyecto): Boolean {

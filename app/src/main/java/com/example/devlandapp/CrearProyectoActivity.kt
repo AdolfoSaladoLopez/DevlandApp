@@ -336,7 +336,7 @@ class CrearProyectoActivity : DrawerBaseActivity() {
                     cantidadProyecto,
                     usuario,
                     usuario!!.id,
-                    0,
+                    R.drawable.person,
                     fechaActual,
                 )
 
