@@ -16,6 +16,7 @@ import com.example.devlandapp.databinding.ActivityEditarProyectoBinding
 import com.example.devlandapp.models.Proyecto
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
+import org.w3c.dom.Text
 import java.time.LocalDateTime
 import kotlin.properties.Delegates
 
@@ -45,11 +46,17 @@ class EditarProyectoActivity : DrawerBaseActivity()  {
         binding = ActivityEditarProyectoBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+
         val spinnerTecnologias = findViewById<Spinner>(R.id.etdtecnologia_nuevoProyecto)
         val spinnerIdiomas = findViewById<Spinner>(R.id.etdidioma)
         val spinnerUbicacion = findViewById<Spinner>(R.id.etdubicacion)
         val spinnerDuracion = findViewById<Spinner>(R.id.etdTiempo)
         val spinnerModoTrabajo = findViewById<Spinner>(R.id.etdmodoTrabajo)
+        val nombre = findViewById<TextView>(R.id.etdTiulo)
+        val descripcion = findViewById<TextView>(R.id.etdDescripcion)
+        val participantes = findViewById<TextView>(R.id.etdparticipantes)
+        val cantidad = findViewById<TextView>(R.id.etdDuracion)
+
 
         val listaTecnologias = resources.getStringArray(R.array.tecnologias)
         val listaIdiomas = resources.getStringArray(R.array.idiomas)
@@ -71,6 +78,29 @@ class EditarProyectoActivity : DrawerBaseActivity()  {
 
         recuperarIntent()
         obtenerProyecto()
+
+        for(i in totalProyectos.indices){
+            if(proyecto.id == UsuarioData.totalProyectos[i].id){
+
+                val cantidadTiempo = UsuarioData.totalProyectos[i].duracion.toString()
+                val partes = cantidadTiempo.split(" ")
+
+                nombre.text = UsuarioData.totalProyectos[i].nombre
+                descripcion.text = UsuarioData.totalProyectos[i].descripcion
+                participantes.text = UsuarioData.totalProyectos[i].numeroParticipantes.toString()
+                cantidad.text = partes[0]
+                val valorTecnologia = listaTecnologias.indexOf(UsuarioData.totalProyectos[i].tecnologia.toString())
+                val valorIdioma = listaIdiomas.indexOf( UsuarioData.totalProyectos[i].idioma.toString())
+                val valorUbicacion = listaUbicacion.indexOf(UsuarioData.totalProyectos[i].modoTrabajo.toString())
+                val valorTiempo = listaTiempo.indexOf(partes[1])
+
+                spinnerTecnologias.setSelection(valorTecnologia)
+                spinnerIdiomas.setSelection(valorIdioma)
+                spinnerUbicacion.setSelection(valorUbicacion)
+                spinnerDuracion.setSelection(valorTiempo)
+            }
+        }
+
 
         spinnerTecnologias.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
             override fun onItemSelected(

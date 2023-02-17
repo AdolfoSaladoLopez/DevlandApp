@@ -109,8 +109,8 @@
 
                 <Spinner
                     android:id="@+id/etdtecnologia_nuevoProyecto"
-                    android:layout_width="fill_parent"
-                    android:layout_height="fill_parent"
+                    android:layout_width="match_parent"
+                    android:layout_height="43dp"
                     android:layout_marginStart="10sp"
                     android:scrollbarSize="20sp"
                     android:textColor="@color/black"
@@ -135,8 +135,8 @@
 
                 <Spinner
                     android:id="@+id/etdubicacion"
-                    android:layout_width="fill_parent"
-                    android:layout_height="fill_parent"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
                     android:layout_marginStart="10sp"
                     android:textColor="@color/black"
                     tools:ignore="TouchTargetSizeCheck,SpeakableTextPresentCheck" />
@@ -160,8 +160,8 @@
 
                 <Spinner
                     android:id="@+id/etdmodoTrabajo"
-                    android:layout_width="fill_parent"
-                    android:layout_height="fill_parent"
+                    android:layout_width="match_parent"
+                    android:layout_height="43dp"
                     android:layout_marginStart="10sp"
                     android:textColor="@color/black"
                     tools:ignore="TouchTargetSizeCheck,SpeakableTextPresentCheck" />
@@ -186,7 +186,7 @@
                 <Spinner
                     android:id="@+id/etdidioma"
                     android:layout_width="fill_parent"
-                    android:layout_height="fill_parent"
+                    android:layout_height="50dp"
                     android:layout_marginStart="10sp"
                     android:textColor="@color/black"
                     tools:ignore="TouchTargetSizeCheck,SpeakableTextPresentCheck" />
