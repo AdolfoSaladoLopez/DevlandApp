@@ -1,6 +1,8 @@
 package com.example.devlandapp
 
+import android.content.Intent
 import androidx.lifecycle.lifecycleScope
+import com.example.devlandapp.UsuarioData.Companion.usuario
 import com.example.devlandapp.adapters.NotificacionAdapter
 import com.example.devlandapp.controllers.Gestor
 import com.example.devlandapp.databinding.ActivityNotificacionesBinding
@@ -24,7 +26,7 @@ class NotificacionesActivity : DrawerBaseActivity() {
             var comprobante = true
 
             while (comprobante) {
-                listaNotificaciones = Gestor.gestorNotificaciones.obtenerTodasNotificaciones()
+                listaNotificaciones = Gestor.gestorNotificaciones.obtenerTodasNotificacionesDeUnUsuario(usuario)
                 delay(1000)
 
                 if (listaNotificaciones.size > 0) {
@@ -45,10 +47,10 @@ class NotificacionesActivity : DrawerBaseActivity() {
                 val notificacion = listaNotificaciones[position]
                 notificacion.leido = true
                 adapter.notifyDataSetChanged()
-                //TODO: que te mande a la activity de la notificacion
+                val intent = Intent(this@NotificacionesActivity, DetallesProyectoOtraPersonaActivity::class.java)
+                intent.putExtra("idProyecto", notificacion.idProyecto)
+                startActivity(intent)
             }
-
         }
-
     }
 }

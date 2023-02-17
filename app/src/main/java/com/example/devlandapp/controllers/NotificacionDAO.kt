@@ -9,6 +9,4 @@ interface NotificacionDAO {
     fun obtenerTodasNotificacionesDeUnUsuario(usuario:Usuario): MutableList<Notificacion>
     fun obtenerNotificacionId(id: Int?): Notificacion
     fun registrarNotificacion(notificacion: Notificacion): Boolean
-    fun leerNotificacion(notificacion: Notificacion): Boolean
-    fun eliminarNotificacion(notificacion: Notificacion): Boolean
 }
