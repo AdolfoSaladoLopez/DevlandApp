@@ -11,6 +11,7 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.cardview.widget.CardView
 import com.example.devlandapp.R
+import com.example.devlandapp.controllers.Gestor
 import com.example.devlandapp.models.Notificacion
 import com.example.devlandapp.models.Proyecto
 
@@ -54,13 +55,15 @@ class NotificacionAdapter(
                 holder.vistoImageView.setImageResource(R.drawable.ic_check_verde_oscuro)
                 holder.cardView.setCardBackgroundColor(Color.parseColor("#C7C7C7"))
                 holder.textoTextView.setTextColor(Color.parseColor("#6E6E6E"))
+                actializarNotificacion(notificacion)
+
             } else {
                 holder.vistoImageView.setImageResource(R.drawable.ic_check_gris)
                 holder.cardView.setCardBackgroundColor(Color.parseColor("#5A0E66"))
                 holder.textoTextView.setTextColor(Color.parseColor("#FFFFFF"))
             }
         }
-        //TODO: Falta que cuando se pulse el botón de visto, se actualice en la base de datos
+
         holder.vistoImageView.setOnClickListener {
             notificacion.leido = true
             notifyDataSetChanged()
@@ -74,4 +77,9 @@ class NotificacionAdapter(
         lateinit var vistoImageView: ImageView
         lateinit var cardView: CardView
     }
+
+    private fun actializarNotificacion(notificacion: Notificacion) {
+        Gestor.gestorNotificaciones.registrarNotificacion(notificacion)
+    }
+
 }

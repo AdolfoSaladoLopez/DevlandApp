@@ -3,8 +3,10 @@ package com.example.devlandapp
 import android.annotation.SuppressLint
 import android.os.Bundle
 import android.widget.Toast
+import com.example.devlandapp.UsuarioData.Companion.usuario
 import com.example.devlandapp.controllers.Gestor
 import com.example.devlandapp.databinding.ActivityDetallesUsuarioBinding
+import com.example.devlandapp.models.Notificacion
 import com.example.devlandapp.models.Proyecto
 import com.example.devlandapp.models.Usuario
 
@@ -18,6 +20,8 @@ class DetallesUsuarioActivity : DrawerBaseActivity() {
     var totalProyectos: MutableList<Proyecto> = mutableListOf()
     var usuarioObtenido: Usuario = Usuario()
     var proyectoObtenido: Proyecto = Proyecto()
+    var lista = Gestor.gestorNotificaciones.obtenerTodasNotificaciones()
+
 
 
     init {
@@ -53,9 +57,14 @@ class DetallesUsuarioActivity : DrawerBaseActivity() {
                     Gestor.gestorProyectos.modificarProyecto(proyectoObtenido)
 
                     binding.btnSeleccionar.text = "DESELECCIONAR USUARIOS"
+
+                    val texto = "El usuario ${usuario.nombre} ${usuario.apellidos} te ha seleccionado para el proyecto ${proyectoObtenido.nombre}"
+                    val notificacion = Notificacion(lista.size, texto, false,null,  usuarioObtenido.id,null, proyectoObtenido.id)
+                    Gestor.gestorNotificaciones.registrarNotificacion(notificacion)
                 } else {
                     Toast.makeText(this, "No puede añadir más participantes.", Toast.LENGTH_SHORT)
                         .show()
+
                 }
 
             } else {
@@ -63,6 +72,12 @@ class DetallesUsuarioActivity : DrawerBaseActivity() {
                 Gestor.gestorProyectos.modificarProyecto(proyectoObtenido)
 
                 binding.btnSeleccionar.text = "SELECCIONAR USUARIOS"
+
+                val texto = "El usuario ${usuario.nombre} ${usuario.apellidos} te ha deseleccionado para el proyecto ${proyectoObtenido.nombre}"
+
+                val notificacion = Notificacion(lista.size, texto, false,null,  usuarioObtenido.id,null, proyectoObtenido.id)
+                Gestor.gestorNotificaciones.registrarNotificacion(notificacion)
+
             }
         }
     }
