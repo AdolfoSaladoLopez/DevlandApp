@@ -39,27 +39,20 @@ class UsuariosInteresadosActivity : DrawerBaseActivity() {
         localizarTituloActivity("Feed")
         setContentView(binding.root)
 
-
         /* Recuperamos el ID del proyecto que queremos ver los usuarios interesados */
         id = intent.extras!!.getInt("proyecto")
-        println("EL ID ES :" + id)
         proyecto = obtenerProyectoId(id)
 
         /* Obtenemos los ids de los usuarios interesados */
         usuariosInteresadosId.clear()
         usuariosInteresadosId.addAll(proyecto.usuariosInteresadosId)
 
-        println("TAMAÑO PROYECTO: " + proyecto.usuariosInteresadosId.size)
-
         /* Convertimos los ids en Usuarios */
         usuariosInteresados.addAll(obtenerUsuarios(usuariosInteresadosId))
         val intent2 = Intent(this, DetallesUsuarioActivity::class.java)
 
-        println("TAMAÑO USUARIOS PROYECTO: " + usuariosInteresados.size)
-
         /* Pasamos los proyectos al adapter */
         recarga()
-
 
         lista = findViewById(R.id.misProyectos)
         lista.setOnItemClickListener { _, _, position, _ ->

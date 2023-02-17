@@ -22,12 +22,9 @@ class DetallesUsuarioActivity : DrawerBaseActivity() {
     var proyectoObtenido: Proyecto = Proyecto()
     var lista = Gestor.gestorNotificaciones.obtenerTodasNotificaciones()
 
-
-
     init {
         totalProyectos.addAll(UsuarioData.totalProyectos)
         totalUsuarios.addAll(UsuarioData.totalUsuarios)
-        usuarioObtenido = obtenerUsuarioPorId()
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -37,6 +34,7 @@ class DetallesUsuarioActivity : DrawerBaseActivity() {
 
         recuperarIntent()
 
+        usuarioObtenido = obtenerUsuarioPorId()
         proyectoObtenido = obtenerProyectoPorId()
 
         binding.tvNombreApellidos.text = "${usuarioObtenido.nombre} ${usuarioObtenido.apellidos}"
@@ -86,16 +84,22 @@ class DetallesUsuarioActivity : DrawerBaseActivity() {
         val hashMap: ArrayList<Int> = intent.extras!!.getIntegerArrayList("id") as ArrayList<Int>
         idUsuario = hashMap[0]
         idProyecto = hashMap[1]
+
+        println("EL ID DEL USUARIO ES: " + idUsuario)
     }
 
     private fun obtenerUsuarioPorId(): Usuario {
         var usuario = Usuario()
 
+        println("TAMAÑO DE LOS USUARIOS: " + totalUsuarios.size)
+
         totalUsuarios.forEach {
-            if (usuario.id == idUsuario) {
+            if (it.id == idUsuario) {
                 usuario = it
             }
         }
+
+        println("El usuario recuperado es: " + usuario.nombre)
         return usuario
     }
 
