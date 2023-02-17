@@ -65,6 +65,7 @@ class RegistrarUsuarioActivity : AppCompatActivity() {
                 usuario.email = email
                 usuario.password = contraseña
                 usuario.imagen = R.drawable.person
+                usuario.administrador = false
 
                 if (Gestor.gestorUsuarios.registrarUsuario(usuario)) {
                     Toast.makeText(this, "Usuario registrado con éxito", Toast.LENGTH_SHORT).show()
