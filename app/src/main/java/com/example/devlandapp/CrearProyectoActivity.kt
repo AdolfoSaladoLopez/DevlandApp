@@ -240,12 +240,17 @@ class CrearProyectoActivity : DrawerBaseActivity() {
                     }
 
                     1 -> {
-                        tiempo = "meses"
+                        tiempo = "semanas"
                     }
 
                     2 -> {
+                        tiempo = "meses"
+                    }
+
+                    3 -> {
                         tiempo = "años"
                     }
+
                 }
             }
 

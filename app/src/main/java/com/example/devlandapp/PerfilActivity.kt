@@ -3,10 +3,7 @@ package com.example.devlandapp
 import android.annotation.SuppressLint
 import android.content.Intent
 import android.os.Bundle
-import android.widget.TextView
-import com.example.devlandapp.databinding.ActivityFeedBinding
 import com.example.devlandapp.databinding.ActivityPerfilBinding
-import com.example.devlandapp.databinding.MisProyectosActivityBinding
 
 class PerfilActivity : DrawerBaseActivity() {
 
