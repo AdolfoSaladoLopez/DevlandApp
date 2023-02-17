@@ -6,9 +6,11 @@ import android.content.res.ColorStateList
 import android.os.Build
 import android.os.Bundle
 import android.widget.Button
+import android.widget.ImageView
 import android.widget.TextView
 import androidx.annotation.RequiresApi
 import androidx.core.content.ContextCompat
+import com.example.devlandapp.controllers.Gestor
 import com.example.devlandapp.databinding.ActivityDetallesProyectoPropioBinding
 import com.example.devlandapp.models.Proyecto
 import com.google.android.material.chip.Chip
@@ -36,6 +38,8 @@ class DetallesProyectoPropioActivity : DrawerBaseActivity() {
     private lateinit var btnVerMasTarde: Button
     private lateinit var btnEstoyInteresado: Button
     private var totalProyectos: MutableList<Proyecto> = mutableListOf()
+    private lateinit var editar: ImageView
+    private lateinit var btnEliminar: Button
 
     init {
         totalProyectos.clear()
@@ -85,6 +89,8 @@ class DetallesProyectoPropioActivity : DrawerBaseActivity() {
         btnSeleccionados = binding.btnSeleccionados
         btnVerMasTarde = binding.verMasTarde
         btnEstoyInteresado = binding.estoyInteresado
+        editar = binding.ivEditar
+        btnEliminar = binding.dppEliminarProyecto
     }
 
     private fun comprobarDisponibilidad(estado: Boolean): String {
@@ -135,7 +141,17 @@ class DetallesProyectoPropioActivity : DrawerBaseActivity() {
             val intent = Intent(this, UsuariosSeleccionadosActivity::class.java)
             intent.putExtra("idProyecto", idProyecto)
             startActivity(intent)
+        }
+        editar.setOnClickListener{
+            val intent = Intent(this,EditarProyectoActivity::class.java)
+            intent.putExtra("idproyecto", idProyecto)
+            startActivity(intent)
+        }
+        btnEliminar.setOnClickListener{
 
+            val intent = Intent(this,EditarProyectoActivity::class.java)
+            startActivity(intent)
+            Gestor.gestorProyectos.eliminarProyecto(proyecto)
         }
     }
 

@@ -27,6 +27,7 @@ class NotificacionesActivity : DrawerBaseActivity() {
 
             while (comprobante) {
                 listaNotificaciones = Gestor.gestorNotificaciones.obtenerTodasNotificacionesDeUnUsuario(usuario)
+
                 delay(1000)
 
                 if (listaNotificaciones.size > 0) {

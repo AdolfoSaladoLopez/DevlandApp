@@ -24,11 +24,11 @@
 
             <TextView
                 android:id="@+id/tituloProyecto"
-                android:layout_width="370sp"
-                android:layout_height="70sp"
+                android:layout_width="331dp"
+                android:layout_height="68dp"
+                android:layout_marginStart="20sp"
                 android:gravity="start|center"
                 android:text="JAVAFX"
-                android:layout_marginStart="20sp"
                 android:textColor="@color/black"
                 android:textSize="30sp"
                 android:textStyle="bold" />
@@ -259,6 +259,7 @@
                 android:padding="10sp"
                 android:text="Usuarios Interesados"
                 android:textSize="20sp"
+
                 android:visibility="visible"
                 app:cornerRadius="20sp" />
 
@@ -269,6 +270,7 @@
                 android:padding="10sp"
                 android:text="Usuarios Seleccionados"
                 android:textSize="20sp"
+
                 android:visibility="visible"
                 app:cornerRadius="20sp" />
 
@@ -291,6 +293,15 @@
                 android:textSize="20sp"
                 android:visibility="invisible"
                 app:cornerRadius="20sp" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/dpp_EliminarProyecto"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="10sp"
+                android:textSize="20sp"
+                android:text="ELIMINAR PROYECTO"
+                app:cornerRadius="20sp"/>
         </LinearLayout>
 
 

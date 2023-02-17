@@ -57,13 +57,13 @@ class NotificacionAdapter(
                 holder.textoTextView.setTextColor(Color.parseColor("#6E6E6E"))
                 actializarNotificacion(notificacion)
 
-
             } else {
                 holder.vistoImageView.setImageResource(R.drawable.ic_check_gris)
                 holder.cardView.setCardBackgroundColor(Color.parseColor("#5A0E66"))
                 holder.textoTextView.setTextColor(Color.parseColor("#FFFFFF"))
             }
         }
+
         holder.vistoImageView.setOnClickListener {
             notificacion.leido = true
             notifyDataSetChanged()
@@ -81,4 +81,5 @@ class NotificacionAdapter(
     private fun actializarNotificacion(notificacion: Notificacion) {
         Gestor.gestorNotificaciones.registrarNotificacion(notificacion)
     }
+
 }

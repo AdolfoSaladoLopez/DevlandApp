@@ -74,6 +74,4 @@ class NotificacionController: NotificacionDAO {
 
         return notificacion
     }
-
-
 }

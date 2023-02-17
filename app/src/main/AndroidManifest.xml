@@ -35,6 +35,14 @@
                 android:value="" />
         </activity>
         <activity
+            android:name=".EditarProyectoActivity"
+            android:exported="true"
+            android:label="Editar Proyecto">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
             android:name=".PerfilActivity"
             android:exported="true"
             android:label="Perfil">

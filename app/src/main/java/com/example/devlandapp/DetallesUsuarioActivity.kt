@@ -28,6 +28,7 @@ class DetallesUsuarioActivity : DrawerBaseActivity() {
     var lista = Gestor.gestorNotificaciones.obtenerTodasNotificaciones()
 
 
+
     init {
         totalProyectos.addAll(UsuarioData.totalProyectos)
         totalUsuarios.addAll(UsuarioData.totalUsuarios)
@@ -59,6 +60,7 @@ class DetallesUsuarioActivity : DrawerBaseActivity() {
                     val texto = "El usuario ${usuario.nombre} ${usuario.apellidos} te ha seleccionado para el proyecto ${proyectoObtenido.nombre}"
                     val notificacion = Notificacion(lista.size, texto, false,null,  usuarioObtenido.id,null, proyectoObtenido.id)
                     Gestor.gestorNotificaciones.registrarNotificacion(notificacion)
+
                 }
 
             } else {
@@ -71,6 +73,7 @@ class DetallesUsuarioActivity : DrawerBaseActivity() {
 
                 val notificacion = Notificacion(lista.size, texto, false,null,  usuarioObtenido.id,null, proyectoObtenido.id)
                 Gestor.gestorNotificaciones.registrarNotificacion(notificacion)
+
             }
         }
     }

@@ -51,9 +51,16 @@
     </string-array>
 
     <string-array name="tiempo">
-        <item>Dia</item>
-        <item>Mes</item>
-        <item>Año</item>
+        <item>dias</item>
+        <item>semanas</item>
+        <item>meses</item>
+        <item>años</item>
+    </string-array>
+
+    <string-array name="modoTrabajo">
+        <item>Presencial</item>
+        <item>Remoto</item>
+        <item>Mixto</item>
     </string-array>
 
     <string-array name="modoTrabajo">
