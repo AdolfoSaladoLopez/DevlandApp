@@ -1,9 +1,11 @@
 package com.example.devlandapp.models
 
-import com.example.devlandapp.R
+import android.os.Build
+import androidx.annotation.RequiresApi
 import com.google.firebase.firestore.Exclude
+import java.time.LocalDateTime
 
-data class Proyecto(
+data class Proyecto @RequiresApi(Build.VERSION_CODES.O) constructor(
     var id: Int = 0,
     var nombre: String? = "",
     var descripcion: String? = "",
@@ -18,10 +20,50 @@ data class Proyecto(
     var idPropietario: Int = 0,
     var imagen: Int = 0,
     var imagenTexto: String = "R.drawable.person",
-    var fechaPublicacion: String = "",
+    var fechaPublicacion: String = obtenerFechaActual(),
 
     @get:Exclude var usuariosInteresados: MutableList<Usuario> = mutableListOf(),
     @get:Exclude var usuariosSeleccionados: MutableList<Usuario> = mutableListOf(),
     var usuariosInteresadosId: MutableList<Int> = mutableListOf(),
     var usuariosSeleccionadosId: MutableList<Int> = mutableListOf()
 )
+
+
+private fun obtenerFechaActual(): String {
+    val datetime = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+        LocalDateTime.now()
+    } else {
+        TODO("VERSION.SDK_INT < O")
+    }
+    var dia = ""
+    var mes = ""
+
+    val pair = convertirDiasMeses(datetime, dia, mes)
+    dia = pair.first
+    mes = pair.second
+
+    val fechaActual = "${dia}/${mes}/${datetime.year}"
+    return fechaActual
+}
+
+@RequiresApi(Build.VERSION_CODES.O)
+private fun convertirDiasMeses(
+    datetime: LocalDateTime,
+    dia: String,
+    mes: String
+): Pair<String, String> {
+    var dia1 = dia
+    var mes1 = mes
+    if (datetime.dayOfMonth < 10) {
+        dia1 = "0${datetime.dayOfMonth}"
+    } else {
+        dia1 = datetime.dayOfMonth.toString()
+    }
+
+    if (datetime.monthValue < 10) {
+        mes1 = "0${datetime.monthValue}"
+    } else {
+        mes1 = datetime.monthValue.toString()
+    }
+    return Pair(dia1, mes1)
+}

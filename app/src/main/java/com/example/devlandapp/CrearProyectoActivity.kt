@@ -293,19 +293,12 @@ class CrearProyectoActivity : DrawerBaseActivity() {
             }
 
             ultimoId = listadoProyectos.size
-            val datetime = LocalDateTime.now()
+
 
             val editTextNombreProyecto = findViewById<EditText>(R.id.etTiulo)
             val editTextCantidadProyecto = findViewById<EditText>(R.id.participantes)
             val editTextDescripcionProyecto = findViewById<EditText>(R.id.etDescripcion)
-            var dia = ""
-            var mes = ""
 
-            val pair = convertirDiasMeses(datetime, dia, mes)
-            dia = pair.first
-            mes = pair.second
-
-            val fechaActual = "${dia}/${mes}/${datetime.year}"
             val editTextDuracion = findViewById<EditText>(R.id.duracion)
             val spinnerTiempo = findViewById<Spinner>(R.id.tiempo)
 
@@ -337,7 +330,6 @@ class CrearProyectoActivity : DrawerBaseActivity() {
                     usuario,
                     usuario!!.id,
                     R.drawable.person,
-                    fechaActual,
                 )
 
                 if (Gestor.gestorProyectos.registrarProyecto(proyecto)) {
@@ -355,27 +347,7 @@ class CrearProyectoActivity : DrawerBaseActivity() {
         }
     }
 
-    @RequiresApi(Build.VERSION_CODES.O)
-    private fun convertirDiasMeses(
-        datetime: LocalDateTime,
-        dia: String,
-        mes: String
-    ): Pair<String, String> {
-        var dia1 = dia
-        var mes1 = mes
-        if (datetime.dayOfMonth < 10) {
-            dia1 = "0${datetime.dayOfMonth}"
-        } else {
-            dia1 = datetime.dayOfMonth.toString()
-        }
 
-        if (datetime.monthValue < 10) {
-            mes1 = "0${datetime.monthValue}"
-        } else {
-            mes1 = datetime.monthValue.toString()
-        }
-        return Pair(dia1, mes1)
-    }
 
     private fun comprobarnombre(nombre: String): Boolean {
         return !TextUtils.isEmpty(nombre)

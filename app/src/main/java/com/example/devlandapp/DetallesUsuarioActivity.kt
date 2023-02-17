@@ -40,6 +40,7 @@ class DetallesUsuarioActivity : DrawerBaseActivity() {
         binding.tvNombreApellidos.text = "${usuarioObtenido.nombre} ${usuarioObtenido.apellidos}"
         binding.tvCorreoElectronico.text = usuarioObtenido.email
         binding.tvDescripcionDetalle.text = usuarioObtenido.descripcion
+        binding.ivUsuario.setImageResource(usuarioObtenido.imagen)
 
         if (saberSiUsuarioEstaSeleccionado(usuarioObtenido)) {
             binding.btnSeleccionar.text = "DESELECCIONAR USUARIOS"

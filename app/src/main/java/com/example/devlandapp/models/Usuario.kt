@@ -18,4 +18,6 @@ data class Usuario(
     var proyectosCreadosId: MutableList<Int> = mutableListOf(),
     var proyectosInteresadosId: MutableList<Int> = mutableListOf()
 
+
 )
+
