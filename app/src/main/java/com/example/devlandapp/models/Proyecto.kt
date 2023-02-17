@@ -1,11 +1,10 @@
 package com.example.devlandapp.models
 
 import android.os.Build
-import androidx.annotation.RequiresApi
 import com.google.firebase.firestore.Exclude
 import java.time.LocalDateTime
 
-data class Proyecto @RequiresApi(Build.VERSION_CODES.O) constructor(
+data class Proyecto constructor(
     var id: Int = 0,
     var nombre: String? = "",
     var descripcion: String? = "",
@@ -46,7 +45,7 @@ private fun obtenerFechaActual(): String {
     return fechaActual
 }
 
-@RequiresApi(Build.VERSION_CODES.O)
+
 private fun convertirDiasMeses(
     datetime: LocalDateTime,
     dia: String,
@@ -54,10 +53,19 @@ private fun convertirDiasMeses(
 ): Pair<String, String> {
     var dia1 = dia
     var mes1 = mes
-    if (datetime.dayOfMonth < 10) {
-        dia1 = "0${datetime.dayOfMonth}"
+    if (if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            datetime.dayOfMonth < 10
+        } else {
+            TODO("VERSION.SDK_INT < O")
+        }
+    ) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            dia1 = "0${datetime.dayOfMonth}"
+        }
     } else {
-        dia1 = datetime.dayOfMonth.toString()
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            dia1 = datetime.dayOfMonth.toString()
+        }
     }
 
     if (datetime.monthValue < 10) {

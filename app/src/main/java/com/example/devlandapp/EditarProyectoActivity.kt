@@ -1,6 +1,5 @@
 package com.example.devlandapp
 
-import android.annotation.SuppressLint
 import android.content.ContentValues
 import android.content.Intent
 import android.os.Build
@@ -16,12 +15,13 @@ import com.example.devlandapp.databinding.ActivityEditarProyectoBinding
 import com.example.devlandapp.models.Proyecto
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
-import org.w3c.dom.Text
 import java.time.LocalDateTime
 import kotlin.properties.Delegates
 
-class EditarProyectoActivity : DrawerBaseActivity()  {
+class EditarProyectoActivity : DrawerBaseActivity() {
     private var proyecto: Proyecto = Proyecto()
+    private var fechaActual: String = ""
+    private var imagenActual: Int = 0
     private lateinit var binding: ActivityEditarProyectoBinding
     var tecnologia: String = ""
     var idioma: String = ""
@@ -64,10 +64,10 @@ class EditarProyectoActivity : DrawerBaseActivity()  {
         val listaTiempo = resources.getStringArray(R.array.tiempo)
         val listaModoTrabajo = resources.getStringArray(R.array.modoTrabajo)
 
-        val adaptador1 = ArrayAdapter(this,R.layout.spinner_layout, listaTecnologias)
+        val adaptador1 = ArrayAdapter(this, R.layout.spinner_layout, listaTecnologias)
         val adaptador2 = ArrayAdapter(this, R.layout.spinner_layout, listaIdiomas)
-        val adaptador3 = ArrayAdapter(this,R.layout.spinner_layout, listaUbicacion)
-        val adaptadorTiempo = ArrayAdapter(this,R.layout.spinner_layout, listaTiempo)
+        val adaptador3 = ArrayAdapter(this, R.layout.spinner_layout, listaUbicacion)
+        val adaptadorTiempo = ArrayAdapter(this, R.layout.spinner_layout, listaTiempo)
         val adaptadorModoTrabjo = ArrayAdapter(this, R.layout.spinner_layout, listaModoTrabajo)
 
         spinnerTecnologias.adapter = adaptador1
@@ -79,8 +79,11 @@ class EditarProyectoActivity : DrawerBaseActivity()  {
         recuperarIntent()
         obtenerProyecto()
 
-        for(i in totalProyectos.indices){
-            if(proyecto.id == UsuarioData.totalProyectos[i].id){
+        fechaActual = proyecto.fechaPublicacion
+        imagenActual = proyecto.imagen
+
+        for (i in totalProyectos.indices) {
+            if (proyecto.id == UsuarioData.totalProyectos[i].id) {
 
                 val cantidadTiempo = UsuarioData.totalProyectos[i].duracion.toString()
                 val partes = cantidadTiempo.split(" ")
@@ -89,9 +92,12 @@ class EditarProyectoActivity : DrawerBaseActivity()  {
                 descripcion.text = UsuarioData.totalProyectos[i].descripcion
                 participantes.text = UsuarioData.totalProyectos[i].numeroParticipantes.toString()
                 cantidad.text = partes[0]
-                val valorTecnologia = listaTecnologias.indexOf(UsuarioData.totalProyectos[i].tecnologia.toString())
-                val valorIdioma = listaIdiomas.indexOf( UsuarioData.totalProyectos[i].idioma.toString())
-                val valorUbicacion = listaUbicacion.indexOf(UsuarioData.totalProyectos[i].modoTrabajo.toString())
+                val valorTecnologia =
+                    listaTecnologias.indexOf(UsuarioData.totalProyectos[i].tecnologia.toString())
+                val valorIdioma =
+                    listaIdiomas.indexOf(UsuarioData.totalProyectos[i].idioma.toString())
+                val valorUbicacion =
+                    listaUbicacion.indexOf(UsuarioData.totalProyectos[i].modoTrabajo.toString())
                 val valorTiempo = listaTiempo.indexOf(partes[1])
 
                 spinnerTecnologias.setSelection(valorTecnologia)
@@ -336,14 +342,7 @@ class EditarProyectoActivity : DrawerBaseActivity()  {
             val editTextNombreProyecto = findViewById<EditText>(R.id.etdTiulo)
             val editTextCantidadProyecto = findViewById<EditText>(R.id.etdparticipantes)
             val editTextDescripcionProyecto = findViewById<EditText>(R.id.etdDescripcion)
-            var dia = ""
-            var mes = ""
 
-            val pair = convertirDiasMeses(datetime, dia, mes)
-            dia = pair.first
-            mes = pair.second
-
-            val fechaActual = "${dia}/${mes}/${datetime.year}"
             val editTextDuracion = findViewById<EditText>(R.id.etdDuracion)
 
 
@@ -373,12 +372,12 @@ class EditarProyectoActivity : DrawerBaseActivity()  {
                     true,
                     cantidadProyecto,
                     usuario,
-                    usuario!!.id,
-                    0,
+                    usuario.id,
+                    imagenActual,
                     fechaActual,
                 )
 
-                if (Gestor.gestorProyectos.registrarProyecto(proyecto)) {
+                if (Gestor.gestorProyectos.modificarProyecto(proyecto)) {
                     usuario.proyectosCreados?.add(proyecto)
 
                     if (Gestor.gestorUsuarios.modificarUsuario(usuario)) {

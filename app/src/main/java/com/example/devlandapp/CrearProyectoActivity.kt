@@ -50,10 +50,10 @@ class CrearProyectoActivity : DrawerBaseActivity() {
         val listaTiempo = resources.getStringArray(R.array.tiempo)
         val listaModoTrabajo = resources.getStringArray(R.array.modoTrabajo)
 
-        val adaptador1 = ArrayAdapter(this,R.layout.spinner_layout, listaTecnologias)
+        val adaptador1 = ArrayAdapter(this, R.layout.spinner_layout, listaTecnologias)
         val adaptador2 = ArrayAdapter(this, R.layout.spinner_layout, listaIdiomas)
-        val adaptador3 = ArrayAdapter(this,R.layout.spinner_layout, listaUbicacion)
-        val adaptadorTiempo = ArrayAdapter(this,R.layout.spinner_layout, listaTiempo)
+        val adaptador3 = ArrayAdapter(this, R.layout.spinner_layout, listaUbicacion)
+        val adaptadorTiempo = ArrayAdapter(this, R.layout.spinner_layout, listaTiempo)
         val adaptadorModoTrabjo =
             ArrayAdapter(this, R.layout.spinner_layout, listaModoTrabajo)
 
@@ -328,7 +328,7 @@ class CrearProyectoActivity : DrawerBaseActivity() {
                     true,
                     cantidadProyecto,
                     usuario,
-                    usuario!!.id,
+                    UsuarioData.usuario.id,
                     R.drawable.person,
                 )
 
@@ -346,8 +346,6 @@ class CrearProyectoActivity : DrawerBaseActivity() {
             }
         }
     }
-
-
 
     private fun comprobarnombre(nombre: String): Boolean {
         return !TextUtils.isEmpty(nombre)
