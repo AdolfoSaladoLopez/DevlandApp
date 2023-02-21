@@ -1,0 +1,199 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:layout_gravity="center"
+    android:gravity="center">
+
+
+    <TextView
+        android:id="@+id/txtFiltrado"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="40dp"
+        android:text="¡ELIGE FILTROS!"
+        android:layout_margin="50dp"/>
+
+    <LinearLayout
+        android:id="@+id/linearLayoutFiltroUbicacion"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center">
+
+        <TextView
+            android:id="@+id/txtFiltroUbicacion"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="25dp"
+            android:text="Ubicación"/>
+
+        <Spinner
+            android:id="@+id/spinnerUbicacion"
+            android:layout_width="150dp"
+            android:layout_height="50dp"
+            android:layout_marginStart="10sp"
+            android:scrollbarSize="20sp"
+            android:textColor="@color/black"
+            android:textSize="20sp"
+            android:layout_margin="10dp"
+            tools:ignore="SpeakableTextPresentCheck"/>
+
+        <ImageView
+            android:id="@+id/btnBorrarUbicacion"
+            android:layout_width="35dp"
+            android:layout_height="35dp"
+            android:src="@drawable/borrar"
+            />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/linearLayoutFiltroModo"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center">
+
+        <TextView
+            android:id="@+id/txtFiltroModo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="25dp"
+            android:text="Modo de trabajo"/>
+
+        <Spinner
+            android:id="@+id/spinnerModo"
+            android:layout_width="150dp"
+            android:layout_height="50dp"
+            android:layout_marginStart="10sp"
+            android:scrollbarSize="20sp"
+            android:textColor="@color/black"
+            android:textSize="20sp"
+            android:layout_margin="10dp"
+            tools:ignore="SpeakableTextPresentCheck"/>
+
+        <ImageView
+            android:id="@+id/btnBorrarModo"
+            android:layout_width="35dp"
+            android:layout_height="35dp"
+            android:src="@drawable/borrar"
+            />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/linearLayoutFiltroTecnologia"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center">
+
+        <TextView
+            android:id="@+id/txtFiltroTecnologia"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="25dp"
+            android:text="Tecnología"/>
+
+        <Spinner
+            android:id="@+id/spinnerTecnologia"
+            android:layout_width="150dp"
+            android:layout_height="50dp"
+            android:layout_marginStart="10sp"
+            android:scrollbarSize="20sp"
+            android:textColor="@color/black"
+            android:textSize="20sp"
+            android:layout_margin="10dp"
+            tools:ignore="SpeakableTextPresentCheck"/>
+
+        <ImageView
+            android:id="@+id/btnBorrarTecnologia"
+            android:layout_width="35dp"
+            android:layout_height="35dp"
+            android:src="@drawable/borrar"
+            />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/linearLayoutFiltroIdioma"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center">
+
+        <TextView
+            android:id="@+id/txtFiltroIdioma"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="25dp"
+            android:text="Idioma"/>
+
+        <Spinner
+            android:id="@+id/spinnerIdioma"
+            android:layout_width="150dp"
+            android:layout_height="50dp"
+            android:layout_marginStart="10sp"
+            android:scrollbarSize="20sp"
+            android:textColor="@color/black"
+            android:textSize="20sp"
+            android:layout_margin="10dp"
+            tools:ignore="SpeakableTextPresentCheck"/>
+
+        <ImageView
+            android:id="@+id/btnBorrarIdioma"
+            android:layout_width="35dp"
+            android:layout_height="35dp"
+            android:src="@drawable/borrar"
+            />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center"
+        android:layout_margin="10dp">
+
+        <TextView
+            android:layout_width="200dp"
+            android:layout_height="90dp"
+            android:text="Ver solamente los proyectos que tengan plazas disponibles"
+            android:textSize="20dp"
+
+            android:textAlignment="center"/>
+
+        <CheckBox
+            android:id="@+id/checkboxPlazas"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="0dp"
+            />
+
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/btnAceptar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="ACEPTAR"
+        android:layout_margin="10dp"/>
+
+    <Button
+        android:id="@+id/btnCancelar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="CANCELAR"
+        android:layout_margin="10dp"/>
+
+
+
+
+
+
+
+</LinearLayout>

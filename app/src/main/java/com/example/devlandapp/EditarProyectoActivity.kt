@@ -115,51 +115,7 @@ class EditarProyectoActivity : DrawerBaseActivity() {
                 position: Int,
                 id: Long
             ) {
-                when (position) {
-                    0 -> {
-                        tecnologia = "C"
-                    }
-
-                    1 -> {
-                        tecnologia = "C++"
-                    }
-
-                    2 -> {
-                        tecnologia = "C#"
-                    }
-
-                    3 -> {
-                        tecnologia = "Java"
-                    }
-
-                    4 -> {
-                        tecnologia = "Kotlin"
-                    }
-
-                    5 -> {
-                        tecnologia = "HTML y CSS"
-                    }
-
-                    6 -> {
-                        tecnologia = "Python"
-                    }
-
-                    7 -> {
-                        tecnologia = "PHP"
-                    }
-
-                    8 -> {
-                        tecnologia = "JavaScript"
-                    }
-
-                    9 -> {
-                        tecnologia = "SQL"
-                    }
-
-                    10 -> {
-                        tecnologia = "Swift"
-                    }
-                }
+                tecnologia = listaTecnologias[position]
             }
 
             override fun onNothingSelected(parent: AdapterView<*>?) {}
@@ -172,51 +128,7 @@ class EditarProyectoActivity : DrawerBaseActivity() {
                 position: Int,
                 id: Long
             ) {
-                when (position) {
-                    0 -> {
-                        idioma = "Español"
-                    }
-
-                    1 -> {
-                        idioma = "Francés"
-                    }
-
-                    2 -> {
-                        idioma = "Inglés"
-                    }
-
-                    3 -> {
-                        idioma = "Aleman"
-                    }
-
-                    4 -> {
-                        idioma = "Portugues"
-                    }
-
-                    5 -> {
-                        idioma = "Italiano"
-                    }
-
-                    6 -> {
-                        idioma = "Chino"
-                    }
-
-                    7 -> {
-                        idioma = "Japones"
-                    }
-
-                    8 -> {
-                        idioma = "Ruso"
-                    }
-
-                    9 -> {
-                        idioma = "Arabe"
-                    }
-
-                    10 -> {
-                        idioma = "Coreano"
-                    }
-                }
+                idioma = listaIdiomas[position]
             }
 
             override fun onNothingSelected(parent: AdapterView<*>?) {}
@@ -229,43 +141,7 @@ class EditarProyectoActivity : DrawerBaseActivity() {
                 position: Int,
                 id: Long
             ) {
-                when (position) {
-                    0 -> {
-                        ubicacion = "Malaga"
-                    }
-
-                    1 -> {
-                        ubicacion = "Sevilla"
-                    }
-
-                    2 -> {
-                        ubicacion = "Granada"
-                    }
-
-                    3 -> {
-                        ubicacion = "Almeria"
-                    }
-
-                    4 -> {
-                        ubicacion = "Huelva"
-                    }
-
-                    5 -> {
-                        ubicacion = "Cordoba"
-                    }
-
-                    6 -> {
-                        ubicacion = "Cadiz"
-                    }
-
-                    7 -> {
-                        ubicacion = "Madrid"
-                    }
-
-                    8 -> {
-                        ubicacion = "Barcelona"
-                    }
-                }
+                ubicacion = listaUbicacion[position]
             }
 
             override fun onNothingSelected(parent: AdapterView<*>?) {}
@@ -278,23 +154,7 @@ class EditarProyectoActivity : DrawerBaseActivity() {
                 position: Int,
                 id: Long
             ) {
-                when (position) {
-                    0 -> {
-                        tiempo = "días"
-                    }
-
-                    1 -> {
-                        tiempo = "semanas"
-                    }
-
-                    2 -> {
-                        tiempo = "meses"
-                    }
-
-                    3 -> {
-                        tiempo = "años"
-                    }
-                }
+                tiempo = listaTiempo[position]
             }
 
             override fun onNothingSelected(parent: AdapterView<*>?) {}
@@ -307,19 +167,7 @@ class EditarProyectoActivity : DrawerBaseActivity() {
                 position: Int,
                 id: Long
             ) {
-                when (position) {
-                    0 -> {
-                        modoTrabajo = "Remoto"
-                    }
-
-                    1 -> {
-                        modoTrabajo = "Presencial"
-                    }
-
-                    2 -> {
-                        modoTrabajo = "Mixto"
-                    }
-                }
+                modoTrabajo = listaModoTrabajo[position]
             }
 
             override fun onNothingSelected(parent: AdapterView<*>?) {}

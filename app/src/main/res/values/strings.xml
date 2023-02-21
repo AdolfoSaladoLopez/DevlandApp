@@ -75,4 +75,58 @@
         <item>Barcelona</item>
     </string-array>
 
+
+
+    <!-- Strings para el filtrado -->
+
+    <string-array name="ubicacionFiltrado">
+        <item> - </item>
+        <item>Málaga</item>
+        <item>Sevilla</item>
+        <item>Granada</item>
+        <item>Almeria</item>
+        <item>Huelva</item>
+        <item>Cordoba</item>
+        <item>Cadiz</item>
+        <item>Madrid</item>
+        <item>Barcelona</item>
+    </string-array>
+
+    <string-array name="modoFiltrado">
+        <item> - </item>
+        <item>Presencial</item>
+        <item>Remoto</item>
+        <item>Mixto</item>
+    </string-array>
+
+    <string-array name="tecnologiasFiltrado">
+        <item> - </item>
+        <item>C</item>
+        <item>C++</item>
+        <item>C#</item>
+        <item>Java</item>
+        <item>Kotlin</item>
+        <item>HTML y CSS</item>
+        <item>Python</item>
+        <item>PHP</item>
+        <item>JavaScript</item>
+        <item>SQL</item>
+        <item>Swift</item>
+    </string-array>
+
+    <string-array name="idiomasFiltrado">
+        <item> - </item>
+        <item>Español</item>
+        <item>Frances</item>
+        <item>Ingles</item>
+        <item>Aleman</item>
+        <item>Portugues</item>
+        <item>Italiano</item>
+        <item>Chino</item>
+        <item>Japones</item>
+        <item>Ruso</item>
+        <item>Arabe</item>
+        <item>Coreano</item>
+    </string-array>
+
 </resources>

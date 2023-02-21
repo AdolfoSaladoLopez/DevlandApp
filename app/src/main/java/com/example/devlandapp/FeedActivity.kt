@@ -14,6 +14,7 @@ import com.example.devlandapp.controllers.Gestor
 import com.example.devlandapp.databinding.ActivityFeedBinding
 import com.example.devlandapp.models.Proyecto
 import com.example.devlandapp.models.Usuario
+import com.google.android.material.floatingactionbutton.FloatingActionButton
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 
@@ -23,6 +24,12 @@ class FeedActivity : DrawerBaseActivity() {
     private var totalUsuarios: MutableList<Usuario> = mutableListOf()
     private lateinit var myAdapter: ProyectoAdapter
 
+    private lateinit var ubicacionElegida: String
+    private lateinit var modoTrabajoElegido: String
+    private lateinit var tecnologiaElegido: String
+    private lateinit var idiomaElegido: String
+    private var verProyectosLLenos = true
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -30,12 +37,19 @@ class FeedActivity : DrawerBaseActivity() {
         localizarTituloActivity("Feed")
         setContentView(binding.root)
 
+        val fab: FloatingActionButton = findViewById(R.id.fab)
+
         traerTodosUsuarios()
 
         val intent = Intent(this, DetallesProyectoPropioActivity::class.java)
         val intent2 = Intent(this, DetallesProyectoOtraPersonaActivity::class.java)
 
         obtenerTotalProyectos(intent, intent2)
+
+        fab.setOnClickListener {
+            val intent = Intent(this, FiltradoActivity::class.java)
+            startActivity(intent)
+        }
     }
 
     private fun obtenerTotalProyectos(intent: Intent, intent2: Intent) {
@@ -50,7 +64,7 @@ class FeedActivity : DrawerBaseActivity() {
                     comprobante = false
                 }
 
-                UsuarioData.ultimoId = listadoProyectos.size
+                UsuarioData.ultimoId = listadoProyectos.get((listadoProyectos.size - 1)).id + 1
                 Log.d(TAG, "Corriendo corrutina")
             }
 
