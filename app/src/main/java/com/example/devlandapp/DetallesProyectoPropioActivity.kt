@@ -41,10 +41,7 @@ class DetallesProyectoPropioActivity : DrawerBaseActivity() {
     private var totalProyectos: MutableList<Proyecto> = mutableListOf()
     private lateinit var editar: ImageView
     private lateinit var btnEliminar: Button
-<<<<<<< Updated upstream
-=======
     private var totalUsuario: MutableList<Usuario> = mutableListOf()
->>>>>>> Stashed changes
 
     init {
         totalProyectos.clear()
@@ -156,11 +153,6 @@ class DetallesProyectoPropioActivity : DrawerBaseActivity() {
         }
         btnEliminar.setOnClickListener{
 
-<<<<<<< Updated upstream
-            val intent = Intent(this,EditarProyectoActivity::class.java)
-            startActivity(intent)
-            Gestor.gestorProyectos.eliminarProyecto(proyecto)
-=======
             totalUsuario.forEach { usuario: Usuario ->
                 usuario.proyectosInteresadosId.forEach { id : Int ->
 
@@ -171,11 +163,11 @@ class DetallesProyectoPropioActivity : DrawerBaseActivity() {
                     }
                 }
                 Gestor.gestorProyectos.eliminarProyecto(proyecto)
+                UsuarioData.totalProyectos.remove(proyecto)
             }
             
             val intent = Intent(this,MisProyectosActivity::class.java)
             startActivity(intent)
->>>>>>> Stashed changes
         }
     }
 }
