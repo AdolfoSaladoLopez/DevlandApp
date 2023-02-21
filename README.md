@@ -1,11 +1,11 @@
 <H1 align="center" style="color:darkred" >DEVLAND </H1>
 
 <p>
-Realizado por:
-- Campal, Javier.
-- Juarez, Pablo.
-- Marín, Alejandro.
-- Salado, Adolfo.</p>
+Realizado por: </br>
+- Campal, Javier. </br>
+- Juarez, Pablo. </br>
+- Marín, Alejandro. </br>
+- Salado, Adolfo.</p> </br>
 
 
 
