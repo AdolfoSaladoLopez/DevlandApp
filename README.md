@@ -1,16 +1,13 @@
-PROYECTO NO DUAL - PLATAFORMA PARA DESARROLLADORES
+<H1 align="center" style="color:darkred" >DEVLAND </H1>
 
-</br>
-
+<p>
 Realizado por:
 - Campal, Javier.
 - Juarez, Pablo.
 - Marín, Alejandro.
-- Salado, Adolfo.
+- Salado, Adolfo.</p>
 
-<img src="https://uploads-ssl.webflow.com/62315894b287ab509797a051/62ee0bd6bf066a4f80e2e7c9_OctobiWanCatnobi0_25x.png"
-     alt="Markdown Monster icon"
-     style="float: rigth; margin-right: 10px; width: 100px; heigth: 100px" />
+
 
 ---
 
