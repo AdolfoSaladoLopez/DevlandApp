@@ -284,10 +284,14 @@ class EditarProyectoActivity : DrawerBaseActivity() {
                     }
 
                     1 -> {
-                        tiempo = "meses"
+                        tiempo = "semanas"
                     }
 
                     2 -> {
+                        tiempo = "meses"
+                    }
+
+                    3 -> {
                         tiempo = "años"
                     }
                 }
@@ -361,7 +365,7 @@ class EditarProyectoActivity : DrawerBaseActivity() {
                 var usuario = UsuarioData.usuario
 
                 proyecto = Proyecto(
-                    UsuarioData.ultimoId,
+                    valor,
                     nombreProyecto,
                     descripcionProyecto,
                     tecnologia,
