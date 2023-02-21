@@ -13,6 +13,7 @@ import androidx.core.content.ContextCompat
 import com.example.devlandapp.controllers.Gestor
 import com.example.devlandapp.databinding.ActivityDetallesProyectoPropioBinding
 import com.example.devlandapp.models.Proyecto
+import com.example.devlandapp.models.Usuario
 import com.google.android.material.chip.Chip
 import kotlin.properties.Delegates
 
@@ -40,10 +41,16 @@ class DetallesProyectoPropioActivity : DrawerBaseActivity() {
     private var totalProyectos: MutableList<Proyecto> = mutableListOf()
     private lateinit var editar: ImageView
     private lateinit var btnEliminar: Button
+<<<<<<< Updated upstream
+=======
+    private var totalUsuario: MutableList<Usuario> = mutableListOf()
+>>>>>>> Stashed changes
 
     init {
         totalProyectos.clear()
+        totalUsuario.clear()
         totalProyectos.addAll(UsuarioData.totalProyectos)
+        totalUsuario.addAll(UsuarioData.totalUsuarios)
     }
 
     @RequiresApi(Build.VERSION_CODES.M)
@@ -149,10 +156,26 @@ class DetallesProyectoPropioActivity : DrawerBaseActivity() {
         }
         btnEliminar.setOnClickListener{
 
+<<<<<<< Updated upstream
             val intent = Intent(this,EditarProyectoActivity::class.java)
             startActivity(intent)
             Gestor.gestorProyectos.eliminarProyecto(proyecto)
+=======
+            totalUsuario.forEach { usuario: Usuario ->
+                usuario.proyectosInteresadosId.forEach { id : Int ->
+
+                    if(id == idProyecto){
+
+                        usuario.proyectosInteresadosId.remove(id)
+                        Gestor.gestorUsuarios.modificarUsuario(usuario)
+                    }
+                }
+                Gestor.gestorProyectos.eliminarProyecto(proyecto)
+            }
+            
+            val intent = Intent(this,MisProyectosActivity::class.java)
+            startActivity(intent)
+>>>>>>> Stashed changes
         }
     }
-
 }
