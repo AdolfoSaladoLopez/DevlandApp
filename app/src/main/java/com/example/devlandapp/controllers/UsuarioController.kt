@@ -121,4 +121,35 @@ class UsuarioController : UsuarioDAO {
 
         return listadoProyectosCreados
     }
+
+    override fun obtenerProyectosCreadosUsuarioId(usuario: Usuario): MutableList<Int> {
+
+        var listadoProyectosId: MutableList<Int> = mutableListOf()
+
+        Db.conexion().collection("proyecto")
+            .whereEqualTo("idPropietario", usuario.id)
+            .get()
+            .addOnSuccessListener { documents ->
+                for (document in documents) {
+                    var proyecto = document.toObject(Usuario::class.java)
+                    listadoProyectosId.add(proyecto.id)
+                }
+            }
+            .addOnFailureListener { exception ->
+                Log.w(TAG, "Error getting documents: ", exception)
+            }
+
+        return listadoProyectosId
+    }
+
+    override fun obtenerProyectosCreadosUsuario(listadoProyectosCreadosId: MutableList<Int>): MutableList<Proyecto> {
+        var proyectosCreadosUsuario: MutableList<Proyecto> = mutableListOf()
+
+        listadoProyectosCreadosId.forEach { id ->
+            var proyecto = Gestor.gestorProyectos.obtenerProyectoId(id)
+            proyectosCreadosUsuario.add(proyecto)
+        }
+
+        return proyectosCreadosUsuario
+    }
 }

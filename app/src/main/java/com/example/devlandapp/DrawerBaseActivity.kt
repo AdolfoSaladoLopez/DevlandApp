@@ -11,6 +11,7 @@ import android.util.AttributeSet
 import android.view.View
 import android.widget.FrameLayout
 import android.widget.ImageView
+import android.widget.TextView
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
@@ -51,8 +52,6 @@ open class DrawerBaseActivity : AppCompatActivity() {
 
         //BadgeUtils.attachBadgeDrawable(badgeDrawable, icon, this)
         */
-
-
 
 
         navigationView.setNavigationItemSelectedListener {
@@ -121,7 +120,7 @@ open class DrawerBaseActivity : AppCompatActivity() {
         return false
     }
 
-    }
+}
 
 
 

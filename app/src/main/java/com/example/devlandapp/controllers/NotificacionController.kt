@@ -6,7 +6,7 @@ import com.example.devlandapp.models.Notificacion
 import com.example.devlandapp.models.Proyecto
 import com.example.devlandapp.models.Usuario
 
-class NotificacionController: NotificacionDAO {
+class NotificacionController : NotificacionDAO {
     override fun obtenerTodasNotificaciones(): MutableList<Notificacion> {
         val listadoTotalNotificaciones: MutableList<Notificacion> = mutableListOf()
 
@@ -29,7 +29,8 @@ class NotificacionController: NotificacionDAO {
             .addOnSuccessListener {
                 for (notificacion in it) {
                     val notif = notificacion.toObject(Notificacion::class.java)
-                    notif.id = notificacion.id.toInt()  // Asigna el ID de Firestore al objeto Notificacion
+                    notif.id =
+                        notificacion.id.toInt()  // Asigna el ID de Firestore al objeto Notificacion
                     listadoTotalNotificaciones.add(notif)
                 }
             }
@@ -51,6 +52,20 @@ class NotificacionController: NotificacionDAO {
         }
 
         return validador
+    }
+
+    override fun eliminarNotificacionPorIdProyecto(proyecto: Proyecto): Boolean {
+        var totalNotificaciones: MutableList<Notificacion> = obtenerTodasNotificaciones()
+        var comprobante = false
+
+        totalNotificaciones.forEach {
+            Db.conexion().collection("notificacion")
+                .document(it.idProyecto.toString())
+                .delete()
+                .addOnSuccessListener { comprobante = true }
+                .addOnFailureListener { e -> Log.w(TAG, "Error deleting document", e) }
+        }
+        return comprobante
     }
 
     override fun obtenerNotificacionId(id: Int?): Notificacion {
