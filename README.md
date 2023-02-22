@@ -58,7 +58,9 @@ https://docs.google.com/presentation/d/18gc5noSbnub0InTj71MB3FTjHPNS_YOvCAyXzz1W
 PRESENTACIÓN FINAL
 </p>
 </br></br>
+<p align="center">
 https://docs.google.com/presentation/d/1F9RJsCZ7MQBfMSb-BKiJJYkGlTxnl6AJv2traRQfuoY/edit?usp=sharing
+</p>
 </br></br>
 
 ---
@@ -67,6 +69,9 @@ https://docs.google.com/presentation/d/1F9RJsCZ7MQBfMSb-BKiJJYkGlTxnl6AJv2traRQf
 GUION PRESENTACIÓN FINAL
 </p>
 </br></br>
-https://docs.google.com/document/d/1x5gfr1WKTmL_jOHXm0hPszTocC1QpxaOPPhqwcq36_M/edit?usp=sharing</br></br>
+<p align="center">
+https://docs.google.com/document/d/1x5gfr1WKTmL_jOHXm0hPszTocC1QpxaOPPhqwcq36_M/edit?usp=sharing
+</p>
 </br></br>
+
 
