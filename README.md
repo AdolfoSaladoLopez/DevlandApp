@@ -51,3 +51,22 @@ https://www.canva.com/design/DAFU6AU5yNA/qvAAI4cF-MmzrMNNvWDmNQ/view?utm_content
 PRESENTACIÓN - SEMANA 6 - JUEVES, 22 DICIEMBRE: </br>
 https://docs.google.com/presentation/d/18gc5noSbnub0InTj71MB3FTjHPNS_YOvCAyXzz1Wzbg/edit?usp=sharing
 </br></br>
+
+---
+
+<p align="center" style="color:darkred">
+PRESENTACIÓN FINAL
+</p>
+</br></br>
+https://docs.google.com/presentation/d/1F9RJsCZ7MQBfMSb-BKiJJYkGlTxnl6AJv2traRQfuoY/edit?usp=sharing
+</br></br>
+
+---
+
+<p align="center" style="color:darkred">
+GUION PRESENTACIÓN FINAL
+</p>
+</br></br>
+https://docs.google.com/document/d/1x5gfr1WKTmL_jOHXm0hPszTocC1QpxaOPPhqwcq36_M/edit?usp=sharing</br></br>
+</br></br>
+
