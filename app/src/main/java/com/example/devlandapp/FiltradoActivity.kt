@@ -1,5 +1,6 @@
 package com.example.devlandapp
 
+import android.content.Intent
 import android.os.Bundle
 import android.os.PersistableBundle
 import android.view.View
@@ -11,16 +12,18 @@ import com.example.devlandapp.databinding.ActivityFiltradoBinding
 class FiltradoActivity: DrawerBaseActivity() {
     private lateinit var binding: ActivityFiltradoBinding
 
-    private lateinit var ubicacionElegida: String
-    private lateinit var modoTrabajoElegido: String
-    private lateinit var tecnologiaElegido: String
-    private lateinit var idiomaElegido: String
+    private var ubicacionElegida: String? = null
+    private var modoTrabajoElegido: String? = null
+    private var tecnologiaElegido: String? = null
+    private var idiomaElegido: String? = null
     private var verProyectosLLenos = true
 
-    override fun onCreate(savedInstanceState: Bundle?, persistentState: PersistableBundle?) {
+    override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityFiltradoBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
+
 
         val spinnerUbicacion = findViewById<Spinner>(R.id.spinnerUbicacion)
         val spinnerModoTrabajo = findViewById<Spinner>(R.id.spinnerModo)
@@ -52,6 +55,21 @@ class FiltradoActivity: DrawerBaseActivity() {
 
         val botonAceptar = findViewById<Button>(R.id.btnAceptar)
         val botonCancelar = findViewById<Button>(R.id.btnCancelar)
+
+
+
+        ubicacionElegida = intent.extras!!.getString("ubicacion")
+        modoTrabajoElegido = intent.extras!!.getString("modo")
+        tecnologiaElegido = intent.extras!!.getString("tecnologia")
+        idiomaElegido = intent.extras!!.getString("idioma")
+        verProyectosLLenos = intent.extras!!.getBoolean("verProyectosLLenos")
+
+        spinnerUbicacion.setSelection(listaUbicacion.indexOf(ubicacionElegida))
+        spinnerModoTrabajo.setSelection(listaModo.indexOf(modoTrabajoElegido))
+        spinnerTecnologia.setSelection(listaTecnologias.indexOf(tecnologiaElegido))
+        spinnerIdioma.setSelection(listaIdiomas.indexOf(idiomaElegido))
+
+        val intentFeed = Intent(this, FeedActivity::class.java)
 
         spinnerUbicacion.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
             override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
@@ -110,19 +128,19 @@ class FiltradoActivity: DrawerBaseActivity() {
         }
 
         botonAceptar.setOnClickListener {
-            val intent = intent
-            intent.putExtra("ubicacion", ubicacionElegida)
-            intent.putExtra("modo", modoTrabajoElegido)
-            intent.putExtra("tecnologia", tecnologiaElegido)
-            intent.putExtra("idioma", idiomaElegido)
-            intent.putExtra("verProyectosLLenos", verProyectosLLenos)
-            setResult(RESULT_OK, intent)
-            finish()
+
+            intentFeed.putExtra("ubicacion", ubicacionElegida)
+            intentFeed.putExtra("modo", modoTrabajoElegido)
+            intentFeed.putExtra("tecnologia", tecnologiaElegido)
+            intentFeed.putExtra("idioma", idiomaElegido)
+            intentFeed.putExtra("verProyectosLLenos", verProyectosLLenos)
+
+
+            startActivity(intentFeed)
         }
 
         botonCancelar.setOnClickListener {
-            setResult(RESULT_CANCELED)
-            finish()
+            startActivity(intentFeed)
         }
 
     }

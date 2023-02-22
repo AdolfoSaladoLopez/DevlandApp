@@ -92,6 +92,8 @@
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
+        <activity android:name=".FiltradoActivity" />
+
         <activity
             android:name=".ProyectosInteresadosActivity"
             android:exported="true"

@@ -4,6 +4,7 @@ import android.content.ContentValues.TAG
 import android.util.Log
 import com.example.devlandapp.models.Proyecto
 import com.example.devlandapp.models.Usuario
+import com.google.firebase.firestore.FirebaseFirestore
 
 class ProyectoController : ProyectoDAO {
     override fun obtenerTodosProyectos(): MutableList<Proyecto> {
@@ -22,41 +23,48 @@ class ProyectoController : ProyectoDAO {
     }
 
     override fun obtenerProyectosFiltrados(
-        ubicacion: String,
-        modoTrabajo: String,
-        tecnologia: String,
-        idioma: String,
-        verProyectosLLenos: Boolean
+        ubicacion: String?,
+        modoTrabajo: String?,
+        tecnologia: String?,
+        idioma: String?,
+        verProyectosLLenos: Boolean?
     ): MutableList<Proyecto> {
         val listadoTotalProyectos: MutableList<Proyecto> = mutableListOf()
 
         val db = Db.conexion().collection("proyecto")
 
+        db.whereEqualTo("estado", true)
 
-            .whereEqualTo("ubicacion", ubicacion)
-            .whereEqualTo("modoTrabajo", modoTrabajo)
-            .whereEqualTo("tecnologia", tecnologia)
-            .whereEqualTo("idioma", idioma)
-            .get()
-            .addOnSuccessListener {
-                for (proyecto in it) {
-                    proyecto.toObject(Proyecto::class.java).let { it1 ->
-                        if (verProyectosLLenos) {
+        if(ubicacion != " - "){
+            db.whereEqualTo("ubicacion", ubicacion)
+        }
+        if(modoTrabajo != " - "){
+            db.whereEqualTo("modoTrabajo", modoTrabajo)
+        }
+        if(tecnologia != " - "){
+            db.whereEqualTo("tecnologia", tecnologia)
+        }
+        if(idioma != " - "){
+            db.whereEqualTo("idioma", idioma)
+        }
+        db.get()
+        .addOnSuccessListener {
+            for (proyecto in it) {
+                proyecto.toObject(Proyecto::class.java).let { it1 ->
+                    if (verProyectosLLenos!!) {
+                        listadoTotalProyectos.add(it1)
+                    } else {
+                        if (it1.usuariosSeleccionados.size < it1.numeroParticipantes!!) {
                             listadoTotalProyectos.add(it1)
                         } else {
-                            if (it1.usuariosSeleccionados.size < it1.numeroParticipantes!!) {
-                                listadoTotalProyectos.add(it1)
-                            } else {
-                                Log.d(TAG, "Este proyecto no cumple este filtro")
-                            }
+                            Log.d(TAG, "Este proyecto no cumple este filtro")
                         }
                     }
                 }
             }
-
-
-        return listadoTotalProyectos
-    }
+        }
+    return listadoTotalProyectos
+}
 
     override fun obtenerProyectoId(id: Int?): Proyecto {
         var proyecto: Proyecto = Proyecto()

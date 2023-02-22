@@ -24,11 +24,11 @@ class FeedActivity : DrawerBaseActivity() {
     private var totalUsuarios: MutableList<Usuario> = mutableListOf()
     private lateinit var myAdapter: ProyectoAdapter
 
-    private lateinit var ubicacionElegida: String
-    private lateinit var modoTrabajoElegido: String
-    private lateinit var tecnologiaElegido: String
-    private lateinit var idiomaElegido: String
-    private var verProyectosLLenos = true
+    private var ubicacionElegida: String? = " - "
+    private var modoTrabajoElegido: String? = " - "
+    private var tecnologiaElegido: String? = " - "
+    private var idiomaElegido: String? = " - "
+    private var verProyectosLLenos: Boolean? = true
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -41,14 +41,44 @@ class FeedActivity : DrawerBaseActivity() {
 
         traerTodosUsuarios()
 
+            ubicacionElegida = intent.extras?.getString("ubicacion")
+            modoTrabajoElegido = intent.extras?.getString("modoTrabajo")
+            tecnologiaElegido = intent.extras?.getString("tecnologia")
+            idiomaElegido = intent.extras?.getString("idioma")
+            verProyectosLLenos = intent.extras?.getBoolean("verProyectosLLenos")
+
+        if(ubicacionElegida == null){
+            ubicacionElegida = " - "
+        }
+        if(modoTrabajoElegido == null){
+            modoTrabajoElegido = " - "
+        }
+        if(tecnologiaElegido == null){
+            tecnologiaElegido = " - "
+        }
+        if(idiomaElegido == null){
+            idiomaElegido = " - "
+        }
+        if(verProyectosLLenos == null){
+            verProyectosLLenos = true
+        }
+
+
+
+
         val intent = Intent(this, DetallesProyectoPropioActivity::class.java)
         val intent2 = Intent(this, DetallesProyectoOtraPersonaActivity::class.java)
 
         obtenerTotalProyectos(intent, intent2)
 
         fab.setOnClickListener {
-            val intent = Intent(this, FiltradoActivity::class.java)
-            startActivity(intent)
+            val intentFiltrado = Intent(this, FiltradoActivity::class.java)
+            intentFiltrado.putExtra("ubicacion", ubicacionElegida)
+            intentFiltrado.putExtra("modoTrabajo", modoTrabajoElegido)
+            intentFiltrado.putExtra("tecnologia", tecnologiaElegido)
+            intentFiltrado.putExtra("idioma", idiomaElegido)
+            intentFiltrado.putExtra("verProyectosLLenos", verProyectosLLenos)
+            startActivity(intentFiltrado)
         }
     }
 
@@ -56,7 +86,7 @@ class FeedActivity : DrawerBaseActivity() {
         var comprobante = true
         lifecycleScope.launch {
             while (comprobante) {
-                listadoProyectos = Gestor.gestorProyectos.obtenerTodosProyectos()
+                listadoProyectos = Gestor.gestorProyectos.obtenerProyectosFiltrados(ubicacionElegida, modoTrabajoElegido, tecnologiaElegido, idiomaElegido, verProyectosLLenos)
                 delay(1000)
 
                 if (listadoProyectos.size > 0) {
