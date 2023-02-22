@@ -42,7 +42,7 @@ class FeedActivity : DrawerBaseActivity() {
         traerTodosUsuarios()
 
             ubicacionElegida = intent.extras?.getString("ubicacion")
-            modoTrabajoElegido = intent.extras?.getString("modoTrabajo")
+            modoTrabajoElegido = intent.extras?.getString("modo")
             tecnologiaElegido = intent.extras?.getString("tecnologia")
             idiomaElegido = intent.extras?.getString("idioma")
             verProyectosLLenos = intent.extras?.getBoolean("verProyectosLLenos")
@@ -54,7 +54,7 @@ class FeedActivity : DrawerBaseActivity() {
             modoTrabajoElegido = " - "
         }
         if(tecnologiaElegido == null){
-            tecnologiaElegido = " - "
+            tecnologiaElegido = "C"
         }
         if(idiomaElegido == null){
             idiomaElegido = " - "
@@ -63,7 +63,11 @@ class FeedActivity : DrawerBaseActivity() {
             verProyectosLLenos = true
         }
 
-
+        println("ubicacionElegida: $ubicacionElegida")
+        println("modoTrabajoElegido: $modoTrabajoElegido")
+        println("tecnologiaElegido: $tecnologiaElegido")
+        println("idiomaElegido: $idiomaElegido")
+        println("verProyectosLLenos: $verProyectosLLenos")
 
 
         val intent = Intent(this, DetallesProyectoPropioActivity::class.java)
