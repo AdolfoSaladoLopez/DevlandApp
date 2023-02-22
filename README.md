@@ -1,3 +1,6 @@
+
+<p align="center">
+<img src="https://i.ibb.co/pdPS8Fz/logo-removebg-preview.png" alt="logo-removebg-preview" border="0"></p>
 <H1 align="center" style="color:darkred" >DEVLAND</H1>
 
 <p align="center" style="color:darkred" >
