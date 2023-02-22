@@ -1,4 +1,4 @@
-<H1 align="center" style="color:darkred" >DEVLAND </H1>
+<H1 align="center" style="color:darkred" >DEVLAND</H1>
 
 <p align="center" style="color:darkred" >
 Realizado por: </br>
@@ -12,21 +12,27 @@ Salado, Adolfo.</p>
 <p align="center" style="color:darkred" >
 DOCUMENTACIÓN DEL PROYECTO
 </p>
+<p align="center">
 https://docs.google.com/document/d/1jpGYpiO9IHmyi2w990yAk7zoGQzITrzX49i-7lsxRJU/edit?usp=sharing
+</p>
 
 ---
 
 <p align="center" style="color:darkred" >
 DOCUMENTACIÓN DE INFORMACIÓN
 </p>
+<p align="center">
 https://docs.google.com/document/d/1iwOCIiokQApJibPSoYqmSjbx0j4zVi_zbs1DPGfyctk/edit?usp=sharing
+</p>
 
 ---
 
 <p align="center" style="color:darkred">
 TABLÓN TRELLO
 </p>
+<p align="center">
 https://trello.com/b/MTKaaNWP/no-dual-proyectos-para-desarrolladores
+</p>
 
 ---
 
@@ -57,7 +63,6 @@ https://docs.google.com/presentation/d/18gc5noSbnub0InTj71MB3FTjHPNS_YOvCAyXzz1W
 <p align="center" style="color:darkred">
 PRESENTACIÓN FINAL
 </p>
-</br></br>
 <p align="center">
 https://docs.google.com/presentation/d/1F9RJsCZ7MQBfMSb-BKiJJYkGlTxnl6AJv2traRQfuoY/edit?usp=sharing
 </p>
@@ -68,7 +73,6 @@ https://docs.google.com/presentation/d/1F9RJsCZ7MQBfMSb-BKiJJYkGlTxnl6AJv2traRQf
 <p align="center" style="color:darkred">
 GUION PRESENTACIÓN FINAL
 </p>
-</br></br>
 <p align="center">
 https://docs.google.com/document/d/1x5gfr1WKTmL_jOHXm0hPszTocC1QpxaOPPhqwcq36_M/edit?usp=sharing
 </p>
