@@ -66,7 +66,6 @@ PRESENTACIÓN FINAL
 <p align="center">
 https://docs.google.com/presentation/d/1F9RJsCZ7MQBfMSb-BKiJJYkGlTxnl6AJv2traRQfuoY/edit?usp=sharing
 </p>
-</br></br>
 
 ---
 
