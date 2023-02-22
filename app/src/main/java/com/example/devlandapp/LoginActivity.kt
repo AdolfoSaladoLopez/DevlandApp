@@ -164,6 +164,7 @@ class LoginActivity : AppCompatActivity() {
         startActivity(intent)
     }
 
+
     /* Método por implementar en futuras versiones */
     private fun goToOlvidarPwd() {
         //val intent = Intent(this, MainActivity::class.java)

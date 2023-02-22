@@ -56,6 +56,7 @@ class EditarProyectoActivity : DrawerBaseActivity() {
         val descripcion = findViewById<TextView>(R.id.etdDescripcion)
         val participantes = findViewById<TextView>(R.id.etdparticipantes)
         val cantidad = findViewById<TextView>(R.id.etdDuracion)
+        val disponibilidad = findViewById<Switch>(R.id.disponibilidad)
 
 
         val listaTecnologias = resources.getStringArray(R.array.tecnologias)
@@ -104,6 +105,14 @@ class EditarProyectoActivity : DrawerBaseActivity() {
                 spinnerIdiomas.setSelection(valorIdioma)
                 spinnerUbicacion.setSelection(valorUbicacion)
                 spinnerDuracion.setSelection(valorTiempo)
+
+                if(UsuarioData.totalProyectos[i].estado == true){
+                    disponibilidad.isChecked = true
+                }
+                else{
+                }
+
+
             }
         }
 
@@ -309,11 +318,11 @@ class EditarProyectoActivity : DrawerBaseActivity() {
             ) {
                 when (position) {
                     0 -> {
-                        modoTrabajo = "Remoto"
+                        modoTrabajo = "Presencial"
                     }
 
                     1 -> {
-                        modoTrabajo = "Presencial"
+                        modoTrabajo = "Remoto"
                     }
 
                     2 -> {
@@ -350,6 +359,8 @@ class EditarProyectoActivity : DrawerBaseActivity() {
             val editTextDuracion = findViewById<EditText>(R.id.etdDuracion)
 
 
+
+
             if (comprobarnombre(editTextNombreProyecto.text.toString()) &&
                 comprobartiempo(editTextDuracion.text.toString()) &&
                 comprobardescripcion(editTextDescripcionProyecto.text.toString())
@@ -360,6 +371,8 @@ class EditarProyectoActivity : DrawerBaseActivity() {
                 var descripcionProyecto = editTextDescripcionProyecto!!.text.toString()
                 var duracion = editTextDuracion!!.text.toString()
                 var tiempoProyecto = "$duracion $tiempo"
+
+
 
                 var proyecto: Proyecto = Proyecto()
                 var usuario = UsuarioData.usuario
@@ -373,7 +386,7 @@ class EditarProyectoActivity : DrawerBaseActivity() {
                     modoTrabajo,
                     idioma,
                     tiempoProyecto,
-                    true,
+                    switchchecked(),
                     cantidadProyecto,
                     usuario,
                     usuario.id,
@@ -440,6 +453,19 @@ class EditarProyectoActivity : DrawerBaseActivity() {
 
     private fun comprobartiempo(tiempo: String): Boolean {
         return !TextUtils.isEmpty(tiempo)
+    }
+
+    private fun switchchecked() : Boolean{
+
+        var disponibilidad = findViewById<Switch>(R.id.disponibilidad)
+
+        if(disponibilidad.isChecked){
+           return true
+        }
+        else{
+            return false
+        }
+        return false
     }
 
     private fun goToFeed() {

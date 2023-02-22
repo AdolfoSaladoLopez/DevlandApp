@@ -11,6 +11,7 @@ import android.util.AttributeSet
 import android.view.View
 import android.widget.FrameLayout
 import android.widget.ImageView
+import android.widget.TextView
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
@@ -64,6 +65,7 @@ open class DrawerBaseActivity : AppCompatActivity() {
                 R.id.projects -> goToMisProyectos()
                 R.id.profile -> goToMiPerfil()
                 R.id.notifications -> goToNotificaciones()
+                R.id.logOut -> goToLogin()
             }
             false
         }
@@ -114,6 +116,11 @@ open class DrawerBaseActivity : AppCompatActivity() {
         val intent = Intent(this, NotificacionesActivity::class.java)
         startActivity(intent)
         overridePendingTransition(0, 0)
+    }
+
+    private fun goToLogin(){
+        val intent = Intent(this, LoginActivity::class.java)
+        startActivity(intent)
     }
 
     private fun comprobarNotificacionesLeidas(): Boolean {
