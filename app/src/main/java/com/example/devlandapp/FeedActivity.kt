@@ -24,11 +24,11 @@ class FeedActivity : DrawerBaseActivity() {
     private var totalUsuarios: MutableList<Usuario> = mutableListOf()
     private lateinit var myAdapter: ProyectoAdapter
 
-    private lateinit var ubicacionElegida: String
-    private lateinit var modoTrabajoElegido: String
-    private lateinit var tecnologiaElegido: String
-    private lateinit var idiomaElegido: String
-    private var verProyectosLLenos = true
+    private var ubicacionElegida: String? = " - "
+    private var modoTrabajoElegido: String? = " - "
+    private var tecnologiaElegido: String? = " - "
+    private var idiomaElegido: String? = " - "
+    private var verProyectosLLenos: Boolean? = true
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -41,32 +41,76 @@ class FeedActivity : DrawerBaseActivity() {
 
         traerTodosUsuarios()
 
+            ubicacionElegida = intent.extras?.getString("ubicacion")
+            modoTrabajoElegido = intent.extras?.getString("modo")
+            tecnologiaElegido = intent.extras?.getString("tecnologia")
+            idiomaElegido = intent.extras?.getString("idioma")
+            verProyectosLLenos = intent.extras?.getBoolean("verProyectosLLenos")
+
+        if(ubicacionElegida == null){
+            ubicacionElegida = " - "
+        }
+        if(modoTrabajoElegido == null){
+            modoTrabajoElegido = " - "
+        }
+        if(tecnologiaElegido == null){
+            tecnologiaElegido = " - "
+        }
+        if(idiomaElegido == null){
+            idiomaElegido = " - "
+        }
+        if(verProyectosLLenos == null){
+            verProyectosLLenos = true
+        }
+
+        println("ubicacionElegida: $ubicacionElegida")
+        println("modoTrabajoElegido: $modoTrabajoElegido")
+        println("tecnologiaElegido: $tecnologiaElegido")
+        println("idiomaElegido: $idiomaElegido")
+        println("verProyectosLLenos: $verProyectosLLenos")
+
+
         val intent = Intent(this, DetallesProyectoPropioActivity::class.java)
         val intent2 = Intent(this, DetallesProyectoOtraPersonaActivity::class.java)
 
         obtenerTotalProyectos(intent, intent2)
 
         fab.setOnClickListener {
-            val intent = Intent(this, FiltradoActivity::class.java)
-            startActivity(intent)
+            val intentFiltrado = Intent(this, FiltradoActivity::class.java)
+            intentFiltrado.putExtra("ubicacion", ubicacionElegida)
+            intentFiltrado.putExtra("modoTrabajo", modoTrabajoElegido)
+            intentFiltrado.putExtra("tecnologia", tecnologiaElegido)
+            intentFiltrado.putExtra("idioma", idiomaElegido)
+            intentFiltrado.putExtra("verProyectosLLenos", verProyectosLLenos)
+            startActivity(intentFiltrado)
         }
     }
 
     private fun obtenerTotalProyectos(intent: Intent, intent2: Intent) {
         var comprobante = true
+        var contador = 0
         lifecycleScope.launch {
             while (comprobante) {
-                listadoProyectos = Gestor.gestorProyectos.obtenerTodosProyectos()
+                listadoProyectos = Gestor.gestorProyectos.obtenerProyectosFiltrados(ubicacionElegida, modoTrabajoElegido, tecnologiaElegido, idiomaElegido, verProyectosLLenos)
                 delay(1000)
 
                 if (listadoProyectos.size > 0) {
 
                     comprobante = false
+                    UsuarioData.ultimoId = listadoProyectos.get((listadoProyectos.size - 1)).id + 1
+
+                }
+                contador++
+
+                if (contador == 10) {
+                    comprobante = false
+                    Toast.makeText(this@FeedActivity, "No hay proyectos que cumplan los filtros", Toast.LENGTH_SHORT).show()
                 }
 
-                UsuarioData.ultimoId = listadoProyectos.get((listadoProyectos.size - 1)).id + 1
                 Log.d(TAG, "Corriendo corrutina")
             }
+
+            println("listadoProyectos: $listadoProyectos")
 
             UsuarioData.totalProyectos.clear()
             UsuarioData.totalProyectos.addAll(listadoProyectos)

@@ -57,8 +57,12 @@ class DetallesUsuarioActivity : DrawerBaseActivity() {
 
                     binding.btnSeleccionar.text = "DESELECCIONAR USUARIOS"
 
+                    lista = Gestor.gestorNotificaciones.obtenerTodasNotificaciones()
+
+                    val id = lista.get(lista.size-1).id + 1
+
                     val texto = "El usuario ${usuario.nombre} ${usuario.apellidos} te ha seleccionado para el proyecto ${proyectoObtenido.nombre}"
-                    val notificacion = Notificacion(lista.size, texto, false,null,  usuarioObtenido.id,null, proyectoObtenido.id)
+                    val notificacion = Notificacion(id, texto, false,null,  usuarioObtenido.id,null, proyectoObtenido.id)
                     Gestor.gestorNotificaciones.registrarNotificacion(notificacion)
                 } else {
                     Toast.makeText(this, "No puede añadir más participantes.", Toast.LENGTH_SHORT)
@@ -74,7 +78,11 @@ class DetallesUsuarioActivity : DrawerBaseActivity() {
 
                 val texto = "El usuario ${usuario.nombre} ${usuario.apellidos} te ha deseleccionado para el proyecto ${proyectoObtenido.nombre}"
 
-                val notificacion = Notificacion(lista.size, texto, false,null,  usuarioObtenido.id,null, proyectoObtenido.id)
+                lista = Gestor.gestorNotificaciones.obtenerTodasNotificaciones()
+
+                val id = lista.get(lista.size-1).id + 1
+
+                val notificacion = Notificacion(id, texto, false,null,  usuarioObtenido.id,null, proyectoObtenido.id)
                 Gestor.gestorNotificaciones.registrarNotificacion(notificacion)
 
             }
