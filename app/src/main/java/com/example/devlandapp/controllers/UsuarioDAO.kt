@@ -12,4 +12,9 @@ interface UsuarioDAO {
     fun obtenerUsuarioCorreoElectronico(correo: String): Usuario?
     fun obtenerProyectosInteresados(usuario: Usuario?): MutableList<Proyecto>?
     fun obtenerProyectosCreados(usuario: Usuario?): MutableList<Proyecto>?
+    fun obtenerProyectosCreadosUsuarioId(usuario: Usuario): MutableList<Int>
+
+    fun obtenerProyectosCreadosUsuario(listadoProyectosCreadosId: MutableList<Int>): MutableList<Proyecto>
+
+
 }
