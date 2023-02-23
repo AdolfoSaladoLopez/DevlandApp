@@ -54,8 +54,6 @@ open class DrawerBaseActivity : AppCompatActivity() {
         */
 
 
-
-
         navigationView.setNavigationItemSelectedListener {
             drawerLayout.closeDrawer(GravityCompat.START)
 
@@ -128,7 +126,7 @@ open class DrawerBaseActivity : AppCompatActivity() {
         return false
     }
 
-    }
+}
 
 
 
