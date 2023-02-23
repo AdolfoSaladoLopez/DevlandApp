@@ -42,6 +42,8 @@ class DetallesProyectoOtraPersonaActivity : DrawerBaseActivity() {
     private var totalProyectos: MutableList<Proyecto> = mutableListOf()
     private var totalUsuarios: MutableList<Usuario> = mutableListOf()
     var propiet: Usuario? = null
+    var interesado : Boolean = false
+
 
     @RequiresApi(Build.VERSION_CODES.M)
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -54,6 +56,17 @@ class DetallesProyectoOtraPersonaActivity : DrawerBaseActivity() {
         obtenerPropietario()
         iniciarVistas()
         rellenarVistas()
+
+       if(saberUsuariosInteresados(proyecto)){
+
+           btnEstoyInteresado.text = "No estoy interesado"
+           interesado = true
+       }
+        else{
+            btnEstoyInteresado.text = "Estoy interesado"
+
+       }
+
     }
 
     private fun recuperarIntent() {
@@ -136,8 +149,10 @@ class DetallesProyectoOtraPersonaActivity : DrawerBaseActivity() {
 
     fun darFuncionalidadBotones() {
 
-        var interesado : Boolean = false
         btnEstoyInteresado = findViewById(R.id.estoyInteresado)
+
+
+
 
         btnEstoyInteresado.setOnClickListener{
 
@@ -166,4 +181,18 @@ class DetallesProyectoOtraPersonaActivity : DrawerBaseActivity() {
 
         }
     }
+
+    private fun saberUsuariosInteresados(proyecto: Proyecto): Boolean {
+        var estaInteresado = false
+        UsuarioData.totalUsuarios.forEach { usuario ->
+            usuario.proyectosInteresadosId.forEach { idProyecto ->
+                if (idProyecto == proyecto.id) {
+                    estaInteresado = true
+                }
+            }
+        }
+
+        return estaInteresado
+    }
+
 }
