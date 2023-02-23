@@ -54,7 +54,7 @@ class FeedActivity : DrawerBaseActivity() {
             modoTrabajoElegido = " - "
         }
         if(tecnologiaElegido == null){
-            tecnologiaElegido = "C"
+            tecnologiaElegido = " - "
         }
         if(idiomaElegido == null){
             idiomaElegido = " - "
@@ -88,6 +88,7 @@ class FeedActivity : DrawerBaseActivity() {
 
     private fun obtenerTotalProyectos(intent: Intent, intent2: Intent) {
         var comprobante = true
+        var contador = 0
         lifecycleScope.launch {
             while (comprobante) {
                 listadoProyectos = Gestor.gestorProyectos.obtenerProyectosFiltrados(ubicacionElegida, modoTrabajoElegido, tecnologiaElegido, idiomaElegido, verProyectosLLenos)
@@ -96,11 +97,20 @@ class FeedActivity : DrawerBaseActivity() {
                 if (listadoProyectos.size > 0) {
 
                     comprobante = false
+                    UsuarioData.ultimoId = listadoProyectos.get((listadoProyectos.size - 1)).id + 1
+
+                }
+                contador++
+
+                if (contador == 10) {
+                    comprobante = false
+                    Toast.makeText(this@FeedActivity, "No hay proyectos que cumplan los filtros", Toast.LENGTH_SHORT).show()
                 }
 
-                UsuarioData.ultimoId = listadoProyectos.get((listadoProyectos.size - 1)).id + 1
                 Log.d(TAG, "Corriendo corrutina")
             }
+
+            println("listadoProyectos: $listadoProyectos")
 
             UsuarioData.totalProyectos.clear()
             UsuarioData.totalProyectos.addAll(listadoProyectos)

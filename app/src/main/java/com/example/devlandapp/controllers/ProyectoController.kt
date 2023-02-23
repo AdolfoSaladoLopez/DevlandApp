@@ -4,7 +4,9 @@ import android.content.ContentValues.TAG
 import android.util.Log
 import com.example.devlandapp.models.Proyecto
 import com.example.devlandapp.models.Usuario
+import com.google.firebase.firestore.CollectionReference
 import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.firestore.Query
 
 class ProyectoController : ProyectoDAO {
     override fun obtenerTodosProyectos(): MutableList<Proyecto> {
@@ -35,36 +37,32 @@ class ProyectoController : ProyectoDAO {
 
         db.whereEqualTo("estado", true)
 
-        if(ubicacion != " - "){
+        if (ubicacion != " - ") {
             db.whereEqualTo("ubicacion", ubicacion)
         }
-        if(modoTrabajo != " - "){
-            db.whereEqualTo("modoTrabajo", modoTrabajo)
-        }
-        if(tecnologia != " - "){
-            db.whereEqualTo("tecnologia", tecnologia)
-        }
-        if(idioma != " - "){
-            db.whereEqualTo("idioma", idioma)
-        }
+
         db.get()
-        .addOnSuccessListener {
-            for (proyecto in it) {
-                proyecto.toObject(Proyecto::class.java).let { it1 ->
-                    if (verProyectosLLenos!!) {
-                        listadoTotalProyectos.add(it1)
-                    } else {
-                        if (it1.usuariosSeleccionados.size < it1.numeroParticipantes!!) {
+            .addOnSuccessListener {
+                for (proyecto in it) {
+                    proyecto.toObject(Proyecto::class.java).let { it1 ->
+                        if (verProyectosLLenos!!) {
                             listadoTotalProyectos.add(it1)
                         } else {
-                            Log.d(TAG, "Este proyecto no cumple este filtro")
+                            if (it1.usuariosSeleccionados.size < it1.numeroParticipantes!!) {
+                                listadoTotalProyectos.add(it1)
+                            } else {
+                                Log.d(TAG, "Este proyecto no cumple este filtro")
+                            }
                         }
                     }
                 }
             }
-        }
-    return listadoTotalProyectos
-}
+
+        return listadoTotalProyectos
+    }
+
+
+
 
     override fun obtenerProyectoId(id: Int?): Proyecto {
         var proyecto: Proyecto = Proyecto()
