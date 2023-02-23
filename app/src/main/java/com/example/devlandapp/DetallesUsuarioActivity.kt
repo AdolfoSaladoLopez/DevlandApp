@@ -80,6 +80,7 @@ class DetallesUsuarioActivity : DrawerBaseActivity() {
             }
         }
     }
+    //asd
 
     private fun recuperarIntent() {
         val hashMap: ArrayList<Int> = intent.extras!!.getIntegerArrayList("id") as ArrayList<Int>

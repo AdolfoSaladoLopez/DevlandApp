@@ -21,6 +21,43 @@ class ProyectoController : ProyectoDAO {
         return listadoTotalProyectos
     }
 
+    override fun obtenerProyectosFiltrados(
+        ubicacion: String,
+        modoTrabajo: String,
+        tecnologia: String,
+        idioma: String,
+        verProyectosLLenos: Boolean
+    ): MutableList<Proyecto> {
+        val listadoTotalProyectos: MutableList<Proyecto> = mutableListOf()
+
+        val db = Db.conexion().collection("proyecto")
+
+
+            .whereEqualTo("ubicacion", ubicacion)
+            .whereEqualTo("modoTrabajo", modoTrabajo)
+            .whereEqualTo("tecnologia", tecnologia)
+            .whereEqualTo("idioma", idioma)
+            .get()
+            .addOnSuccessListener {
+                for (proyecto in it) {
+                    proyecto.toObject(Proyecto::class.java).let { it1 ->
+                        if (verProyectosLLenos) {
+                            listadoTotalProyectos.add(it1)
+                        } else {
+                            if (it1.usuariosSeleccionados.size < it1.numeroParticipantes!!) {
+                                listadoTotalProyectos.add(it1)
+                            } else {
+                                Log.d(TAG, "Este proyecto no cumple este filtro")
+                            }
+                        }
+                    }
+                }
+            }
+
+
+        return listadoTotalProyectos
+    }
+
     override fun obtenerProyectoId(id: Int?): Proyecto {
         var proyecto: Proyecto = Proyecto()
 

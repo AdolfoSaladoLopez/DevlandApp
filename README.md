@@ -1,4 +1,7 @@
-<H1 align="center" style="color:darkred" >DEVLAND </H1>
+
+<p align="center">
+<img src="https://i.ibb.co/pdPS8Fz/logo-removebg-preview.png" alt="logo-removebg-preview" border="0"></p>
+<H1 align="center" style="color:darkred" >DEVLAND</H1>
 
 <p align="center" style="color:darkred" >
 Realizado por: </br>
@@ -12,21 +15,27 @@ Salado, Adolfo.</p>
 <p align="center" style="color:darkred" >
 DOCUMENTACIÓN DEL PROYECTO
 </p>
+<p align="center">
 https://docs.google.com/document/d/1jpGYpiO9IHmyi2w990yAk7zoGQzITrzX49i-7lsxRJU/edit?usp=sharing
+</p>
 
 ---
 
 <p align="center" style="color:darkred" >
 DOCUMENTACIÓN DE INFORMACIÓN
 </p>
+<p align="center">
 https://docs.google.com/document/d/1iwOCIiokQApJibPSoYqmSjbx0j4zVi_zbs1DPGfyctk/edit?usp=sharing
+</p>
 
 ---
 
 <p align="center" style="color:darkred">
 TABLÓN TRELLO
 </p>
+<p align="center">
 https://trello.com/b/MTKaaNWP/no-dual-proyectos-para-desarrolladores
+</p>
 
 ---
 
@@ -51,3 +60,27 @@ https://www.canva.com/design/DAFU6AU5yNA/qvAAI4cF-MmzrMNNvWDmNQ/view?utm_content
 PRESENTACIÓN - SEMANA 6 - JUEVES, 22 DICIEMBRE: </br>
 https://docs.google.com/presentation/d/18gc5noSbnub0InTj71MB3FTjHPNS_YOvCAyXzz1Wzbg/edit?usp=sharing
 </br></br>
+
+---
+
+<p align="center" style="color:darkred">
+PRESENTACIÓN FINAL
+</p>
+<p align="center">
+https://docs.google.com/presentation/d/1F9RJsCZ7MQBfMSb-BKiJJYkGlTxnl6AJv2traRQfuoY/edit?usp=sharing
+</p>
+
+---
+
+<p align="center" style="color:darkred">
+GUION PRESENTACIÓN FINAL
+</p>
+<p align="center">
+https://docs.google.com/document/d/1x5gfr1WKTmL_jOHXm0hPszTocC1QpxaOPPhqwcq36_M/edit?usp=sharing
+</p>
+</br></br>
+
+<p align="center">
+<img src="https://i.ibb.co/hLFxFmz/octobiwan-removebg-preview.png" alt="octobiwan-removebg-preview" border="0" width="100px" height="100px">
+</p>
+
