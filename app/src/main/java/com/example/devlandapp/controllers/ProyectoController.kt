@@ -4,6 +4,9 @@ import android.content.ContentValues.TAG
 import android.util.Log
 import com.example.devlandapp.models.Proyecto
 import com.example.devlandapp.models.Usuario
+import com.google.firebase.firestore.CollectionReference
+import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.firestore.Query
 
 class ProyectoController : ProyectoDAO {
     override fun obtenerTodosProyectos(): MutableList<Proyecto> {
@@ -22,26 +25,27 @@ class ProyectoController : ProyectoDAO {
     }
 
     override fun obtenerProyectosFiltrados(
-        ubicacion: String,
-        modoTrabajo: String,
-        tecnologia: String,
-        idioma: String,
-        verProyectosLLenos: Boolean
+        ubicacion: String?,
+        modoTrabajo: String?,
+        tecnologia: String?,
+        idioma: String?,
+        verProyectosLLenos: Boolean?
     ): MutableList<Proyecto> {
         val listadoTotalProyectos: MutableList<Proyecto> = mutableListOf()
 
         val db = Db.conexion().collection("proyecto")
 
+        var consulta = db.whereEqualTo("estado", true)
 
-            .whereEqualTo("ubicacion", ubicacion)
-            .whereEqualTo("modoTrabajo", modoTrabajo)
-            .whereEqualTo("tecnologia", tecnologia)
-            .whereEqualTo("idioma", idioma)
-            .get()
+        if (ubicacion != " - ") {
+            consulta = consulta.whereEqualTo("ubicacion", ubicacion)
+        }
+
+        consulta.get()
             .addOnSuccessListener {
                 for (proyecto in it) {
                     proyecto.toObject(Proyecto::class.java).let { it1 ->
-                        if (verProyectosLLenos) {
+                        if (verProyectosLLenos!!) {
                             listadoTotalProyectos.add(it1)
                         } else {
                             if (it1.usuariosSeleccionados.size < it1.numeroParticipantes!!) {
@@ -54,9 +58,11 @@ class ProyectoController : ProyectoDAO {
                 }
             }
 
-
         return listadoTotalProyectos
     }
+
+
+
 
     override fun obtenerProyectoId(id: Int?): Proyecto {
         var proyecto: Proyecto = Proyecto()

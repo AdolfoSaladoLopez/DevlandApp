@@ -10,6 +10,7 @@ import android.widget.Toast
 import androidx.annotation.RequiresApi
 import androidx.core.content.ContextCompat
 import androidx.lifecycle.lifecycleScope
+import com.example.devlandapp.UsuarioData.Companion.usuario
 import com.example.devlandapp.controllers.Gestor
 import com.example.devlandapp.databinding.ActivityDetallesProyectoOtroBinding
 import com.example.devlandapp.models.Proyecto
@@ -41,6 +42,8 @@ class DetallesProyectoOtraPersonaActivity : DrawerBaseActivity() {
     private var totalProyectos: MutableList<Proyecto> = mutableListOf()
     private var totalUsuarios: MutableList<Usuario> = mutableListOf()
     var propiet: Usuario? = null
+    var interesado : Boolean = false
+
 
     @RequiresApi(Build.VERSION_CODES.M)
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -53,6 +56,17 @@ class DetallesProyectoOtraPersonaActivity : DrawerBaseActivity() {
         obtenerPropietario()
         iniciarVistas()
         rellenarVistas()
+
+       if(saberUsuariosInteresados(proyecto)){
+
+           btnEstoyInteresado.text = "No estoy interesado"
+           interesado = true
+       }
+        else{
+            btnEstoyInteresado.text = "Estoy interesado"
+
+       }
+
     }
 
     private fun recuperarIntent() {
@@ -135,5 +149,50 @@ class DetallesProyectoOtraPersonaActivity : DrawerBaseActivity() {
 
     fun darFuncionalidadBotones() {
 
+        btnEstoyInteresado = findViewById(R.id.estoyInteresado)
+
+
+
+
+        btnEstoyInteresado.setOnClickListener{
+
+            if (interesado == false) {
+                usuario.proyectosInteresadosId.add(proyecto.id)
+               proyecto.usuariosInteresadosId.add(usuario.id)
+
+                btnEstoyInteresado.text = "No estoy interesado"
+
+                Gestor.gestorProyectos.modificarProyecto(proyecto)
+                Gestor.gestorUsuarios.modificarUsuario(usuario)
+                interesado = true
+            }
+            else{
+
+                usuario.proyectosInteresadosId.remove(proyecto.id)
+                proyecto.usuariosInteresadosId.remove(usuario.id)
+
+                Gestor.gestorUsuarios.modificarUsuario(usuario)
+                Gestor.gestorProyectos.modificarProyecto(proyecto)
+
+                btnEstoyInteresado.text = "Estoy interesado"
+
+                interesado = false
+            }
+
+        }
     }
+
+    private fun saberUsuariosInteresados(proyecto: Proyecto): Boolean {
+        var estaInteresado = false
+        UsuarioData.totalUsuarios.forEach { usuario ->
+            usuario.proyectosInteresadosId.forEach { idProyecto ->
+                if (idProyecto == proyecto.id) {
+                    estaInteresado = true
+                }
+            }
+        }
+
+        return estaInteresado
+    }
+
 }

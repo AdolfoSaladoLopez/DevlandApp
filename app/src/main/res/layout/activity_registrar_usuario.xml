@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/gris"
+    android:background="#831B95"
     tools:context=".RegistrarUsuarioActivity">
 
     <LinearLayout
@@ -145,6 +145,19 @@
             android:layout_width="fill_parent"
             android:layout_height="wrap_content" />
 
+        <ImageView
+            android:id="@+id/info"
+            android:layout_width="match_parent"
+            android:layout_height="52dp"
+            android:layout_marginLeft="120dp"
+            android:layout_marginTop="15dp"
+            android:layout_marginRight="120dp"
+            android:background="#001F3DE6"
+            android:clickable="false"
+            app:srcCompat="@android:drawable/ic_dialog_info"
+            tools:ignore="SpeakableTextPresentCheck"
+            app:tint="#831b95" />
+
         <Button
             android:id="@+id/reg_register"
             android:layout_width="wrap_content"
@@ -153,5 +166,6 @@
             android:layout_marginTop="25dp"
             android:layout_marginBottom="25dp"
             android:text="Registrar" />
+
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

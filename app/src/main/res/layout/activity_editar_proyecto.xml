@@ -5,6 +5,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/gris"
+    android:backgroundTint="#202020"
+    android:foregroundTint="#2E2D2D"
     tools:context=".EditarProyectoActivity">
 
     <LinearLayout
@@ -72,7 +74,8 @@
                     android:gravity="start|top"
                     android:hint="@string/descripci_n_del_proyecto"
                     android:inputType="textMultiLine"
-                    android:textSize="20sp" />
+                    android:textSize="20sp"
+                    tools:ignore="SpeakableTextPresentCheck" />
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
@@ -194,6 +197,26 @@
 
             <LinearLayout
                 android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_margin="5sp"
+                android:layout_marginLeft="20sp"
+                android:gravity="center"
+                android:orientation="horizontal"
+                android:padding="15sp">
+
+                <Switch
+                    android:id="@+id/disponibilidad"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:minHeight="48dp"
+                    android:text="Disponibilidad"
+                    android:thumbTint="#300D68"
+                    android:trackTint="#300D68"/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="5sp"
                 android:layout_marginLeft="20sp"
@@ -229,14 +252,6 @@
                     tools:ignore="TouchTargetSizeCheck,SpeakableTextPresentCheck" />
             </LinearLayout>
 
-
-            <com.google.android.material.textfield.TextInputLayout
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content" />
-
-            <com.google.android.material.textfield.TextInputLayout
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content" />
 
             <com.google.android.material.textfield.TextInputLayout
                 android:layout_width="fill_parent"
