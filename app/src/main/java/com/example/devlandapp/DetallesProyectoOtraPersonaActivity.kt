@@ -10,6 +10,7 @@ import android.widget.Toast
 import androidx.annotation.RequiresApi
 import androidx.core.content.ContextCompat
 import androidx.lifecycle.lifecycleScope
+import com.example.devlandapp.UsuarioData.Companion.usuario
 import com.example.devlandapp.controllers.Gestor
 import com.example.devlandapp.databinding.ActivityDetallesProyectoOtroBinding
 import com.example.devlandapp.models.Proyecto
@@ -135,5 +136,34 @@ class DetallesProyectoOtraPersonaActivity : DrawerBaseActivity() {
 
     fun darFuncionalidadBotones() {
 
+        var interesado : Boolean = false
+        btnEstoyInteresado = findViewById(R.id.estoyInteresado)
+
+        btnEstoyInteresado.setOnClickListener{
+
+            if (interesado == false) {
+                usuario.proyectosInteresadosId.add(proyecto.id)
+               proyecto.usuariosInteresadosId.add(usuario.id)
+
+                btnEstoyInteresado.text = "No estoy interesado"
+
+                Gestor.gestorProyectos.modificarProyecto(proyecto)
+                Gestor.gestorUsuarios.modificarUsuario(usuario)
+                interesado = true
+            }
+            else{
+
+                usuario.proyectosInteresadosId.remove(proyecto.id)
+                proyecto.usuariosInteresadosId.remove(usuario.id)
+
+                Gestor.gestorUsuarios.modificarUsuario(usuario)
+                Gestor.gestorProyectos.modificarProyecto(proyecto)
+
+                btnEstoyInteresado.text = "Estoy interesado"
+
+                interesado = false
+            }
+
+        }
     }
 }
