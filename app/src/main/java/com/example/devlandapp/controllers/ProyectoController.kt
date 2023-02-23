@@ -35,13 +35,13 @@ class ProyectoController : ProyectoDAO {
 
         val db = Db.conexion().collection("proyecto")
 
-        db.whereEqualTo("estado", true)
+        var consulta = db.whereEqualTo("estado", true)
 
         if (ubicacion != " - ") {
-            db.whereEqualTo("ubicacion", ubicacion)
+            consulta = consulta.whereEqualTo("ubicacion", ubicacion)
         }
 
-        db.get()
+        consulta.get()
             .addOnSuccessListener {
                 for (proyecto in it) {
                     proyecto.toObject(Proyecto::class.java).let { it1 ->
