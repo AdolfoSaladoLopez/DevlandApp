@@ -46,15 +46,13 @@ class ProyectoAdapter(
 
         if (bandera != null) {
 
-           
-
             holder.titulo.text = bandera.nombre
             holder.descripcion.text = bandera.descripcion
             holder.fecha.text = bandera.fechaPublicacion
             holder.propietario.text =
                 "${bandera.propietario?.nombre} ${bandera.propietario?.apellidos}"
 
-            bandera.imagen?.let { holder.imagenPerfil.setImageResource(it) }
+            bandera.imagen.let { holder.imagenPerfil.setImageResource(it) }
 
 
             holder.corazon.setImageResource(R.drawable.outline_favorite_border_24)
@@ -66,7 +64,6 @@ class ProyectoAdapter(
                 }
                 holder.corazon.visibility = View.VISIBLE
             } else {
-
                 holder.corazon.visibility = View.INVISIBLE
             }
 

@@ -42,9 +42,10 @@ class DetallesProyectoOtraPersonaActivity : DrawerBaseActivity() {
     private var totalProyectos: MutableList<Proyecto> = mutableListOf()
     private var totalUsuarios: MutableList<Usuario> = mutableListOf()
     var propiet: Usuario? = null
-    var interesado : Boolean = false
+    var interesado: Boolean = false
 
 
+    @SuppressLint("SetTextI18n")
     @RequiresApi(Build.VERSION_CODES.M)
     override fun onCreate(savedInstanceState: Bundle?) {
         binding = ActivityDetallesProyectoOtroBinding.inflate(layoutInflater)
@@ -57,15 +58,14 @@ class DetallesProyectoOtraPersonaActivity : DrawerBaseActivity() {
         iniciarVistas()
         rellenarVistas()
 
-       if(saberUsuariosInteresados(proyecto)){
+        if (saberUsuariosInteresados(proyecto)) {
 
-           btnEstoyInteresado.text = "No estoy interesado"
-           interesado = true
-       }
-        else{
+            btnEstoyInteresado.text = "No estoy interesado"
+            interesado = true
+        } else {
             btnEstoyInteresado.text = "Estoy interesado"
 
-       }
+        }
 
     }
 
@@ -154,19 +154,18 @@ class DetallesProyectoOtraPersonaActivity : DrawerBaseActivity() {
 
 
 
-        btnEstoyInteresado.setOnClickListener{
+        btnEstoyInteresado.setOnClickListener {
 
             if (interesado == false) {
                 usuario.proyectosInteresadosId.add(proyecto.id)
-               proyecto.usuariosInteresadosId.add(usuario.id)
+                proyecto.usuariosInteresadosId.add(usuario.id)
 
                 btnEstoyInteresado.text = "No estoy interesado"
 
                 Gestor.gestorProyectos.modificarProyecto(proyecto)
                 Gestor.gestorUsuarios.modificarUsuario(usuario)
                 interesado = true
-            }
-            else{
+            } else {
 
                 usuario.proyectosInteresadosId.remove(proyecto.id)
                 proyecto.usuariosInteresadosId.remove(usuario.id)

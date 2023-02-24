@@ -61,9 +61,6 @@ class ProyectoController : ProyectoDAO {
         return listadoTotalProyectos
     }
 
-
-
-
     override fun obtenerProyectoId(id: Int?): Proyecto {
         var proyecto: Proyecto = Proyecto()
 

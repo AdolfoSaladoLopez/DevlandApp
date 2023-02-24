@@ -96,7 +96,6 @@ class FeedActivity : DrawerBaseActivity() {
                 delay(1000)
 
                 if (listadoProyectos.size > 0) {
-
                     comprobante = false
                     UsuarioData.ultimoId = listadoProyectos.get((listadoProyectos.size - 1)).id + 1
 
