@@ -91,6 +91,7 @@ class FeedActivity : DrawerBaseActivity() {
         var contador = 0
         lifecycleScope.launch {
             while (comprobante) {
+                listadoProyectos.clear()
                 listadoProyectos = Gestor.gestorProyectos.obtenerProyectosFiltrados(ubicacionElegida, modoTrabajoElegido, tecnologiaElegido, idiomaElegido, verProyectosLLenos)
                 delay(1000)
 
