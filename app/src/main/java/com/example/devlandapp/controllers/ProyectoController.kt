@@ -4,9 +4,6 @@ import android.content.ContentValues.TAG
 import android.util.Log
 import com.example.devlandapp.models.Proyecto
 import com.example.devlandapp.models.Usuario
-import com.google.firebase.firestore.CollectionReference
-import com.google.firebase.firestore.FirebaseFirestore
-import com.google.firebase.firestore.Query
 
 class ProyectoController : ProyectoDAO {
     override fun obtenerTodosProyectos(): MutableList<Proyecto> {

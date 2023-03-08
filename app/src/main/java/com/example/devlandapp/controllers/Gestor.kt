@@ -1,6 +1,5 @@
 package com.example.devlandapp.controllers
 
-
 class Gestor {
 
     companion object {

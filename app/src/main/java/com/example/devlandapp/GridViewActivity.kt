@@ -3,14 +3,12 @@ package com.example.devlandapp
 import android.os.Bundle
 import android.view.View
 import android.widget.GridView
-import android.widget.ImageView
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.example.devlandapp.adapters.ImageAdapter
 
 
 class GridViewActivity : AppCompatActivity() {
-    var listadoImagenes: MutableList<Int> = mutableListOf()
+    private var listadoImagenes: MutableList<Int> = mutableListOf()
     private var adaptador: ImageAdapter? = null
     var ultimaImagen: View? = null
 
@@ -19,7 +17,7 @@ class GridViewActivity : AppCompatActivity() {
         setContentView(R.layout.activity_grid_view)
 
         listadoImagenes.addAll(rellenarListadoImagenes())
-        var gridView: GridView = findViewById(R.id.grid)
+        val gridView: GridView = findViewById(R.id.grid)
         adaptador = ImageAdapter(this, R.layout.activity_grid_view, listadoImagenes);
         gridView.adapter = adaptador
         var imagen: Int = 0
@@ -39,7 +37,7 @@ class GridViewActivity : AppCompatActivity() {
         }
     }
 
-    fun rellenarListadoImagenes(): MutableList<Int> {
+    private fun rellenarListadoImagenes(): MutableList<Int> {
         var listado: MutableList<Int> = mutableListOf()
 
         for (num in 1..30) {

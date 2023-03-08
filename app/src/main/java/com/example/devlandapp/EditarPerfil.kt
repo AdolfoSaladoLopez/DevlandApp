@@ -16,7 +16,7 @@ class EditarPerfil : DrawerBaseActivity() {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
 
-        var id = UsuarioData.usuario.id
+        val id = UsuarioData.usuario.id
 
         val textViewNombre = findViewById<TextView>(R.id.editarPerfil_etNombre)
         val textViewApellido = findViewById<TextView>(R.id.editarPerfil_etApellido)

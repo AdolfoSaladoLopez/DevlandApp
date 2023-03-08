@@ -16,7 +16,6 @@ import com.example.devlandapp.databinding.ActivityCrearProyectoBinding
 import com.example.devlandapp.models.Proyecto
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
-import java.time.LocalDateTime
 
 class CrearProyectoActivity : DrawerBaseActivity() {
     private lateinit var binding: ActivityCrearProyectoBinding
@@ -25,15 +24,13 @@ class CrearProyectoActivity : DrawerBaseActivity() {
     var ubicacion: String = ""
     var tiempo: String = ""
     var modoTrabajo: String = ""
-    var ultimoId: Int = 0
-    var listadoProyectos: MutableList<Proyecto> = mutableListOf()
+    private var ultimoId: Int = 0
+    private var listadoProyectos: MutableList<Proyecto> = mutableListOf()
 
     @RequiresApi(Build.VERSION_CODES.O)
     @SuppressLint("CutPasteId")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
-
 
         binding = ActivityCrearProyectoBinding.inflate(layoutInflater)
         setContentView(binding.root)
@@ -71,7 +68,7 @@ class CrearProyectoActivity : DrawerBaseActivity() {
                 position: Int,
                 id: Long
             ) {
-               tecnologia = listaTecnologias[position]
+                tecnologia = listaTecnologias[position]
             }
 
             override fun onNothingSelected(parent: AdapterView<*>?) {}

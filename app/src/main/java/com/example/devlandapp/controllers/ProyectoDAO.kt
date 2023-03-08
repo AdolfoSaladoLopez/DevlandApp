@@ -13,6 +13,7 @@ interface ProyectoDAO {
         idioma: String?,
         verProyectosLLenos: Boolean?
     ): MutableList<Proyecto>
+
     fun obtenerProyectoId(id: Int?): Proyecto
     fun registrarProyecto(proyecto: Proyecto): Boolean
     fun modificarProyecto(proyecto: Proyecto): Boolean

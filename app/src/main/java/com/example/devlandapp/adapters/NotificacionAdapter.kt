@@ -18,8 +18,9 @@ import com.example.devlandapp.models.Proyecto
 class NotificacionAdapter(
     var context: Context?,
     var textViewResourceId: Int,
-    var elementos: MutableList<Notificacion>?,
-    ): BaseAdapter() {
+    private var elementos: MutableList<Notificacion>?,
+) : BaseAdapter() {
+
     override fun getCount(): Int {
         return elementos?.size ?: 0
     }

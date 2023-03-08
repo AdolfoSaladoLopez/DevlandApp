@@ -1,21 +1,12 @@
 package com.example.devlandapp
 
-import android.content.ContentValues
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import android.widget.ListView
-import androidx.lifecycle.lifecycleScope
-import com.example.devlandapp.adapters.ProyectoAdapter
-import com.example.devlandapp.adapters.ProyectosInteresadosAdapter
 import com.example.devlandapp.adapters.UsuarioAdapter
-import com.example.devlandapp.controllers.Gestor
-import com.example.devlandapp.databinding.ActivityProyectosInteresadosBinding
 import com.example.devlandapp.databinding.UsuariosInteresadosActivityBinding
 import com.example.devlandapp.models.Proyecto
 import com.example.devlandapp.models.Usuario
-import kotlinx.coroutines.delay
-import kotlinx.coroutines.launch
 
 class UsuariosInteresadosActivity : DrawerBaseActivity() {
     private lateinit var binding: UsuariosInteresadosActivityBinding
@@ -56,7 +47,7 @@ class UsuariosInteresadosActivity : DrawerBaseActivity() {
 
         lista = findViewById(R.id.misProyectos)
         lista.setOnItemClickListener { _, _, position, _ ->
-            var arrayList: ArrayList<Int> = arrayListOf()
+            val arrayList: ArrayList<Int> = arrayListOf()
             arrayList.add(usuariosInteresados[position].id)
             arrayList.add(proyecto.id)
             intent2.putExtra("id", arrayList)
@@ -88,7 +79,7 @@ class UsuariosInteresadosActivity : DrawerBaseActivity() {
     }
 
     private fun obtenerUsuarios(listadoUsuariosId: MutableList<Int>): MutableList<Usuario> {
-        var listadoUsuariosEncontrados: MutableList<Usuario> = mutableListOf()
+        val listadoUsuariosEncontrados: MutableList<Usuario> = mutableListOf()
 
         totalUsuarios.forEach { usuario ->
             listadoUsuariosId.forEach { id ->

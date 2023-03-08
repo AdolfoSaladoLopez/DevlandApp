@@ -14,8 +14,5 @@ interface UsuarioDAO {
     fun obtenerProyectosInteresadosId(usuario: Usuario): MutableList<Int>?
     fun obtenerProyectosCreados(usuario: Usuario?): MutableList<Proyecto>?
     fun obtenerProyectosCreadosUsuarioId(usuario: Usuario): MutableList<Int>
-
     fun obtenerProyectosCreadosUsuario(listadoProyectosCreadosId: MutableList<Int>): MutableList<Proyecto>
-
-
 }

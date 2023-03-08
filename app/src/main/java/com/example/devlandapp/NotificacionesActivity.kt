@@ -11,7 +11,6 @@ import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 
 class NotificacionesActivity : DrawerBaseActivity() {
-
     private var listaNotificaciones: MutableList<Notificacion> = mutableListOf()
     lateinit var adapter: NotificacionAdapter
     lateinit var binding: ActivityNotificacionesBinding
@@ -26,7 +25,8 @@ class NotificacionesActivity : DrawerBaseActivity() {
             var comprobante = true
 
             while (comprobante) {
-                listaNotificaciones = Gestor.gestorNotificaciones.obtenerTodasNotificacionesDeUnUsuario(usuario)
+                listaNotificaciones =
+                    Gestor.gestorNotificaciones.obtenerTodasNotificacionesDeUnUsuario(usuario)
 
                 delay(1000)
 
@@ -48,7 +48,10 @@ class NotificacionesActivity : DrawerBaseActivity() {
                 val notificacion = listaNotificaciones[position]
                 notificacion.leido = true
                 adapter.notifyDataSetChanged()
-                val intent = Intent(this@NotificacionesActivity, DetallesProyectoOtraPersonaActivity::class.java)
+                val intent = Intent(
+                    this@NotificacionesActivity,
+                    DetallesProyectoOtraPersonaActivity::class.java
+                )
                 intent.putExtra("idProyecto", notificacion.idProyecto)
                 startActivity(intent)
             }

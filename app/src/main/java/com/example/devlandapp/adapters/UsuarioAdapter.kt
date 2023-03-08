@@ -23,7 +23,7 @@ import kotlinx.coroutines.launch
 class UsuarioAdapter(
     var context: Context?,
     var textViewResourceId: Int,
-    var elementos: MutableList<Usuario>?,
+    private var elementos: MutableList<Usuario>?,
 ) : BaseAdapter() {
 
     @SuppressLint("SetTextI18n")

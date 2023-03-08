@@ -4,8 +4,6 @@ import android.content.ContentValues.TAG
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
-import android.view.View
-import android.widget.ImageView
 import android.widget.ListView
 import android.widget.Toast
 import androidx.lifecycle.lifecycleScope
@@ -41,25 +39,25 @@ class FeedActivity : DrawerBaseActivity() {
 
         traerTodosUsuarios()
 
-            ubicacionElegida = intent.extras?.getString("ubicacion")
-            modoTrabajoElegido = intent.extras?.getString("modo")
-            tecnologiaElegido = intent.extras?.getString("tecnologia")
-            idiomaElegido = intent.extras?.getString("idioma")
-            verProyectosLLenos = intent.extras?.getBoolean("verProyectosLLenos")
+        ubicacionElegida = intent.extras?.getString("ubicacion")
+        modoTrabajoElegido = intent.extras?.getString("modo")
+        tecnologiaElegido = intent.extras?.getString("tecnologia")
+        idiomaElegido = intent.extras?.getString("idioma")
+        verProyectosLLenos = intent.extras?.getBoolean("verProyectosLLenos")
 
-        if(ubicacionElegida == null){
+        if (ubicacionElegida == null) {
             ubicacionElegida = " - "
         }
-        if(modoTrabajoElegido == null){
+        if (modoTrabajoElegido == null) {
             modoTrabajoElegido = " - "
         }
-        if(tecnologiaElegido == null){
+        if (tecnologiaElegido == null) {
             tecnologiaElegido = " - "
         }
-        if(idiomaElegido == null){
+        if (idiomaElegido == null) {
             idiomaElegido = " - "
         }
-        if(verProyectosLLenos == null){
+        if (verProyectosLLenos == null) {
             verProyectosLLenos = true
         }
 
@@ -89,10 +87,17 @@ class FeedActivity : DrawerBaseActivity() {
     private fun obtenerTotalProyectos(intent: Intent, intent2: Intent) {
         var comprobante = true
         var contador = 0
+
         lifecycleScope.launch {
             while (comprobante) {
                 listadoProyectos.clear()
-                listadoProyectos = Gestor.gestorProyectos.obtenerProyectosFiltrados(ubicacionElegida, modoTrabajoElegido, tecnologiaElegido, idiomaElegido, verProyectosLLenos)
+                listadoProyectos = Gestor.gestorProyectos.obtenerProyectosFiltrados(
+                    ubicacionElegida,
+                    modoTrabajoElegido,
+                    tecnologiaElegido,
+                    idiomaElegido,
+                    verProyectosLLenos
+                )
                 delay(1000)
 
                 if (listadoProyectos.size > 0) {
@@ -104,7 +109,11 @@ class FeedActivity : DrawerBaseActivity() {
 
                 if (contador == 10) {
                     comprobante = false
-                    Toast.makeText(this@FeedActivity, "No hay proyectos que cumplan los filtros", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(
+                        this@FeedActivity,
+                        "No hay proyectos que cumplan los filtros",
+                        Toast.LENGTH_SHORT
+                    ).show()
                 }
 
                 Log.d(TAG, "Corriendo corrutina")

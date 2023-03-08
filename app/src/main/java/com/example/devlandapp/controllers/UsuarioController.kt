@@ -2,11 +2,8 @@ package com.example.devlandapp.controllers
 
 import android.content.ContentValues.TAG
 import android.util.Log
-import androidx.lifecycle.LifecycleCoroutineScope
 import com.example.devlandapp.models.Proyecto
 import com.example.devlandapp.models.Usuario
-import com.google.firebase.firestore.ktx.toObject
-import kotlinx.coroutines.*
 
 class UsuarioController : UsuarioDAO {
 

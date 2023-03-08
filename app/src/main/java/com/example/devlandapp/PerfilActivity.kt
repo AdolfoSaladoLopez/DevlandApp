@@ -17,7 +17,7 @@ class PerfilActivity : DrawerBaseActivity() {
 
         setContentView(binding.root)
 
-        var usuario = UsuarioData.usuario
+        val usuario = UsuarioData.usuario
 
         binding.nombreApellidosPerfil.text = "${usuario.nombre} ${usuario.apellidos}"
         binding.emailPerfil.text = usuario.email

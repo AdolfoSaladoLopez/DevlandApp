@@ -174,7 +174,6 @@ class DetallesProyectoOtraPersonaActivity : DrawerBaseActivity() {
                 btnEstoyInteresado.text = "Interesarme"
                 interesado = false
             }
-
         }
     }
 

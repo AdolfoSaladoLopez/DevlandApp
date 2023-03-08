@@ -13,7 +13,7 @@ import android.widget.ImageView
 class ImageAdapter(
     var context: Context?,
     var textViewResourceId: Int,
-    var elementos: MutableList<Int>?,
+    private var elementos: MutableList<Int>?,
 ) : BaseAdapter() {
 
     @SuppressLint("SetTextI18n")

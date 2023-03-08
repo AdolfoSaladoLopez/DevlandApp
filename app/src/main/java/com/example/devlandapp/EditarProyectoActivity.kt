@@ -1,5 +1,6 @@
 package com.example.devlandapp
 
+import android.annotation.SuppressLint
 import android.content.ContentValues
 import android.content.Intent
 import android.os.Build
@@ -28,8 +29,8 @@ class EditarProyectoActivity : DrawerBaseActivity() {
     var ubicacion: String = ""
     var tiempo: String = ""
     var modoTrabajo: String = ""
-    var ultimoId: Int = 0
-    var listadoProyectos: MutableList<Proyecto> = mutableListOf()
+    private var ultimoId: Int = 0
+    private var listadoProyectos: MutableList<Proyecto> = mutableListOf()
     private var totalProyectos: MutableList<Proyecto> = mutableListOf()
     private var valor by Delegates.notNull<Int>()
 
@@ -39,6 +40,7 @@ class EditarProyectoActivity : DrawerBaseActivity() {
     }
 
 
+    @SuppressLint("CutPasteId", "UseSwitchCompatOrMaterialCode")
     @RequiresApi(Build.VERSION_CODES.O)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -106,16 +108,11 @@ class EditarProyectoActivity : DrawerBaseActivity() {
                 spinnerUbicacion.setSelection(valorUbicacion)
                 spinnerDuracion.setSelection(valorTiempo)
 
-                if(UsuarioData.totalProyectos[i].estado == true){
+                if (UsuarioData.totalProyectos[i].estado) {
                     disponibilidad.isChecked = true
                 }
-                else{
-                }
-
-
             }
         }
-
 
         spinnerTecnologias.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
             override fun onItemSelected(
@@ -350,7 +347,6 @@ class EditarProyectoActivity : DrawerBaseActivity() {
             }
 
             ultimoId = listadoProyectos.size
-            val datetime = LocalDateTime.now()
 
             val editTextNombreProyecto = findViewById<EditText>(R.id.etdTiulo)
             val editTextCantidadProyecto = findViewById<EditText>(R.id.etdparticipantes)
@@ -366,16 +362,15 @@ class EditarProyectoActivity : DrawerBaseActivity() {
                 comprobardescripcion(editTextDescripcionProyecto.text.toString())
             ) {
 
-                var nombreProyecto = editTextNombreProyecto!!.text.toString()
-                var cantidadProyecto: Int = editTextCantidadProyecto!!.text.toString().toInt()
-                var descripcionProyecto = editTextDescripcionProyecto!!.text.toString()
-                var duracion = editTextDuracion!!.text.toString()
-                var tiempoProyecto = "$duracion $tiempo"
-
+                val nombreProyecto = editTextNombreProyecto!!.text.toString()
+                val cantidadProyecto: Int = editTextCantidadProyecto!!.text.toString().toInt()
+                val descripcionProyecto = editTextDescripcionProyecto!!.text.toString()
+                val duracion = editTextDuracion!!.text.toString()
+                val tiempoProyecto = "$duracion $tiempo"
 
 
                 var proyecto: Proyecto = Proyecto()
-                var usuario = UsuarioData.usuario
+                val usuario = UsuarioData.usuario
 
                 proyecto = Proyecto(
                     valor,
@@ -435,11 +430,12 @@ class EditarProyectoActivity : DrawerBaseActivity() {
             dia1 = datetime.dayOfMonth.toString()
         }
 
-        if (datetime.monthValue < 10) {
-            mes1 = "0${datetime.monthValue}"
+        mes1 = if (datetime.monthValue < 10) {
+            "0${datetime.monthValue}"
         } else {
-            mes1 = datetime.monthValue.toString()
+            datetime.monthValue.toString()
         }
+
         return Pair(dia1, mes1)
     }
 
@@ -455,22 +451,16 @@ class EditarProyectoActivity : DrawerBaseActivity() {
         return !TextUtils.isEmpty(tiempo)
     }
 
-    private fun switchchecked() : Boolean{
+    @SuppressLint("UseSwitchCompatOrMaterialCode")
+    private fun switchchecked(): Boolean {
 
         var disponibilidad = findViewById<Switch>(R.id.disponibilidad)
 
-        if(disponibilidad.isChecked){
-           return true
-        }
-        else{
-            return false
-        }
-        return false
+        return disponibilidad.isChecked
     }
 
     private fun goToFeed() {
         val intent = Intent(this, FeedActivity::class.java)
-        // Evita que pasemos de nuevo a la activity login
         startActivity(intent)
     }
 }

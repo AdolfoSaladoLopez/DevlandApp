@@ -18,9 +18,9 @@ class DetallesUsuarioActivity : DrawerBaseActivity() {
     private var idProyecto = 0
     var totalUsuarios: MutableList<Usuario> = mutableListOf()
     var totalProyectos: MutableList<Proyecto> = mutableListOf()
-    var usuarioObtenido: Usuario = Usuario()
-    var proyectoObtenido: Proyecto = Proyecto()
-    var lista = Gestor.gestorNotificaciones.obtenerTodasNotificaciones()
+    private var usuarioObtenido: Usuario = Usuario()
+    private var proyectoObtenido: Proyecto = Proyecto()
+    private var lista = Gestor.gestorNotificaciones.obtenerTodasNotificaciones()
 
     init {
         totalProyectos.addAll(UsuarioData.totalProyectos)
@@ -59,10 +59,19 @@ class DetallesUsuarioActivity : DrawerBaseActivity() {
 
                     lista = Gestor.gestorNotificaciones.obtenerTodasNotificaciones()
 
-                    val id = lista.get(lista.size-1).id + 1
+                    val id = lista.get(lista.size - 1).id + 1
 
-                    val texto = "El usuario ${usuario.nombre} ${usuario.apellidos} te ha seleccionado para el proyecto ${proyectoObtenido.nombre}"
-                    val notificacion = Notificacion(id, texto, false,null,  usuarioObtenido.id,null, proyectoObtenido.id)
+                    val texto =
+                        "El usuario ${usuario.nombre} ${usuario.apellidos} te ha seleccionado para el proyecto ${proyectoObtenido.nombre}"
+                    val notificacion = Notificacion(
+                        id,
+                        texto,
+                        false,
+                        null,
+                        usuarioObtenido.id,
+                        null,
+                        proyectoObtenido.id
+                    )
                     Gestor.gestorNotificaciones.registrarNotificacion(notificacion)
                 } else {
                     Toast.makeText(this, "No puede añadir más participantes.", Toast.LENGTH_SHORT)
@@ -76,13 +85,22 @@ class DetallesUsuarioActivity : DrawerBaseActivity() {
 
                 binding.btnSeleccionar.text = "SELECCIONAR USUARIOS"
 
-                val texto = "El usuario ${usuario.nombre} ${usuario.apellidos} te ha deseleccionado para el proyecto ${proyectoObtenido.nombre}"
+                val texto =
+                    "El usuario ${usuario.nombre} ${usuario.apellidos} te ha deseleccionado para el proyecto ${proyectoObtenido.nombre}"
 
                 lista = Gestor.gestorNotificaciones.obtenerTodasNotificaciones()
 
-                val id = lista.get(lista.size-1).id + 1
+                val id = lista.get(lista.size - 1).id + 1
 
-                val notificacion = Notificacion(id, texto, false,null,  usuarioObtenido.id,null, proyectoObtenido.id)
+                val notificacion = Notificacion(
+                    id,
+                    texto,
+                    false,
+                    null,
+                    usuarioObtenido.id,
+                    null,
+                    proyectoObtenido.id
+                )
                 Gestor.gestorNotificaciones.registrarNotificacion(notificacion)
 
             }

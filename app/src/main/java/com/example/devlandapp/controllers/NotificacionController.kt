@@ -55,7 +55,7 @@ class NotificacionController : NotificacionDAO {
     }
 
     override fun eliminarNotificacionPorIdProyecto(proyecto: Proyecto): Boolean {
-        var totalNotificaciones: MutableList<Notificacion> = obtenerTodasNotificaciones()
+        val totalNotificaciones: MutableList<Notificacion> = obtenerTodasNotificaciones()
         var comprobante = false
 
         totalNotificaciones.forEach {

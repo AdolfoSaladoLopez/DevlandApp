@@ -1,29 +1,18 @@
 package com.example.devlandapp
 
 import android.annotation.SuppressLint
-import android.content.ClipData
-import android.content.Context
 import android.content.Intent
-import android.graphics.Color
-import android.graphics.drawable.LayerDrawable
-import android.text.Html
-import android.util.AttributeSet
 import android.view.View
 import android.widget.FrameLayout
-import android.widget.ImageView
-import android.widget.TextView
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
 import androidx.core.view.GravityCompat
 import androidx.drawerlayout.widget.DrawerLayout
-import com.google.android.material.badge.BadgeDrawable
-import com.google.android.material.badge.BadgeUtils
-import com.google.android.material.chip.ChipDrawable.createFromAttributes
 import com.google.android.material.navigation.NavigationView
 
 open class DrawerBaseActivity : AppCompatActivity() {
-    lateinit var drawerLayout: DrawerLayout
+    private lateinit var drawerLayout: DrawerLayout
 
     @SuppressLint("UnsafeOptInUsageError")
     override fun setContentView(view: View) {
@@ -116,7 +105,7 @@ open class DrawerBaseActivity : AppCompatActivity() {
         overridePendingTransition(0, 0)
     }
 
-    private fun goToLogin(){
+    private fun goToLogin() {
         val intent = Intent(this, LoginActivity::class.java)
         startActivity(intent)
     }

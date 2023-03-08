@@ -18,7 +18,7 @@ import kotlinx.coroutines.DelicateCoroutinesApi
 class ProyectoAdapter(
     var context: Context?,
     var textViewResourceId: Int,
-    var elementos: MutableList<Proyecto>?,
+    private var elementos: MutableList<Proyecto>?,
 ) : BaseAdapter() {
 
     private var listadoProyectosInteresadosId: MutableList<Int>? = mutableListOf()
@@ -53,8 +53,7 @@ class ProyectoAdapter(
         holder.titulo.text = bandera.nombre
         holder.descripcion.text = bandera.descripcion
         holder.fecha.text = bandera.fechaPublicacion
-        holder.propietario.text =
-            "${bandera.propietario?.nombre} ${bandera.propietario?.apellidos}"
+        holder.propietario.text = "${bandera.propietario?.nombre} ${bandera.propietario?.apellidos}"
 
         bandera.imagen.let { holder.imagenPerfil.setImageResource(it) }
 
