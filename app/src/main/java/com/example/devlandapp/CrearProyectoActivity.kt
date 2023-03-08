@@ -127,8 +127,8 @@ class CrearProyectoActivity : DrawerBaseActivity() {
         }
 
         binding.crear.setOnClickListener {
-
             var comprobante: Boolean = true
+
             lifecycleScope.launch {
                 while (comprobante) {
                     listadoProyectos = Gestor.gestorProyectos.obtenerTodosProyectos()
@@ -156,14 +156,14 @@ class CrearProyectoActivity : DrawerBaseActivity() {
                 comprobardescripcion(editTextDescripcionProyecto.text.toString())
             ) {
 
-                var nombreProyecto = editTextNombreProyecto!!.text.toString()
-                var cantidadProyecto: Int = editTextCantidadProyecto!!.text.toString().toInt()
-                var descripcionProyecto = editTextDescripcionProyecto!!.text.toString()
-                var duracion = editTextDuracion!!.text.toString()
-                var tiempoProyecto = "$duracion $tiempo"
+                val nombreProyecto = editTextNombreProyecto!!.text.toString()
+                val cantidadProyecto: Int = editTextCantidadProyecto!!.text.toString().toInt()
+                val descripcionProyecto = editTextDescripcionProyecto!!.text.toString()
+                val duracion = editTextDuracion!!.text.toString()
+                val tiempoProyecto = "$duracion $tiempo"
 
                 var proyecto: Proyecto = Proyecto()
-                var usuario = UsuarioData.usuario
+                val usuario = UsuarioData.usuario
 
                 proyecto = Proyecto(
                     UsuarioData.ultimoId,
