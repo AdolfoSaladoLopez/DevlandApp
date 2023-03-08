@@ -143,13 +143,10 @@ class CrearProyectoActivity : DrawerBaseActivity() {
 
             ultimoId = listadoProyectos.size
 
-
             val editTextNombreProyecto = findViewById<EditText>(R.id.etTiulo)
             val editTextCantidadProyecto = findViewById<EditText>(R.id.participantes)
             val editTextDescripcionProyecto = findViewById<EditText>(R.id.etDescripcion)
-
             val editTextDuracion = findViewById<EditText>(R.id.duracion)
-            val spinnerTiempo = findViewById<Spinner>(R.id.tiempo)
 
             if (comprobarnombre(editTextNombreProyecto.text.toString()) &&
                 comprobartiempo(editTextDuracion.text.toString()) &&
