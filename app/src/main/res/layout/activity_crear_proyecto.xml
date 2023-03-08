@@ -217,7 +217,7 @@
                     android:layout_width="50sp"
                     android:layout_height="match_parent"
                     android:layout_marginStart="10sp"
-                    android:hint="1"
+                    android:hint="0"
                     android:inputType="number"
                     android:textAlignment="center"
                     android:textSize="20sp" />

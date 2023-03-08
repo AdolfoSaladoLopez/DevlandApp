@@ -175,7 +175,7 @@ class CrearProyectoActivity : DrawerBaseActivity() {
                     cantidadProyecto,
                     usuario,
                     UsuarioData.usuario.id,
-                    R.drawable.default_icon,
+                    R.drawable.terminal,
                 )
 
                 if (Gestor.gestorProyectos.registrarProyecto(proyecto)) {
