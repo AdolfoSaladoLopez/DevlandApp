@@ -41,8 +41,13 @@ class DetallesProyectoOtraPersonaActivity : DrawerBaseActivity() {
     private lateinit var btnEstoyInteresado: Button
     private var totalProyectos: MutableList<Proyecto> = mutableListOf()
     private var totalUsuarios: MutableList<Usuario> = mutableListOf()
-    var propiet: Usuario? = null
-    var interesado: Boolean = false
+    private var propiet: Usuario? = null
+    private var interesado: Boolean = false
+    private var listadoProyectosInteresadosId: MutableList<Int> = mutableListOf()
+
+    init {
+        listadoProyectosInteresadosId.addAll(UsuarioData.usuario.proyectosInteresadosId)
+    }
 
 
     @SuppressLint("SetTextI18n")
@@ -59,12 +64,10 @@ class DetallesProyectoOtraPersonaActivity : DrawerBaseActivity() {
         rellenarVistas()
 
         if (saberUsuariosInteresados(proyecto)) {
-
-            btnEstoyInteresado.text = "No estoy interesado"
+            btnEstoyInteresado.text = "Dejar de interesarme"
             interesado = true
         } else {
-            btnEstoyInteresado.text = "Estoy interesado"
-
+            btnEstoyInteresado.text = "Interesarme"
         }
 
     }
@@ -147,34 +150,28 @@ class DetallesProyectoOtraPersonaActivity : DrawerBaseActivity() {
         darFuncionalidadBotones()
     }
 
+    @SuppressLint("SetTextI18n")
     fun darFuncionalidadBotones() {
-
         btnEstoyInteresado = findViewById(R.id.estoyInteresado)
-
-
-
-
         btnEstoyInteresado.setOnClickListener {
-
-            if (interesado == false) {
+            if (!interesado ) {
                 usuario.proyectosInteresadosId.add(proyecto.id)
                 proyecto.usuariosInteresadosId.add(usuario.id)
 
-                btnEstoyInteresado.text = "No estoy interesado"
+                btnEstoyInteresado.text = "Dejar de interesarme"
 
                 Gestor.gestorProyectos.modificarProyecto(proyecto)
                 Gestor.gestorUsuarios.modificarUsuario(usuario)
+
                 interesado = true
             } else {
-
                 usuario.proyectosInteresadosId.remove(proyecto.id)
                 proyecto.usuariosInteresadosId.remove(usuario.id)
 
                 Gestor.gestorUsuarios.modificarUsuario(usuario)
                 Gestor.gestorProyectos.modificarProyecto(proyecto)
 
-                btnEstoyInteresado.text = "Estoy interesado"
-
+                btnEstoyInteresado.text = "Interesarme"
                 interesado = false
             }
 
@@ -183,11 +180,10 @@ class DetallesProyectoOtraPersonaActivity : DrawerBaseActivity() {
 
     private fun saberUsuariosInteresados(proyecto: Proyecto): Boolean {
         var estaInteresado = false
-        UsuarioData.totalUsuarios.forEach { usuario ->
-            usuario.proyectosInteresadosId.forEach { idProyecto ->
-                if (idProyecto == proyecto.id) {
-                    estaInteresado = true
-                }
+
+        listadoProyectosInteresadosId?.forEach { id ->
+            if (id == proyecto.id) {
+                estaInteresado = true
             }
         }
 

@@ -111,6 +111,23 @@ class UsuarioController : UsuarioDAO {
         return listadoProyectosInteresados
     }
 
+    override fun obtenerProyectosInteresadosId(usuario: Usuario): MutableList<Int>? {
+        var listado: MutableList<Int> = mutableListOf()
+
+        Db.conexion().collection("usuario")
+            .document(usuario.id.toString())
+            .get()
+            .addOnSuccessListener { document ->
+                if (document != null) {
+                    var usuario = document.toObject(Usuario::class.java)!!
+
+                    listado.addAll(usuario.proyectosInteresadosId)
+                }
+            }
+
+        return listado
+    }
+
     override fun obtenerProyectosCreados(usuario: Usuario?): MutableList<Proyecto>? {
         var listadoProyectosCreadosId: MutableList<Int>? = usuario?.proyectosInteresadosId
         var listadoProyectosCreados: MutableList<Proyecto> = mutableListOf()
