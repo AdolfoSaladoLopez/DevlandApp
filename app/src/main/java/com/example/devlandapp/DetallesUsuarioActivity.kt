@@ -57,7 +57,12 @@ class DetallesUsuarioActivity : DrawerBaseActivity() {
 
                     lista = Gestor.gestorNotificaciones.obtenerTodasNotificaciones()
 
-                    val id = lista[lista.size - 1].id + 1
+
+                    var id = if (lista.size == 0) {
+                        0
+                    } else {
+                        lista[lista.size - 1].id + 1
+                    }
 
                     val texto =
                         "El usuario ${usuario.nombre} ${usuario.apellidos} te ha seleccionado para el proyecto ${proyectoObtenido.nombre}"
@@ -88,7 +93,11 @@ class DetallesUsuarioActivity : DrawerBaseActivity() {
 
                 lista = Gestor.gestorNotificaciones.obtenerTodasNotificaciones()
 
-                val id = lista[lista.size - 1].id + 1
+                val id = if (lista.size == 0) {
+                    0
+                } else {
+                    lista[lista.size - 1].id + 1
+                }
 
                 val notificacion = Notificacion(
                     id,
