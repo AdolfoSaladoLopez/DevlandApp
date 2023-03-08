@@ -29,18 +29,19 @@
             android:id="@+id/nombre_apellidos_perfil"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Fernando Pérez"
+            android:text="Ejemplo"
             android:textColor="@color/black"
             android:textSize="35sp"
             android:textStyle="bold" />
 
         <TextView
             android:id="@+id/email_perfil"
-            android:layout_width="wrap_content"
+            android:layout_width="300sp"
             android:layout_height="wrap_content"
-            android:text="FernandoPerez@gmail.com"
+            android:text="Ejemplo@gmail.com"
             android:textColor="@color/black"
-            android:textSize="25sp" />
+            android:textSize="25sp"
+            android:textAlignment="center"/>
 
         <TextView
             android:id="@+id/descripcion_perfil"
