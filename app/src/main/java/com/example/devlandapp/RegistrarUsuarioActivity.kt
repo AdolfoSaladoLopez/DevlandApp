@@ -79,7 +79,7 @@ class RegistrarUsuarioActivity : AppCompatActivity() {
                 usuario.apellidos = apellido
                 usuario.email = email
                 usuario.password = contraseña
-                usuario.imagen = R.drawable.person
+                usuario.imagen = R.drawable.default_icon
                 usuario.administrador = false
 
                 if (Gestor.gestorUsuarios.registrarUsuario(usuario)) {
