@@ -12,11 +12,10 @@ import com.example.devlandapp.models.Usuario
 
 @SuppressLint("SetTextI18n")
 class DetallesUsuarioActivity : DrawerBaseActivity() {
-
     private lateinit var binding: ActivityDetallesUsuarioBinding
     private var idUsuario = 0
     private var idProyecto = 0
-    var totalUsuarios: MutableList<Usuario> = mutableListOf()
+    private var totalUsuarios: MutableList<Usuario> = mutableListOf()
     var totalProyectos: MutableList<Proyecto> = mutableListOf()
     private var usuarioObtenido: Usuario = Usuario()
     private var proyectoObtenido: Proyecto = Proyecto()
@@ -49,7 +48,6 @@ class DetallesUsuarioActivity : DrawerBaseActivity() {
         }
 
         binding.btnSeleccionar.setOnClickListener {
-
             if (!saberSiUsuarioEstaSeleccionado(usuarioObtenido)) {
                 if (proyectoObtenido.usuariosSeleccionadosId.size < proyectoObtenido.numeroParticipantes!!) {
                     proyectoObtenido.usuariosSeleccionadosId.add(usuarioObtenido.id)
@@ -59,26 +57,26 @@ class DetallesUsuarioActivity : DrawerBaseActivity() {
 
                     lista = Gestor.gestorNotificaciones.obtenerTodasNotificaciones()
 
-                    val id = lista.get(lista.size - 1).id + 1
+                    val id = lista[lista.size - 1].id + 1
 
                     val texto =
                         "El usuario ${usuario.nombre} ${usuario.apellidos} te ha seleccionado para el proyecto ${proyectoObtenido.nombre}"
+
                     val notificacion = Notificacion(
                         id,
                         texto,
                         false,
-                        null,
+                        usuarioObtenido,
                         usuarioObtenido.id,
-                        null,
+                        proyectoObtenido,
                         proyectoObtenido.id
                     )
+
                     Gestor.gestorNotificaciones.registrarNotificacion(notificacion)
                 } else {
                     Toast.makeText(this, "No puede añadir más participantes.", Toast.LENGTH_SHORT)
                         .show()
-
                 }
-
             } else {
                 proyectoObtenido.usuariosSeleccionadosId.remove(usuarioObtenido.id)
                 Gestor.gestorProyectos.modificarProyecto(proyectoObtenido)
@@ -90,36 +88,31 @@ class DetallesUsuarioActivity : DrawerBaseActivity() {
 
                 lista = Gestor.gestorNotificaciones.obtenerTodasNotificaciones()
 
-                val id = lista.get(lista.size - 1).id + 1
+                val id = lista[lista.size - 1].id + 1
 
                 val notificacion = Notificacion(
                     id,
                     texto,
                     false,
-                    null,
+                    usuarioObtenido,
                     usuarioObtenido.id,
-                    null,
+                    proyectoObtenido,
                     proyectoObtenido.id
                 )
-                Gestor.gestorNotificaciones.registrarNotificacion(notificacion)
 
+                Gestor.gestorNotificaciones.registrarNotificacion(notificacion)
             }
         }
     }
-    //asd
 
     private fun recuperarIntent() {
         val hashMap: ArrayList<Int> = intent.extras!!.getIntegerArrayList("id") as ArrayList<Int>
         idUsuario = hashMap[0]
         idProyecto = hashMap[1]
-
-        println("EL ID DEL USUARIO ES: " + idUsuario)
     }
 
     private fun obtenerUsuarioPorId(): Usuario {
         var usuario = Usuario()
-
-        println("TAMAÑO DE LOS USUARIOS: " + totalUsuarios.size)
 
         totalUsuarios.forEach {
             if (it.id == idUsuario) {
@@ -127,7 +120,6 @@ class DetallesUsuarioActivity : DrawerBaseActivity() {
             }
         }
 
-        println("El usuario recuperado es: " + usuario.nombre)
         return usuario
     }
 
@@ -140,7 +132,6 @@ class DetallesUsuarioActivity : DrawerBaseActivity() {
             }
         }
 
-        println("EL ID DEL PROYECTO ES: " + proyecto.id)
         return proyecto
     }
 

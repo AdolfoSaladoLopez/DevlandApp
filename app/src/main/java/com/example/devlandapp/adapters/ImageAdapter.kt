@@ -1,6 +1,5 @@
 package com.example.devlandapp.adapters
 
-import android.R
 import android.annotation.SuppressLint
 import android.content.Context
 import android.view.LayoutInflater

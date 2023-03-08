@@ -16,7 +16,7 @@ class ProyectosInteresadosAdapter(
     private var elementos: MutableList<Proyecto>?,
 ) : BaseAdapter() {
 
-    @SuppressLint("SetTextI18n")
+    @SuppressLint("SetTextI18n", "InflateParams")
     override fun getView(position: Int, convertView: View?, parent: ViewGroup?): View? {
         var vista = convertView
         val holder: ViewHolder
@@ -35,14 +35,11 @@ class ProyectosInteresadosAdapter(
         }
         val bandera = elementos!![position]
 
-        if (bandera != null) {
-
-            holder.titulo.text = bandera.nombre
-            holder.descripcion.text = bandera.descripcion
-            holder.fecha.text = bandera.fechaPublicacion
-            holder.propietario.text =
-                "${bandera.propietario?.nombre} ${bandera.propietario?.apellidos}"
-        }
+        holder.titulo.text = bandera.nombre
+        holder.descripcion.text = bandera.descripcion
+        holder.fecha.text = bandera.fechaPublicacion
+        holder.propietario.text =
+            "${bandera.propietario?.nombre} ${bandera.propietario?.apellidos}"
 
         return vista
     }

@@ -12,8 +12,6 @@ import com.example.devlandapp.R
 import com.example.devlandapp.UsuarioData
 import com.example.devlandapp.controllers.Gestor
 import com.example.devlandapp.models.Proyecto
-import com.example.devlandapp.models.Usuario
-import kotlinx.coroutines.DelicateCoroutinesApi
 
 class ProyectoAdapter(
     var context: Context?,
@@ -27,7 +25,7 @@ class ProyectoAdapter(
         listadoProyectosInteresadosId?.addAll(UsuarioData.usuario.proyectosInteresadosId)
     }
 
-    @SuppressLint("SetTextI18n")
+    @SuppressLint("SetTextI18n", "InflateParams")
     override fun getView(position: Int, convertView: View?, parent: ViewGroup?): View? {
         var visible: Boolean = false
         var vista = convertView

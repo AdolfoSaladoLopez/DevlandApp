@@ -20,5 +20,4 @@ interface ProyectoDAO {
     fun eliminarProyecto(proyecto: Proyecto): Boolean
     fun rellenarUsuariosInteresados(proyecto: Proyecto): MutableList<Usuario>?
     fun rellenarUsuariosSeleccionados(proyecto: Proyecto): MutableList<Usuario>?
-
 }

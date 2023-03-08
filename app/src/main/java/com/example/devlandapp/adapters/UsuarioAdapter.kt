@@ -6,19 +6,9 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.BaseAdapter
-import android.widget.ImageView
 import android.widget.TextView
-import android.widget.Toast
 import com.example.devlandapp.R
-import com.example.devlandapp.UsuarioData
-import com.example.devlandapp.controllers.Gestor
-import com.example.devlandapp.models.Proyecto
 import com.example.devlandapp.models.Usuario
-import com.squareup.picasso.Picasso
-import kotlinx.coroutines.DelicateCoroutinesApi
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.GlobalScope
-import kotlinx.coroutines.launch
 
 class UsuarioAdapter(
     var context: Context?,
@@ -26,7 +16,7 @@ class UsuarioAdapter(
     private var elementos: MutableList<Usuario>?,
 ) : BaseAdapter() {
 
-    @SuppressLint("SetTextI18n")
+    @SuppressLint("SetTextI18n", "InflateParams")
     override fun getView(position: Int, convertView: View?, parent: ViewGroup?): View? {
         var vista = convertView
         val holder: ViewHolder
@@ -44,11 +34,8 @@ class UsuarioAdapter(
         }
         val bandera = elementos!![position]
 
-        if (bandera != null) {
-
-            holder.nombre.text = "${bandera.nombre} ${bandera.apellidos}"
-            holder.email.text = bandera.email
-        }
+        holder.nombre.text = "${bandera.nombre} ${bandera.apellidos}"
+        holder.email.text = bandera.email
         return vista
 
     }
@@ -69,17 +56,4 @@ class UsuarioAdapter(
         lateinit var nombre: TextView
         lateinit var email: TextView
     }
-
-    /*private fun saberUsuariosInteresados(proyecto: Proyecto): Boolean {
-        var estaInteresado = false
-        UsuarioData.totalUsuarios.forEach { usuario ->
-            usuario.proyectosInteresadosId.forEach { idProyecto ->
-                if (idProyecto == proyecto.id) {
-                    estaInteresado = true
-                }
-            }
-        }
-
-        return estaInteresado
-    }*/
 }
