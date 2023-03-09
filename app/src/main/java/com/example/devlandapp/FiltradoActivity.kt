@@ -20,8 +20,6 @@ class FiltradoActivity: DrawerBaseActivity() {
         binding = ActivityFiltradoBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-
-
         val spinnerUbicacion = findViewById<Spinner>(R.id.spinnerUbicacion)
         val spinnerModoTrabajo = findViewById<Spinner>(R.id.spinnerModo)
         val spinnerTecnologia = findViewById<Spinner>(R.id.spinnerTecnologia)
@@ -61,10 +59,7 @@ class FiltradoActivity: DrawerBaseActivity() {
         idiomaElegido = intent.extras!!.getString("idioma")
         verProyectosLLenos = intent.extras!!.getBoolean("verProyectosLLenos")
 
-        spinnerUbicacion.setSelection(listaUbicacion.indexOf(ubicacionElegida))
-        spinnerModoTrabajo.setSelection(listaModo.indexOf(modoTrabajoElegido))
-        spinnerTecnologia.setSelection(listaTecnologias.indexOf(tecnologiaElegido))
-        spinnerIdioma.setSelection(listaIdiomas.indexOf(idiomaElegido))
+
 
         val intentFeed = Intent(this, FeedActivity::class.java)
 

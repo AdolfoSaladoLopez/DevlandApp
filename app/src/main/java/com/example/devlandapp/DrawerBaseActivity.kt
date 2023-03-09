@@ -107,8 +107,6 @@ open class DrawerBaseActivity : AppCompatActivity() {
 
     private fun goToLogin() {
         val intent = Intent(this, LoginActivity::class.java)
-        intent.putExtra("correo","")
-        intent.putExtra("password","")
         startActivity(intent)
     }
 

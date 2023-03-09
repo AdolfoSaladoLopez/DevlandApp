@@ -41,6 +41,7 @@
             android:layout_height="wrap_content"
             android:background="@android:color/transparent"
             android:textColor="#565656"
+            android:singleLine="true"
             android:textStyle="bold" />
     </com.google.android.material.textfield.TextInputLayout>
 
@@ -96,7 +97,6 @@
         android:layout_width="335dp"
         android:layout_height="41dp"
         android:gravity="center"
-        android:text="¿Olvidaste la contraseña?"
         android:textAlignment="textEnd"
         android:textColor="@color/black"
         android:textSize="17sp"

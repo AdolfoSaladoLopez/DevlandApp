@@ -4,6 +4,7 @@ import android.content.ContentValues.TAG
 import android.util.Log
 import com.example.devlandapp.models.Proyecto
 import com.example.devlandapp.models.Usuario
+import com.google.firebase.ktx.Firebase
 
 class ProyectoController : ProyectoDAO {
     override fun obtenerTodosProyectos(): MutableList<Proyecto> {
@@ -30,15 +31,35 @@ class ProyectoController : ProyectoDAO {
     ): MutableList<Proyecto> {
         val listadoTotalProyectos: MutableList<Proyecto> = mutableListOf()
 
-        val db = Db.conexion().collection("proyecto")
+        print("ubicacion: $ubicacion")
+        print("modoTrabajo: $modoTrabajo")
+        print("tecnologia: $tecnologia")
+        print("idioma: $idioma")
 
-        var consulta = db.whereEqualTo("estado", true)
+        val db = Db.conexion()
+        val proyectosRef = db.collection("proyecto")
 
-        if (ubicacion != " - ") {
-            consulta = consulta.whereEqualTo("ubicacion", ubicacion)
+        var query = proyectosRef.whereEqualTo("estado", true)
+
+        if (ubicacion != "-") {
+            query = query.whereEqualTo("ubicacion", ubicacion)
         }
 
-        consulta.get()
+        if (modoTrabajo != "-") {
+            query = query.whereEqualTo("modoTrabajo", modoTrabajo)
+        }
+
+        if (tecnologia != "-") {
+            query = query.whereEqualTo("tecnologia", tecnologia)
+        }
+
+        if (idioma != "-") {
+            query = query.whereEqualTo("idioma", idioma)
+        }
+
+
+
+        query.get()
             .addOnSuccessListener {
                 for (proyecto in it) {
                     proyecto.toObject(Proyecto::class.java).let { it1 ->
@@ -54,7 +75,6 @@ class ProyectoController : ProyectoDAO {
                     }
                 }
             }
-
         return listadoTotalProyectos
     }
 
