@@ -153,8 +153,7 @@ class CrearProyectoActivity : DrawerBaseActivity() {
             } else if (editTextDuracion.text.toString().toInt() > 365) {
                 Toast.makeText(this, "La duración máxima es 365", Toast.LENGTH_SHORT)
                     .show()
-            }
-            if (comprobarnombre(editTextNombreProyecto.text.toString()) &&
+            } else if (comprobarnombre(editTextNombreProyecto.text.toString()) &&
                 comprobartiempo(editTextDuracion.text.toString()) &&
                 comprobardescripcion(editTextDescripcionProyecto.text.toString())
             ) {
