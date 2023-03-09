@@ -90,6 +90,7 @@
                     android:layout_marginRight="50dp"
                     android:hint="@string/n_mero_de_participantes"
                     android:inputType="number"
+                    android:maxLength="3"
                     android:singleLine="false"
                     android:textSize="20sp" />
             </com.google.android.material.textfield.TextInputLayout>
@@ -212,7 +213,7 @@
                     android:minHeight="48dp"
                     android:text="Disponibilidad"
                     android:thumbTint="#300D68"
-                    android:trackTint="#300D68"/>
+                    android:trackTint="#300D68" />
             </LinearLayout>
 
             <LinearLayout
@@ -238,8 +239,9 @@
                     android:layout_width="50sp"
                     android:layout_height="match_parent"
                     android:layout_marginStart="10sp"
-                    android:hint="1"
+                    android:hint="0"
                     android:inputType="number"
+                    android:maxLength="3"
                     android:textAlignment="center"
                     android:textSize="20sp" />
 

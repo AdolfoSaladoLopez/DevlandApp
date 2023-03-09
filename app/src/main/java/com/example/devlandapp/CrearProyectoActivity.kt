@@ -147,6 +147,13 @@ class CrearProyectoActivity : DrawerBaseActivity() {
             val editTextDescripcionProyecto = findViewById<EditText>(R.id.etDescripcion)
             val editTextDuracion = findViewById<EditText>(R.id.duracion)
 
+            if (editTextCantidadProyecto.text.toString().toInt() > 100) {
+                Toast.makeText(this, "El número máximo de participantes es 100", Toast.LENGTH_SHORT)
+                    .show()
+            } else if (editTextDuracion.text.toString().toInt() > 365) {
+                Toast.makeText(this, "La duración máxima es 365", Toast.LENGTH_SHORT)
+                    .show()
+            }
             if (comprobarnombre(editTextNombreProyecto.text.toString()) &&
                 comprobartiempo(editTextDuracion.text.toString()) &&
                 comprobardescripcion(editTextDescripcionProyecto.text.toString())

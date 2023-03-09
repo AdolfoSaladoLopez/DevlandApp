@@ -88,6 +88,7 @@
                     android:layout_marginRight="50dp"
                     android:hint="@string/n_mero_de_participantes"
                     android:inputType="number"
+                    android:maxLength="3"
                     android:singleLine="false"
                     android:textSize="20sp" />
             </com.google.android.material.textfield.TextInputLayout>
@@ -133,8 +134,8 @@
                     android:layout_height="wrap_content"
                     android:text="@string/ubicaci_n"
                     android:textAlignment="center"
-                    android:textStyle="bold"
-                    android:textSize="20sp" />
+                    android:textSize="20sp"
+                    android:textStyle="bold" />
 
                 <Spinner
                     android:id="@+id/ubicacion"
@@ -159,8 +160,8 @@
                     android:layout_height="wrap_content"
                     android:text="Modo de trabajo: "
                     android:textAlignment="center"
-                    android:textStyle="bold"
-                    android:textSize="20sp" />
+                    android:textSize="20sp"
+                    android:textStyle="bold" />
 
                 <Spinner
                     android:id="@+id/modoTrabajo"
@@ -185,8 +186,8 @@
                     android:layout_height="wrap_content"
                     android:text="@string/idioma"
                     android:textAlignment="center"
-                    android:textStyle="bold"
-                    android:textSize="20sp" />
+                    android:textSize="20sp"
+                    android:textStyle="bold" />
 
                 <Spinner
                     android:id="@+id/idioma"
@@ -204,7 +205,7 @@
                 android:layout_margin="20sp"
                 android:gravity="center"
                 android:orientation="horizontal"
-                android:paddingStart="20sp" >
+                android:paddingStart="20sp">
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -212,9 +213,9 @@
                     android:layout_gravity="center"
                     android:gravity="center"
                     android:text="Duración: "
-                    android:textStyle="bold"
                     android:textAlignment="center"
-                    android:textSize="20sp" />
+                    android:textSize="20sp"
+                    android:textStyle="bold" />
 
                 <EditText
                     android:id="@+id/duracion"
@@ -223,6 +224,7 @@
                     android:layout_marginStart="10sp"
                     android:hint="0"
                     android:inputType="number"
+                    android:maxLength="3"
                     android:textAlignment="center"
                     android:textSize="20sp" />
 

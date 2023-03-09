@@ -165,11 +165,13 @@ class DetallesProyectoPropioActivity : DrawerBaseActivity() {
                 }
                 Gestor.gestorProyectos.eliminarProyecto(proyecto)
                 UsuarioData.totalProyectos.remove(proyecto)
-                Toast.makeText(this, "Proyecto eliminado", Toast.LENGTH_SHORT).show()
             }
 
-            val intent = Intent(this, MisProyectosActivity::class.java)
+            val intent = Intent(this, FeedActivity::class.java)
             startActivity(intent)
+
+            Toast.makeText(this, "Proyecto eliminado", Toast.LENGTH_SHORT).show()
+
         }
     }
 }
