@@ -89,6 +89,7 @@
                     android:hint="@string/n_mero_de_participantes"
                     android:inputType="number"
                     android:singleLine="false"
+                    android:maxLength="3"
                     android:textSize="20sp" />
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -222,6 +223,7 @@
                     android:layout_height="match_parent"
                     android:layout_marginStart="10sp"
                     android:hint="0"
+                    android:maxLength="3"
                     android:inputType="number"
                     android:textAlignment="center"
                     android:textSize="20sp" />

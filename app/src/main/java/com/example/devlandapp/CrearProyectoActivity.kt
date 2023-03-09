@@ -136,7 +136,6 @@ class CrearProyectoActivity : DrawerBaseActivity() {
                     if (listadoProyectos[0].nombre != "") {
                         comprobante = false
                     }
-                    Log.d(ContentValues.TAG, "Corriendo corrutina")
                 }
             }
 
@@ -147,9 +146,22 @@ class CrearProyectoActivity : DrawerBaseActivity() {
             val editTextDescripcionProyecto = findViewById<EditText>(R.id.etDescripcion)
             val editTextDuracion = findViewById<EditText>(R.id.duracion)
 
-            if (comprobarnombre(editTextNombreProyecto.text.toString()) &&
+            if (editTextCantidadProyecto.text.toString().toInt() > 100) {
+                Toast.makeText(
+                    this,
+                    "La cantidad máxima de participantes es 100",
+                    Toast.LENGTH_SHORT
+                ).show()
+            } else if (editTextDuracion.text.toString().toInt() > 365) {
+                Toast.makeText(
+                    this,
+                    "El número máximo de tiempo es 365",
+                    Toast.LENGTH_SHORT
+                ).show()
+            } else if (comprobarnombre(editTextNombreProyecto.text.toString()) &&
                 comprobartiempo(editTextDuracion.text.toString()) &&
                 comprobardescripcion(editTextDescripcionProyecto.text.toString())
+
             ) {
 
                 val nombreProyecto = editTextNombreProyecto!!.text.toString()
