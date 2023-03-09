@@ -8,6 +8,7 @@ import android.os.Bundle
 import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
+import android.widget.Toast
 import androidx.annotation.RequiresApi
 import androidx.core.content.ContextCompat
 import com.example.devlandapp.controllers.Gestor
@@ -164,6 +165,7 @@ class DetallesProyectoPropioActivity : DrawerBaseActivity() {
                 }
                 Gestor.gestorProyectos.eliminarProyecto(proyecto)
                 UsuarioData.totalProyectos.remove(proyecto)
+                Toast.makeText(this, "Proyecto eliminado", Toast.LENGTH_SHORT).show()
             }
 
             val intent = Intent(this, MisProyectosActivity::class.java)

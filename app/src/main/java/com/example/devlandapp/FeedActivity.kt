@@ -22,10 +22,10 @@ class FeedActivity : DrawerBaseActivity() {
     private var totalUsuarios: MutableList<Usuario> = mutableListOf()
     private lateinit var myAdapter: ProyectoAdapter
 
-    private var ubicacionElegida: String? = " - "
-    private var modoTrabajoElegido: String? = " - "
-    private var tecnologiaElegido: String? = " - "
-    private var idiomaElegido: String? = " - "
+    private var ubicacionElegida: String? = "-"
+    private var modoTrabajoElegido: String? = "-"
+    private var tecnologiaElegido: String? = "-"
+    private var idiomaElegido: String? = "-"
     private var verProyectosLLenos: Boolean? = true
 
 
@@ -46,16 +46,16 @@ class FeedActivity : DrawerBaseActivity() {
         verProyectosLLenos = intent.extras?.getBoolean("verProyectosLLenos")
 
         if (ubicacionElegida == null) {
-            ubicacionElegida = " - "
+            ubicacionElegida = "-"
         }
         if (modoTrabajoElegido == null) {
-            modoTrabajoElegido = " - "
+            modoTrabajoElegido = "-"
         }
         if (tecnologiaElegido == null) {
-            tecnologiaElegido = " - "
+            tecnologiaElegido = "-"
         }
         if (idiomaElegido == null) {
-            idiomaElegido = " - "
+            idiomaElegido = "-"
         }
         if (verProyectosLLenos == null) {
             verProyectosLLenos = true

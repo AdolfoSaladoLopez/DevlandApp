@@ -8,26 +8,18 @@
     android:gravity="center">
 
 
-    <TextView
-        android:id="@+id/txtFiltrado"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textSize="40dp"
-        android:text="¡ELIGE FILTROS!"
-        android:layout_margin="50dp"/>
-
     <LinearLayout
         android:id="@+id/linearLayoutFiltroUbicacion"
-        android:layout_width="match_parent"
+        android:layout_width="313dp"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         android:gravity="center">
 
         <TextView
             android:id="@+id/txtFiltroUbicacion"
-            android:layout_width="wrap_content"
+            android:layout_width="100dp"
             android:layout_height="wrap_content"
-            android:textSize="25dp"
+            android:textSize="20dp"
             android:text="Ubicación"/>
 
         <Spinner
@@ -37,7 +29,7 @@
             android:layout_marginStart="10sp"
             android:scrollbarSize="20sp"
             android:textColor="@color/black"
-            android:textSize="20sp"
+            android:textSize="15sp"
             android:layout_margin="10dp"
             tools:ignore="SpeakableTextPresentCheck"/>
 
@@ -52,17 +44,18 @@
 
     <LinearLayout
         android:id="@+id/linearLayoutFiltroModo"
-        android:layout_width="match_parent"
+        android:layout_width="313dp"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         android:gravity="center">
 
         <TextView
             android:id="@+id/txtFiltroModo"
-            android:layout_width="wrap_content"
+            android:layout_width="100dp"
             android:layout_height="wrap_content"
-            android:textSize="25dp"
-            android:text="Modo de trabajo"/>
+            android:textSize="20dp"
+            android:text="Modo de trabajo"
+            android:textAlignment="center"/>
 
         <Spinner
             android:id="@+id/spinnerModo"
@@ -71,7 +64,7 @@
             android:layout_marginStart="10sp"
             android:scrollbarSize="20sp"
             android:textColor="@color/black"
-            android:textSize="20sp"
+            android:textSize="15sp"
             android:layout_margin="10dp"
             tools:ignore="SpeakableTextPresentCheck"/>
 
@@ -86,17 +79,18 @@
 
     <LinearLayout
         android:id="@+id/linearLayoutFiltroTecnologia"
-        android:layout_width="match_parent"
+        android:layout_width="313dp"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         android:gravity="center">
 
         <TextView
             android:id="@+id/txtFiltroTecnologia"
-            android:layout_width="wrap_content"
+            android:layout_width="100dp"
             android:layout_height="wrap_content"
-            android:textSize="25dp"
-            android:text="Tecnología"/>
+            android:textSize="20dp"
+            android:text="Tecnología"
+            android:textAlignment="center"/>
 
         <Spinner
             android:id="@+id/spinnerTecnologia"
@@ -105,7 +99,7 @@
             android:layout_marginStart="10sp"
             android:scrollbarSize="20sp"
             android:textColor="@color/black"
-            android:textSize="20sp"
+            android:textSize="15sp"
             android:layout_margin="10dp"
             tools:ignore="SpeakableTextPresentCheck"/>
 
@@ -120,17 +114,18 @@
 
     <LinearLayout
         android:id="@+id/linearLayoutFiltroIdioma"
-        android:layout_width="match_parent"
+        android:layout_width="313dp"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         android:gravity="center">
 
         <TextView
             android:id="@+id/txtFiltroIdioma"
-            android:layout_width="wrap_content"
+            android:layout_width="100dp"
             android:layout_height="wrap_content"
-            android:textSize="25dp"
-            android:text="Idioma"/>
+            android:textSize="20dp"
+            android:text="Idioma"
+            android:textAlignment="center"/>
 
         <Spinner
             android:id="@+id/spinnerIdioma"
@@ -139,7 +134,7 @@
             android:layout_marginStart="10sp"
             android:scrollbarSize="20sp"
             android:textColor="@color/black"
-            android:textSize="20sp"
+            android:textSize="15sp"
             android:layout_margin="10dp"
             tools:ignore="SpeakableTextPresentCheck"/>
 
