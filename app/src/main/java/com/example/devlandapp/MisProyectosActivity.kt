@@ -1,19 +1,11 @@
 package com.example.devlandapp
 
-import android.content.ContentValues
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import android.widget.ListView
-import android.widget.Toast
-import androidx.lifecycle.lifecycleScope
 import com.example.devlandapp.adapters.ProyectoAdapter
-import com.example.devlandapp.controllers.Gestor
 import com.example.devlandapp.databinding.MisProyectosActivityBinding
 import com.example.devlandapp.models.Proyecto
-import com.example.devlandapp.models.Usuario
-import kotlinx.coroutines.delay
-import kotlinx.coroutines.launch
 
 class MisProyectosActivity : DrawerBaseActivity() {
     private lateinit var binding: MisProyectosActivityBinding

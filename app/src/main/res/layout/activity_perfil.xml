@@ -38,6 +38,7 @@
             android:id="@+id/email_perfil"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_gravity="center"
             android:text="FernandoPerez@gmail.com"
             android:textColor="@color/black"
             android:textSize="25sp" />

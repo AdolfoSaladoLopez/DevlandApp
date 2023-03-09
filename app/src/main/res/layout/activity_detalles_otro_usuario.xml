@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/gris"
+    android:orientation="vertical"
+    tools:context=".DetallesUsuarioActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="50sp"
+        android:orientation="vertical">
+
+        <ImageView
+            android:id="@+id/ivUsuario"
+            android:layout_width="match_parent"
+            android:layout_height="60sp"
+            android:layout_margin="20sp"
+            android:contentDescription="Imagen de usuario"
+            android:src="@drawable/favorito_relleno" />
+
+        <TextView
+            android:id="@+id/tvNombreApellidos"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:singleLine="true"
+            android:text="Adolfo Salado López"
+            android:textAlignment="center"
+            android:textColor="@color/black"
+            android:textSize="30sp" />
+
+
+        <TextView
+            android:id="@+id/tvCorreoElectronico"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="10sp"
+            android:singleLine="true"
+            android:text="adolfosalado.malaga@gmail.com"
+            android:textAlignment="center"
+            android:textColor="@color/black"
+            android:textSize="15sp" />
+
+        <TextView
+            android:id="@+id/tvDescripcionDetalle"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:padding="20dp"
+            android:text="Me gustan realizar proyectos de todo tipo, no discrimino la tecnologia usada, por que me gustaria aprender de todo."
+            android:textColor="@color/black"
+            android:textSize="20sp" />
+
+    </LinearLayout>
+</LinearLayout>

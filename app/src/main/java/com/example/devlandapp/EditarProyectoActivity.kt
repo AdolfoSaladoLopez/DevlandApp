@@ -1,5 +1,6 @@
 package com.example.devlandapp
 
+import android.annotation.SuppressLint
 import android.content.ContentValues
 import android.content.Intent
 import android.os.Build
@@ -28,8 +29,8 @@ class EditarProyectoActivity : DrawerBaseActivity() {
     var ubicacion: String = ""
     var tiempo: String = ""
     var modoTrabajo: String = ""
-    var ultimoId: Int = 0
-    var listadoProyectos: MutableList<Proyecto> = mutableListOf()
+    private var ultimoId: Int = 0
+    private var listadoProyectos: MutableList<Proyecto> = mutableListOf()
     private var totalProyectos: MutableList<Proyecto> = mutableListOf()
     private var valor by Delegates.notNull<Int>()
 
@@ -39,6 +40,7 @@ class EditarProyectoActivity : DrawerBaseActivity() {
     }
 
 
+    @SuppressLint("CutPasteId", "UseSwitchCompatOrMaterialCode")
     @RequiresApi(Build.VERSION_CODES.O)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -56,6 +58,7 @@ class EditarProyectoActivity : DrawerBaseActivity() {
         val descripcion = findViewById<TextView>(R.id.etdDescripcion)
         val participantes = findViewById<TextView>(R.id.etdparticipantes)
         val cantidad = findViewById<TextView>(R.id.etdDuracion)
+        val disponibilidad = findViewById<Switch>(R.id.disponibilidad)
 
 
         val listaTecnologias = resources.getStringArray(R.array.tecnologias)
@@ -104,9 +107,12 @@ class EditarProyectoActivity : DrawerBaseActivity() {
                 spinnerIdiomas.setSelection(valorIdioma)
                 spinnerUbicacion.setSelection(valorUbicacion)
                 spinnerDuracion.setSelection(valorTiempo)
+
+                if (UsuarioData.totalProyectos[i].estado) {
+                    disponibilidad.isChecked = true
+                }
             }
         }
-
 
         spinnerTecnologias.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
             override fun onItemSelected(
@@ -115,7 +121,51 @@ class EditarProyectoActivity : DrawerBaseActivity() {
                 position: Int,
                 id: Long
             ) {
-                tecnologia = listaTecnologias[position]
+                when (position) {
+                    0 -> {
+                        tecnologia = "C"
+                    }
+
+                    1 -> {
+                        tecnologia = "C++"
+                    }
+
+                    2 -> {
+                        tecnologia = "C#"
+                    }
+
+                    3 -> {
+                        tecnologia = "Java"
+                    }
+
+                    4 -> {
+                        tecnologia = "Kotlin"
+                    }
+
+                    5 -> {
+                        tecnologia = "HTML y CSS"
+                    }
+
+                    6 -> {
+                        tecnologia = "Python"
+                    }
+
+                    7 -> {
+                        tecnologia = "PHP"
+                    }
+
+                    8 -> {
+                        tecnologia = "JavaScript"
+                    }
+
+                    9 -> {
+                        tecnologia = "SQL"
+                    }
+
+                    10 -> {
+                        tecnologia = "Swift"
+                    }
+                }
             }
 
             override fun onNothingSelected(parent: AdapterView<*>?) {}
@@ -128,7 +178,51 @@ class EditarProyectoActivity : DrawerBaseActivity() {
                 position: Int,
                 id: Long
             ) {
-                idioma = listaIdiomas[position]
+                when (position) {
+                    0 -> {
+                        idioma = "Español"
+                    }
+
+                    1 -> {
+                        idioma = "Francés"
+                    }
+
+                    2 -> {
+                        idioma = "Inglés"
+                    }
+
+                    3 -> {
+                        idioma = "Aleman"
+                    }
+
+                    4 -> {
+                        idioma = "Portugues"
+                    }
+
+                    5 -> {
+                        idioma = "Italiano"
+                    }
+
+                    6 -> {
+                        idioma = "Chino"
+                    }
+
+                    7 -> {
+                        idioma = "Japones"
+                    }
+
+                    8 -> {
+                        idioma = "Ruso"
+                    }
+
+                    9 -> {
+                        idioma = "Arabe"
+                    }
+
+                    10 -> {
+                        idioma = "Coreano"
+                    }
+                }
             }
 
             override fun onNothingSelected(parent: AdapterView<*>?) {}
@@ -141,7 +235,43 @@ class EditarProyectoActivity : DrawerBaseActivity() {
                 position: Int,
                 id: Long
             ) {
-                ubicacion = listaUbicacion[position]
+                when (position) {
+                    0 -> {
+                        ubicacion = "Malaga"
+                    }
+
+                    1 -> {
+                        ubicacion = "Sevilla"
+                    }
+
+                    2 -> {
+                        ubicacion = "Granada"
+                    }
+
+                    3 -> {
+                        ubicacion = "Almeria"
+                    }
+
+                    4 -> {
+                        ubicacion = "Huelva"
+                    }
+
+                    5 -> {
+                        ubicacion = "Cordoba"
+                    }
+
+                    6 -> {
+                        ubicacion = "Cadiz"
+                    }
+
+                    7 -> {
+                        ubicacion = "Madrid"
+                    }
+
+                    8 -> {
+                        ubicacion = "Barcelona"
+                    }
+                }
             }
 
             override fun onNothingSelected(parent: AdapterView<*>?) {}
@@ -154,7 +284,23 @@ class EditarProyectoActivity : DrawerBaseActivity() {
                 position: Int,
                 id: Long
             ) {
-                tiempo = listaTiempo[position]
+                when (position) {
+                    0 -> {
+                        tiempo = "días"
+                    }
+
+                    1 -> {
+                        tiempo = "semanas"
+                    }
+
+                    2 -> {
+                        tiempo = "meses"
+                    }
+
+                    3 -> {
+                        tiempo = "años"
+                    }
+                }
             }
 
             override fun onNothingSelected(parent: AdapterView<*>?) {}
@@ -167,7 +313,19 @@ class EditarProyectoActivity : DrawerBaseActivity() {
                 position: Int,
                 id: Long
             ) {
-                modoTrabajo = listaModoTrabajo[position]
+                when (position) {
+                    0 -> {
+                        modoTrabajo = "Presencial"
+                    }
+
+                    1 -> {
+                        modoTrabajo = "Remoto"
+                    }
+
+                    2 -> {
+                        modoTrabajo = "Mixto"
+                    }
+                }
             }
 
             override fun onNothingSelected(parent: AdapterView<*>?) {}
@@ -189,7 +347,6 @@ class EditarProyectoActivity : DrawerBaseActivity() {
             }
 
             ultimoId = listadoProyectos.size
-            val datetime = LocalDateTime.now()
 
             val editTextNombreProyecto = findViewById<EditText>(R.id.etdTiulo)
             val editTextCantidadProyecto = findViewById<EditText>(R.id.etdparticipantes)
@@ -198,19 +355,22 @@ class EditarProyectoActivity : DrawerBaseActivity() {
             val editTextDuracion = findViewById<EditText>(R.id.etdDuracion)
 
 
+
+
             if (comprobarnombre(editTextNombreProyecto.text.toString()) &&
                 comprobartiempo(editTextDuracion.text.toString()) &&
                 comprobardescripcion(editTextDescripcionProyecto.text.toString())
             ) {
 
-                var nombreProyecto = editTextNombreProyecto!!.text.toString()
-                var cantidadProyecto: Int = editTextCantidadProyecto!!.text.toString().toInt()
-                var descripcionProyecto = editTextDescripcionProyecto!!.text.toString()
-                var duracion = editTextDuracion!!.text.toString()
-                var tiempoProyecto = "$duracion $tiempo"
+                val nombreProyecto = editTextNombreProyecto!!.text.toString()
+                val cantidadProyecto: Int = editTextCantidadProyecto!!.text.toString().toInt()
+                val descripcionProyecto = editTextDescripcionProyecto!!.text.toString()
+                val duracion = editTextDuracion!!.text.toString()
+                val tiempoProyecto = "$duracion $tiempo"
+
 
                 var proyecto: Proyecto = Proyecto()
-                var usuario = UsuarioData.usuario
+                val usuario = UsuarioData.usuario
 
                 proyecto = Proyecto(
                     valor,
@@ -221,7 +381,7 @@ class EditarProyectoActivity : DrawerBaseActivity() {
                     modoTrabajo,
                     idioma,
                     tiempoProyecto,
-                    true,
+                    switchchecked(),
                     cantidadProyecto,
                     usuario,
                     usuario.id,
@@ -270,11 +430,12 @@ class EditarProyectoActivity : DrawerBaseActivity() {
             dia1 = datetime.dayOfMonth.toString()
         }
 
-        if (datetime.monthValue < 10) {
-            mes1 = "0${datetime.monthValue}"
+        mes1 = if (datetime.monthValue < 10) {
+            "0${datetime.monthValue}"
         } else {
-            mes1 = datetime.monthValue.toString()
+            datetime.monthValue.toString()
         }
+
         return Pair(dia1, mes1)
     }
 
@@ -290,9 +451,16 @@ class EditarProyectoActivity : DrawerBaseActivity() {
         return !TextUtils.isEmpty(tiempo)
     }
 
+    @SuppressLint("UseSwitchCompatOrMaterialCode")
+    private fun switchchecked(): Boolean {
+
+        var disponibilidad = findViewById<Switch>(R.id.disponibilidad)
+
+        return disponibilidad.isChecked
+    }
+
     private fun goToFeed() {
         val intent = Intent(this, FeedActivity::class.java)
-        // Evita que pasemos de nuevo a la activity login
         startActivity(intent)
     }
 }

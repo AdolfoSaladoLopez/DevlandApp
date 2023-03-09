@@ -1,6 +1,9 @@
 package com.example.devlandapp
 
+import android.app.AlertDialog
+import android.app.Dialog
 import android.content.ContentValues
+import android.content.DialogInterface
 import android.content.Intent
 import android.content.SharedPreferences
 import androidx.appcompat.app.AppCompatActivity
@@ -8,14 +11,20 @@ import android.os.Bundle
 import android.text.TextUtils
 import android.util.Log
 import android.util.Patterns
+import android.view.View
 import android.widget.Button
+import android.widget.CheckBox
 import android.widget.EditText
+import android.widget.ImageView
 import android.widget.Toast
+import androidx.fragment.app.DialogFragment
 import androidx.lifecycle.lifecycleScope
 import com.example.devlandapp.controllers.Gestor
 import com.example.devlandapp.databinding.ActivityCrearProyectoBinding
 import com.example.devlandapp.databinding.ActivityRegistrarUsuarioBinding
 import com.example.devlandapp.models.Usuario
+import com.google.android.material.dialog.MaterialAlertDialogBuilder
+import com.google.android.material.snackbar.Snackbar
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 
@@ -25,11 +34,9 @@ class RegistrarUsuarioActivity : AppCompatActivity() {
     private var regis_Contraseña: EditText? = null
     private var reg_password: EditText? = null
     private var reg_email: EditText? = null
-    private var reg_confirmemail: EditText? = null
     private var re_register: Button? = null
-    private var prefs: SharedPreferences? = null
     private var usuario: Usuario = Usuario()
-    private var totalUsuarios: MutableList<Usuario> = mutableListOf()
+    private lateinit var btnInfo: ImageView
 
     lateinit var binding: ActivityRegistrarUsuarioBinding
 
@@ -49,15 +56,25 @@ class RegistrarUsuarioActivity : AppCompatActivity() {
         reg_email = binding.regEmail
         re_register = binding.regRegister
 
+
+        btnInfo = findViewById(R.id.info)
+
+        btnInfo.setOnClickListener {
+
+            showAlertDialog(binding.root)
+
+        }
+
         re_register?.setOnClickListener {
 
-            var nombre = etNombre!!.text.toString()
-            var apellido = etApellido!!.text.toString()
-            var contraseña = regis_Contraseña!!.text.toString()
-            var repPasword = reg_password!!.text.toString()
-            var email = reg_email!!.text.toString()
+            val nombre = etNombre!!.text.toString()
+            val apellido = etApellido!!.text.toString()
+            val contraseña = regis_Contraseña!!.text.toString()
+            val repPasword = reg_password!!.text.toString()
+            val email = reg_email!!.text.toString()
+            val lopd = findViewById<CheckBox>(R.id.lopd_box)
 
-            if (registro(nombre, apellido, contraseña, repPasword, email)) {
+            if (registro(nombre, apellido, contraseña, repPasword, email, lopd)) {
 
                 usuario.id = UsuarioData.ultimoIdUsuario
                 usuario.nombre = nombre
@@ -85,6 +102,7 @@ class RegistrarUsuarioActivity : AppCompatActivity() {
         password: String,
         reppassword: String,
         email: String,
+        lopd: CheckBox
     ): Boolean {
         var valido = false
         if (!comprobarCorreo(email)) {
@@ -105,6 +123,8 @@ class RegistrarUsuarioActivity : AppCompatActivity() {
             Toast.makeText(this, "Apellido no valido", Toast.LENGTH_SHORT).show()
         } else if (!comprobarRepPassword(reppassword, password)) {
             Toast.makeText(this, "la contraseña no coinciden", Toast.LENGTH_SHORT).show()
+        }else if(!comprobarLOPD(lopd)){
+            Toast.makeText(this, "Se requiere la confirmacin del LOPD", Toast.LENGTH_SHORT).show()
         } else {
             valido = true
         }
@@ -131,8 +151,21 @@ class RegistrarUsuarioActivity : AppCompatActivity() {
         return !TextUtils.isEmpty(email) && Patterns.EMAIL_ADDRESS.matcher(email).matches()
     }
 
-    private fun comprobarCorreorep(correorep: String, email: String): Boolean {
-        return !TextUtils.isEmpty(correorep) && correorep == email
+    private fun comprobarLOPD(check: CheckBox):Boolean{
+
+        if(!check.isChecked)
+            return false
+        else{
+          return true
+        }
+    }
+
+    private fun showAlertDialog(view: View) {
+
+        MaterialAlertDialogBuilder(this)
+            .setTitle("LOPD")
+            .setMessage("Los datos que se facilitan en este formulario serán tratados por Devland, con CIF A-77197719, sito Pl. Virgen Milagrosa, 11, 29017 Málaga, España y con correo electrónico devland@devland.com.Trataremos la información que nos facilita con el objetivo de establecer una comunicación para resolver cualquier duda relacionada con nuestros productos o la propia web a través de su email. Los datos proporcionados no se cederán a terceros salvo en los casos en que exista una obligación legal.Usted tiene derecho a obtener confirmación sobre si en Devland. estamos tratando sus datos personales por tanto tiene derecho a acceder a sus datos personales, rectificar los datos inexactos o solicitar su supresión cuando los datos ya no sean necesarios para los fines que fueron recogidos. Puede ejercer su derecho escribiendo a devland@devland.com.")
+            .show()
     }
 
 

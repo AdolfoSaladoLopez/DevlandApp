@@ -72,7 +72,8 @@
                     android:gravity="start|top"
                     android:hint="@string/descripci_n_del_proyecto"
                     android:inputType="textMultiLine"
-                    android:textSize="20sp" />
+                    android:textSize="20sp"
+                    tools:ignore="SpeakableTextPresentCheck" />
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
@@ -103,18 +104,18 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/tecnolog_a"
-                    android:textStyle="bold"
                     android:textAlignment="viewStart"
-                    android:textSize="20sp" />
+                    android:textSize="20sp"
+                    android:textStyle="bold" />
 
                 <Spinner
                     android:id="@+id/tecnologia_nuevoProyecto"
-                    android:layout_width="fill_parent"
+                    android:layout_width="match_parent"
                     android:layout_height="fill_parent"
-                    android:layout_marginStart="10sp"
+                    android:layout_marginStart="65sp"
+
                     android:scrollbarSize="20sp"
                     android:textColor="@color/black"
-                    android:textAlignment="viewEnd"
                     tools:ignore="TouchTargetSizeCheck,SpeakableTextPresentCheck" />
             </LinearLayout>
 
@@ -139,7 +140,8 @@
                     android:id="@+id/ubicacion"
                     android:layout_width="fill_parent"
                     android:layout_height="fill_parent"
-                    android:layout_marginStart="10sp"
+                    android:layout_marginStart="70sp"
+                    android:textAlignment="center"
                     android:textColor="@color/black"
                     tools:ignore="TouchTargetSizeCheck,SpeakableTextPresentCheck" />
             </LinearLayout>
@@ -165,6 +167,7 @@
                     android:layout_width="fill_parent"
                     android:layout_height="fill_parent"
                     android:layout_marginStart="10sp"
+                    android:textAlignment="textStart"
                     android:textColor="@color/black"
                     tools:ignore="TouchTargetSizeCheck,SpeakableTextPresentCheck" />
             </LinearLayout>
@@ -189,7 +192,8 @@
                     android:id="@+id/idioma"
                     android:layout_width="fill_parent"
                     android:layout_height="fill_parent"
-                    android:layout_marginStart="10sp"
+                    android:layout_marginStart="105sp"
+                    android:textAlignment="textStart"
                     android:textColor="@color/black"
                     tools:ignore="TouchTargetSizeCheck,SpeakableTextPresentCheck" />
             </LinearLayout>
@@ -224,9 +228,12 @@
 
                 <Spinner
                     android:id="@+id/tiempo"
-                    android:layout_width="fill_parent"
+                    android:layout_width="match_parent"
                     android:layout_height="fill_parent"
+                    android:layout_margin="10sp"
                     android:layout_marginStart="10sp"
+                    android:layout_marginEnd="15sp"
+                    android:textAlignment="textStart"
                     android:textColor="@color/black"
                     tools:ignore="TouchTargetSizeCheck,SpeakableTextPresentCheck" />
             </LinearLayout>

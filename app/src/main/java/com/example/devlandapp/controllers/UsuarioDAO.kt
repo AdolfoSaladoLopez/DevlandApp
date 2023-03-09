@@ -11,10 +11,8 @@ interface UsuarioDAO {
     fun eliminarUsuario(usuario: Usuario): Boolean
     fun obtenerUsuarioCorreoElectronico(correo: String): Usuario?
     fun obtenerProyectosInteresados(usuario: Usuario?): MutableList<Proyecto>?
+    fun obtenerProyectosInteresadosId(usuario: Usuario): MutableList<Int>?
     fun obtenerProyectosCreados(usuario: Usuario?): MutableList<Proyecto>?
     fun obtenerProyectosCreadosUsuarioId(usuario: Usuario): MutableList<Int>
-
     fun obtenerProyectosCreadosUsuario(listadoProyectosCreadosId: MutableList<Int>): MutableList<Proyecto>
-
-
 }

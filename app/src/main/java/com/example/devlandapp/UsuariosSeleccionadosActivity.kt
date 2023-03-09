@@ -64,14 +64,13 @@ class UsuariosSeleccionadosActivity : DrawerBaseActivity() {
     }
 
     private fun obtenerUsuariosSeleccionados(idUsuarios: MutableList<Int>): MutableList<Usuario> {
-        var listadoUsuarios: MutableList<Usuario> = mutableListOf()
+        val listadoUsuarios: MutableList<Usuario> = mutableListOf()
 
         idUsuarios.forEach { idUsuario ->
             totalUsuarios.forEach { usuario ->
                 if (idUsuario == usuario.id) {
                     listadoUsuarios.add(usuario)
                 }
-
             }
         }
 
@@ -79,7 +78,6 @@ class UsuariosSeleccionadosActivity : DrawerBaseActivity() {
     }
 
     private fun recarga() {
-
         val lista = findViewById<ListView>(R.id.misProyectos)
 
         val adapter = UsuarioAdapter(

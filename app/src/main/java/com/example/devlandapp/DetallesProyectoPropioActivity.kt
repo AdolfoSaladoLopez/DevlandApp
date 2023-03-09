@@ -134,7 +134,7 @@ class DetallesProyectoPropioActivity : DrawerBaseActivity() {
     }
 
     private fun darFuncionalidadBotones() {
-        var idProyecto = proyecto.id
+        val idProyecto = proyecto.id
         btnInteresados.setOnClickListener {
             val intent4 = Intent(this, UsuariosInteresadosActivity::class.java)
             intent4.putExtra("proyecto", idProyecto)
@@ -146,17 +146,17 @@ class DetallesProyectoPropioActivity : DrawerBaseActivity() {
             intent.putExtra("idProyecto", idProyecto)
             startActivity(intent)
         }
-        editar.setOnClickListener{
-            val intent = Intent(this,EditarProyectoActivity::class.java)
+        editar.setOnClickListener {
+            val intent = Intent(this, EditarProyectoActivity::class.java)
             intent.putExtra("idproyecto", idProyecto)
             startActivity(intent)
         }
-        btnEliminar.setOnClickListener{
+        btnEliminar.setOnClickListener {
 
             totalUsuario.forEach { usuario: Usuario ->
-                usuario.proyectosInteresadosId.forEach { id : Int ->
+                usuario.proyectosInteresadosId.forEach { id: Int ->
 
-                    if(id == idProyecto){
+                    if (id == idProyecto) {
 
                         usuario.proyectosInteresadosId.remove(id)
                         Gestor.gestorUsuarios.modificarUsuario(usuario)
@@ -165,8 +165,8 @@ class DetallesProyectoPropioActivity : DrawerBaseActivity() {
                 Gestor.gestorProyectos.eliminarProyecto(proyecto)
                 UsuarioData.totalProyectos.remove(proyecto)
             }
-            
-            val intent = Intent(this,MisProyectosActivity::class.java)
+
+            val intent = Intent(this, MisProyectosActivity::class.java)
             startActivity(intent)
         }
     }

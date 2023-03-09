@@ -12,20 +12,18 @@ import android.widget.EditText
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import androidx.lifecycle.Observer
 import androidx.lifecycle.lifecycleScope
 import com.example.devlandapp.controllers.Gestor
-import com.example.devlandapp.models.Proyecto
 import com.example.devlandapp.models.Usuario
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 
 class LoginActivity : AppCompatActivity() {
-    private var etEmail: EditText? = null
-    private var etPassword: EditText? = null
+    private lateinit var etEmail: EditText
+    private lateinit var etPassword: EditText
     private var btnInicioSesion: Button? = null
-    lateinit var tvOlvidarPwd: TextView
-    lateinit var tvRegistro: TextView
+    private lateinit var tvOlvidarPwd: TextView
+    private lateinit var tvRegistro: TextView
     private var prefs: SharedPreferences? = null
     var usuario: Usuario? = Usuario()
     private var totalUsuarios: MutableList<Usuario> = mutableListOf()
@@ -34,7 +32,6 @@ class LoginActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
-
 
         traerTodosUsuarios()
 
@@ -173,4 +170,5 @@ class LoginActivity : AppCompatActivity() {
         //intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
         // startActivity(intent)
     }
+
 }

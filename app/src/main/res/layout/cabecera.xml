@@ -12,7 +12,7 @@
         android:layout_height="120dp"
         android:layout_gravity="center"
         android:contentDescription="@string/perfil"
-        android:src="@drawable/person" />
+        android:src="@drawable/logo_app_devland" />
 
     <TextView
         android:id="@+id/nombreUsuario"
@@ -22,6 +22,8 @@
         android:textColor="@color/white"
         android:textSize="18sp"
         android:textStyle="bold"
-        android:text="TEXTO"/>
+        android:textAlignment="center"
+        android:gravity="center"
+        android:text="OPCIONES"/>
 
 </LinearLayout>

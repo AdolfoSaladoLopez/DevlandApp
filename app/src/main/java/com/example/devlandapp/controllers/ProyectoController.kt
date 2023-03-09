@@ -22,26 +22,27 @@ class ProyectoController : ProyectoDAO {
     }
 
     override fun obtenerProyectosFiltrados(
-        ubicacion: String,
-        modoTrabajo: String,
-        tecnologia: String,
-        idioma: String,
-        verProyectosLLenos: Boolean
+        ubicacion: String?,
+        modoTrabajo: String?,
+        tecnologia: String?,
+        idioma: String?,
+        verProyectosLLenos: Boolean?
     ): MutableList<Proyecto> {
         val listadoTotalProyectos: MutableList<Proyecto> = mutableListOf()
 
         val db = Db.conexion().collection("proyecto")
 
+        var consulta = db.whereEqualTo("estado", true)
 
-            .whereEqualTo("ubicacion", ubicacion)
-            .whereEqualTo("modoTrabajo", modoTrabajo)
-            .whereEqualTo("tecnologia", tecnologia)
-            .whereEqualTo("idioma", idioma)
-            .get()
+        if (ubicacion != " - ") {
+            consulta = consulta.whereEqualTo("ubicacion", ubicacion)
+        }
+
+        consulta.get()
             .addOnSuccessListener {
                 for (proyecto in it) {
                     proyecto.toObject(Proyecto::class.java).let { it1 ->
-                        if (verProyectosLLenos) {
+                        if (verProyectosLLenos!!) {
                             listadoTotalProyectos.add(it1)
                         } else {
                             if (it1.usuariosSeleccionados.size < it1.numeroParticipantes!!) {
@@ -53,7 +54,6 @@ class ProyectoController : ProyectoDAO {
                     }
                 }
             }
-
 
         return listadoTotalProyectos
     }
@@ -118,8 +118,8 @@ class ProyectoController : ProyectoDAO {
     }
 
     override fun rellenarUsuariosInteresados(proyecto: Proyecto): MutableList<Usuario>? {
-        var listadoUsuariosInteresadosId: MutableList<Int> = proyecto.usuariosInteresadosId
-        var listadoUsuariosInteresados: MutableList<Usuario> = mutableListOf()
+        val listadoUsuariosInteresadosId: MutableList<Int> = proyecto.usuariosInteresadosId
+        val listadoUsuariosInteresados: MutableList<Usuario> = mutableListOf()
 
         listadoUsuariosInteresadosId.forEach {
             listadoUsuariosInteresados.add(Gestor.gestorUsuarios.obtenerUsuarioId(it))
@@ -129,8 +129,8 @@ class ProyectoController : ProyectoDAO {
     }
 
     override fun rellenarUsuariosSeleccionados(proyecto: Proyecto): MutableList<Usuario>? {
-        var listadoUsuariosSeleccionadosId: MutableList<Int> = proyecto.usuariosSeleccionadosId
-        var listadoUsuariosSeleccionados: MutableList<Usuario> = mutableListOf()
+        val listadoUsuariosSeleccionadosId: MutableList<Int> = proyecto.usuariosSeleccionadosId
+        val listadoUsuariosSeleccionados: MutableList<Usuario> = mutableListOf()
 
         listadoUsuariosSeleccionadosId.forEach {
             listadoUsuariosSeleccionados.add(Gestor.gestorUsuarios.obtenerUsuarioId(it))

@@ -16,7 +16,6 @@ import com.example.devlandapp.databinding.ActivityCrearProyectoBinding
 import com.example.devlandapp.models.Proyecto
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
-import java.time.LocalDateTime
 
 class CrearProyectoActivity : DrawerBaseActivity() {
     private lateinit var binding: ActivityCrearProyectoBinding
@@ -25,15 +24,13 @@ class CrearProyectoActivity : DrawerBaseActivity() {
     var ubicacion: String = ""
     var tiempo: String = ""
     var modoTrabajo: String = ""
-    var ultimoId: Int = 0
-    var listadoProyectos: MutableList<Proyecto> = mutableListOf()
+    private var ultimoId: Int = 0
+    private var listadoProyectos: MutableList<Proyecto> = mutableListOf()
 
     @RequiresApi(Build.VERSION_CODES.O)
     @SuppressLint("CutPasteId")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
-
 
         binding = ActivityCrearProyectoBinding.inflate(layoutInflater)
         setContentView(binding.root)
@@ -54,8 +51,7 @@ class CrearProyectoActivity : DrawerBaseActivity() {
         val adaptador2 = ArrayAdapter(this, R.layout.spinner_layout, listaIdiomas)
         val adaptador3 = ArrayAdapter(this, R.layout.spinner_layout, listaUbicacion)
         val adaptadorTiempo = ArrayAdapter(this, R.layout.spinner_layout, listaTiempo)
-        val adaptadorModoTrabjo =
-            ArrayAdapter(this, R.layout.spinner_layout, listaModoTrabajo)
+        val adaptadorModoTrabjo = ArrayAdapter(this, R.layout.spinner_layout, listaModoTrabajo)
 
 
         spinnerTecnologias.adapter = adaptador1
@@ -71,7 +67,7 @@ class CrearProyectoActivity : DrawerBaseActivity() {
                 position: Int,
                 id: Long
             ) {
-               tecnologia = listaTecnologias[position]
+                tecnologia = listaTecnologias[position]
             }
 
             override fun onNothingSelected(parent: AdapterView<*>?) {}
@@ -130,8 +126,8 @@ class CrearProyectoActivity : DrawerBaseActivity() {
         }
 
         binding.crear.setOnClickListener {
-
             var comprobante: Boolean = true
+
             lifecycleScope.launch {
                 while (comprobante) {
                     listadoProyectos = Gestor.gestorProyectos.obtenerTodosProyectos()
@@ -146,27 +142,24 @@ class CrearProyectoActivity : DrawerBaseActivity() {
 
             ultimoId = listadoProyectos.size
 
-
             val editTextNombreProyecto = findViewById<EditText>(R.id.etTiulo)
             val editTextCantidadProyecto = findViewById<EditText>(R.id.participantes)
             val editTextDescripcionProyecto = findViewById<EditText>(R.id.etDescripcion)
-
             val editTextDuracion = findViewById<EditText>(R.id.duracion)
-            val spinnerTiempo = findViewById<Spinner>(R.id.tiempo)
 
             if (comprobarnombre(editTextNombreProyecto.text.toString()) &&
                 comprobartiempo(editTextDuracion.text.toString()) &&
                 comprobardescripcion(editTextDescripcionProyecto.text.toString())
             ) {
 
-                var nombreProyecto = editTextNombreProyecto!!.text.toString()
-                var cantidadProyecto: Int = editTextCantidadProyecto!!.text.toString().toInt()
-                var descripcionProyecto = editTextDescripcionProyecto!!.text.toString()
-                var duracion = editTextDuracion!!.text.toString()
-                var tiempoProyecto = "$duracion $tiempo"
+                val nombreProyecto = editTextNombreProyecto!!.text.toString()
+                val cantidadProyecto: Int = editTextCantidadProyecto!!.text.toString().toInt()
+                val descripcionProyecto = editTextDescripcionProyecto!!.text.toString()
+                val duracion = editTextDuracion!!.text.toString()
+                val tiempoProyecto = "$duracion $tiempo"
 
                 var proyecto: Proyecto = Proyecto()
-                var usuario = UsuarioData.usuario
+                val usuario = UsuarioData.usuario
 
                 proyecto = Proyecto(
                     UsuarioData.ultimoId,

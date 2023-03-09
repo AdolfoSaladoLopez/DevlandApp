@@ -1,22 +1,20 @@
 package com.example.devlandapp
 
 import android.annotation.SuppressLint
+import android.content.Intent
 import android.content.res.ColorStateList
 import android.os.Build
 import android.os.Bundle
 import android.widget.Button
 import android.widget.TextView
-import android.widget.Toast
 import androidx.annotation.RequiresApi
 import androidx.core.content.ContextCompat
-import androidx.lifecycle.lifecycleScope
+import com.example.devlandapp.UsuarioData.Companion.usuario
 import com.example.devlandapp.controllers.Gestor
 import com.example.devlandapp.databinding.ActivityDetallesProyectoOtroBinding
 import com.example.devlandapp.models.Proyecto
 import com.example.devlandapp.models.Usuario
 import com.google.android.material.chip.Chip
-import kotlinx.coroutines.delay
-import kotlinx.coroutines.launch
 import kotlin.properties.Delegates
 
 class DetallesProyectoOtraPersonaActivity : DrawerBaseActivity() {
@@ -40,8 +38,16 @@ class DetallesProyectoOtraPersonaActivity : DrawerBaseActivity() {
     private lateinit var btnEstoyInteresado: Button
     private var totalProyectos: MutableList<Proyecto> = mutableListOf()
     private var totalUsuarios: MutableList<Usuario> = mutableListOf()
-    var propiet: Usuario? = null
+    private var propiet: Usuario? = null
+    private var interesado: Boolean = false
+    private var listadoProyectosInteresadosId: MutableList<Int> = mutableListOf()
 
+    init {
+        listadoProyectosInteresadosId.addAll(UsuarioData.usuario.proyectosInteresadosId)
+    }
+
+
+    @SuppressLint("SetTextI18n")
     @RequiresApi(Build.VERSION_CODES.M)
     override fun onCreate(savedInstanceState: Bundle?) {
         binding = ActivityDetallesProyectoOtroBinding.inflate(layoutInflater)
@@ -53,6 +59,14 @@ class DetallesProyectoOtraPersonaActivity : DrawerBaseActivity() {
         obtenerPropietario()
         iniciarVistas()
         rellenarVistas()
+
+        if (saberUsuariosInteresados(proyecto)) {
+            btnEstoyInteresado.text = "Dejar de interesarme"
+            interesado = true
+        } else {
+            btnEstoyInteresado.text = "Interesarme"
+        }
+
     }
 
     private fun recuperarIntent() {
@@ -133,7 +147,59 @@ class DetallesProyectoOtraPersonaActivity : DrawerBaseActivity() {
         darFuncionalidadBotones()
     }
 
+    @SuppressLint("SetTextI18n")
     fun darFuncionalidadBotones() {
+        btnEstoyInteresado = findViewById(R.id.estoyInteresado)
+        propietario = findViewById(R.id.propietario)
 
+        btnEstoyInteresado.setOnClickListener {
+            if (!interesado ) {
+                usuario.proyectosInteresadosId.add(proyecto.id)
+                proyecto.usuariosInteresadosId.add(usuario.id)
+
+                btnEstoyInteresado.text = "Dejar de interesarme"
+
+                Gestor.gestorProyectos.modificarProyecto(proyecto)
+                Gestor.gestorUsuarios.modificarUsuario(usuario)
+
+                interesado = true
+            } else {
+                usuario.proyectosInteresadosId.remove(proyecto.id)
+                proyecto.usuariosInteresadosId.remove(usuario.id)
+
+                Gestor.gestorUsuarios.modificarUsuario(usuario)
+                Gestor.gestorProyectos.modificarProyecto(proyecto)
+
+                btnEstoyInteresado.text = "Interesarme"
+                interesado = false
+            }
+        }
+
+        propietario.setOnClickListener{
+
+            val intent = Intent(this, PerfilOtroUsuarioActivity::class.java)
+            intent.putExtra("idpropiet", propiet?.id)
+
+            val arrayList: ArrayList<Int> = arrayListOf()
+            arrayList.add(propiet!!.id)
+            arrayList.add(proyecto.id)
+            intent.putExtra("id", arrayList)
+
+            this.startActivity(intent)
+
+        }
     }
+
+    private fun saberUsuariosInteresados(proyecto: Proyecto): Boolean {
+        var estaInteresado = false
+
+        listadoProyectosInteresadosId?.forEach { id ->
+            if (id == proyecto.id) {
+                estaInteresado = true
+            }
+        }
+
+        return estaInteresado
+    }
+
 }

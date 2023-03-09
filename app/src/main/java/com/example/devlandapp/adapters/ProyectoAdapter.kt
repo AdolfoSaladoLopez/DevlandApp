@@ -12,19 +12,22 @@ import com.example.devlandapp.R
 import com.example.devlandapp.UsuarioData
 import com.example.devlandapp.controllers.Gestor
 import com.example.devlandapp.models.Proyecto
-import kotlinx.coroutines.DelicateCoroutinesApi
 
 class ProyectoAdapter(
     var context: Context?,
     var textViewResourceId: Int,
-    var elementos: MutableList<Proyecto>?,
+    private var elementos: MutableList<Proyecto>?,
 ) : BaseAdapter() {
 
-    var visible: Boolean = false
+    private var listadoProyectosInteresadosId: MutableList<Int>? = mutableListOf()
 
-    @OptIn(DelicateCoroutinesApi::class)
-    @SuppressLint("SetTextI18n")
+    init {
+        listadoProyectosInteresadosId?.addAll(UsuarioData.usuario.proyectosInteresadosId)
+    }
+
+    @SuppressLint("SetTextI18n", "InflateParams")
     override fun getView(position: Int, convertView: View?, parent: ViewGroup?): View? {
+        var visible: Boolean = false
         var vista = convertView
         val holder: ViewHolder
         if (vista == null) {
@@ -42,52 +45,38 @@ class ProyectoAdapter(
         } else {
             holder = vista.tag as ViewHolder
         }
+
         val bandera = elementos!![position]
 
-        if (bandera != null) {
+        holder.titulo.text = bandera.nombre
+        holder.descripcion.text = bandera.descripcion
+        holder.fecha.text = bandera.fechaPublicacion
+        holder.propietario.text = "${bandera.propietario?.nombre} ${bandera.propietario?.apellidos}"
 
-           
+        bandera.imagen.let { holder.imagenPerfil.setImageResource(it) }
 
-            holder.titulo.text = bandera.nombre
-            holder.descripcion.text = bandera.descripcion
-            holder.fecha.text = bandera.fechaPublicacion
-            holder.propietario.text =
-                "${bandera.propietario?.nombre} ${bandera.propietario?.apellidos}"
-
-            bandera.imagen?.let { holder.imagenPerfil.setImageResource(it) }
-
-
-            holder.corazon.setImageResource(R.drawable.outline_favorite_border_24)
-
-            if (bandera.idPropietario != UsuarioData.usuario.id) {
-                if (saberUsuariosInteresados(bandera)) {
-                    holder.corazon.setImageResource(R.drawable.favorito_relleno)
-                    visible = true
-                }
-                holder.corazon.visibility = View.VISIBLE
-            } else {
-
-                holder.corazon.visibility = View.INVISIBLE
+        if (bandera.idPropietario != UsuarioData.usuario.id) {
+            if (saberUsuariosInteresados(bandera)) {
+                holder.corazon.setImageResource(R.drawable.favorito_relleno)
+                visible = true
             }
-
+            holder.corazon.visibility = View.VISIBLE
+        } else {
+            holder.corazon.visibility = View.INVISIBLE
         }
 
         holder.corazon.setOnClickListener {
             if (visible) {
-
                 UsuarioData.usuario.proyectosInteresadosId.remove(bandera.id)
                 bandera.usuariosInteresadosId.remove(UsuarioData.usuario.id)
 
                 Gestor.gestorUsuarios.modificarUsuario(UsuarioData.usuario)
                 Gestor.gestorProyectos.modificarProyecto(bandera)
 
-
                 holder.corazon.setImageResource(R.drawable.outline_favorite_border_24)
 
                 visible = false
-
             } else {
-
                 UsuarioData.usuario.proyectosInteresadosId.add(bandera.id)
                 bandera.usuariosInteresadosId.add(UsuarioData.usuario.id)
 
@@ -126,11 +115,10 @@ class ProyectoAdapter(
 
     private fun saberUsuariosInteresados(proyecto: Proyecto): Boolean {
         var estaInteresado = false
-        UsuarioData.totalUsuarios.forEach { usuario ->
-            usuario.proyectosInteresadosId.forEach { idProyecto ->
-                if (idProyecto == proyecto.id) {
-                    estaInteresado = true
-                }
+
+        listadoProyectosInteresadosId?.forEach { id ->
+            if (id == proyecto.id) {
+                estaInteresado = true
             }
         }
 

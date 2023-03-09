@@ -32,13 +32,6 @@
                 android:textSize="30sp"
                 android:textStyle="bold" />
 
-            <ImageView
-                android:id="@+id/corazon"
-                android:layout_width="30sp"
-                android:layout_height="70sp"
-                android:clickable="true"
-                android:src="@drawable/favorito_relleno"
-                android:visibility="visible" />
         </LinearLayout>
 
         <!-- DESCRIPCION -->
@@ -85,6 +78,7 @@
                 android:id="@+id/propietario"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:clickable="true"
                 android:text="- Adolfo Salado -"
                 android:textColor="@color/black"
                 android:textSize="25dp" />
