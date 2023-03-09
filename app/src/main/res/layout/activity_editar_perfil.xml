@@ -153,7 +153,7 @@
                 android:layout_height="50dp"
                 android:layout_margin="20sp"
                 android:background="@color/card"
-                android:text="ENTRAR"
+                android:text="MODIFICAR"
                 android:textColor="@color/white" />
 
         </LinearLayout>
