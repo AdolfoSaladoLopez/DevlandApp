@@ -30,6 +30,7 @@ class ProyectoAdapter(
         var visible: Boolean = false
         var vista = convertView
         val holder: ViewHolder
+
         if (vista == null) {
             val vi = context?.getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
             vista = vi.inflate(R.layout.recycler_view_proyectos, null)
@@ -42,8 +43,11 @@ class ProyectoAdapter(
             holder.imagenPerfil = vista.findViewById(R.id.ivImagenPerfil) as ImageView
 
             vista.tag = holder
+
         } else {
+
             holder = vista.tag as ViewHolder
+
         }
 
         val bandera = elementos!![position]
@@ -124,5 +128,4 @@ class ProyectoAdapter(
 
         return estaInteresado
     }
-
 }

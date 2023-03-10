@@ -119,8 +119,6 @@ class FeedActivity : DrawerBaseActivity() {
                 Log.d(TAG, "Corriendo corrutina")
             }
 
-            println("listadoProyectos: $listadoProyectos")
-
             UsuarioData.totalProyectos.clear()
             UsuarioData.totalProyectos.addAll(listadoProyectos)
 

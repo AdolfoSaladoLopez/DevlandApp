@@ -20,6 +20,7 @@ class ProyectosInteresadosAdapter(
     override fun getView(position: Int, convertView: View?, parent: ViewGroup?): View? {
         var vista = convertView
         val holder: ViewHolder
+
         if (vista == null) {
             val vi = context?.getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
             vista = vi.inflate(R.layout.carta_proyectos_interesados, null)
@@ -33,6 +34,7 @@ class ProyectosInteresadosAdapter(
         } else {
             holder = vista.tag as ViewHolder
         }
+
         val bandera = elementos!![position]
 
         holder.titulo.text = bandera.nombre

@@ -42,6 +42,7 @@ class NotificacionesActivity : DrawerBaseActivity() {
                 R.layout.notificaciones_item,
                 listaNotificaciones
             )
+
             listViewNotificaciones.adapter = adapter
 
             listViewNotificaciones.setOnItemClickListener { parent, view, position, id ->

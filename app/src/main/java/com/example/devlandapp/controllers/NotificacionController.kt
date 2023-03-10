@@ -17,6 +17,7 @@ class NotificacionController : NotificacionDAO {
                     listadoTotalNotificaciones.add((notificacion.toObject(Notificacion::class.java)))
                 }
             }
+
         return listadoTotalNotificaciones
     }
 
@@ -30,12 +31,10 @@ class NotificacionController : NotificacionDAO {
                 for (notificacion in it) {
                     val notif = notificacion.toObject(Notificacion::class.java)
                     notif.id =
-                        notificacion.id.toInt()  // Asigna el ID de Firestore al objeto Notificacion
+                        notificacion.id.toInt()
                     listadoTotalNotificaciones.add(notif)
                 }
             }
-
-
 
         return listadoTotalNotificaciones
     }
@@ -65,6 +64,7 @@ class NotificacionController : NotificacionDAO {
                 .addOnSuccessListener { comprobante = true }
                 .addOnFailureListener { e -> Log.w(TAG, "Error deleting document", e) }
         }
+        
         return comprobante
     }
 

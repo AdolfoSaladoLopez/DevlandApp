@@ -20,6 +20,7 @@ class UsuarioAdapter(
     override fun getView(position: Int, convertView: View?, parent: ViewGroup?): View? {
         var vista = convertView
         val holder: ViewHolder
+
         if (vista == null) {
             val vi = context?.getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
             vista = vi.inflate(R.layout.carta_usuarios_interesados, null)
@@ -30,14 +31,17 @@ class UsuarioAdapter(
             vista.tag = holder
 
         } else {
+
             holder = vista.tag as ViewHolder
+            
         }
+
         val bandera = elementos!![position]
 
         holder.nombre.text = "${bandera.nombre} ${bandera.apellidos}"
         holder.email.text = bandera.email
-        return vista
 
+        return vista
     }
 
     override fun getCount(): Int {

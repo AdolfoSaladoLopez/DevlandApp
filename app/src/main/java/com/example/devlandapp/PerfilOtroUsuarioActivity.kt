@@ -47,10 +47,10 @@ class PerfilOtroUsuarioActivity : DrawerBaseActivity() {
     }
 
     private fun recuperarIdPropiet(){
-
         val idPropiet: Int = intent.extras!!.getInt("idpropiet")
         idUsuario = idPropiet
     }
+
     private fun obtenerUsuarioPorId(): Usuario {
         var usuario = Usuario()
 

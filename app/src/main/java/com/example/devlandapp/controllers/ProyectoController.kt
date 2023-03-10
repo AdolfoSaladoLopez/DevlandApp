@@ -4,7 +4,6 @@ import android.content.ContentValues.TAG
 import android.util.Log
 import com.example.devlandapp.models.Proyecto
 import com.example.devlandapp.models.Usuario
-import com.google.firebase.ktx.Firebase
 
 class ProyectoController : ProyectoDAO {
     override fun obtenerTodosProyectos(): MutableList<Proyecto> {
@@ -57,8 +56,6 @@ class ProyectoController : ProyectoDAO {
             query = query.whereEqualTo("idioma", idioma)
         }
 
-
-
         query.get()
             .addOnSuccessListener {
                 for (proyecto in it) {
@@ -75,6 +72,7 @@ class ProyectoController : ProyectoDAO {
                     }
                 }
             }
+
         return listadoTotalProyectos
     }
 

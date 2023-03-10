@@ -212,7 +212,6 @@ class CrearProyectoActivity : DrawerBaseActivity() {
 
     private fun goToFeed() {
         val intent = Intent(this, FeedActivity::class.java)
-        // Evita que pasemos de nuevo a la activity login
         startActivity(intent)
     }
 

@@ -1,11 +1,9 @@
 package com.example.devlandapp
 
-import android.content.ContentValues
 import android.content.Intent
 import android.content.SharedPreferences
 import android.os.Bundle
 import android.text.TextUtils
-import android.util.Log
 import android.util.Patterns
 import android.widget.Button
 import android.widget.EditText
@@ -28,7 +26,6 @@ class LoginActivity : AppCompatActivity() {
     var usuario: Usuario? = Usuario()
     private var totalUsuarios: MutableList<Usuario> = mutableListOf()
 
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
@@ -45,17 +42,13 @@ class LoginActivity : AppCompatActivity() {
 
         establecerValoresSiExisten()
 
-        tvOlvidarPwd.setOnClickListener {
-            goToOlvidarPwd()
-        }
-
         tvRegistro.setOnClickListener {
             goToRegistro()
         }
 
         btnInicioSesion?.setOnClickListener {
-            val email = etEmail!!.text.toString()
-            val password = etPassword!!.text.toString()
+            val email = etEmail.text.toString()
+            val password = etPassword.text.toString()
 
             if (login(email, password)) {
 
@@ -68,9 +61,6 @@ class LoginActivity : AppCompatActivity() {
                 }
 
                 usuario = UsuarioData.usuario
-
-
-                println("Contraseña usuario: ${usuario!!.password}. Contraseña texto: $password")
 
                 if (usuario!!.password.equals(password)) {
                     goToFeed()
@@ -98,7 +88,6 @@ class LoginActivity : AppCompatActivity() {
                 }
 
                 UsuarioData.ultimoIdUsuario = totalUsuarios.size
-                Log.d(ContentValues.TAG, "Corriendo corrutina")
             }
         }
 
@@ -145,8 +134,8 @@ class LoginActivity : AppCompatActivity() {
         val email = prefs!!.getString("email", "")
         val password = prefs!!.getString("password", "")
         if (!TextUtils.isEmpty(email) && !TextUtils.isEmpty(password)) {
-            etEmail!!.setText(email)
-            etPassword!!.setText(password)
+            etEmail.setText(email)
+            etPassword.setText(password)
         }
     }
 
@@ -163,12 +152,5 @@ class LoginActivity : AppCompatActivity() {
         startActivity(intent)
     }
 
-    /* Método por implementar en futuras versiones */
-    private fun goToOlvidarPwd() {
-        //val intent = Intent(this, MainActivity::class.java)
-        //Evita que pasemos de nuevo a la activity login
-        //intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
-        // startActivity(intent)
-    }
 
 }

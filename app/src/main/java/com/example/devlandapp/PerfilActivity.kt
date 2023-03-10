@@ -6,7 +6,6 @@ import android.os.Bundle
 import com.example.devlandapp.databinding.ActivityPerfilBinding
 
 class PerfilActivity : DrawerBaseActivity() {
-
     private lateinit var binding: ActivityPerfilBinding
 
     @SuppressLint("SetTextI18n")

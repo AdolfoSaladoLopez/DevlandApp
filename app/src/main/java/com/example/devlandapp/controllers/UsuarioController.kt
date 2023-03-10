@@ -22,10 +22,7 @@ class UsuarioController : UsuarioDAO {
     }
 
     override fun obtenerUsuarioId(id: Int): Usuario {
-        println(id.toString())
         var usuario: Usuario = Usuario()
-        var lista: MutableList<Usuario> = mutableListOf()
-
 
         Db.conexion().collection("usuario")
             .document(id.toString())
@@ -73,7 +70,6 @@ class UsuarioController : UsuarioDAO {
     }
 
     override fun obtenerUsuarioCorreoElectronico(correo: String): Usuario? {
-
         var usuario: Usuario? = Usuario()
         var listado: MutableList<Usuario> = mutableListOf()
 
@@ -89,10 +85,6 @@ class UsuarioController : UsuarioDAO {
             .addOnFailureListener { exception ->
                 Log.w(TAG, "Error getting documents: ", exception)
             }
-
-        listado.forEach {
-            println("Dentro del foreach" + it.nombre)
-        }
 
         return usuario
     }

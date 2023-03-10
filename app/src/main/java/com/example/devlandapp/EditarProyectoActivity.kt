@@ -332,8 +332,8 @@ class EditarProyectoActivity : DrawerBaseActivity() {
         }
 
         binding.editar.setOnClickListener {
-
             var comprobante: Boolean = true
+
             lifecycleScope.launch {
                 while (comprobante) {
                     listadoProyectos = Gestor.gestorProyectos.obtenerTodosProyectos()
@@ -456,7 +456,6 @@ class EditarProyectoActivity : DrawerBaseActivity() {
 
     @SuppressLint("UseSwitchCompatOrMaterialCode")
     private fun switchchecked(): Boolean {
-
         var disponibilidad = findViewById<Switch>(R.id.disponibilidad)
 
         return disponibilidad.isChecked

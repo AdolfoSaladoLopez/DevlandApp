@@ -90,7 +90,6 @@ class DetallesProyectoOtraPersonaActivity : DrawerBaseActivity() {
         totalUsuarios?.forEach {
             if (it.id == proyecto.idPropietario) {
                 propiet = it
-                println(propiet!!.nombre)
             }
         }
     }
@@ -153,7 +152,7 @@ class DetallesProyectoOtraPersonaActivity : DrawerBaseActivity() {
         propietario = findViewById(R.id.propietario)
 
         btnEstoyInteresado.setOnClickListener {
-            if (!interesado ) {
+            if (!interesado) {
                 usuario.proyectosInteresadosId.add(proyecto.id)
                 proyecto.usuariosInteresadosId.add(usuario.id)
 
@@ -175,8 +174,7 @@ class DetallesProyectoOtraPersonaActivity : DrawerBaseActivity() {
             }
         }
 
-        propietario.setOnClickListener{
-
+        propietario.setOnClickListener {
             val intent = Intent(this, PerfilOtroUsuarioActivity::class.java)
             intent.putExtra("idpropiet", propiet?.id)
 
@@ -186,7 +184,6 @@ class DetallesProyectoOtraPersonaActivity : DrawerBaseActivity() {
             intent.putExtra("id", arrayList)
 
             this.startActivity(intent)
-
         }
     }
 

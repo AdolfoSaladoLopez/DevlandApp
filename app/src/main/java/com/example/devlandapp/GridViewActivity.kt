@@ -10,18 +10,19 @@ import com.example.devlandapp.adapters.ImageAdapter
 class GridViewActivity : AppCompatActivity() {
     private var listadoImagenes: MutableList<Int> = mutableListOf()
     private var adaptador: ImageAdapter? = null
-    var ultimaImagen: View? = null
+    private var ultimaImagen: View? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_grid_view)
 
         listadoImagenes.addAll(rellenarListadoImagenes())
+
         val gridView: GridView = findViewById(R.id.grid)
         adaptador = ImageAdapter(this, R.layout.activity_grid_view, listadoImagenes);
         gridView.adapter = adaptador
-        var imagen: Int = 0
 
+        var imagen: Int = 0
 
         gridView.choiceMode = GridView.CHOICE_MODE_MULTIPLE;
         gridView.setOnItemClickListener { parent, view, position, id ->

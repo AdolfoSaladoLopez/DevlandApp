@@ -32,10 +32,11 @@ class ImageAdapter(
         } else {
             holder = vista.tag as ViewHolder
         }
-        val bandera = elementos!![position]
 
-        if (bandera != null) {
-            holder.imagen.setImageResource(bandera)
+        val elemento = elementos!![position]
+
+        if (elemento != null) {
+            holder.imagen.setImageResource(elemento)
         }
         return vista
 

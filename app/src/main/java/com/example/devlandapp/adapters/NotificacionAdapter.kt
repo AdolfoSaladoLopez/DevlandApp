@@ -49,20 +49,24 @@ class NotificacionAdapter(
         } else {
             holder = vista.tag as ViewHolder
         }
+
         val notificacion = elementos!![position]
 
         if (notificacion != null) {
             holder.textoTextView.text = notificacion.mensaje
             if (notificacion.leido) {
+
                 holder.vistoImageView.setImageResource(R.drawable.ic_check_verde_oscuro)
                 holder.cardView.setCardBackgroundColor(Color.parseColor("#C7C7C7"))
                 holder.textoTextView.setTextColor(Color.parseColor("#6E6E6E"))
                 actializarNotificacion(notificacion)
 
             } else {
+
                 holder.vistoImageView.setImageResource(R.drawable.ic_check_gris)
                 holder.cardView.setCardBackgroundColor(Color.parseColor("#5A0E66"))
                 holder.textoTextView.setTextColor(Color.parseColor("#FFFFFF"))
+                
             }
         }
 
@@ -83,5 +87,4 @@ class NotificacionAdapter(
     private fun actializarNotificacion(notificacion: Notificacion) {
         Gestor.gestorNotificaciones.registrarNotificacion(notificacion)
     }
-
 }

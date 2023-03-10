@@ -56,7 +56,6 @@ class UsuariosInteresadosActivity : DrawerBaseActivity() {
     }
 
     private fun recarga() {
-
         val lista = findViewById<ListView>(R.id.misProyectos)
 
         val adapter = UsuarioAdapter(

@@ -40,7 +40,6 @@ class FiltradoActivity: DrawerBaseActivity() {
         spinnerTecnologia.adapter = adaptadorTecnologia
         spinnerIdioma.adapter = adaptadorIdioma
 
-
         val botonBorrarUbicacion = findViewById<ImageView>(R.id.btnBorrarUbicacion)
         val botonBorrarModoTrabajo = findViewById<ImageView>(R.id.btnBorrarModo)
         val botonBorrarTecnologia = findViewById<ImageView>(R.id.btnBorrarTecnologia)
@@ -51,15 +50,11 @@ class FiltradoActivity: DrawerBaseActivity() {
         val botonAceptar = findViewById<Button>(R.id.btnAceptar)
         val botonCancelar = findViewById<Button>(R.id.btnCancelar)
 
-
-
         ubicacionElegida = intent.extras!!.getString("ubicacion")
         modoTrabajoElegido = intent.extras!!.getString("modo")
         tecnologiaElegido = intent.extras!!.getString("tecnologia")
         idiomaElegido = intent.extras!!.getString("idioma")
         verProyectosLLenos = intent.extras!!.getBoolean("verProyectosLLenos")
-
-
 
         val intentFeed = Intent(this, FeedActivity::class.java)
 
@@ -120,13 +115,11 @@ class FiltradoActivity: DrawerBaseActivity() {
         }
 
         botonAceptar.setOnClickListener {
-
             intentFeed.putExtra("ubicacion", ubicacionElegida)
             intentFeed.putExtra("modo", modoTrabajoElegido)
             intentFeed.putExtra("tecnologia", tecnologiaElegido)
             intentFeed.putExtra("idioma", idiomaElegido)
             intentFeed.putExtra("verProyectosLLenos", verProyectosLLenos)
-
 
             startActivity(intentFeed)
         }
@@ -134,8 +127,5 @@ class FiltradoActivity: DrawerBaseActivity() {
         botonCancelar.setOnClickListener {
             startActivity(intentFeed)
         }
-
     }
-
-
 }

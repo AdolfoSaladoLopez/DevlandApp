@@ -24,24 +24,7 @@ open class DrawerBaseActivity : AppCompatActivity() {
         val toolbar: Toolbar = drawerLayout.findViewById(R.id.toolbar)
         setSupportActionBar(toolbar)
 
-
         val navigationView = drawerLayout.findViewById<NavigationView>(R.id.nav)
-
-/*      TODO: Esto es para ponerle un badge a la notificacion
-=======
-
->>>>>>> alejandro
-        val menuItem = navigationView.menu.findItem(R.id.notifications)
-        val icon = menuItem.icon
-
-        val badgeDrawable = BadgeDrawable.create(this)
-        badgeDrawable.backgroundColor = Color.RED
-        badgeDrawable.isVisible = true
-<<<<<<< HEAD
-
-        //BadgeUtils.attachBadgeDrawable(badgeDrawable, icon, this)
-        */
-
 
         navigationView.setNavigationItemSelectedListener {
             drawerLayout.closeDrawer(GravityCompat.START)
@@ -109,12 +92,6 @@ open class DrawerBaseActivity : AppCompatActivity() {
         val intent = Intent(this, LoginActivity::class.java)
         startActivity(intent)
     }
-
-    private fun comprobarNotificacionesLeidas(): Boolean {
-
-        return false
-    }
-
 }
 
 

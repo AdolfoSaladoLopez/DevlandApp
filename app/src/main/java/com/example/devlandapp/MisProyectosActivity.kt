@@ -37,7 +37,6 @@ class MisProyectosActivity : DrawerBaseActivity() {
 
         val lv1 = findViewById<ListView>(R.id.misProyectos)
         lv1.setOnItemClickListener { parent, view, position, id ->
-            println("Estoy en la vista: " + listadoProyectosUsuario[position].id)
             intent.putExtra("id", listadoProyectosUsuario[position].id)
             startActivity(intent)
         }
@@ -63,5 +62,4 @@ class MisProyectosActivity : DrawerBaseActivity() {
             }
         }
     }
-
 }
