@@ -16,16 +16,7 @@ Salado, Adolfo.</p>
 DOCUMENTACIÓN DEL PROYECTO
 </p>
 <p align="center">
-https://docs.google.com/document/d/1jpGYpiO9IHmyi2w990yAk7zoGQzITrzX49i-7lsxRJU/edit?usp=sharing
-</p>
-
----
-
-<p align="center" style="color:darkred" >
-DOCUMENTACIÓN DE INFORMACIÓN
-</p>
-<p align="center">
-https://docs.google.com/document/d/1iwOCIiokQApJibPSoYqmSjbx0j4zVi_zbs1DPGfyctk/edit?usp=sharing
+https://docs.google.com/document/d/1GC7FzTL4b8ZgpbSZuLdMjTer95Ba8a6n5Q-dC-8oOPE/edit?usp=sharing
 </p>
 
 ---
@@ -92,4 +83,15 @@ https://docs.google.com/document/d/1x5gfr1WKTmL_jOHXm0hPszTocC1QpxaOPPhqwcq36_M/
 <p align="center">
 <img src="https://i.ibb.co/hLFxFmz/octobiwan-removebg-preview.png" alt="octobiwan-removebg-preview" border="0" width="100px" height="100px">
 </p>
+
+---
+
+<p align="center" style="color:darkred" >
+DOCUMENTACIÓN DE INFORMACIÓN
+</p>
+<p align="center">
+https://docs.google.com/document/d/1iwOCIiokQApJibPSoYqmSjbx0j4zVi_zbs1DPGfyctk/edit?usp=sharing
+</p>
+
+---
 
