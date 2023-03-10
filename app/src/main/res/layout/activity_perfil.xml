@@ -29,9 +29,9 @@
             android:id="@+id/nombre_apellidos_perfil"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Fernando Pérez"
+            android:text="Alejandro Marín Bermúdez "
             android:textColor="@color/black"
-            android:textSize="35sp"
+            android:textSize="25sp"
             android:textStyle="bold" />
 
         <TextView
@@ -41,7 +41,7 @@
             android:layout_gravity="center"
             android:text="FernandoPerez@gmail.com"
             android:textColor="@color/black"
-            android:textSize="25sp" />
+            android:textSize="20sp" />
 
         <TextView
             android:id="@+id/descripcion_perfil"
