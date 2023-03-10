@@ -110,8 +110,8 @@
                 android:backgroundTint="@color/card"
                 android:text="ESPAÑOL"
                 android:textColor="@color/white"
-                android:textSize="15sp"
-                app:chipEndPadding="20dp"
+                android:textSize="12sp"
+                app:chipEndPadding="18dp"
                 app:chipMinHeight="50sp"
                 app:chipStartPadding="20dp" />
 
@@ -123,8 +123,8 @@
                 android:backgroundTint="@color/card"
                 android:text="MÁLAGA"
                 android:textColor="@color/white"
-                android:textSize="15sp"
-                app:chipEndPadding="20dp"
+                android:textSize="12sp"
+                app:chipEndPadding="18dp"
                 app:chipMinHeight="50sp"
                 app:chipStartPadding="20dp" />
 
@@ -136,8 +136,8 @@
                 android:backgroundTint="@color/card"
                 android:text="REMOTO"
                 android:textColor="@color/white"
-                android:textSize="15sp"
-                app:chipEndPadding="20dp"
+                android:textSize="12sp"
+                app:chipEndPadding="18dp"
                 app:chipMinHeight="50sp"
                 app:chipStartPadding="20dp" />
         </LinearLayout>
@@ -159,7 +159,7 @@
                 android:backgroundTint="@color/card"
                 android:text="JAVA"
                 android:textColor="@color/white"
-                android:textSize="20sp"
+                android:textSize="15sp"
                 app:chipEndPadding="20dp"
                 app:chipMinHeight="50sp"
                 app:chipStartPadding="20dp" />

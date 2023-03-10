@@ -100,12 +100,12 @@
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:backgroundTint="@color/card"
-                android:text="ESPAÑOL"
+                android:text="PORTUGUES"
                 android:textColor="@color/white"
-                android:textSize="14sp"
-                app:chipEndPadding="20dp"
+                android:textSize="12sp"
+                app:chipEndPadding="18dp"
                 app:chipMinHeight="50sp"
-                app:chipStartPadding="20dp" />
+                app:chipStartPadding="20dp"/>
 
             <com.google.android.material.chip.Chip
                 android:id="@+id/ubicacion"
@@ -113,10 +113,10 @@
                 android:layout_height="match_parent"
                 android:layout_marginStart="10sp"
                 android:backgroundTint="@color/card"
-                android:text="MÁLAGA"
+                android:text="CÓRDOBA"
                 android:textColor="@color/white"
-                android:textSize="14sp"
-                app:chipEndPadding="20dp"
+                android:textSize="12sp"
+                app:chipEndPadding="18dp"
                 app:chipMinHeight="50sp"
                 app:chipStartPadding="20dp" />
 
@@ -126,10 +126,10 @@
                 android:layout_height="match_parent"
                 android:layout_marginStart="10sp"
                 android:backgroundTint="@color/card"
-                android:text="REMOTO"
+                android:text="PRESENCIAL"
                 android:textColor="@color/white"
-                android:textSize="14sp"
-                app:chipEndPadding="20dp"
+                android:textSize="12sp"
+                app:chipEndPadding="18dp"
                 app:chipMinHeight="50sp"
                 app:chipStartPadding="20dp" />
         </LinearLayout>
@@ -150,9 +150,9 @@
                 android:layout_height="match_parent"
                 android:layout_marginStart="10sp"
                 android:backgroundTint="@color/card"
-                android:text="JAVA"
+                android:text="HTML Y CSS"
                 android:textColor="@color/white"
-                android:textSize="20sp"
+                android:textSize="15sp"
                 app:chipEndPadding="20dp"
                 app:chipMinHeight="50sp"
                 app:chipStartPadding="20dp" />
