@@ -87,7 +87,7 @@ https://docs.google.com/document/d/1x5gfr1WKTmL_jOHXm0hPszTocC1QpxaOPPhqwcq36_M/
 ---
 
 <p align="center" style="color:darkred" >
-DOCUMENTACIÓN DE INFORMACIÓN
+DICCIONARIO CON WEBS DE RESOLUCIÓN DE PROBLEMAS 
 </p>
 <p align="center">
 https://docs.google.com/document/d/1iwOCIiokQApJibPSoYqmSjbx0j4zVi_zbs1DPGfyctk/edit?usp=sharing
