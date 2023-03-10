@@ -58,8 +58,7 @@ class DetallesUsuarioActivity : DrawerBaseActivity() {
 
                     lista = Gestor.gestorNotificaciones.obtenerTodasNotificaciones()
 
-
-                    var id = if (lista.size == 0) {
+                    val id = if (lista.size == 0) {
                         0
                     } else {
                         lista[lista.size - 1].id + 1

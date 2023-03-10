@@ -52,7 +52,7 @@ class NotificacionesActivity : DrawerBaseActivity() {
                     this@NotificacionesActivity,
                     DetallesProyectoOtraPersonaActivity::class.java
                 )
-                intent.putExtra("idProyecto", notificacion.idProyecto)
+                intent.putExtra("id", notificacion.idProyecto)
                 startActivity(intent)
             }
         }
