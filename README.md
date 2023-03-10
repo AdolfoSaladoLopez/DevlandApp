@@ -12,7 +12,7 @@ Salado, Adolfo.</p>
 
 ---
 
-<p align="center" style="color:darkred" >
+<p align="center" style="font-weight: bold; color:darkred" >
 DOCUMENTACIÓN DEL PROYECTO
 </p>
 <p align="center">
@@ -21,7 +21,7 @@ https://docs.google.com/document/d/1GC7FzTL4b8ZgpbSZuLdMjTer95Ba8a6n5Q-dC-8oOPE/
 
 ---
 
-<p align="center" style="color:darkred" >
+<p align="center" style="font-weight: bold; color:darkred" >
 LANDING PAGE
 </p>
 <p align="center">
@@ -30,7 +30,7 @@ https://deverland.nicepage.io/?version=51e7c6a8-aebd-4154-94d0-fb68938ac331
 
 ---
 
-<p align="center" style="color:darkred">
+<p align="center" style="font-weight: bold; color:darkred">
 TABLÓN TRELLO
 </p>
 <p align="center">
@@ -39,7 +39,7 @@ https://trello.com/b/MTKaaNWP/no-dual-proyectos-para-desarrolladores
 
 ---
 
-<p align="center" style="color:darkred">
+<p align="center" style="font-weight: bold; color:darkred">
 PRESENTACIONES
 </p>
 PRESENTACIÓN - SEMANA 1 - VIERNES, 18 DICIEMBRE: </br>
@@ -63,7 +63,7 @@ https://docs.google.com/presentation/d/18gc5noSbnub0InTj71MB3FTjHPNS_YOvCAyXzz1W
 
 ---
 
-<p align="center" style="color:darkred">
+<p align="center" style="font-weight: bold; color:darkred">
 PRESENTACIÓN FINAL
 </p>
 <p align="center">
@@ -72,7 +72,7 @@ https://docs.google.com/presentation/d/1F9RJsCZ7MQBfMSb-BKiJJYkGlTxnl6AJv2traRQf
 
 ---
 
-<p align="center" style="color:darkred">
+<p align="center" style="font-weight: bold; color:darkred">
 GUION PRESENTACIÓN FINAL
 </p>
 <p align="center">
@@ -86,7 +86,7 @@ https://docs.google.com/document/d/1x5gfr1WKTmL_jOHXm0hPszTocC1QpxaOPPhqwcq36_M/
 
 ---
 
-<p align="center" style="color:darkred" >
+<p align="center" style="font-weight: bold; color:darkred" >
 DICCIONARIO CON WEBS DE RESOLUCIÓN DE PROBLEMAS 
 </p>
 <p align="center">
