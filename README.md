@@ -30,6 +30,15 @@ https://docs.google.com/document/d/1iwOCIiokQApJibPSoYqmSjbx0j4zVi_zbs1DPGfyctk/
 
 ---
 
+<p align="center" style="color:darkred" >
+LANDING PAGE
+</p>
+<p align="center">
+https://deverland.nicepage.io/?version=51e7c6a8-aebd-4154-94d0-fb68938ac331
+</p>
+
+---
+
 <p align="center" style="color:darkred">
 TABLÓN TRELLO
 </p>
